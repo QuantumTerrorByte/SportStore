@@ -1,0 +1,13 @@
+﻿@model IQueryable<Product>;
+
+
+<div>
+    <lu>
+        @foreach (var product in Model)
+        {
+            <li>@product.Name</li>
+            <li>@product.Price</li>
+        }
+    </lu>
+</div>
+<div><button> <a href=""></a></button></div>
