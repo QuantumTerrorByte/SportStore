@@ -11,29 +11,32 @@ namespace SportStore.Controllers
 {
     public class ProductController : Controller
     {
+        public static int createCount;
         private IProductRepository _repository;
 
         public ProductController(IProductRepository repository)
         {
             _repository = repository;
+            createCount++;
+            Console.WriteLine(createCount);
         }
 
-        public IActionResult List()
+        public IActionResult Index()
         {
-            return View(_repository.Products);
+            return View(_repository.GetProducts());
         }
 
         [HttpGet]
-        public ViewResult AddProduct()
+        public IActionResult AddProduct()
         {
             return View();
         }
 
         [HttpPost]
-        public ViewResult AddProduct(IProductRepository productRepository)
+        public IActionResult AddProduct(Product product)
         {
-            
-            return View();
+            _repository.AddProduct(product);
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

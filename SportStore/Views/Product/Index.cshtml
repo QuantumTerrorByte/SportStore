@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Product>;
+
+
+<div>
+    <lu>
+        @foreach (var product in Model)
+        {
+            <li>@product.Id</li>
+            <li>@product.Name</li>
+            <li>@product.Price</li>
+            <li>@product.Description</li>
+            <li>@product.Category</li>
+        }
+    </lu>
+</div>
+<div>
+    <a asp-action="AddProduct" style="border: solid black 3px; color: aqua;background: black">Add product</a>
+</div>

@@ -24,7 +24,7 @@ namespace SportStore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IProductRepository, FaceProductRepository>();
+            services.AddSingleton<IProductRepository, FaceProductRepository>();
             services.AddControllersWithViews();
         }
 
@@ -50,7 +50,7 @@ namespace SportStore
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Product}/{action=List}/{id?}");
+                    pattern: "{controller=Product}/{action=Index}/{id?}");
             });
         }
     }

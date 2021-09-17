@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace SportStore.Models
@@ -14,7 +15,7 @@ namespace SportStore.Models
         }
 
         private DbSet<Product> Products { set; get; }
-        public IQueryable<Product> GetProducts()
+        public IEnumerable<Product> GetProducts()
         {
             throw new System.NotImplementedException();
         }
