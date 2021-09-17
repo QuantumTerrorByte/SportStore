@@ -681,26 +681,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\Dragunov\\.nuget\\packages\\": {},
+    "D:\\Programs\\Microsoft\\Tools\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "Z:\\C#\\SportStore\\SportStore\\SportStore.csproj",
+      "projectUniqueName": "D:\\Last\\sharp\\SportStore\\SportStore\\SportStore.csproj",
       "projectName": "SportStore",
-      "projectPath": "Z:\\C#\\SportStore\\SportStore\\SportStore.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "Z:\\C#\\SportStore\\SportStore\\obj\\",
+      "projectPath": "D:\\Last\\sharp\\SportStore\\SportStore\\SportStore.csproj",
+      "packagesPath": "C:\\Users\\Dragunov\\.nuget\\packages\\",
+      "outputPath": "D:\\Last\\sharp\\SportStore\\SportStore\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\Programs\\Microsoft\\Tools\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Dragunov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.org": {}
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
@@ -745,7 +751,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\User\\.dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

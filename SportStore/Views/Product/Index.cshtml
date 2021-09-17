@@ -1,18 +1,30 @@
 ﻿@model IEnumerable<Product>;
+<link rel="stylesheet" href="/css/ProductBlock.css">
 
-
-<div>
-    <lu>
-        @foreach (var product in Model)
-        {
-            <li>@product.Id</li>
-            <li>@product.Name</li>
-            <li>@product.Price</li>
-            <li>@product.Description</li>
-            <li>@product.Category</li>
-        }
-    </lu>
+<div class="products-block">
+    @foreach (Product product in Model)
+    {
+        <div class="product-block">
+            <div class="product-block-Left">
+                <div class="product-img-holder"></div>
+                <div class="product-category">
+                    Category:<br>
+                    @product.Category
+                </div>
+            </div>
+            <div class="product-block-right">
+                <div>
+                    <div class="product-id">Id: @product.Id</div>
+                    <div class="product-name">Name: @product.Name</div>
+                </div>
+                <div class="product-description">@product.Description</div>
+                <div class="product-price">Price is $@product.Price</div>
+            </div>
+        </div>
+    }
 </div>
+
+
 <div>
     <a asp-action="AddProduct" style="border: solid black 3px; color: aqua;background: black">Add product</a>
 </div>

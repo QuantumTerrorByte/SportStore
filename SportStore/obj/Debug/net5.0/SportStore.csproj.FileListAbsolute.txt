@@ -74,7 +74,6 @@ D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\SportStore.TagHelpers.input
 D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\SportStore.TagHelpers.output.cache
 D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\SportStore.RazorCoreGenerate.cache
 D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Product\AddProduct.cshtml.g.cs
-D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Product\List.cshtml.g.cs
 D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
@@ -134,3 +133,5 @@ Z:\C#\SportStore\SportStore\obj\Debug\net5.0\SportStore.pdb
 Z:\C#\SportStore\SportStore\obj\Debug\net5.0\SportStore.genruntimeconfig.cache
 Z:\C#\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Product\Index.cshtml.g.cs
 Z:\C#\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Shared\_LeftNavBarLayout.cshtml.g.cs
+D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Product\Index.cshtml.g.cs
+D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Shared\_LeftNavBarLayout.cshtml.g.cs

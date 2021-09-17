@@ -8,7 +8,6 @@
 
 .header {
     height: 100px;
-    background: #9ba69e;
     text-align: center;
     border: solid 2px deeppink;
 }
@@ -18,24 +17,27 @@
     /*border: solid red 2px;*/
 }
 
-.contentBlock{
-padding: 30px;
+.contentBlock {
+    padding: 30px;
     border: solid 2px orangered;
     width: 100%;
 }
+
 .leftBar {
     display: flex;
     flex-direction: column;
     /*justify-content: center;*/
-    align-content: center;
-    width: 200px;
+    width: 400px;
     border: solid 2px #e565ab;
+    align-items: center;
 }
 
 .leftBarButton {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 10px;
-    width: 80%;
-    height: 10%;
-    border: solid black 2px;
+    width: 90%;
+    height: 50px;
+    border: solid #69fc0f 3px;
 }
