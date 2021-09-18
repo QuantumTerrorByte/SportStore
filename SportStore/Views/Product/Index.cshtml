@@ -1,8 +1,10 @@
-﻿@model IEnumerable<Product>;
-<link rel="stylesheet" href="/css/ProductBlock.css">
+﻿@model ProductsListViewModel;
+@addTagHelper PageLinkTagHelper, SportStore;
+
+
 
 <div class="products-block">
-    @foreach (Product product in Model)
+    @foreach (Product product in Model.Products)
     {
         <div class="product-block">
             <div class="product-block-Left">
@@ -22,9 +24,10 @@
             </div>
         </div>
     }
+    <div page-model="@Model.PagingInfo"></div>
 </div>
+@* <hpage page-model="@Model.PagingInfo"></hpage> *@
 
-
-<div>
+<div style="margin: 50px">
     <a asp-action="AddProduct" style="border: solid black 3px; color: aqua;background: black">Add product</a>
 </div>

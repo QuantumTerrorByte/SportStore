@@ -17,13 +17,13 @@ namespace SportStore.Models
         private DbSet<Product> Products { set; get; }
         public IEnumerable<Product> GetProducts()
         {
-            throw new System.NotImplementedException();
+            return Products;
         }
 
         public void AddProduct(Product product)
         {
-            throw new System.NotImplementedException();
+            Products.Add(product);
+            SaveChanges();
         }
-
     }
 }

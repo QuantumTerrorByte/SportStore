@@ -6,24 +6,33 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SportStore.Models;
+using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers
 {
     public class ProductController : Controller
     {
-        public static int createCount;
-        private IProductRepository _repository;
+        private readonly IProductRepository _repository;
+        public int PageSize { get; set; } = 3;
 
         public ProductController(IProductRepository repository)
-        {
-            _repository = repository;
-            createCount++;
-            Console.WriteLine(createCount);
-        }
+            => this._repository = repository;
 
-        public IActionResult Index()
+        public IActionResult Index(int productPage = 0)
         {
-            return View(_repository.GetProducts());
+            return View(new ProductsListViewModel
+            {
+                Products = _repository.GetProducts()
+                    .OrderBy(p => p.Id)
+                    .Skip((productPage - 1) * PageSize)
+                    .Take(PageSize),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = productPage,
+                    ItemsPerPage = PageSize,
+                    TotalItems = _repository.GetProducts().Count()
+                }
+            });
         }
 
         [HttpGet]

@@ -1,4 +1,5 @@
 using System;
+using SportStore.Models.ViewModels;
 using Xunit;
 
 namespace SportStore.Tests
@@ -8,6 +9,9 @@ namespace SportStore.Tests
         [Fact]
         public void Test1()
         {
+            int x = new PagingInfo {CurrentPage = 2, TotalItems = 100, ItemsPerPage = 10}.ItemsPerPage;
+            Assert.True(x == 10);
         }
+    
     }
 }
