@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using SportStore.Controllers;
 using SportStore.Models;
+using SportStore.Models.ViewModels;
 using Xunit;
 
 namespace SportStoreTests
@@ -25,11 +26,12 @@ namespace SportStoreTests
             });
             ProductController controller = new ProductController(repoMock.Object);
             controller.PageSize = 2;
-            var result = ((controller.Index(2) as ViewResult)?
-                .Model as IEnumerable<Product>)?.ToArray();
-            Assert.True(result.Length==2);
-            Assert.Equal("P3",result[3].Name);
-            Assert.Equal("P4",result[4].Name);
+            var result = (controller.Index(2) as ViewResult)?
+                .Model as ProductsListViewModel;
+            var arrResult = result?.Products.ToArray();
+            Assert.True(arrResult?.Length == 2);
+            Assert.Equal(3, arrResult[0].Id);
+            Assert.Equal(4, arrResult[1].Id);
         }
     }
 }

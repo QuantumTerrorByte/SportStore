@@ -24,7 +24,7 @@ namespace SportStore.Infrastructure
         public ViewContext ViewContext { get; set; }
 
         public PagingInfo PageModel { get; set; }
-
+        public string CssClass { get; set; }
         public string PageAction { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
@@ -35,7 +35,7 @@ namespace SportStore.Infrastructure
             {
                 TagBuilder tag = new TagBuilder("a");
                 tag.Attributes["href"] = urlHelper.Action(PageAction, new {productPage = i});
-                tag.Attributes["class"] = "pageButton";
+                tag.Attributes["class"] = CssClass;
                 tag.InnerHtml.Append(i.ToString());
                 result.InnerHtml.AppendHtml(tag);
             }

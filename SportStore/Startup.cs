@@ -27,7 +27,7 @@ namespace SportStore
         {
             // services.AddSingleton<IProductRepository, FaceProductRepository>();
             services.AddTransient<IProductRepository, DataContext>();
-            services.AddDbContext<DataContext>(options => 
+            services.AddDbContext<DataContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("Default")));
             services.AddControllersWithViews();
         }
@@ -52,6 +52,11 @@ namespace SportStore
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "pagination",
+                    pattern: "Products/Page{productPage}",
+                    new {Controller = "Product", Action = "Index"}
+                );
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Product}/{action=Index}/{id?}");

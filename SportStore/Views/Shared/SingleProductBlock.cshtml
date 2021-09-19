@@ -1,0 +1,19 @@
+﻿@model Product
+
+<div class="product-block">
+    <div class="product-block-Left">
+        <div class="product-img-holder"></div>
+        <div class="product-category">
+            Category:<br>
+            @Model.Category
+        </div>
+    </div>
+    <div class="product-block-right">
+        <div>
+            <div class="product-id">Id: @Model.Id</div>
+            <div class="product-name">Name: @Model.Name</div>
+        </div>
+        <div class="product-description">@Model.Description</div>
+        <div class="product-price">Price is @Model.Price</div>
+    </div>
+</div>
