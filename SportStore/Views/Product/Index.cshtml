@@ -1,15 +1,15 @@
 ﻿@model ProductsListViewModel;
-@addTagHelper PageLinkTagHelper, SportStore;
-
+@* @addTagHelper PageLinkTagHelper, SportStore; *@
 
 <div style="margin: 10px 50px">
     <a asp-action="AddProduct" style="color: firebrick">Add product</a>
 </div>
+
 <div class="products-block">
     @foreach (Product product in Model.Products)
     {
         @await Html.PartialAsync("SingleProductBlock",product)
     }
-    <div page-model="@Model.PagingInfo" css-class="pageButton"></div>
+    <div page-model="@Model.PagingInfo" css-class="pageButtonCommon" current-page-css-class="pageButtonCurrent"></div> 
 </div>
 

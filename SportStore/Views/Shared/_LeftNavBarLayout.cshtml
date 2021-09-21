@@ -3,11 +3,10 @@
 }
 
 <div class="leftBar">
-    <div class="leftBarButton">First</div>
-    <div class="leftBarButton">Second</div>
-    <div class="leftBarButton">Third</div>
-    <div class="leftBarButton">Fourth</div>
+@await Component.InvokeAsync("NavigationLeftBar")
 </div>
+
+@* <category-left-bar class="leftBar" css-class="leftBarButton"></category-left-bar> *@
 <div class="contentBlock">
     @RenderBody()
 </div>

@@ -1,0 +1,20 @@
+﻿@model LeftBarViewModel
+
+
+<a class=@(Model.CurrentCategory == null ? "leftBarCurrentButton" : "leftBarButton")
+   asp-action="Index"
+   asp-controller="Product"
+   asp-route-category=""
+   asp-route-productPage="1">
+    Home
+</a>
+@foreach (string category in Model.Categories)
+{
+    <a class=@(Model.CurrentCategory == category ? "leftBarCurrentButton" : "leftBarButton")
+       asp-action="Index"
+       asp-controller="Product"
+       asp-route-category="@category"
+       asp-route-productPage="1">
+        @category
+    </a>
+}

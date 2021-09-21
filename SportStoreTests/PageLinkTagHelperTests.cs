@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Moq;
-using SportStore.Infrastructure;
+using SportStore.TagHelpers;
+using SportStore.Models;
 using SportStore.Models.ViewModels;
 using Xunit;
 
@@ -48,7 +49,7 @@ namespace SportStoreTests
 
             var result = output.Content.GetContent();
             Assert.Equal(
-                @"<a class=""pageButton"" href=""Test/Page1"">1</a><a class=""pageButton"" href=""Test/Page2"">2</a><a class=""pageButton"" href=""Test/Page3"">3</a>",
+                @"<a class="""" href=""Test/Page1"">1</a><a class="""" href=""Test/Page2"">2</a><a class="""" href=""Test/Page3"">3</a>",
                 result);
         }
     }
