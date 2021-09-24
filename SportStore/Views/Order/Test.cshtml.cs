@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace SportStore.Views
+namespace SportStore.Views.Order
 {
-    public class _ViewStart : PageModel
+    public class Test : PageModel
     {
         public void OnGet()
         {

@@ -5,7 +5,7 @@ namespace SportStore.Models
 {
     public class Cart
     {
-        private List<CartLine> CartProductsCollection { get; set; } = new List<CartLine>();
+        public List<CartLine> CartProductsCollection { get; set; } = new List<CartLine>();
 
         public virtual void Add(Product product, int count)
         {
@@ -31,12 +31,20 @@ namespace SportStore.Models
 
         public virtual void Clear() 
             => CartProductsCollection.Clear();
+        
     }
 
     public class CartLine
     {
+        // private static long IdGenerator = 1;
+        // public CartLine()
+        // {
+        //     Id = IdGenerator++;
+        // }
+
+        public long Id { get; set; }
         public Product Product { get; set; }
-        public decimal Id { get; set; }
         public int Count { get; set; }
+        
     }
 }

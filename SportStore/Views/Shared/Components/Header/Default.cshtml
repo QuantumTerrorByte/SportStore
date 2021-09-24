@@ -1,0 +1,19 @@
+﻿@using System.Linq
+@using System.Net.Http
+@using SportStore.Infrastructure
+@model Cart
+
+<div class="header">
+    <a class="logo" href="#">SportStore</a>
+    
+    <div class="cartBlock">
+        <div>
+            items: @Model.Lines().Sum(l => l.Count) @Model.TotalCost()$
+        </div>
+        <a class="cartImg"
+           asp-action="CartPage" asp-controller="Cart"
+           asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">
+        </a>
+
+    </div>
+</div>

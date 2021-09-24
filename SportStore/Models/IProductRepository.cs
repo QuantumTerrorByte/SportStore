@@ -5,7 +5,7 @@ namespace SportStore.Models
 {
     public interface IProductRepository
     {
-        IEnumerable<Product> GetProducts();
+        IQueryable<Product> GetProducts();
         void AddProduct(Product product);
     }
 }

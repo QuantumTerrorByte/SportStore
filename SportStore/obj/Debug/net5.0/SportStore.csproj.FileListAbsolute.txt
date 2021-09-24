@@ -179,3 +179,10 @@ D:\Last\sharp\SportStore\SportStore\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnaly
 D:\Last\sharp\SportStore\SportStore\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
 D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Shared\SingleProductBlock.cshtml.g.cs
 D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Shared\Components\NavigationLeftBar\Default.cshtml.g.cs
+D:\Last\sharp\SportStore\SportStore\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Cart\CartPage.cshtml.g.cs
+D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Order\CheckOut.cshtml.g.cs
+D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Order\Test.cshtml.g.cs
+D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Order\Completed.cshtml.g.cs
+D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Shared\Components\Header\Default.cshtml.g.cs
+D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Order\OrdersList.cshtml.g.cs

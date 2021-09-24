@@ -13,7 +13,7 @@ namespace SportStore.Controllers
     public class ProductController : Controller
     {
         private readonly IProductRepository _repository;
-        public int PageSize { get; set; } = 3;
+        public int PageSize { get; set; } = 4;
 
         public ProductController(IProductRepository repository)
             => this._repository = repository;

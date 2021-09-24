@@ -24,7 +24,7 @@ namespace SportStoreTests
                 new Product {Id = 3, Name = "P3"},
                 new Product {Id = 4, Name = "P4"},
                 new Product {Id = 5, Name = "P5"},
-            });
+            }.AsQueryable);
             ProductController controller = new ProductController(repoMock.Object);
             controller.PageSize = 2;
             var result = (controller.Index(null, 2) as ViewResult)?
@@ -47,7 +47,7 @@ namespace SportStoreTests
                     new Product {Name = "p3", Category = "first"},
                     new Product {Name = "p4", Category = "second"},
                     new Product {Name = "p5", Category = "first"},
-                }
+                }.AsQueryable
             );
             ProductController productController = new ProductController(repo.Object);
             var resultForCategory = (productController.Index("first") as ViewResult)?.Model as ProductsListViewModel;

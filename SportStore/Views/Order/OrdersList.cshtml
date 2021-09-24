@@ -1,0 +1,34 @@
+﻿@model System.Linq.IOrderedQueryable<SportStore.Models.Order>
+@foreach (Order order in Model)
+{
+    <div style="border: solid 2px rebeccapurple; margin: 30px;padding: 20px">
+    <div style="font-size: 15px">
+        <div>Id: @order.Id</div>
+        <div>Name: @order.Name</div>
+        
+        <div>Address: @order.Address</div>
+        <div>City: @order.City</div>
+        <div>Email: @order.Email</div>
+        <div>Phone: @order.Phone</div>
+        <div>
+            Cart:
+            @foreach (var lines in @order.CartLines)
+            {
+                <div>@lines.Product.Name:@lines.Count</div>
+            }
+        </div>
+    </div>
+
+    <div>
+        @if (order.IsDone)
+        {
+            <div>Is done: @order.IsDone</div>
+        }
+        else
+        {
+            <div>Is done: @order.IsDone</div>
+            <a asp-action="MarkingDone" asp-controller="Order" asp-route-orderId="@order.Id">Done</a>
+        }
+    </div>
+    </div>
+}

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Order>
+
+@foreach (Order order in Model)
+{
+    <div>Id: @order.Id</div>
+    <div>Name: @order.Name</div>
+    <div>Address: @order.Address</div>
+    <div>City: @order.City</div>
+    <div>Email: @order.Email</div>
+    <div>Phone: @order.Phone</div>
+    <div>
+        Cart:
+        @foreach (var lines in @order.CartLines)
+        {
+            <div>@lines.Product.Name:@lines.Count</div>
+        }
+    </div>
+}
+Thx for order O_O

@@ -5,11 +5,10 @@
     <link rel="stylesheet" href="/css/ProductBlock.css">
     <link rel="stylesheet" href="/css/MainStyle.css">
     <link rel="stylesheet" href="/css/PageButtons.css">
+    <link rel="stylesheet" href="/css/Header.css">
 </head>
 <body>
-<div class="header">
-<p>@DateTime.Now.ToString("HH:mm:ss")</p>
-</div>
+@await Component.InvokeAsync("Header")
 <div class="bodyContent">
     @RenderBody()
 </div>

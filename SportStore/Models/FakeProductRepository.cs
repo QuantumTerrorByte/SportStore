@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SportStore.Models
 {
-    public class FaceProductRepository : IProductRepository
+    public class FaceProductRepository 
     {
         public List<Product> Products { set; get; }
 

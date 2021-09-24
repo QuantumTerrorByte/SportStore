@@ -1,0 +1,35 @@
+﻿@model Order
+
+<div asp-validation-summary="All" class="text-danger"></div>
+<form asp-action="CheckOut" asp-controller="Order" method="post">
+    <div>
+        <label>Name</label>
+        <input asp-for="Name">
+    </div>
+    <div>
+        <label>Address</label>
+        <input asp-for="Address">
+    </div>
+    <div>
+        <label>City</label>
+        <input asp-for="City">
+    </div>
+    <div>
+        <label>Email</label>
+        <input asp-for="Email">
+    </div>
+    <div>
+        <label>Phone</label>
+        <input asp-for="Phone">
+    </div>
+    <div class="checkbox">
+        <label>
+            <input asp-for="GiftWrap"/> Gift wrap these items
+        </label>
+    </div>
+
+    <div class="text-center">
+        <input class="Ьtn Ьtn-primary" type="submit" value="Complete Order"/>
+    </div>
+
+</form>
