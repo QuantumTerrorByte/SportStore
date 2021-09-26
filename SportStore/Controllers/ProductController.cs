@@ -39,18 +39,7 @@ namespace SportStore.Controllers
             });
         }
 
-        [HttpGet]
-        public IActionResult AddProduct()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult AddProduct(Product product)
-        {
-            _repository.AddProduct(product);
-            return RedirectToAction("Index");
-        }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

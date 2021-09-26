@@ -72,3 +72,17 @@
     box-shadow: 7px 7px 15px -3px rgba(0, 0, 0, 0.41);
 }
 
+.hiddenInput{
+    width: 100px;
+    background: black;
+    border: none;
+    font-size: 30px;
+    color: #ffffff;
+    padding: 5px;
+    outline: none;
+}
+
+.errorMessageClassic{
+    color: darkred;
+    font-size: 17px;
+}

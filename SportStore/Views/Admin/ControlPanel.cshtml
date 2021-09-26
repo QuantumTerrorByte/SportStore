@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Product>
+
+<div style="margin: 10px 50px">
+    @* <a asp-action="CreateProduct" style="color: firebrick" >Add product</a> *@
+    <form asp-action="CreateProduct" method="get" asp-controller="Admin">
+        <input name="Count" value="1"/>
+        <button type="submit">product(s) create</button>
+    </form>
+</div>
+<a asp-action="Edit" asp-controller="Admin" asp-route-id="-1">Edit all</a>
+
+<div class="product-block">
+    <div class="product-block-Left">
+        <div class="product-img-holder"></div>
+        <div class="product-category">
+            Category:<br>
+            <input class="hiddenInput" value="Category"/>
+        </div>
+    </div>
+    <div class="product-block-right">
+        <div>
+            <div class="product-id">Id: <input class="hiddenInput" value="1"/></div>
+            <div class="product-name">
+                Name: <input class="hiddenInput" value="Name"/>
+            </div>
+        </div>
+        <div class="product-description">
+            <div style="position:relative;z-index:3;background: black;">
+                <input class="hiddenInput" value="Description for product"/>
+            </div>
+        </div>
+        <div class="product-price">Price is <input class="hiddenInput" value="100$" class="hiddenInput"/></div>
+    </div>
+</div>
+
+<div class="products-block">
+    @foreach (Product product in Model)
+    {
+        @await Html.PartialAsync("SingleProductBlock", product) 
+        <a asp-action="Edit" asp-route-id="@product.Id" asp-controller="Admin">Edit</a>
+    }
+</div>

@@ -21,5 +21,47 @@ namespace SportStore.Models
             _dataContext.Products.Add(product);
             _dataContext.SaveChanges();
         }
+
+        public void EditProduct(Product product)
+        {
+            Product currentProduct = _dataContext.Products.FirstOrDefault(p => p.Id == product.Id);
+            if (currentProduct != null)
+            {
+                currentProduct.Id = product.Id;
+                currentProduct.Name = product.Name;
+                currentProduct.Category = product.Category;
+                currentProduct.Description = product.Description;
+                currentProduct.Price = product.Price;
+            }
+
+            _dataContext.SaveChanges();
+        }
+
+        public void EditProducts(Product[] products)
+        {
+            Dictionary<long, Product> idDictionary = products.ToDictionary(p => p.Id);
+            var changingItems = _dataContext.Products.Where(p => idDictionary.Keys.Contains(p.Id));
+            foreach (Product changingItem in changingItems)
+            {
+                Product modifiedProduct = idDictionary[changingItem.Id];
+                changingItem.Name = modifiedProduct.Name;
+                changingItem.Category = modifiedProduct.Category;
+                changingItem.Description = modifiedProduct.Description;
+                changingItem.Price = modifiedProduct.Price;
+            }
+
+            _dataContext.SaveChanges();
+        }
+
+        public void RemoveProduct(int id)
+        {
+            Product product = _dataContext.Products.FirstOrDefault(p => p.Id == id);
+            if (product != null)
+            {
+                _dataContext.Remove(product);
+            }
+
+            _dataContext.SaveChanges();
+        }
     }
 }

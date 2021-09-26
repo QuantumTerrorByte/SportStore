@@ -1,0 +1,39 @@
+﻿@model Product[]
+
+
+<div asp-validation-summary="All"></div>
+
+<form asp-action="Edit" method="post" asp-controller="Admin">
+    @for (int i = 0; i < Model.Length; i++)
+    {
+        string target = $"Products[{i}].";
+        Product temp = Model[i];
+        <div class="product-block">
+            <div class="product-block-right">
+                <div>
+                    <div class="product-id">Id: @Model[i].Id</div>
+                    <input class="hiddenInput" type="hidden" name="Products[@i].Id" value="@Model[i].Id"/>
+                    <div class="product-name">
+                        Name: <input class="hiddenInput" name="Products[@i].Name" value="@Model[i].Name"/>
+                    </div>
+                </div>
+                <div class="product-description">
+                    <div style="position:relative;z-index:3;background: black;">
+                        <input class="hiddenInput" name="Products[@i].Description" value="@Model[i].Description"/>
+                    </div>
+                </div>
+                <div class="product-price">Price is <input class="hiddenInput" name="Products[@i].Price" value="@Model[i].Price"/></div>
+            </div>
+            <div class="product-block-Left">
+                <div class="product-img-holder"></div>
+                <div class="product-category">
+                    Category:<br>
+                    <input class="hiddenInput" name="Products[@i].Category" value="@Model[i].Category"/>
+                </div>
+            </div>
+        </div>
+    }
+    <button type="submit">Submit</button>
+</form>
+<script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

@@ -7,5 +7,9 @@ namespace SportStore.Models
     {
         IQueryable<Product> GetProducts();
         void AddProduct(Product product);
+
+        void EditProduct(Product products);
+        void EditProducts(Product[] products);
+        void RemoveProduct(int id);
     }
 }

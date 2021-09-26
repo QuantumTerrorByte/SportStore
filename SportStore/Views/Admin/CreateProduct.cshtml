@@ -1,0 +1,45 @@
+﻿@model AdminCreateViewModel
+
+<style>     .input-validation-error { border-color: red; background-color: #fee;}     </style>
+
+<div asp-validation-summary="All"></div>
+<form asp-action="CreateProduct" method="post" asp-controller="Admin">
+    @for (int i = 0; i < Model.BlocksCount; i++)
+    {
+        <div>
+            <label >Name</label>
+            <div>
+                <span asp-validation-for="@Model.Products[i].Name" class="text-danger">wtf</span>
+                <span asp-validation-for="Products[i].Name" class="input-validation-error">wtf</span>
+            </div>
+            <input name="AdminModel.Products[@i].Name" value=""/>
+        </div>
+        <div>
+            <label >Description</label>
+            <div>
+                <span class="errorMessageClassic" asp-validation-for="Products[i].Description"></span>
+            </div>
+            <input name="AdminModel.Products[@i].Description" value="@Model.Products[i].Description"/>
+        </div>
+        <div>
+            <label >Category</label>
+            <div>
+                <span class="errorMessageClassic" asp-validation-for="Products[i].Category"></span>
+            </div>
+            <input name="AdminModel.Products[@i].Category" value="category"/>
+        </div>
+        <div>
+            <label >Price</label>
+            <div>
+                <span class="errorMessageClassic" asp-validation-for="Products[i].Price"></span>
+            </div>
+            <input name="AdminModel.Products[@i].Price" value="price"/>
+        </div>
+    }
+    <input type="hidden" name="AdminModel.BlocksCount" value="@Model.BlocksCount"/>
+    <button type="submit">Add</button>
+</form>
+
+<a asp-action="ControlPanel" asp-controller="Admin">Cansel</a>
+<script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>    
+<script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>   

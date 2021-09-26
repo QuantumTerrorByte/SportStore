@@ -22,7 +22,8 @@ namespace SportStore.Models
         [Required(ErrorMessage = "Enter your City")]
         public string City { get; set; }
 
-        [Required(ErrorMessage = "Enter your Email")]
+        [RegularExpression(".+\\@.+\\ .. +",
+            ErrorMessage = "Please enter а valid email address")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Enter your Phone number")]
