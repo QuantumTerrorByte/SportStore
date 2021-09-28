@@ -7,7 +7,7 @@
 <div class="products-block">
     @foreach (Product product in Model.Products)
     {
-        @await Html.PartialAsync("SingleProductBlock", product)
+        @await Html.PartialAsync("SingleProductBlockCostumers", product)
     }
     <div page-model="@Model.PagingInfo" css-class="pageButtonCommon" current-page-css-class="pageButtonCurrent"></div>
 </div>

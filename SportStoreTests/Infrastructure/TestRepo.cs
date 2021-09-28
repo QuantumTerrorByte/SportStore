@@ -4,7 +4,7 @@ using SportStore.Models;
 
 namespace SportStoreTests.Infrastructure
 {
-    public class TestRepo : IProductRepository
+    public class TestRepo 
     {
         public QueryableList<Product> Products { get; set; }
 

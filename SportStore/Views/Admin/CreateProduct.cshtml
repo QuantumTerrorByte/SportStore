@@ -1,39 +1,28 @@
 ﻿@model AdminCreateViewModel
 
-<style>     .input-validation-error { border-color: red; background-color: #fee;}     </style>
+@{
+    Layout = "_AdminLayout";
+}
 
 <div asp-validation-summary="All"></div>
 <form asp-action="CreateProduct" method="post" asp-controller="Admin">
-    @for (int i = 0; i < Model.BlocksCount; i++)
+    @for (int i = 0; i < Model.Products.Length; i++)
     {
         <div>
             <label >Name</label>
-            <div>
-                <span asp-validation-for="@Model.Products[i].Name" class="text-danger">wtf</span>
-                <span asp-validation-for="Products[i].Name" class="input-validation-error">wtf</span>
-            </div>
-            <input name="AdminModel.Products[@i].Name" value=""/>
+            <input name="AdminModel.Products[@i].Name" value="@Model.Products[i].Name"/>
         </div>
         <div>
             <label >Description</label>
-            <div>
-                <span class="errorMessageClassic" asp-validation-for="Products[i].Description"></span>
-            </div>
             <input name="AdminModel.Products[@i].Description" value="@Model.Products[i].Description"/>
         </div>
         <div>
             <label >Category</label>
-            <div>
-                <span class="errorMessageClassic" asp-validation-for="Products[i].Category"></span>
-            </div>
-            <input name="AdminModel.Products[@i].Category" value="category"/>
+            <input name="AdminModel.Products[@i].Category" value="@Model.Products[i].Category"/>
         </div>
         <div>
             <label >Price</label>
-            <div>
-                <span class="errorMessageClassic" asp-validation-for="Products[i].Price"></span>
-            </div>
-            <input name="AdminModel.Products[@i].Price" value="price"/>
+            <input name="AdminModel.Products[@i].Price" value="@Model.Products[i].Price"/>
         </div>
     }
     <input type="hidden" name="AdminModel.BlocksCount" value="@Model.BlocksCount"/>

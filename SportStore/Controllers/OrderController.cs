@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SportStore.Models;
 
@@ -46,9 +47,11 @@ namespace SportStore.Controllers
             return View(_orderRepository.GetOrders);
         }
 
+        [Authorize]
         public IActionResult OrdersList()
             => View(_orderRepository.GetOrders.OrderBy(o => o.IsDone));
 
+        [Authorize]
         public IActionResult MarkingDone(int orderId)
         {
             Order targetOrder = _orderRepository.GetOrders.FirstOrDefault(o => o.Id == orderId);
@@ -57,6 +60,7 @@ namespace SportStore.Controllers
                 targetOrder.IsDone = true;
                 _orderRepository.SaveOrder(targetOrder);
             }
+
             return RedirectToAction("OrdersList");
         }
     }

@@ -1,42 +1,41 @@
 ﻿@model IEnumerable<Product>
+@{
+    Layout = "_AdminLayout";
+}
+<link rel="stylesheet" href="/css/AdminIndex.css">
 
-<div style="margin: 10px 50px">
-    @* <a asp-action="CreateProduct" style="color: firebrick" >Add product</a> *@
-    <form asp-action="CreateProduct" method="get" asp-controller="Admin">
-        <input name="Count" value="1"/>
-        <button type="submit">product(s) create</button>
+<div class="text-center">
+    <form asp-action="CreateProduct" method="get">
+        <input name="Count" value="1" class="btn btn-sm" style="border: solid black 1px"/>
+        <button type="submit" class="btn btn-danger btn-sm">Create</button>
+        <a asp-action="Edit" asp-controller="Admin" asp-route-id="-1" class="btn btn-danger btn-sm">Edit all</a>
     </form>
 </div>
-<a asp-action="Edit" asp-controller="Admin" asp-route-id="-1">Edit all</a>
 
-<div class="product-block">
-    <div class="product-block-Left">
-        <div class="product-img-holder"></div>
-        <div class="product-category">
-            Category:<br>
-            <input class="hiddenInput" value="Category"/>
-        </div>
-    </div>
-    <div class="product-block-right">
-        <div>
-            <div class="product-id">Id: <input class="hiddenInput" value="1"/></div>
-            <div class="product-name">
-                Name: <input class="hiddenInput" value="Name"/>
-            </div>
-        </div>
-        <div class="product-description">
-            <div style="position:relative;z-index:3;background: black;">
-                <input class="hiddenInput" value="Description for product"/>
-            </div>
-        </div>
-        <div class="product-price">Price is <input class="hiddenInput" value="100$" class="hiddenInput"/></div>
-    </div>
-</div>
-
-<div class="products-block">
-    @foreach (Product product in Model)
+<table class="table table-striped table-bordered table-sm">
+    <tr>
+        <th class="text-right">ID</th>
+        <th>Name</th>
+        <th class="text-right">Price</th>
+        <th class="text-center">Category</th>
+        <th class="text-center">Actions</th>
+    </tr>
+    @foreach (var product in Model)
     {
-        @await Html.PartialAsync("SingleProductBlock", product) 
-        <a asp-action="Edit" asp-route-id="@product.Id" asp-controller="Admin">Edit</a>
+        <tr>
+            <td class="text-right tablePadding">@product.Id</td>
+            <td>@product.Name</td>
+            <td class="text-right tablePadding">@product.Price.ToString("c")</td>
+            <td class="text-center tablePadding">@product.Category</td>
+            <td class="text-center tablePadding">
+                <form asp-action="Delete" method="post">
+                    <a asp-action="Edit" class="btn btn-sm btn-warning" asp-route-id="@product.Id">Edit</a>
+                    <input type="hidden" name="Id" value="@product.Id"/>
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
     }
-</div>
+</table>

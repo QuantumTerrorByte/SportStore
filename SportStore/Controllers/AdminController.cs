@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SportStore.Models;
@@ -10,6 +11,7 @@ using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IProductRepository _productRepository;
@@ -29,8 +31,14 @@ namespace SportStore.Controllers
         // GET: Admin/Create
         [HttpGet]
         public IActionResult CreateProduct(int count)
-        
-            => View(new AdminCreateViewModel() {BlocksCount = count});
+        {
+            Product[] form = new Product[count];
+            for (int i = 0; i < count; i++)
+            {
+                form[i] = new Product();
+            }
+            return View(new AdminCreateViewModel() {BlocksCount = count,Products = form});
+        }
 
 
         [HttpPost]
@@ -48,7 +56,7 @@ namespace SportStore.Controllers
             }
             else
             {
-                return View(adminModel);
+                return View("CreateProduct",adminModel);
             }
         }
         // POST: Admin/Create

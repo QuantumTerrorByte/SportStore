@@ -176,7 +176,6 @@ D:\Last\sharp\SportStore\SportStore\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.C
 D:\Last\sharp\SportStore\SportStore\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
 D:\Last\sharp\SportStore\SportStore\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
 D:\Last\sharp\SportStore\SportStore\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Shared\SingleProductBlock.cshtml.g.cs
 D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Shared\Components\NavigationLeftBar\Default.cshtml.g.cs
 D:\Last\sharp\SportStore\SportStore\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Cart\CartPage.cshtml.g.cs
@@ -233,3 +232,10 @@ D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Admin\CreatePro
 D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Admin\Edit.cshtml.g.cs
 D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Admin\ControlPanel.cshtml.g.cs
 D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Shared\Components\EditProducts\Default.cshtml.g.cs
+D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Shared\_AdminLayout.cshtml.g.cs
+D:\Last\sharp\SportStore\SportStore\obj\Debug\net5.0\Razor\Views\Shared\SingleProductBlockCostumers.cshtml.g.cs
+D:\Last\sharp\SportStore\SportStore\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Last\sharp\SportStore\SportStore\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Last\sharp\SportStore\SportStore\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Last\sharp\SportStore\SportStore\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+D:\Last\sharp\SportStore\SportStore\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
