@@ -11,7 +11,7 @@ using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers
 {
-    [Authorize]
+    // [Authorize]
     public class AdminController : Controller
     {
         private IProductRepository _productRepository;
@@ -24,6 +24,11 @@ namespace SportStore.Controllers
         // GET: Admin
         public IActionResult ControlPanel()
         {
+            foreach (CartLine cartLine in _productRepository.GetLines())
+            {
+                Console.WriteLine(cartLine.Id+"  "+cartLine.Product?.Name);
+            }
+
             return View(_productRepository.GetProducts());
         }
 
@@ -37,7 +42,8 @@ namespace SportStore.Controllers
             {
                 form[i] = new Product();
             }
-            return View(new AdminCreateViewModel() {BlocksCount = count,Products = form});
+
+            return View(new AdminCreateViewModel() {BlocksCount = count, Products = form});
         }
 
 
@@ -56,7 +62,7 @@ namespace SportStore.Controllers
             }
             else
             {
-                return View("CreateProduct",adminModel);
+                return View("CreateProduct", adminModel);
             }
         }
         // POST: Admin/Create

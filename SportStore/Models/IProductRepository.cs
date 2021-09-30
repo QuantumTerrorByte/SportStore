@@ -11,5 +11,7 @@ namespace SportStore.Models
         void EditProduct(Product products);
         void EditProducts(Product[] products);
         void RemoveProduct(int id);
+
+        IQueryable<CartLine> GetLines();
     }
 }
