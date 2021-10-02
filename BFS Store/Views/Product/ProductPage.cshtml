@@ -1,0 +1,12 @@
+﻿@model ProductPageViewModel
+<!DOCTYPE html>
+@{
+    Layout = "_Layout";
+}
+<div>
+    <div>@Model.Product.Id</div>
+    <div>@Model.Product.Name</div>
+    <div>@Model.Product.Price</div>
+    <div>@Model.Product.Description</div>
+    @Model.ReturnUrl
+</div>

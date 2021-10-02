@@ -1,0 +1,42 @@
+﻿.pageButtonsBlock{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /*justify-content: space-between;*/
+    width: 800px;
+    margin: 10px;
+    /*padding: 10px;*/
+    /*border: black solid 2px;*/
+    height: 100px;
+}
+.pageButtonCommon{
+    font-family: Arial;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    border-radius: 20%;
+    margin: 0 15px;
+    width: 50px;
+    height: 50px;
+    color: #3762ff;
+    background: #ffffff;
+    border: solid 1px #3762ff;
+    /*-webkit-box-shadow: 5px 5px 15px 5px #000000;*/
+    /*box-shadow: 5px 5px 15px 5px #000000;*/
+}
+.pageButtonCurrent{
+    font-family: Arial;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    border-radius: 50%;
+    margin: 0 15px;
+    width: 50px;
+    height: 50px;
+    color: #ffffff;
+    background: #3762ff;
+    /*-webkit-box-shadow: 5px 5px 15px 5px #000000;*/
+    /*box-shadow: 5px 5px 15px 5px #000000;*/
+}

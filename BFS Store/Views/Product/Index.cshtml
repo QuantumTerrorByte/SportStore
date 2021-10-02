@@ -1,0 +1,15 @@
+﻿@model ProductsListViewModel;
+@{
+    Layout = "_LeftNavBarLayout";
+}
+<link rel="stylesheet" href="/css/PageButtons.css">
+
+<a asp-action="ControlPanel" asp-controller="Admin" class="admin-button">Admin</a>
+
+<div class="products-block">
+    @foreach (Product product in Model.Products)
+    {
+        @await Html.PartialAsync("SingleProductBlockCostumers", product)
+    }
+    <div page-model="@Model.PagingInfo" css-class="pageButtonCommon" current-page-css-class="pageButtonCurrent"></div>
+</div>

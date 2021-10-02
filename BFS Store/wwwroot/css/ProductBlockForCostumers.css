@@ -1,0 +1,110 @@
+.main-holder {
+    /*padding: 200px;*/
+    display: flex;
+}
+
+.products-block {
+    /*border: solid black 1px;*/
+    /*margin: 100px;*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    max-width: 1200px;
+    min-width: 290px;
+    margin-right: -40px;
+}
+
+
+.product-block {
+    display: flex;
+    flex-direction: column;
+    border: solid #d3d3d3 1px;
+    width: 250px;
+    height: 400px;
+    padding: 20px;
+    flex-shrink: 0;
+    margin: -1px 0 0 -1px;
+}
+
+.product-block:hover {
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
+    -webkit-box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.28);
+    box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.28);
+
+}
+
+.product-banner-holder {
+    height: 20px;
+    min-height: 20px;
+}
+
+.product-banner {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    width: 100px;
+    background: #eeb937;
+    /*background: #373aee;*/
+    border-radius: 20px;
+    margin-bottom: -10px;
+    margin-left: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.product-img {
+    /*border: solid black 1px;*/
+    background: url("https://s3.images-iherb.com/now/now00372/l/35.jpg") 0 0 / 100% 100% no-repeat;
+    width: 200px;
+    height: 200px;
+    align-self: center;
+    flex-shrink: 0;
+    /*-webkit-box-shadow: inset 0px 0px 24px 13px rgba(0,0,0,0.28);*/
+    /*box-shadow: inset 0px 0px 24px 13px rgba(0,0,0,0.28);*/
+}
+
+.product-name {
+    /*border: solid black 1px;*/
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    min-height: 60px;
+    max-height: 60px;
+    text-align: justify;
+}
+
+.product-price {
+    /*border: solid black 1px;*/
+    font-weight: bold;
+}
+
+.product-add {
+    display: flex;
+    /*border: solid black 1px;*/
+    flex-shrink: 0;
+    width: 170px;
+    height: 45px;
+    /*background: #340d8e;*/
+    background: #3762ff;
+    color: white;
+    justify-content: center;
+    font-family: "Arial", serif;
+    font-weight: bold;
+    align-items: center;
+    margin: 10px 0;
+    border-radius: 2px;
+    border: none;
+    align-self: center;
+    /*justify-self: center;*/
+}
+
+.product-comments {
+    color: #5252a8;
+}
+
+.product-add:hover {
+    background: #9fcdff;
+}

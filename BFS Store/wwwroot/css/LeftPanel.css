@@ -1,0 +1,85 @@
+﻿.leftBar {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    align-items: center;
+    background: #dedede;
+    border: 1px solid #c7c7c7;
+    margin-top: 20px;
+}
+
+.price-filter-block {
+    width: 90%;
+    /*padding: 20px;*/
+    border: solid 1px #bebebe;
+    margin-top: 20px;
+    background: #d5d5d5;
+    /*text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;*/
+    -webkit-box-shadow: 7px 7px 15px -3px rgba(0, 0, 0, 0.41);
+    box-shadow: 7px 7px 15px -3px rgba(0, 0, 0, 0.41);
+}
+.price-filter-text{
+    font-size: 23px;
+    margin: 5px 10px 10px 10px;
+    font-weight: bold;
+}
+
+.price-filter-input {
+    width: 40px;
+    padding: 2px 5px 0;
+    /*margin: 0 0 0 5px;*/
+    border-radius: 5px;
+    border: 1px solid #a4a4a4;
+}
+
+.price-filter-button {
+    background: #3762ff;
+    color: white;
+    font-size: 15px;
+    padding: 10px 20px;
+    border: none;
+    margin: 0 30px 10px 10px;
+}
+
+.leftBarButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    width: 90%;
+    height: 50px;
+    /*border: solid #f80808 1px;*/
+    color: #FFFFFF;
+    background: #cbcbcb;
+    text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
+    -webkit-box-shadow: 7px 7px 15px -3px rgba(0, 0, 0, 0.41);
+    box-shadow: 7px 7px 15px -3px rgba(0, 0, 0, 0.41);
+}
+
+.leftBarCurrentButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    width: 90%;
+    height: 50px;
+    /*border: solid #f80808 1px;*/
+    color: #000000;
+    background: #d5d5d5;
+    text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
+    -webkit-box-shadow: 7px 7px 15px -3px rgba(0, 0, 0, 0.41);
+    box-shadow: 7px 7px 15px -3px rgba(0, 0, 0, 0.41);
+}
+
+.left-bar-block {
+    width: 400px;
+    height: 1000px;
+    border: solid black 2px;
+}
+
+.left-bar-block-content {
+    height: 800px;
+    width: 300px;
+    margin: 30px 45px;
+    background: #d4dad2;
+}

@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="bodyContent">
+    <div class="leftBar">
+        <form asp-action="Index" asp-controller="Product" class="price-filter-block">
+            <p class="price-filter-text">
+                Фильтровать по цене
+            </p>
+            <button type="submit" class="price-filter-button">Показать</button>
+            <input name="minPrice" value="0" class="price-filter-input">
+            <input name="maxPrice" value="5000" class="price-filter-input">
+        </form>
+        @await Component.InvokeAsync("NavigationLeftBar")
+    </div>
+    <div class="contentBlock">
+        @RenderBody()
+    </div>
+</div>

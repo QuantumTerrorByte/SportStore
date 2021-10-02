@@ -1,0 +1,17 @@
+﻿@using SportStore.Controllers
+@model SportStore.Models.ViewModels.CartIndexViewModel
+
+<div class="what-with-style">TEST BLOCK</div>
+
+<div>
+@foreach (CartLine cartLine in Model.Cart.Lines())
+{
+    <div>Id:@cartLine.Product.Id, Product: @cartLine.Product.Name - @cartLine.Count</div>
+    <form asp-action="Remove" asp-controller="Cart" asp-route-productId="@cartLine.Product.Id" asp-route-returnUrl="@Model.ReturnUrl">
+        <button type="submit">Remove</button>
+    </form>
+}
+<div>Total cost: @Model.Cart.TotalCost()</div>
+<a href="@Model.ReturnUrl">Back</a>
+<a asp-controller="Order" asp-action="CheckOut">Checkout</a>
+</div>

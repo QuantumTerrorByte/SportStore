@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>SportStore</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\imgs" />
+      <Folder Include="wwwroot\js" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.10" />
+      <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+      <PackageReference Include="Microsoft.CodeAnalysis.Razor" Version="5.0.10" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="5.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="5.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.10">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+        <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.5" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    </ItemGroup>
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\css\depricated\AdminIndex.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\depricated\BoddyCostumers.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\depricated\Header.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\depricated\ProductBlock.css" />
+    </ItemGroup>
+
+</Project>

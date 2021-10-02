@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Monstro</title>
+    <link rel="stylesheet" href="/css/Header.css">
+    <link rel="stylesheet" href="/css/ProductBlockForCostumers.css">
+    <link rel="stylesheet" href="css/LeftPanel.css">
+    @* <link rel="stylesheet" href="/css/PageButtons.css"> *@
+    <link rel="stylesheet" href="css/Styles.css">
+    @* <style>body{margin: 0}</style> *@
+</head>
+<body>
+<div class="top-top-panel">Акция</div>
+@await Component.InvokeAsync("Header")
+<div class="main-holder">
+    <div class="content-block">
+        @RenderBody()
+    </div>
+</div>
+</body>
+</html>
