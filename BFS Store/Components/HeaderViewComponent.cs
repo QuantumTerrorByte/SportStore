@@ -5,7 +5,7 @@ namespace SportStore.Components
 {
     public class HeaderViewComponent : ViewComponent
     {
-        private Cart _cart;
+        private readonly Cart _cart;
 
         public HeaderViewComponent(Cart cart)
         {

@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using SportStore.Models.ProductModel;
 
 namespace SportStore.Models.ViewModels
 {
     public class LeftBarViewModel
     {
-        public IEnumerable<string> Categories { get; set; }
+        public IQueryable<Category> Categories { get; set; }
         public string CurrentCategory { get; set; }
     }
 }

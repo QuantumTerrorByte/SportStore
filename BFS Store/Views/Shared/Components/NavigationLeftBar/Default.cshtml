@@ -8,13 +8,13 @@
    asp-route-productPage="1">
     Home
 </a>
-@foreach (string category in Model.Categories)
+@foreach (var category in Model.Categories)
 {
-    <a class=@(Model.CurrentCategory == category ? "leftBarCurrentButton" : "leftBarButton")
+    <a class=@(Model.CurrentCategory == category.ValueEn ? "leftBarCurrentButton" : "leftBarButton")
        asp-action="Index"
        asp-controller="Product"
-       asp-route-category="@category"
+       asp-route-category="@category.ValueEn"
        asp-route-productPage="1">
-        @category
+        @category.ValueEn
     </a>
 }

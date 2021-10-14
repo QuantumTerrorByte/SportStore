@@ -3,6 +3,7 @@ using System.Runtime.Intrinsics.X86;
 using Moq;
 using Org.BouncyCastle.Crypto.Macs;
 using SportStore.Models;
+using SportStore.Models.ProductModel;
 using Xunit;
 
 namespace SportStoreTests
@@ -12,9 +13,9 @@ namespace SportStoreTests
         [Fact]
         public void Can_Add_Remove_TotalCost_Clear()
         {
-            Product first = new Product {Id = 1, Name = "p1", Price = 10};
-            Product second = new Product {Id = 2, Name = "p2", Price = 20};
-            Product third = new Product {Id = 3, Name = "p3", Price = 30};
+            Product first = new Product {Id = 1, Name = "p1", PriceUSD = 10};
+            Product second = new Product {Id = 2, Name = "p2", PriceUSD = 20};
+            Product third = new Product {Id = 3, Name = "p3", PriceUSD = 30};
             Cart cart = new Cart();
             cart.Add(first, 2);
             cart.Add(first, 5);

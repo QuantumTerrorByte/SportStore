@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BFS Store", "BFS Store\BFS 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BFS Store Tests", "BFS Store Tests\BFS Store Tests.csproj", "{570A72A6-C1E4-4997-B254-EB4612B37FE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser", "..\Parser\Parser\Parser.csproj", "{94C633B8-6D1B-499F-81CC-E5FA5914E329}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{570A72A6-C1E4-4997-B254-EB4612B37FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{570A72A6-C1E4-4997-B254-EB4612B37FE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{570A72A6-C1E4-4997-B254-EB4612B37FE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94C633B8-6D1B-499F-81CC-E5FA5914E329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94C633B8-6D1B-499F-81CC-E5FA5914E329}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94C633B8-6D1B-499F-81CC-E5FA5914E329}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94C633B8-6D1B-499F-81CC-E5FA5914E329}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

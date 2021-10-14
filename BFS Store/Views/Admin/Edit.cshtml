@@ -1,4 +1,5 @@
-﻿@model Product[]
+﻿@using SportStore.Models.ProductModel
+@model SportStore.Models.ProductModel.Product[]
 
 @{
     Layout = "_AdminLayout";
@@ -22,16 +23,16 @@
                 </div>
                 <div class="product-description">
                     <div style="position:relative;z-index:3;background: black;">
-                        <input class="hiddenInput" name="Products[@i].Description" value="@Model[i].Description"/>
+                        <input class="hiddenInput" name="Products[@i].Description" value="@Model[i].ProductInfos[0].ShortDescription.Value"/>
                     </div>
                 </div>
-                <div class="product-price">Price is <input class="hiddenInput" name="Products[@i].Price" value="@Model[i].Price"/></div>
+                <div class="product-price">Price is <input class="hiddenInput" name="Products[@i].Price" value="@Model[i].PriceUSD"/></div>
             </div>
             <div class="product-block-Left">
                 <div class="product-img-holder"></div>
                 <div class="product-category">
                     Category:<br>
-                    <input class="hiddenInput" name="Products[@i].Category" value="@Model[i].Category"/>
+                    <input class="hiddenInput" name="Products[@i].Category" value="@Model[i].NavCategoryFirstLvl"/>
                 </div>
             </div>
         </div>

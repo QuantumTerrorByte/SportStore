@@ -5,7 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Org.BouncyCastle.Crypto.Engines;
 using SportStore.Controllers;
+using SportStore.Deprecated;
 using SportStore.Models;
+using SportStore.Models.Interfaces;
+using SportStore.Models.ProductModel;
 using SportStore.Models.ViewModels;
 using Xunit;
 
@@ -17,7 +20,7 @@ namespace SportStoreTests
         public void CanPaginate()
         {
             Mock<IProductRepository> repoMock = new Mock<IProductRepository>();
-            repoMock.Setup(r => r.GetProducts()).Returns(new Product[]
+            repoMock.Setup(r => r.GetProducts(false)).Returns(new Product[]
             {
                 new Product {Id = 1, Name = "P1"},
                 new Product {Id = 2, Name = "P2"},
@@ -39,23 +42,6 @@ namespace SportStoreTests
         public void CanCategorise()
         {
             Mock<IProductRepository> repo = new Mock<IProductRepository>();
-            repo.Setup(r => r.GetProducts()).Returns(
-                new Product[]
-                {
-                    new Product {Name = "p1", Category = "none"},
-                    new Product {Name = "p2", Category = "third"},
-                    new Product {Name = "p3", Category = "first"},
-                    new Product {Name = "p4", Category = "second"},
-                    new Product {Name = "p5", Category = "first"},
-                }.AsQueryable
-            );
-            ProductController productController = new ProductController(repo.Object);
-            var resultForCategory = (productController.Index("first") as ViewResult)?.Model as ProductsListViewModel;
-            Assert.True(resultForCategory.Category == "first");
-            var result = resultForCategory.Products.ToArray();
-            Assert.True(result.Length==2);
-            Assert.True(result[0].Category =="first"&&result[0].Name=="p3");
-            Assert.True(result[1].Category =="first"&&result[1].Name=="p5");
         }
     }
 }

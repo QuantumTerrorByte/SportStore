@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata.Ecma335;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace SportStore.Models
@@ -13,6 +12,8 @@ namespace SportStore.Models
         
         [Required(ErrorMessage = "Enter your Name")]
         public string Name { get; set; }
+
+        // public Time Time { get; set; }  //todo  
         
         [Required(ErrorMessage = "Enter your Address ")]
         public string Address { get; set; }

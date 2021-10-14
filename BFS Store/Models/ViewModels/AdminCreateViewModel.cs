@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using SportStore.Models.ProductModel;
 
 namespace SportStore.Models.ViewModels
 {

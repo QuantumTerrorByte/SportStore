@@ -1,8 +1,8 @@
-﻿*{
+﻿* {
     font-size: 17px;
     margin: 0;
     padding: 0;
-    font-family: Arial, serif;
+    font-family: Roboto, serif;
 }
 
 a:not([class]) {
@@ -25,42 +25,44 @@ a {
     text-decoration: none;
 }
 
-body{
+body {
     align-items: center;
     margin: 0;
 }
 
-.bodyContent{
+/*.main-holder{*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+.content-block {
     display: flex;
-    justify-content: space-between;
-    border: #3a18b5 solid 2px;
+    justify-content: center;
+    width: 100%;
 }
 
 
-.content-block{
+.body-content {
     display: flex;
-    justify-content: space-between;
     width: 1500px;
+    justify-content: space-between;
+    /*border: #3a18b5 solid 1px;*/
 }
 
-.admin-button{
+.admin-button {
     display: inline-block;
     font-size: 40px;
-    margin: 20px;
-    border: solid black 1px;
+    margin: 20px 30px;
     padding: 2px 20px;
-    background: #3a18b5;
+    background: #b3a8e0;
     color: white;
+    justify-self: end;
 }
-.top-top-panel{
+
+.top-top-panel {
     text-align: center;
     height: 20px;
     background: #5b2dfa;
     color: white;
     width: 100%;
-}
-.what-with-style{
-    background: #ff0000;
-    width: 500px;
-    height: 500px;
 }

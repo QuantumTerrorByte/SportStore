@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SportStore.Models;
+using SportStore.Models.ProductModel;
 
 namespace SportStoreTests.Infrastructure
 {

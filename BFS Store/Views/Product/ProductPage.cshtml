@@ -1,12 +1,99 @@
-﻿@model ProductPageViewModel
+﻿@using SportStore.Models.ProductModel
+@using Microsoft.AspNetCore.Html
+@model ProductPageViewModel
+
 <!DOCTYPE html>
+
 @{
     Layout = "_Layout";
 }
+<link rel="stylesheet" href="/css/ProductPage.css">
+
 <div>
-    <div>@Model.Product.Id</div>
-    <div>@Model.Product.Name</div>
-    <div>@Model.Product.Price</div>
-    <div>@Model.Product.Description</div>
-    @Model.ReturnUrl
+<div class="pp-body-content">
+    <div class="pp-img-block">
+        <div class="pp-img"></div>
+    </div>
+    <div class="pp-info-block">
+
+        <div>
+            <a href="">@Model.CategoryFirstLvl</a><a href="">@Model.CategorySecondLvl</a>
+        </div>
+        <h1>@Model.Name</h1>
+        <p>производитель: @Model.Brand</p>
+        <ul>
+            @foreach (var decription in Model.Info.DescriptionsLi)
+            {
+                <li>@decription.Value</li>
+            }
+        </ul>
+
+        <p>
+            @Model.Info.ShortDescription.Value
+        </p>
+        <h2 class="pp-price-block">
+            @(Model.PriceUSD * 27) грн
+        </h2>
+        <div class="pp-available">
+            Доступность: <span style="color: #739c0b">В наличии</span>
+        </div>
+        
+        <form action="" class="pp-add-count">@*todo*@
+            <div class="pp-add-count-holder">
+                <button class="pp-increment-button">-</button>
+                <input type="text" value="1" class="pp-count-input">
+                <button class="pp-increment-button">+</button>
+            </div>
+            <button type="submit" class="pp-add-cart-button">В корзину</button>
+        </form>
+
+        <div class="pp-line"></div>
+
+        <p>Артикул: @Model.Id</p>
+        <p>Категория: @Model.CategoryFirstLvl</p>
+        
+    </div>
+    <div class="pp-delivery-block">
+        <h1>Доставка</h1>
+        <p class="pp-delivery-p">
+            — Доставка заказов осуществляется транспортной компанией «Нова пошта». Стоимость доставки зависит от веса и количества товаров в заказе.
+            — Заказы на сумму более 1000 грн. доставляются бесплатно.
+        </p>
+        <h1>Оплата</h1>
+        <p class="pp-delivery-p">
+            — Онлайн-оплата кредитной или дебетовой картой при оформлении заказа на сайте.
+            — Оплата на расчетный счет в Приват банке.
+            — Оплата при получении (наложенный платеж). Комиссию «Новой почты» (20 грн. + 2% от суммы перевода) оплачивает получатель.
+        </p>
+        <h1>Отправка</h1>
+        <p class="pp-delivery-p">
+            Отправка заказа день в день при условии оформления заказа:
+            Пн.-Сб.: до 13.00
+            Вс.: выходной
+        </p>
+    </div>
+</div>
+
+<div style="display: flex;">
+    <div style="width: 1200px">
+        @foreach (var infoDopDescription in Model.Info.DopDescriptions)
+        {
+            <p>@(new HtmlString(infoDopDescription.Value))</p>
+        }
+    </div>
+    <div>
+        <table style="border: solid black 1px">
+            <tbody>
+            @foreach (var productIngredientsTableRow in Model.Info.Table)
+            {
+                <tr>
+                    <td style="border: solid lightgrey 1px">@(new HtmlString(productIngredientsTableRow.FirstColumn))</td>
+                    <td style="border: solid lightgrey 1px">@(new HtmlString(productIngredientsTableRow.SecondColumn))</td>
+                    <td style="border: solid lightgrey 1px">@(new HtmlString(productIngredientsTableRow.ThirdColumn))</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
 </div>

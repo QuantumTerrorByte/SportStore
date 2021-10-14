@@ -14,15 +14,15 @@
         </div>
         <div>
             <label >Description</label>
-            <input name="AdminModel.Products[@i].Description" value="@Model.Products[i].Description"/>
+            <input name="AdminModel.Products[@i].Description" value="@Model.Products[i].ProductInfos[0].ShortDescription.Value"/>
         </div>
         <div>
             <label >Category</label>
-            <input name="AdminModel.Products[@i].Category" value="@Model.Products[i].Category"/>
+            <input name="AdminModel.Products[@i].Category" value="@Model.Products[i].NavCategoryFirstLvl"/>
         </div>
         <div>
             <label >Price</label>
-            <input name="AdminModel.Products[@i].Price" value="@Model.Products[i].Price"/>
+            <input name="AdminModel.Products[@i].Price" value="@Model.Products[i].PriceUSD"/>
         </div>
     }
     <input type="hidden" name="AdminModel.BlocksCount" value="@Model.BlocksCount"/>

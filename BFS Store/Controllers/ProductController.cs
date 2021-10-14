@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using SportStore.Deprecated;
 using SportStore.Models;
+using SportStore.Models.Interfaces;
 using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers
@@ -23,46 +21,48 @@ namespace SportStore.Controllers
         {
             return View(new ProductsListViewModel
             {
-                Products = _repository.GetProducts()
-                    .Where(p => (category == null || p.Category == category) && (p.Price >= minPrice &&
-                                p.Price <= maxPrice))
+                Products = _repository.GetProducts(true)
+                    .Where(p => (category == null || p.NavCategoryFirstLvl.ValueEn == category) && (p.PriceUSD >= minPrice &&
+                        p.PriceUSD <= maxPrice))
                     .OrderBy(p => p.Id)
                     .Skip((productPage - 1) * PageSize)
                     .Take(PageSize),
-                
+
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = productPage,
                     ItemsPerPage = PageSize,
                     TotalItems = _repository
-                        .GetProducts()
-                        .Count(p => category == null || p.Category == category)
+                        .GetProducts(true)
+                        .Count(p => category == null || p.NavCategoryFirstLvl.ValueEn == category)
                 },
-                Category = category
+                CurrentCategory = category
             });
         }
 
         [HttpGet]
         public IActionResult ProductPage(int productId, string returnUrl)
         {
-            var product = _repository.GetProducts().FirstOrDefault(p => p.Id == productId);
-            if (product==null)
-            {
+            var lang = "en-US";
+            var product = _repository.Products(true).FirstOrDefault(p => p.Id == productId);
+            if (product == null)
                 return RedirectToAction(returnUrl);
-                
-            }
+
+
             return View(new ProductPageViewModel
             {
-                Product = product,
+                Id = product.Id,
+                Name = product.Name,
+                Brand = product.Brand,
+                ImgUrl = product.ImgUrl,
+                PriceUSD = product.PriceUSD,
+                CategoryFirstLvl = product.GetCategoryByLang(1),
+                CategorySecondLvl = product.GetCategoryByLang(2),
+                Info = product.GetInfoByLang(),
                 ReturnUrl = returnUrl,
             });
         }
-        // [HttpPost]
-        // public RedirectToActionResult Index(int minPrice, int maxPrice)
-        // {
-        //     Console.WriteLine("from post "+minPrice+"  "+maxPrice);
-        //     return RedirectToAction("Index");
-        // }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

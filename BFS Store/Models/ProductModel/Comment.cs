@@ -1,4 +1,4 @@
-﻿namespace SportStore.Models
+﻿namespace SportStore.Models.ProductModel
 {
     public class Comment
     {

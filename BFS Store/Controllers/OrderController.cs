@@ -3,13 +3,14 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SportStore.Models;
+using SportStore.Models.Interfaces;
 
 namespace SportStore.Controllers
 {
     public class OrderController : Controller
     {
-        private Cart _cart;
-        private IOrderRepository _orderRepository;
+        private readonly Cart _cart;
+        private readonly IOrderRepository _orderRepository;
 
         public OrderController(Cart cart, IOrderRepository orderRepository)
         {

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using SportStore.Infrastructure;
+using SportStore.Models.ProductModel;
 
 namespace SportStore.Models
 {

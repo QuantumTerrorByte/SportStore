@@ -1,7 +1,10 @@
 ﻿using System.Linq;
 using Moq;
 using SportStore.Controllers;
+using SportStore.Deprecated;
 using SportStore.Models;
+using SportStore.Models.Interfaces;
+using SportStore.Models.ProductModel;
 using Xunit;
 
 namespace SportStoreTests
@@ -12,7 +15,7 @@ namespace SportStoreTests
         public void Can_Create()
         {
             Mock<IProductRepository> mockRepo = new Mock<IProductRepository>();
-            mockRepo.Setup(r => r.GetProducts()).Returns(new Product[]
+            mockRepo.Setup(r => r.GetProducts(false)).Returns(new Product[]
             {
                 new Product
                 {

@@ -11,7 +11,7 @@
     justify-content: end;
     max-width: 1200px;
     min-width: 290px;
-    margin-right: -40px;
+    /*margin-right: -40px;*/
 }
 
 
@@ -57,7 +57,6 @@
 
 .product-img {
     /*border: solid black 1px;*/
-    background: url("https://s3.images-iherb.com/now/now00372/l/35.jpg") 0 0 / 100% 100% no-repeat;
     width: 200px;
     height: 200px;
     align-self: center;
@@ -103,6 +102,7 @@
 
 .product-comments {
     color: #5252a8;
+    align-self: center;
 }
 
 .product-add:hover {

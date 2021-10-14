@@ -1,14 +1,9 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using SportStore.Models.Interfaces;
 
 namespace SportStore.Models
 {
-    public interface IOrderRepository
-    {
-        IQueryable<Order> GetOrders { get; }
-        void SaveOrder(Order order);
-    }
-
     public class EFOrderRepository : IOrderRepository
     {
         private readonly DataContext _dataContext;

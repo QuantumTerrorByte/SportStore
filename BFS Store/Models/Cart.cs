@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SportStore.Models.ProductModel;
 
 namespace SportStore.Models
 {
@@ -24,7 +25,7 @@ namespace SportStore.Models
             => CartProductsCollection.RemoveAll(l => l.Product.Id == product.Id);
 
         public virtual decimal TotalCost()
-            => CartProductsCollection.Sum(l => l.Product.Price * l.Count);
+            => CartProductsCollection.Sum(l => l.Product.PriceUSD * l.Count);
 
         public virtual IEnumerable<CartLine> Lines()
             => CartProductsCollection;

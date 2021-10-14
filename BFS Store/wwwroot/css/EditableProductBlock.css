@@ -1,0 +1,31 @@
+﻿.action-panel {
+    /*display: none;*/
+    /*visibility: hidden;*/
+    /*background: #002bd9;*/
+}
+
+.action-panel-column {
+    /*display: none;*/
+    /*visibility: hidden;*/
+    /*background: #9fcdff;*/
+}
+
+table {
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+select{
+    display: flex;
+    margin-right: 10px;
+}
+
+td {
+    /*display: inline-flex;*/
+    /*flex-direction: column;*/
+    vertical-align: center;
+}
+.info-edit-holder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

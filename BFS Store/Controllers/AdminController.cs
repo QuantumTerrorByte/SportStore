@@ -1,39 +1,28 @@
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SportStore.Deprecated;
 using SportStore.Models;
+using SportStore.Models.Interfaces;
+using SportStore.Models.ProductModel;
 using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers
 {
-    // [Authorize]
     public class AdminController : Controller
     {
-        private IProductRepository _productRepository;
+        private readonly IProductRepository _productRepository;
 
         public AdminController(IProductRepository productRepository)
         {
             _productRepository = productRepository;
         }
 
-        // GET: Admin
         public IActionResult ControlPanel()
         {
-            foreach (CartLine cartLine in _productRepository.GetLines())
-            {
-                Console.WriteLine(cartLine.Id+"  "+cartLine.Product?.Name);
-            }
-
-            return View(_productRepository.GetProducts());
+            return View(_productRepository.GetProducts(false).Take(2));
         }
-
-
-        // GET: Admin/Create
+        
         [HttpGet]
         public IActionResult CreateProduct(int count)
         {
@@ -43,12 +32,10 @@ namespace SportStore.Controllers
                 form[i] = new Product();
             }
 
-            return View(new AdminCreateViewModel() {BlocksCount = count, Products = form});
+            return View(new AdminCreateViewModel {BlocksCount = count, Products = form});
         }
-
-
+        
         [HttpPost]
-        // [ValidateAntiForgeryToken]
         public IActionResult CreateProduct(AdminCreateViewModel adminModel)
         {
             if (ModelState.IsValid)
@@ -65,21 +52,19 @@ namespace SportStore.Controllers
                 return View("CreateProduct", adminModel);
             }
         }
-        // POST: Admin/Create
 
         public IActionResult Edit(int id)
         {
             if (id == -1)
             {
-                return View(_productRepository.GetProducts().ToArray());
+                return View(_productRepository.GetProducts(true).ToArray());
             }
 
-            Product product = _productRepository.GetProducts().FirstOrDefault(p => p.Id == id);
+            Product product = _productRepository.GetProducts(true).FirstOrDefault(p => p.Id == id);
             return View(new Product[] {product});
         }
 
         [HttpPost]
-        // [ValidateAntiForgeryToken]
         public IActionResult Edit(Product[] products)
         {
             if (ModelState.IsValid)
@@ -93,8 +78,6 @@ namespace SportStore.Controllers
             }
         }
 
-
-        // GET: Admin/Delete/5
         public IActionResult Delete(int id)
         {
             _productRepository.RemoveProduct(id);
