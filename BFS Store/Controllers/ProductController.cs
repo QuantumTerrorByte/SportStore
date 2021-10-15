@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using SportStore.Deprecated;
 using SportStore.Models;
 using SportStore.Models.Interfaces;
 using SportStore.Models.ViewModels;
@@ -19,22 +18,21 @@ namespace SportStore.Controllers
         [HttpGet]
         public IActionResult Index(string category, int productPage = 1, int minPrice = 0, int maxPrice = int.MaxValue)
         {
+            var result = _repository.Products()
+                .Where(p => (category == null || p.NavCategoryFirstLvl.ValueEn == category) && (p.PriceUsd >= minPrice &&
+                    p.PriceUsd <= maxPrice))
+                .Skip((productPage - 1) * PageSize)
+                .Take(PageSize).ToArray();
+            
             return View(new ProductsListViewModel
             {
-                Products = _repository.GetProducts(true)
-                    .Where(p => (category == null || p.NavCategoryFirstLvl.ValueEn == category) && (p.PriceUSD >= minPrice &&
-                        p.PriceUSD <= maxPrice))
-                    .OrderBy(p => p.Id)
-                    .Skip((productPage - 1) * PageSize)
-                    .Take(PageSize),
+                Products = result,
 
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = productPage,
                     ItemsPerPage = PageSize,
-                    TotalItems = _repository
-                        .GetProducts(true)
-                        .Count(p => category == null || p.NavCategoryFirstLvl.ValueEn == category)
+                    TotalItems = result.Count(p => category == null || p.NavCategoryFirstLvl.ValueEn == category)
                 },
                 CurrentCategory = category
             });
@@ -44,7 +42,7 @@ namespace SportStore.Controllers
         public IActionResult ProductPage(int productId, string returnUrl)
         {
             var lang = "en-US";
-            var product = _repository.Products(true).FirstOrDefault(p => p.Id == productId);
+            var product = _repository.Products(false).FirstOrDefault(p => p.Id == productId);
             if (product == null)
                 return RedirectToAction(returnUrl);
 
@@ -55,7 +53,7 @@ namespace SportStore.Controllers
                 Name = product.Name,
                 Brand = product.Brand,
                 ImgUrl = product.ImgUrl,
-                PriceUSD = product.PriceUSD,
+                PriceUSD = product.PriceUsd,
                 CategoryFirstLvl = product.GetCategoryByLang(1),
                 CategorySecondLvl = product.GetCategoryByLang(2),
                 Info = product.GetInfoByLang(),

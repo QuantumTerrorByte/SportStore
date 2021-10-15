@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Org.BouncyCastle.Crypto.Engines;
 using SportStore.Controllers;
-using SportStore.Deprecated;
 using SportStore.Models;
 using SportStore.Models.Interfaces;
 using SportStore.Models.ProductModel;

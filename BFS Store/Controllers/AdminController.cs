@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using SportStore.Deprecated;
 using SportStore.Models;
 using SportStore.Models.Interfaces;
 using SportStore.Models.ProductModel;
@@ -11,76 +10,40 @@ namespace SportStore.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly IProductRepository _productRepository;
+        private IProductRepository ProductRepository { get; }
 
         public AdminController(IProductRepository productRepository)
         {
-            _productRepository = productRepository;
+            ProductRepository = productRepository;
         }
 
-        public IActionResult ControlPanel()
+        public IActionResult ControlPanel(int lastEditId)
         {
-            return View(_productRepository.GetProducts(false).Take(2));
-        }
-        
-        [HttpGet]
-        public IActionResult CreateProduct(int count)
-        {
-            Product[] form = new Product[count];
-            for (int i = 0; i < count; i++)
-            {
-                form[i] = new Product();
-            }
-
-            return View(new AdminCreateViewModel {BlocksCount = count, Products = form});
-        }
-        
-        [HttpPost]
-        public IActionResult CreateProduct(AdminCreateViewModel adminModel)
-        {
-            if (ModelState.IsValid)
-            {
-                foreach (Product product in adminModel.Products)
-                {
-                    _productRepository.AddProduct(product);
-                }
-
-                return RedirectToAction("ControlPanel", "Admin");
-            }
-            else
-            {
-                return View("CreateProduct", adminModel);
-            }
+            ViewBag.LastEditId = lastEditId;
+            return View(ProductRepository.Products().OrderBy(p => p.Name).Take(50).ToArray());
         }
 
-        public IActionResult Edit(int id)
-        {
-            if (id == -1)
-            {
-                return View(_productRepository.GetProducts(true).ToArray());
-            }
-
-            Product product = _productRepository.GetProducts(true).FirstOrDefault(p => p.Id == id);
-            return View(new Product[] {product});
-        }
 
         [HttpPost]
-        public IActionResult Edit(Product[] products)
+        public IActionResult CreateProduct(Product product)
         {
-            if (ModelState.IsValid)
-            {
-                _productRepository.EditProducts(products);
-                return RedirectToAction("ControlPanel");
-            }
-            else
-            {
-                return View(products);
-            }
+            ProductRepository.AddEditProduct(product);
+            
+            return RedirectToAction("ControlPanel", "Admin");
+        }
+
+
+        [HttpPost]
+        public IActionResult Edit(Product product)
+        {
+            ProductRepository.AddEditProduct(product);
+
+            return RedirectToAction("ControlPanel", "Admin", product.Id);
         }
 
         public IActionResult Delete(int id)
         {
-            _productRepository.RemoveProduct(id);
+            ProductRepository.RemoveProduct(id);
             return RedirectToAction("ControlPanel");
         }
     }

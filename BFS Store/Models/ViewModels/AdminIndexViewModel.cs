@@ -3,9 +3,9 @@ using SportStore.Models.ProductModel;
 
 namespace SportStore.Models.ViewModels
 {
-    public class AdminCreateViewModel
+    public class AdminIndexViewModel
     {
         public Product[] Products { get; set; }
-        public int BlocksCount { get; set; }
+        public int LastEditedId { get; set; }
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using SportStore.Deprecated;
 using SportStore.Models;
 using SportStore.Models.Interfaces;
 using SportStore.Models.ProductModel;
@@ -22,8 +21,9 @@ namespace SportStore.Components
         {
             return View(new EditableProductViewModel
             {
-                Products = product, 
-                Categories = _repository.GetCategoriesByLang(1).Distinct().ToArray()
+                Products = product.ToArray(), 
+                CategoriesLvl1 = _repository.GetCategoriesTest(1).Distinct().ToArray(),
+                CategoriesLvl2 = _repository.GetCategoriesTest(2).Distinct().ToArray(),
             });
         }
     }
@@ -31,6 +31,7 @@ namespace SportStore.Components
     public class EditableProductViewModel
     {
         public IEnumerable<Product> Products { get; set; }
-        public IEnumerable<string> Categories { get; set; }
+        public IEnumerable<Category> CategoriesLvl1 { get; set; }
+        public IEnumerable<Category> CategoriesLvl2 { get; set; }
     }
 }

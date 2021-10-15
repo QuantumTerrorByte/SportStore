@@ -13,9 +13,9 @@ namespace SportStoreTests
         [Fact]
         public void Can_Add_Remove_TotalCost_Clear()
         {
-            Product first = new Product {Id = 1, Name = "p1", PriceUSD = 10};
-            Product second = new Product {Id = 2, Name = "p2", PriceUSD = 20};
-            Product third = new Product {Id = 3, Name = "p3", PriceUSD = 30};
+            Product first = new Product {Id = 1, Name = "p1", PriceUsd = 10};
+            Product second = new Product {Id = 2, Name = "p2", PriceUsd = 20};
+            Product third = new Product {Id = 3, Name = "p3", PriceUsd = 30};
             Cart cart = new Cart();
             cart.Add(first, 2);
             cart.Add(first, 5);

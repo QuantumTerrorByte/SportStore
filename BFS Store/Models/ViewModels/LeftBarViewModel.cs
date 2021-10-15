@@ -6,7 +6,7 @@ namespace SportStore.Models.ViewModels
 {
     public class LeftBarViewModel
     {
-        public IQueryable<Category> Categories { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
         public string CurrentCategory { get; set; }
     }
 }

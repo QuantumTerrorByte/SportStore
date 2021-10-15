@@ -2,7 +2,6 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SportStore.Deprecated;
 using SportStore.Models;
 using SportStore.Models.Interfaces;
 using SportStore.Models.ViewModels;
@@ -29,7 +28,7 @@ namespace SportStore.Controllers
         [HttpPost]
         public IActionResult AddToCart(int productId, string returnUrl)
         {
-            var product = Repository.GetProducts(true)
+            var product = Repository.Products(true)
                 .FirstOrDefault(p => p.Id == productId);
             if (product != null)
             {
@@ -41,7 +40,7 @@ namespace SportStore.Controllers
         [HttpPost]
         public IActionResult Remove(int productId, string returnUrl)
         {
-            var product = Repository.GetProducts(true)
+            var product = Repository.Products(true)
                 .FirstOrDefault(p => p.Id == productId);
             if (product != null)
             {

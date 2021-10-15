@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SportStore.Deprecated;
 using SportStore.Models;
 using SportStore.Models.Interfaces;
 
@@ -23,7 +22,7 @@ namespace SportStore
         public void ConfigureServices(IServiceCollection services)
         {
             // services.AddSingleton<IProductRepository, FaceProductRepository>();
-            services.AddTransient<IProductRepository, EFProductRepository>();
+            services.AddTransient<IProductRepository, EfProductRepository>();
             services.AddTransient<IOrderRepository, EFOrderRepository>();
             services.AddDbContext<DataContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("Default")));

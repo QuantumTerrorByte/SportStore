@@ -28,23 +28,5 @@ namespace SportStore.Models.ProductModel
             return HashCode.Combine(ValueEn, ValueRu, ValueUk);
         }
 
-        public sealed class ValueEnEqualityComparer : IEqualityComparer<Category>
-        {
-            public bool Equals(Category x, Category y)
-            {
-                if (ReferenceEquals(x, y)) return true;
-                if (ReferenceEquals(x, null)) return false;
-                if (ReferenceEquals(y, null)) return false;
-                if (x.GetType() != y.GetType()) return false;
-                return x.ValueEn == y.ValueEn;
-            }
-
-            public int GetHashCode(Category obj)
-            {
-                return (obj.ValueEn != null ? obj.ValueEn.GetHashCode() : 0);
-            }
-        }
-
-        public static IEqualityComparer<Category> ValueEnComparer { get; } = new ValueEnEqualityComparer();
     }
 }

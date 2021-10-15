@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Moq;
 using SportStore.Controllers;
-using SportStore.Deprecated;
 using SportStore.Models;
 using SportStore.Models.Interfaces;
 using SportStore.Models.ProductModel;

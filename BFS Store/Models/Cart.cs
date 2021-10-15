@@ -25,7 +25,7 @@ namespace SportStore.Models
             => CartProductsCollection.RemoveAll(l => l.Product.Id == product.Id);
 
         public virtual decimal TotalCost()
-            => CartProductsCollection.Sum(l => l.Product.PriceUSD * l.Count);
+            => CartProductsCollection.Sum(l => l.Product.PriceUsd * l.Count);
 
         public virtual IEnumerable<CartLine> Lines()
             => CartProductsCollection;
