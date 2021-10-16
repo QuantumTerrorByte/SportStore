@@ -7,7 +7,7 @@ using SportStore.Models;
 
 namespace SportStore.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(IProductPageDbContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -193,7 +193,7 @@ namespace SportStore.Migrations
                     b.Property<int>("Lang")
                         .HasColumnType("int");
 
-                    b.Property<long?>("ProductId")
+                    b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
                     b.Property<int?>("ShortDescriptionId")
@@ -283,7 +283,9 @@ namespace SportStore.Migrations
                 {
                     b.HasOne("SportStore.Models.ProductModel.Product", null)
                         .WithMany("ProductInfos")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SportStore.Models.ProductModel.Description", "ShortDescription")
                         .WithMany()

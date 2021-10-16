@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace SportStore.Models.ProductModel
 {
@@ -23,19 +25,11 @@ namespace SportStore.Models.ProductModel
 
         public List<Comment> Comments { get; set; }
 
-        public string GetCategoryByLang(int categoryLvl, Lang lang = Lang.ENG)
-        {
-            return lang switch
-            {
-                Lang.RU => categoryLvl == 1 ? NavCategoryFirstLvl.ValueRu : NavCategorySecondLvl.ValueRu,
-                Lang.ENG => categoryLvl == 1 ? NavCategoryFirstLvl.ValueEn : NavCategorySecondLvl.ValueEn,
-                Lang.UKR => categoryLvl == 1 ? NavCategoryFirstLvl.ValueUk : NavCategorySecondLvl.ValueUk,
-            };
-        }
 
-        public ProductInfo GetInfoByLang(Lang lang = Lang.ENG)
+
+        public ProductInfo GetInfoByLang(Lang lang = Lang.US)
         {
-            return ProductInfos.Find(i => i.Lang == lang);
+            return ProductInfos.FirstOrDefault(i => i.Lang == lang);
         }
     }
 }

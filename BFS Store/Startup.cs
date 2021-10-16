@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SportStore.Models;
 using SportStore.Models.Interfaces;
+using IProductPageDbContext = SportStore.Models.IProductPageDbContext;
 
 namespace SportStore
 {
@@ -24,7 +25,7 @@ namespace SportStore
             // services.AddSingleton<IProductRepository, FaceProductRepository>();
             services.AddTransient<IProductRepository, EfProductRepository>();
             services.AddTransient<IOrderRepository, EFOrderRepository>();
-            services.AddDbContext<DataContext>(options =>
+            services.AddDbContext<IProductPageDbContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("Default")));
             services.AddMvcCore();
             services.AddMemoryCache();

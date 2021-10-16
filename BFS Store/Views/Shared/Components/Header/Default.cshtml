@@ -1,7 +1,4 @@
-﻿@using System.Linq
-@using System.Net.Http
-@using SportStore.Infrastructure
-@model Cart
+﻿@model Cart
 
 <div class="empty">
     <div class="header-block-holder">
@@ -16,7 +13,17 @@
                 <input class="header-search" value="Я ищу...">
                 <button class="header-search-button">Найти</button>
             </form>
-            <div class="header-language">UA</div>
+            <div class="header-language-block">
+                <div class="header-language" style="border-right: #2c3280 solid 1px">
+                    RU
+                </div>
+                <div class="header-language">
+                    UA
+                </div>
+                <div class="header-language" style="border-left: #2c3280 solid 1px">
+                    EN
+                </div>
+            </div>
             <div class="header-login-block">
                 <div class="header-login-icon"></div>
                 <input class="header-login-input" value="login"/>

@@ -2,27 +2,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SportStore.Models.Interfaces;
 using SportStore.Models.ProductModel;
+using SportStore.Models.ViewModels;
 
 namespace SportStore.Models
 {
     public class EfProductRepository : IProductRepository
     {
-        private readonly DataContext _dataContext;
+        private readonly IProductPageDbContext _productPageDbContext;
 
-        public EfProductRepository(DataContext dataContext)
+        public EfProductRepository(IProductPageDbContext productPageDbContext)
+            => _productPageDbContext = productPageDbContext;
+
+
+        IQueryable<Product> Products(bool includeInners = false)
         {
-            _dataContext = dataContext;
+            return includeInners
+                ? _productPageDbContext.Products
+                    .Include(p => p.ProductInfos).ThenInclude(i => i.DescriptionsLi)
+                    .Include(p => p.ProductInfos).ThenInclude(i => i.DopDescriptions)
+                    .Include(p => p.ProductInfos).ThenInclude(i => i.Table)
+                    .Include(p => p.NavCategoryFirstLvl)
+                    .Include(p => p.NavCategorySecondLvl)
+                : _productPageDbContext.Products
+                    .Include(p => p.NavCategoryFirstLvl)
+                    .Include(p => p.NavCategorySecondLvl);
         }
 
+        public IEnumerable<Product> GetProducts(bool includeInners = false)
+            => Products(includeInners).ToArray();
+
+        public Product GetProduct(int id, bool includeInners = false)
+            => Products(includeInners).First(p => p.Id == id);
 
         public void AddEditProduct(Product product)
         {
             if (product.Id != 0)
             {
-                Product currentProduct = _dataContext.Products.FirstOrDefault(p => p.Id == product.Id);
+                Product currentProduct = _productPageDbContext.Products.FirstOrDefault(p => p.Id == product.Id);
                 if (currentProduct != null)
                 {
                     currentProduct.Id = product.Id;
@@ -32,78 +52,59 @@ namespace SportStore.Models
                 }
             }
 
-            _dataContext.Products.Add(product);
-            _dataContext.SaveChanges();
+            _productPageDbContext.Products.Add(product);
+            _productPageDbContext.SaveChanges();
         }
 
-        public void EditProducts(Product[] products)
+        public Product RemoveProduct(int id)
         {
-            Dictionary<long, Product> idDictionary = products.ToDictionary(p => p.Id);
-            var changingItems = _dataContext.Products.Where(p => idDictionary.Keys.Contains(p.Id));
-            foreach (Product changingItem in changingItems)
-            {
-                Product modifiedProduct = idDictionary[changingItem.Id];
-                changingItem.Name = modifiedProduct.Name;
-                changingItem.NavCategoryFirstLvl = modifiedProduct.NavCategoryFirstLvl;
-                // changingItem.Description = modifiedProduct.Description;
-                changingItem.PriceUsd = modifiedProduct.PriceUsd;
-            }
-
-            _dataContext.SaveChanges();
+            Product product = _productPageDbContext.Products.First(p => p.Id == id);
+            _productPageDbContext.Remove(product);
+            _productPageDbContext.SaveChanges();
+            return product;
         }
 
-        public void RemoveProduct(int id)
+
+        public IEnumerable<Category> GetCategories(int lvl = 0)
         {
-            Product product = _dataContext.Products.FirstOrDefault(p => p.Id == id);
-            if (product != null)
-            {
-                _dataContext.Remove(product);
-                _dataContext.SaveChanges();
-            }
+            return lvl == 1
+                ? _productPageDbContext.Products.Select(p => p.NavCategoryFirstLvlId).ToArray().Select(i => _productPageDbContext.Category.Find(i)).ToArray()
+                : lvl == 2
+                    ? _productPageDbContext.Products.Select(p => p.NavCategorySecondLvlId).ToArray().Select(i => _productPageDbContext.Category.Find(i))
+                        .ToArray()
+                    : _productPageDbContext.Category.ToArray();
+        }
+
+        public ProductInfo GetProductInfo(long prodId, Lang lang = Lang.US)
+        {
+            return _productPageDbContext.ProductInfo
+                .Include(i => i.DescriptionsLi)
+                .Include(i => i.ShortDescription)
+                .Include(i => i.DopDescriptions)
+                .Include(i => i.Table)
+                .Where(i => i.ProductId == prodId)
+                .FirstOrDefault(i => i.Lang == lang);
+        }
+
+        public ProductInfo RemoveProductInfo(long id)
+        {
+            ProductInfo info = _productPageDbContext.ProductInfo.Find(id);
+            _productPageDbContext.Remove(info);
+            _productPageDbContext.SaveChanges();
+            return info;
+        }
+
+        public IEnumerable<ProductInfo> Test(long id)
+        {
+            return _productPageDbContext.ProductInfo
+                    .Include(i => i.DescriptionsLi)
+                    .Include(i => i.ShortDescription)
+                    .Include(i => i.DopDescriptions)
+                    .Include(i => i.Table)
+                    .Where(i => i.ProductId == id).ToArray();
         }
 
         public IQueryable<CartLine> GetLines()
-        {
-            return _dataContext.CartLines.Include(l => l.Product);
-        }
-
-
-        public IEnumerable<Product> Products(bool includeInners = false)
-            => includeInners
-                ? _dataContext.Products
-                    .Include(p => p.ProductInfos).ThenInclude(i => i.DescriptionsLi)
-                    .Include(p => p.ProductInfos).ThenInclude(i => i.DopDescriptions)
-                    .Include(p => p.ProductInfos).ThenInclude(i => i.Table)
-                    .Include(p => p.NavCategoryFirstLvl)
-                    .Include(p => p.NavCategorySecondLvl).ToArray()
-                : _dataContext.Products
-                    .Include(p => p.NavCategoryFirstLvl)
-                    .Include(p => p.NavCategorySecondLvl).ToArray();
-
-        public IEnumerable<Category> GetCategories(int lvl = 0)
-            => lvl == 1
-                ? _dataContext.Products.Select(p => p.NavCategoryFirstLvl).Distinct().ToArray()
-                : lvl == 2
-                    ? _dataContext.Products.Select(p => p.NavCategorySecondLvl).Distinct().ToArray()
-                    : _dataContext.Category.ToArray();
-
-        public IEnumerable<Category> GetCategoriesTest(int lvl = 0)
-            => lvl == 1
-                ? _dataContext.Products.Select(p=>p.NavCategoryFirstLvlId).ToArray().Select(i=>_dataContext.Category.Find(i)).ToArray()
-                : lvl == 2
-                    ? _dataContext.Products.Select(p=>p.NavCategorySecondLvlId).ToArray().Select(i=>_dataContext.Category.Find(i)).ToArray()
-                    : _dataContext.Category.ToArray();
-
-        public IEnumerable<string> GetCategoriesByLang(int lvl, Lang lang = Lang.ENG)
-        {
-            return lvl is 1 or 2
-                ? lang switch
-                {
-                    Lang.RU => GetCategories(lvl).Select(c => c.ValueRu).ToArray(),
-                    Lang.ENG => GetCategories(lvl).Select(c => c.ValueEn).ToArray(),
-                    Lang.UKR => GetCategories(lvl).Select(c => c.ValueUk).ToArray(),
-                }
-                : throw new ArgumentException("Method arg lvl can take only 1 or 2");
-        }
+            => _productPageDbContext.CartLines.Include(l => l.Product);
     }
 }

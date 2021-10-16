@@ -9,21 +9,22 @@ namespace SportStore.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly IProductRepository _repository;
-        public int PageSize { get; set; } = 12;
+        private IProductRepository Repository { get; set; }
 
         public ProductController(IProductRepository repository)
-            => this._repository = repository;
+            => this.Repository = repository;
+
+        public int PageSize { get; set; } = 12;
 
         [HttpGet]
         public IActionResult Index(string category, int productPage = 1, int minPrice = 0, int maxPrice = int.MaxValue)
         {
-            var result = _repository.Products()
+            var result = Repository.GetProducts()
                 .Where(p => (category == null || p.NavCategoryFirstLvl.ValueEn == category) && (p.PriceUsd >= minPrice &&
                     p.PriceUsd <= maxPrice))
                 .Skip((productPage - 1) * PageSize)
                 .Take(PageSize).ToArray();
-            
+
             return View(new ProductsListViewModel
             {
                 Products = result,
@@ -39,13 +40,15 @@ namespace SportStore.Controllers
         }
 
         [HttpGet]
-        public IActionResult ProductPage(int productId, string returnUrl)
+        public IActionResult ProductPage(int productId, string returnUrl) //todo lang & admin log
         {
-            var lang = "en-US";
-            var product = _repository.Products(false).FirstOrDefault(p => p.Id == productId);
+            var lang = Lang.US;
+            var product = Repository.GetProduct(productId);
+            var info = Repository.GetProductInfo(productId, lang);
             if (product == null)
                 return RedirectToAction(returnUrl);
-
+            if (info == null)
+                return RedirectToAction(returnUrl);
 
             return View(new ProductPageViewModel
             {
@@ -54,14 +57,12 @@ namespace SportStore.Controllers
                 Brand = product.Brand,
                 ImgUrl = product.ImgUrl,
                 PriceUSD = product.PriceUsd,
-                CategoryFirstLvl = product.GetCategoryByLang(1),
-                CategorySecondLvl = product.GetCategoryByLang(2),
-                Info = product.GetInfoByLang(),
-                ReturnUrl = returnUrl,
+                CategoryFirstLvl = product.NavCategoryFirstLvl,
+                CategorySecondLvl = product.NavCategorySecondLvl,
+                Info = info,
             });
         }
-
-
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -22,8 +22,8 @@ namespace SportStore.Components
             return View(new EditableProductViewModel
             {
                 Products = product.ToArray(), 
-                CategoriesLvl1 = _repository.GetCategoriesTest(1).Distinct().ToArray(),
-                CategoriesLvl2 = _repository.GetCategoriesTest(2).Distinct().ToArray(),
+                CategoriesLvl1 = _repository.GetCategories(1).Distinct().ToArray(),
+                CategoriesLvl2 = _repository.GetCategories(2).Distinct().ToArray(),
             });
         }
     }

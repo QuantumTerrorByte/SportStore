@@ -12,7 +12,6 @@
     left: 0;
 }
 
-
 .header-block {
     display: flex;
     justify-content: space-around;
@@ -40,7 +39,6 @@
     background: url("../imgs/Burger.jpg") 0 0 / 100% 100% no-repeat;
 }
 
-
 .header-logo {
     /*border: solid black 1px;*/
     border-radius: 5px;
@@ -49,7 +47,6 @@
     width: 189px;
     min-width: 189px;
 }
-
 
 .header-nav-block {
     /*border: solid black 1px;*/
@@ -80,7 +77,6 @@
     /*align-self: start;*/
     justify-self: start;
 }
-
 
 .header-search-block {
     display: flex;
@@ -121,16 +117,24 @@
     position: relative;
 }
 
+.header-language-block {
+    display: Flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .header-language {
+    display: flex;
     font-family: Arial;
     color: white;
-    font-size: 17px;
+    font-size: 13px;
     min-width: 0;
     width: 35px;
-    /*border: solid white 1px;*/
+    height: 27px;
     text-align: center;
+    justify-content: center;
+    align-items: center;
     background: #231F20FF;
-    /*margin-left: 4px;*/
     position: relative;
     z-index: 1;
 }

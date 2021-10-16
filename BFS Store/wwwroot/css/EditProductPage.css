@@ -1,0 +1,123 @@
+﻿:root {
+    --let-margin: 20px 10px;
+}
+
+p {
+    font-size: 20px;
+    margin: var(--let-margin);
+    font-family: Roboto, serif;
+}
+
+ul {
+    margin: var(--let-margin);
+}
+
+h1 {
+    font-size: 27px;
+    margin: var(--let-margin);
+    font-family: Roboto, serif;
+}
+
+li {
+    margin: var(--let-margin);
+    margin-left: 20px;
+}
+
+.pp-body-content {
+    display: flex;
+    width: 1600px;
+    /*border: solid black 1px;*/
+    font-size: 22px;
+}
+
+.pp-img-block {
+    /*border: solid black 1px;*/
+    width: 600px;
+}
+.pp-img{
+    background: url("https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_555/https://nowfoods.com.ua/wp-content/uploads/2019/08/0608-555x555.jpg") 0 0 / 100% no-repeat;
+    width: 90%;
+    height: 90%;
+    margin-top: 50px;
+    /*-webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.04);*/
+    /*box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.04);*/
+}
+
+.pp-info-block {
+    /*border: solid black 1px;*/
+    border-right: solid 1px #c5c5c5;
+    width: 700px;
+    padding: 20px;
+    /*-webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.04);*/
+    /*box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.04);*/
+}
+
+.pp-price-block {
+    font-size: 25px;
+    color: #739c0b;
+    margin: var(--let-margin);
+}
+.pp-available{
+    margin: var(--let-margin);
+}
+
+.pp-add-count-holder {
+    display: flex;
+    border: solid black 1px;
+    height: 40px;
+}
+
+.pp-add-count {
+    display: flex;
+    /*border: solid black 1px;*/
+    margin: var(--let-margin);
+    align-items: center;
+}
+
+.pp-increment-button {
+    border: none;
+    width: 40px;
+    height: 40px;
+}
+
+.pp-count-input {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-left: #cccccc solid 1px;
+    border-right: #cccccc solid 1px;
+    text-align: center;
+}
+
+
+.pp-add-cart-button {
+    border: solid black 1px;
+    width: 150px;
+    height: 40px;
+    margin: var(--let-margin);
+    background: #002bd9;
+    color: white;
+}
+
+.pp-line {
+    border-top: solid #cccccc 1px;
+    margin: var(--let-margin);
+}
+
+.pp-delivery-block {
+    /*border: solid #f3f3f3 1px;*/
+    /*background: rgba(227, 227, 227, 0.52);*/
+    width: 300px;
+    margin: 30px 0 0 40px;
+    padding: 20px 30px;
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.04);
+    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.04);
+}
+
+.pp-delivery-p{
+    border-bottom: solid #cccccc 1px;
+    font-size: 18px;
+    margin-bottom: 30px;
+    padding-bottom: 50px;
+    font-family: Roboto, serif;
+}

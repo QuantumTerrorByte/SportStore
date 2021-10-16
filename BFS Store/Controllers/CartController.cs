@@ -28,7 +28,7 @@ namespace SportStore.Controllers
         [HttpPost]
         public IActionResult AddToCart(int productId, string returnUrl)
         {
-            var product = Repository.Products(true)
+            var product = Repository.GetProducts()
                 .FirstOrDefault(p => p.Id == productId);
             if (product != null)
             {
@@ -40,7 +40,7 @@ namespace SportStore.Controllers
         [HttpPost]
         public IActionResult Remove(int productId, string returnUrl)
         {
-            var product = Repository.Products(true)
+            var product = Repository.GetProducts()
                 .FirstOrDefault(p => p.Id == productId);
             if (product != null)
             {
