@@ -1,16 +1,35 @@
 ﻿@using SportStore.Models.ProductModel
-@model ProductsListViewModel;
+@model IndexViewModel;
 @{
-    Layout = "_LeftNavBarLayout";
+    Layout = "_Layout";
 }
-<link rel="stylesheet" href="/css/PageButtons.css">
-
-<a asp-action="ControlPanel" asp-controller="Admin" class="admin-button">Admin</a>
-
-<div class="products-block">
-    @foreach (Product product in Model.Products)
-    {
-        @await Html.PartialAsync("SingleProductBlockCostumers", product)
-    }
-    <div page-model="@Model.PagingInfo" css-class="pageButtonCommon" current-page-css-class="pageButtonCurrent"></div>
+<div class="body-content">
+    <div class="leftBar">
+        <form asp-action="Index" asp-controller="Product" method="get" class="price-filter-block">
+            <p class="price-filter-text">
+                Фильтровать по цене
+            </p>
+            <button type="submit" class="price-filter-button">Показать</button>
+            <input name="minPrice" value="@Model.MinPrice" class="price-filter-input">
+            <input name="maxPrice" value="@Model.MaxPrice" class="price-filter-input">
+        </form>
+        @await Component.InvokeAsync("NavigationLeftBar", new
+        {
+            minPrice = Model.MinPrice, 
+            maxPrice = Model.MaxPrice
+        })
+    </div>
+    <div class="contentBlock">
+        <link rel="stylesheet" href="/css/PageButtons.css">
+        <a asp-action="ControlPanel" asp-controller="AdminMain" class="admin-button">Admin</a>
+        <button id="ajaxSender">TEST</button>
+        <div id="output-area"></div>
+        <div class="products-block">
+            @foreach (Product product in Model.Products)
+            {
+                @await Html.PartialAsync("SingleProductBlockCostumers", product)
+            }
+            <div page-model="@Model.PagingInfo" css-class="pageButtonCommon" current-page-css-class="pageButtonCurrent"></div>
+        </div>
+    </div>
 </div>

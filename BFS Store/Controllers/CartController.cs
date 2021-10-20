@@ -24,7 +24,7 @@ namespace SportStore.Controllers
         {
             return View(new CartIndexViewModel {Cart = this.Cart, ReturnUrl = returnUrl});
         }
-
+                                                          
         [HttpPost]
         public IActionResult AddToCart(int productId, string returnUrl)
         {
@@ -48,10 +48,6 @@ namespace SportStore.Controllers
             }
             return RedirectToAction("CartPage", new {returnUrl});
         }
-
-        // public void Test()
-        // {
-        //     Console.WriteLine((Cart as SessionCart).Session.Equals(HttpContext.Session));
-        // }
+        
     }
 }

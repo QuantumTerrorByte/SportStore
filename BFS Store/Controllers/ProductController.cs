@@ -14,29 +14,36 @@ namespace SportStore.Controllers
         public ProductController(IProductRepository repository)
             => this.Repository = repository;
 
-        public int PageSize { get; set; } = 12;
+        public int PageSize { get; set; } = 16;
 
         [HttpGet]
         public IActionResult Index(string category, int productPage = 1, int minPrice = 0, int maxPrice = int.MaxValue)
         {
-            var result = Repository.GetProducts()
-                .Where(p => (category == null || p.NavCategoryFirstLvl.ValueEn == category) && (p.PriceUsd >= minPrice &&
-                    p.PriceUsd <= maxPrice))
-                .Skip((productPage - 1) * PageSize)
+            var filteredProducts = Repository.GetProducts()
+                .Where(p => (category == null || p.NavCategoryFirstLvl.ValueEn == category) &&
+                            (p.PriceUsd >= minPrice && p.PriceUsd <= maxPrice)).ToList();
+            var productsPage = filteredProducts.Skip((productPage - 1) * PageSize)
                 .Take(PageSize).ToArray();
 
-            return View(new ProductsListViewModel
+            return View(new IndexViewModel
             {
-                Products = result,
-
+                Products = productsPage,
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = productPage,
                     ItemsPerPage = PageSize,
-                    TotalItems = result.Count(p => category == null || p.NavCategoryFirstLvl.ValueEn == category)
+                    TotalItems = filteredProducts.Count()
                 },
+                MinPrice = minPrice,
+                MaxPrice = maxPrice,
                 CurrentCategory = category
             });
+        }
+
+        [HttpGet]
+        public IActionResult Products()
+        {
+            
         }
 
         [HttpGet]
@@ -62,7 +69,7 @@ namespace SportStore.Controllers
                 Info = info,
             });
         }
-        
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

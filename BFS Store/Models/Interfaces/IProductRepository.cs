@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using SportStore.Models.ProductModel;
+using SportStore.Models.ViewModels;
 
 namespace SportStore.Models.Interfaces
 {
@@ -9,7 +10,6 @@ namespace SportStore.Models.Interfaces
     {
         void AddEditProduct(Product products);
         Product RemoveProduct(int id);
-
         Product GetProduct(int id, bool includeInners = false);
         IEnumerable<Product> GetProducts(bool includeInners = false);
         IQueryable<CartLine> GetLines();
@@ -17,10 +17,6 @@ namespace SportStore.Models.Interfaces
 
         ProductInfo GetProductInfo(long prodId, Lang lang = Lang.US);
         ProductInfo RemoveProductInfo(long id);
-
-        IEnumerable<ProductInfo> Test(long id);
-
-
-
+        
     }
 }

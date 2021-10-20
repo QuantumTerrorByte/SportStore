@@ -1,4 +1,7 @@
-﻿using SportStore.Models.ProductModel;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using SportStore.Models.ProductModel;
 
 namespace SportStore.Models.ViewModels
 {
@@ -29,5 +32,6 @@ namespace SportStore.Models.ViewModels
         public string ReturnUrl { get; set; }
 
 
+        
     }
 }

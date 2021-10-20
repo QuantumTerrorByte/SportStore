@@ -12,22 +12,22 @@ namespace SportStore.Models
 {
     public class EfProductRepository : IProductRepository
     {
-        private readonly IProductPageDbContext _productPageDbContext;
+        private readonly DataContext _dataContext;
 
-        public EfProductRepository(IProductPageDbContext productPageDbContext)
-            => _productPageDbContext = productPageDbContext;
+        public EfProductRepository(DataContext dataContext)
+            => _dataContext = dataContext;
 
 
         IQueryable<Product> Products(bool includeInners = false)
         {
             return includeInners
-                ? _productPageDbContext.Products
+                ? _dataContext.Products
                     .Include(p => p.ProductInfos).ThenInclude(i => i.DescriptionsLi)
                     .Include(p => p.ProductInfos).ThenInclude(i => i.DopDescriptions)
                     .Include(p => p.ProductInfos).ThenInclude(i => i.Table)
                     .Include(p => p.NavCategoryFirstLvl)
                     .Include(p => p.NavCategorySecondLvl)
-                : _productPageDbContext.Products
+                : _dataContext.Products
                     .Include(p => p.NavCategoryFirstLvl)
                     .Include(p => p.NavCategorySecondLvl);
         }
@@ -42,7 +42,7 @@ namespace SportStore.Models
         {
             if (product.Id != 0)
             {
-                Product currentProduct = _productPageDbContext.Products.FirstOrDefault(p => p.Id == product.Id);
+                Product currentProduct = _dataContext.Products.FirstOrDefault(p => p.Id == product.Id);
                 if (currentProduct != null)
                 {
                     currentProduct.Id = product.Id;
@@ -52,15 +52,15 @@ namespace SportStore.Models
                 }
             }
 
-            _productPageDbContext.Products.Add(product);
-            _productPageDbContext.SaveChanges();
+            _dataContext.Products.Add(product);
+            _dataContext.SaveChanges();
         }
 
         public Product RemoveProduct(int id)
         {
-            Product product = _productPageDbContext.Products.First(p => p.Id == id);
-            _productPageDbContext.Remove(product);
-            _productPageDbContext.SaveChanges();
+            Product product = _dataContext.Products.First(p => p.Id == id);
+            _dataContext.Remove(product);
+            _dataContext.SaveChanges();
             return product;
         }
 
@@ -68,43 +68,57 @@ namespace SportStore.Models
         public IEnumerable<Category> GetCategories(int lvl = 0)
         {
             return lvl == 1
-                ? _productPageDbContext.Products.Select(p => p.NavCategoryFirstLvlId).ToArray().Select(i => _productPageDbContext.Category.Find(i)).ToArray()
+                ? _dataContext.Products.Select(p => p.NavCategoryFirstLvlId).ToArray().Select(i => _dataContext.Category.Find(i)).ToArray()
                 : lvl == 2
-                    ? _productPageDbContext.Products.Select(p => p.NavCategorySecondLvlId).ToArray().Select(i => _productPageDbContext.Category.Find(i))
+                    ? _dataContext.Products.Select(p => p.NavCategorySecondLvlId).ToArray().Select(i => _dataContext.Category.Find(i))
                         .ToArray()
-                    : _productPageDbContext.Category.ToArray();
+                    : _dataContext.Category.ToArray();
         }
 
         public ProductInfo GetProductInfo(long prodId, Lang lang = Lang.US)
         {
-            return _productPageDbContext.ProductInfo
+            return _dataContext.ProductInfo
                 .Include(i => i.DescriptionsLi)
                 .Include(i => i.ShortDescription)
                 .Include(i => i.DopDescriptions)
                 .Include(i => i.Table)
-                .Where(i => i.ProductId == prodId)
+                .Where(i => i.ProductId == prodId)// null?
                 .FirstOrDefault(i => i.Lang == lang);
         }
 
         public ProductInfo RemoveProductInfo(long id)
         {
-            ProductInfo info = _productPageDbContext.ProductInfo.Find(id);
-            _productPageDbContext.Remove(info);
-            _productPageDbContext.SaveChanges();
+            ProductInfo info = _dataContext.ProductInfo.Find(id);
+            _dataContext.Remove(info);
+            _dataContext.SaveChanges();
             return info;
         }
 
-        public IEnumerable<ProductInfo> Test(long id)
-        {
-            return _productPageDbContext.ProductInfo
-                    .Include(i => i.DescriptionsLi)
-                    .Include(i => i.ShortDescription)
-                    .Include(i => i.DopDescriptions)
-                    .Include(i => i.Table)
-                    .Where(i => i.ProductId == id).ToArray();
-        }
+        public ProductPageViewModel ProductPageViewModels { get; set; }
+
 
         public IQueryable<CartLine> GetLines()
-            => _productPageDbContext.CartLines.Include(l => l.Product);
+            => _dataContext.CartLines.Include(l => l.Product);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+        // public IEnumerable<ProductInfo> Test(long id)
+        // {
+        //     return _dataContext.ProductInfo
+        //             .Include(i => i.DescriptionsLi)
+        //             .Include(i => i.ShortDescription)
+        //             .Include(i => i.DopDescriptions)
+        //             .Include(i => i.Table)
+        //             .Where(i => i.ProductId == id).ToArray();
+        // }

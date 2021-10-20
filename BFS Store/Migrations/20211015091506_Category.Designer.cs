@@ -8,7 +8,7 @@ using SportStore.Models;
 
 namespace SportStore.Migrations
 {
-    [DbContext(typeof(IProductPageDbContext))]
+    [DbContext(typeof(DataContext))]
     [Migration("20211015091506_Category")]
     partial class Category
     {

@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[5.0.11, )"
             },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
             "Microsoft.AspNetCore.Session": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -95,10 +99,6 @@
             "MySql.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.5, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.1, )"
             }
           },
           "imports": [

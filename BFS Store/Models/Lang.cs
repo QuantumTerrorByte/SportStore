@@ -2,6 +2,8 @@
 {
     public enum Lang
     {
-        US, RU, UA
+        RU,
+        UA,
+        US,
     }
 }

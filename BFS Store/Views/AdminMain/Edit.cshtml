@@ -7,7 +7,7 @@
 
 <div asp-validation-summary="All"></div>
 
-<form asp-action="Edit" method="post" asp-controller="Admin">
+<form asp-action="Edit" method="post" asp-controller="AdminMain">
     @for (int i = 0; i < Model.Length; i++)
     {
         string target = $"Products[{i}].";

@@ -30,7 +30,7 @@ namespace SportStoreTests
             ProductController controller = new ProductController(repoMock.Object);
             controller.PageSize = 2;
             var result = (controller.Index(null, maxPrice: 2) as ViewResult)?
-                .Model as ProductsListViewModel;
+                .Model as IndexViewModel;
             var arrResult = result?.Products.ToArray();
             Assert.True(arrResult?.Length == 2);
             Assert.Equal(3, arrResult[0].Id);

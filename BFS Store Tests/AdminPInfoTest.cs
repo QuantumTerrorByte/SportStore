@@ -14,7 +14,7 @@ namespace SportStoreTests
         [Fact]
         public void RouterTest()
         {
-            Mock<IProductPageDbContext> repo = new Mock<IProductPageDbContext>();
+            Mock<DataContext> repo = new Mock<DataContext>();
             repo.Setup(r => r.Products).Returns(Reppo.Products as DbSet<Product>);
             var temp = repo.Object.Products.AsQueryable();
             

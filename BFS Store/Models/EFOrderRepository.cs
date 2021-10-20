@@ -6,26 +6,26 @@ namespace SportStore.Models
 {
     public class EFOrderRepository : IOrderRepository
     {
-        private readonly IProductPageDbContext _productPageDbContext;
+        private readonly DataContext _dataContext;
 
-        public EFOrderRepository(IProductPageDbContext productPageDbContext)
+        public EFOrderRepository(DataContext dataContext)
         {
-            this._productPageDbContext = productPageDbContext;
+            this._dataContext = dataContext;
         }
 
-        public IQueryable<Order> GetOrders => _productPageDbContext.Orders
+        public IQueryable<Order> GetOrders => _dataContext.Orders
             .Include(o => o.CartLines)
             .ThenInclude(l => l.Product);
 
         public void SaveOrder(Order order)
         {
-            _productPageDbContext.AttachRange(order.CartLines.Select(l => l.Product));
+            _dataContext.AttachRange(order.CartLines.Select(l => l.Product));
             if (order.Id == 0)
             {
-                _productPageDbContext.Orders.Add(order);
+                _dataContext.Orders.Add(order);
             }
 
-            _productPageDbContext.SaveChanges();
+            _dataContext.SaveChanges();
         }
     }
 }

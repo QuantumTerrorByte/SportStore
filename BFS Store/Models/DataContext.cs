@@ -7,9 +7,9 @@ using SportStore.Models.ViewModels;
 
 namespace SportStore.Models
 {
-    public class IProductPageDbContext : DbContext  , Interfaces.IProductPageDbContext
+    public class DataContext : DbContext 
     {
-        public IProductPageDbContext(DbContextOptions options) : base(options)
+        public DataContext(DbContextOptions options) : base(options)
         {
         }
 
@@ -19,6 +19,7 @@ namespace SportStore.Models
         public DbSet<CartLine> CartLines { get; set; }
         public DbSet<ProductInfo> ProductInfo { get; set; }
         public DbSet<SportStore.Models.ViewModels.ProductPageViewModel> ProductPageViewModel { get; set; }
+
 
     }
 }

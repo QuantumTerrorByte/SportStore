@@ -7,7 +7,7 @@ using SportStore.Models;
 
 namespace SportStore.Migrations
 {
-    [DbContext(typeof(IProductPageDbContext))]
+    [DbContext(typeof(DataContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

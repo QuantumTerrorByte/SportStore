@@ -16,16 +16,16 @@ namespace SportStore.TagHelpers
     public class PageLinkTagHelper : TagHelper
     {
         private IUrlHelperFactory _urlHelperFactory;
-        
+
         public PageLinkTagHelper(IUrlHelperFactory urlHelperFactory)
         {
             _urlHelperFactory = urlHelperFactory;
         }
 
+        [ViewContext] [HtmlAttributeNotBound] public ViewContext ViewContext { get; set; }
+
         [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
         public Dictionary<string, object> PageUrlValues { get; set; } = new Dictionary<string, object>();
-
-        [ViewContext] [HtmlAttributeNotBound] public ViewContext ViewContext { get; set; }
 
         public string PageAction { get; set; }
         public PagingInfo PageModel { get; set; }
@@ -36,19 +36,46 @@ namespace SportStore.TagHelpers
         {
             IUrlHelper urlHelper = _urlHelperFactory.GetUrlHelper(ViewContext);
             TagBuilder result = new TagBuilder("div");
-            for (int i = 1; i <= PageModel.TotalPages; i++)
+            var from = 2;
+            var to = 10;
+            var current = PageModel.CurrentPage;
+            var total = PageModel.TotalPages - 1;
+            if (total > 10)
             {
-                TagBuilder tag = new TagBuilder("a");
-                PageUrlValues["productPage"] = i;
-                tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
-                tag.Attributes["class"] = PageModel.CurrentPage == i ? CurrentPageCssClass : CssClass;
-                tag.InnerHtml.Append(i.ToString());
-                result.InnerHtml.AppendHtml(tag);
+                if (current > 5 && current < total - 4)
+                {
+                    from = current - 4;
+                    to = current + 4;
+                }
+                else if (current >= total - 4)
+                {
+                    from = total - 8;
+                    to = total;
+                }
             }
+
+
+            result.InnerHtml.AppendHtml(CreateTag("a", 1, urlHelper));
+            for (int i = from; i <= to; i++)
+            {
+                result.InnerHtml.AppendHtml(CreateTag("a", i, urlHelper));
+            }
+
+            result.InnerHtml.AppendHtml(CreateTag("a", PageModel.TotalPages, urlHelper));
 
             output.Content.AppendHtml(result.InnerHtml);
             output.Attributes.SetAttribute("class", "pageButtonsBlock");
             // output.Content.Append(result);
+        }
+
+        private TagBuilder CreateTag(string tag, int index, IUrlHelper urlHelper)
+        {
+            var result = new TagBuilder(tag);
+            // PageUrlValues["productPage"] = index;
+            // result.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
+            result.Attributes["class"] = PageModel.CurrentPage == index ? CurrentPageCssClass : CssClass;
+            result.InnerHtml.Append(index.ToString());
+            return result;
         }
     }
 }

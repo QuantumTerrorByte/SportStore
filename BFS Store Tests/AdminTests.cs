@@ -30,7 +30,7 @@ namespace SportStoreTests
                 },
             }.AsQueryable);
 
-            AdminController target = new AdminController(mockRepo.Object);
+            AdminMainController target = new AdminMainController(mockRepo.Object);
             
             
             

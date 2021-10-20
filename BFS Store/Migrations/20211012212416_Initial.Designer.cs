@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportStore.Models;
+using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace SportStore.Migrations
 {

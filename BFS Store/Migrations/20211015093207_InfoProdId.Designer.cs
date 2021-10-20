@@ -8,7 +8,7 @@ using SportStore.Models;
 
 namespace SportStore.Migrations
 {
-    [DbContext(typeof(IProductPageDbContext))]
+    [DbContext(typeof(DataContext))]
     [Migration("20211015093207_InfoProdId")]
     partial class InfoProdId
     {

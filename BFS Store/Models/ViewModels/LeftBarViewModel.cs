@@ -8,5 +8,7 @@ namespace SportStore.Models.ViewModels
     {
         public IEnumerable<Category> Categories { get; set; }
         public string CurrentCategory { get; set; }
+        public int MinPrice { get; set; }
+        public int MaxPrice { get; set; }
     }
 }

@@ -17,12 +17,18 @@ namespace SportStore.Components
             Repository = repository;
         }
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(int minPrice, int maxPrice)
         {
             var categories = Repository.GetCategories();
             var currentCategory = RouteData?.Values["category"];
             
-            return View(new LeftBarViewModel {Categories = categories, CurrentCategory = currentCategory?.ToString()});
+            return View(new LeftBarViewModel
+            {
+                Categories = categories, 
+                CurrentCategory = currentCategory?.ToString(),
+                MinPrice = minPrice,
+                MaxPrice = maxPrice,
+            });
         }
     }
 }

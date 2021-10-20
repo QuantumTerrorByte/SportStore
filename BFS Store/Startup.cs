@@ -8,7 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SportStore.Models;
 using SportStore.Models.Interfaces;
-using IProductPageDbContext = SportStore.Models.IProductPageDbContext;
 
 namespace SportStore
 {
@@ -20,19 +19,21 @@ namespace SportStore
         {
             Configuration = configuration;
         }
+
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddSingleton<IProductRepository, FaceProductRepository>();
             services.AddTransient<IProductRepository, EfProductRepository>();
             services.AddTransient<IOrderRepository, EFOrderRepository>();
-            services.AddDbContext<IProductPageDbContext>(options =>
+            services.AddDbContext<DataContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("Default")));
             services.AddMvcCore();
             services.AddMemoryCache();
-            services.AddSession(option=>option.IdleTimeout = TimeSpan.FromMinutes(1));
+            services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(1));
             services.AddScoped<Cart>(SessionCart.GetCart);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews();
+            services.AddCors();
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -52,7 +53,7 @@ namespace SportStore
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
-            
+            app.UseCors(builder => builder.AllowAnyOrigin());          //between routing and endpoints  
 
             app.UseEndpoints(endpoints =>
             {
