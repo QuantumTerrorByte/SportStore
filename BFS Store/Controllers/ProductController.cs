@@ -1,57 +1,64 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using SportStore.Infrastructure;
 using SportStore.Models;
-using SportStore.Models.Interfaces;
+using SportStore.Models.DAO.Interfaces;
+using SportStore.Models.DataTransferModel;
+using SportStore.Models.RequestModel;
 using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers
 {
     public class ProductController : Controller
     {
-        private IProductRepository Repository { get; set; }
+        private readonly IProductRepository _productRepository;
 
-        public ProductController(IProductRepository repository)
-            => this.Repository = repository;
+        public ProductController(IProductRepository productRepository)
+            => this._productRepository = productRepository;
 
         public int PageSize { get; set; } = 16;
 
-        [HttpGet]
-        public IActionResult Index(string category, int productPage = 1, int minPrice = 0, int maxPrice = int.MaxValue)
+        [HttpGet] 
+        public IActionResult Index()
         {
-            var filteredProducts = Repository.GetProducts()
-                .Where(p => (category == null || p.NavCategoryFirstLvl.ValueEn == category) &&
-                            (p.PriceUsd >= minPrice && p.PriceUsd <= maxPrice)).ToList();
-            var productsPage = filteredProducts.Skip((productPage - 1) * PageSize)
-                .Take(PageSize).ToArray();
+            var lang = HttpContext.Session.GetLang();
+            return View();
+        }
 
+        [HttpGet] 
+        public ActionResult Products(ProductsRequestModel requestModel)
+        {
+            var filteredProductsPage = _productRepository.GetFilteredProducts(
+                new FilteredProductsRepoRequestModel()
+                {
+                    Category1 = requestModel.Category1,
+                    Brand = requestModel.Brand,
+                    Sort = requestModel.Sort,
+                    MaxPrice = requestModel.MaxPrice,
+                    MinPrice = requestModel.MinPrice
+                }
+            );
             return View(new IndexViewModel
             {
-                Products = productsPage,
+                Products = filteredProductsPage.Item1,
                 PagingInfo = new PagingInfo
                 {
-                    CurrentPage = productPage,
+                    CurrentPage = requestModel.Page,
                     ItemsPerPage = PageSize,
-                    TotalItems = filteredProducts.Count()
+                    TotalItems = filteredProductsPage.Item1.Count()
                 },
-                MinPrice = minPrice,
-                MaxPrice = maxPrice,
-                CurrentCategory = category
+                MinPrice = requestModel.MinPrice,
+                MaxPrice = requestModel.MaxPrice,
+                CurrentCategory = requestModel.Category1
             });
         }
 
-        [HttpGet]
-        public IActionResult Products()
+        [HttpGet] public IActionResult ProductPage(int productId, string returnUrl) //todo lang & admin log
         {
-            
-        }
-
-        [HttpGet]
-        public IActionResult ProductPage(int productId, string returnUrl) //todo lang & admin log
-        {
-            var lang = Lang.US;
-            var product = Repository.GetProduct(productId);
-            var info = Repository.GetProductInfo(productId, lang);
+            var lang = Langs.US;
+            var product = _productRepository.GetProduct(productId);
+            var info = _productRepository.GetProductInfo(productId, lang);
             if (product == null)
                 return RedirectToAction(returnUrl);
             if (info == null)
@@ -75,5 +82,10 @@ namespace SportStore.Controllers
         {
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
         }
+    }
+
+    class Test
+    {
+        public static void testMeth(int one, string two, bool three){}
     }
 }

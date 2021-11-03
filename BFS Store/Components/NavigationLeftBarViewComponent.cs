@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using SportStore.Models.Interfaces;
+using SportStore.Models.DAO.Interfaces;
 using SportStore.Models.ProductModel;
 using SportStore.Models.ViewModels;
 
@@ -17,17 +17,15 @@ namespace SportStore.Components
             Repository = repository;
         }
 
-        public IViewComponentResult Invoke(int minPrice, int maxPrice)
+        public IViewComponentResult Invoke()
         {
-            var categories = Repository.GetCategories();
+            var categories = Repository.LangGetCategories(1);
             var currentCategory = RouteData?.Values["category"];
             
             return View(new LeftBarViewModel
             {
                 Categories = categories, 
                 CurrentCategory = currentCategory?.ToString(),
-                MinPrice = minPrice,
-                MaxPrice = maxPrice,
             });
         }
     }

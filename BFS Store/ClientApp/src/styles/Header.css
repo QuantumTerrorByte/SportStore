@@ -1,0 +1,235 @@
+﻿
+.top-top-panel {
+    text-align: center;
+    height: 20px;
+    background: #5b2dfa;
+    color: white;
+    width: 100%;
+}
+
+.header-block-holder {
+    display: flex;
+    background: #a40027;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.header-block {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    /*border: solid #ffffff 1px;*/
+    height: 70px;
+    background: #231f20;
+    left: 0;
+    max-width: 1800px;
+    width: 1800px;
+    min-width: 0;
+}
+
+.header-burger {
+    margin-left: 20px;
+    border: solid black 1px;
+    height: 35px;
+    width: 35px;
+    min-width: 35px;
+    border-radius: 5px;
+    background: url("../imgs/Burger.jpg") 0 0 / 100% 100% no-repeat;
+}
+
+.header-logo {
+    /*border: solid black 1px;*/
+    border-radius: 5px;
+    background: url("../imgs/BFS shop.png") 0 0 / 100% 100% no-repeat;
+    height: 53px;
+    width: 189px;
+    min-width: 189px;
+}
+
+.header-nav-block {
+    /*border: solid black 1px;*/
+    font-family: Arial;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    border-radius: 3px;
+    background: #5d5d5d;
+    max-width: 150px;
+    width: 150px;
+    min-width: 40px;
+}
+
+.header-nav-icon {
+    background: url(https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_apps_48px-512.png) 0 0/100% 100% no-repeat;
+    /*width: 50px;*/
+    min-width: 35px;
+    /*height: 30px;*/
+    min-height: 35px;
+    margin: 0 5px 0 5px;
+}
+
+.header-nav-text {
+    min-width: 0;
+    /*align-self: start;*/
+    justify-self: start;
+}
+
+.header-search-block {
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    max-height: 35px;
+    min-height: 35px;
+    background: url("../imgs/search.png") 0 0 / 100% 100% no-repeat;
+    width: 637px;
+    min-width: 0;
+    color: rgba(35, 31, 32, 0.52);
+    overflow: hidden;
+    border-radius: 3px;
+    border: solid 1px #0019b9;
+    z-index: 3;
+    position: relative;
+}
+
+.header-search {
+    border: none;
+    color: gray;
+    font-size: 17px;
+    max-width: 100%;
+    min-width: 0;
+    padding: 0 30px;
+}
+
+.header-search-button {
+    font-family: Arial;
+    font-size: 20px;
+    border: none;
+    background: #002bd9;
+    color: white;
+    width: 100px;
+    min-width: 100px;
+    margin: 0 -5px 0 0;
+    z-index: 7;
+    position: relative;
+}
+
+.header-language-block {
+    display: Flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-language {
+    display: flex;
+    font-family: Arial;
+    color: white;
+    font-size: 13px;
+    min-width: 0;
+    width: 35px;
+    height: 27px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background: #231F20FF;
+    position: relative;
+    z-index: 1;
+}
+
+.header-login-block {
+    position: relative;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    height: 55px;
+    max-width: 350px;
+    min-width: 45px;
+    grid-column-gap: 5px;
+    /*grid-row-gap: 1px;*/
+    background: #231f20;
+    overflow: hidden;
+    z-index: 6;
+}
+
+.header-login-icon {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    align-self: center;
+    height: 40px;
+    width: 40px;
+    /*margin: 0 15px 0 0;*/
+    background: url("../imgs/login icon.png") 0 0/100% 100% no-repeat;
+}
+
+.header-login-input {
+    background: #231f20;
+    min-width: 0;
+    padding: 0 15px;
+    height: 20px;
+    width: 100px;
+    align-self: center;
+    color: #f8f8f8;
+    font-size: 14px;
+    font-style: italic;
+    font-family: "Calibri Light";
+    /*padding-left: 10px;*/
+    box-shadow: none;
+    -webkit-appearance: none;
+    border-bottom: 1px solid #4051c9;
+    border-right: none;
+    /*border: none;*/
+    -webkit-appearance: none;
+}
+
+.header-password-input {
+    background: white;
+}
+
+
+/*.header-registration-block {*/
+/*    border: solid black 1px;*/
+/*    height: 35px;*/
+/*    border-radius: 5px;*/
+/*}*/
+
+.header-cart-block {
+    display: flex;
+    background: #231f20;
+}
+
+.header-cart-icon {
+    /*border: solid black 1px;*/
+    height: 30px;
+    border-radius: 5px;
+    background: url("../imgs/cartPng.png") 0 0 /100% 100% no-repeat;
+    width: 30px;
+    margin: 0 0px 0 15px;
+    /*height: 100px;*/
+}
+
+.header-cart-items {
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #3762ff;
+    color: white;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    border: solid black 1px;
+    margin: 0 20px 0 10px;
+}
+
+.header-anim {
+    position: sticky;
+    top: 0;
+}
+
+/*body{*/
+/*    margin: 0;*/
+/*}*/

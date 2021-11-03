@@ -9,27 +9,25 @@
             <p class="price-filter-text">
                 Фильтровать по цене
             </p>
-            <button type="submit" class="price-filter-button">Показать</button>
-            <input name="minPrice" value="@Model.MinPrice" class="price-filter-input">
-            <input name="maxPrice" value="@Model.MaxPrice" class="price-filter-input">
+            <button type="submit" id="price-filter-button" class="price-filter-button">Показать</button>
+            <input name="minPrice" value="0" id="min-price" class="price-filter-input">
+            <input name="maxPrice" value="1000" id="max-price" class="price-filter-input">
         </form>
-        @await Component.InvokeAsync("NavigationLeftBar", new
-        {
-            minPrice = Model.MinPrice, 
-            maxPrice = Model.MaxPrice
-        })
+        @await Component.InvokeAsync("NavigationLeftBar")
     </div>
     <div class="contentBlock">
         <link rel="stylesheet" href="/css/PageButtons.css">
         <a asp-action="ControlPanel" asp-controller="AdminMain" class="admin-button">Admin</a>
         <button id="ajaxSender">TEST</button>
-        <div id="output-area"></div>
-        <div class="products-block">
-            @foreach (Product product in Model.Products)
-            {
-                @await Html.PartialAsync("SingleProductBlockCostumers", product)
-            }
-            <div page-model="@Model.PagingInfo" css-class="pageButtonCommon" current-page-css-class="pageButtonCurrent"></div>
+        <form action="Products">
+            
+        </form>
+        <div id="products-output-area" class="products-output-area">
+            
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossOrigin="anonymous"></script>
+<script src="/js/ProductsFilterDownloader.js"></script>

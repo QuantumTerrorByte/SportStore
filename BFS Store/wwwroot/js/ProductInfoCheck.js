@@ -2,8 +2,6 @@
 
 
 
-
-
 function isExist() {
     $.ajax('https://localhost:5001/AdminProductInfo/IsExistInfo?productId=10&lang=1', {
         type: "GET",

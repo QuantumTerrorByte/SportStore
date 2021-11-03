@@ -6,7 +6,7 @@ namespace SportStore.Models.ProductModel
     {
         public long Id { get; set; }
         public long ProductId { get; set; }
-        public Lang Lang { get; set; }
+        public Langs Lang { get; set; }
         public Description ShortDescription { get; set; }
         public List<Description> DescriptionsLi { get; set; }
         public List<Description> DopDescriptions { get; set; }

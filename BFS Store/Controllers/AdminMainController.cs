@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SportStore.Models;
-using SportStore.Models.Interfaces;
+using SportStore.Models.DAO.Interfaces;
 using SportStore.Models.ProductModel;
 using SportStore.Models.ViewModels;
 

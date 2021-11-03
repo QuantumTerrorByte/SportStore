@@ -3,7 +3,8 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SportStore.Models;
-using SportStore.Models.Interfaces;
+using SportStore.Models.Core;
+using SportStore.Models.DAO.Interfaces;
 using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers

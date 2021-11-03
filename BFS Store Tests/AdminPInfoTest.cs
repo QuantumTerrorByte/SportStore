@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Moq;
 using SportStore.Controllers;
 using SportStore.Models;
+using SportStore.Models.DAO;
 using SportStore.Models.ProductModel;
 using Xunit;
 
@@ -35,17 +36,17 @@ namespace SportStoreTests
                 {
                     new ProductInfo()
                     {
-                        Id = 1, Lang = Lang.RU,
+                        Id = 1, Lang = Langs.RU,
                         ProductId = 1,
                     },
                     new ProductInfo()
                     {
-                        Id = 2, Lang = Lang.UA,
+                        Id = 2, Lang = Langs.UA,
                         ProductId = 1,
                     },
                     new ProductInfo()
                     {
-                        Id = 3, Lang = Lang.US,
+                        Id = 3, Lang = Langs.US,
                         ProductId = 1,
                     }
                 }
@@ -61,17 +62,17 @@ namespace SportStoreTests
                 {
                     new ProductInfo()
                     {
-                        Id = 4, Lang = Lang.RU,
+                        Id = 4, Lang = Langs.RU,
                         ProductId = 2,
                     },
                     new ProductInfo()
                     {
-                        Id = 5, Lang = Lang.UA,
+                        Id = 5, Lang = Langs.UA,
                         ProductId = 2,
                     },
                     new ProductInfo()
                     {
-                        Id = 6, Lang = Lang.US,
+                        Id = 6, Lang = Langs.US,
                         ProductId = 2,
                     }
                 }
@@ -87,17 +88,17 @@ namespace SportStoreTests
                 {
                     new ProductInfo()
                     {
-                        Id = 7, Lang = Lang.RU,
+                        Id = 7, Lang = Langs.RU,
                         ProductId = 3,
                     },
                     new ProductInfo()
                     {
-                        Id = 8, Lang = Lang.UA,
+                        Id = 8, Lang = Langs.UA,
                         ProductId = 3,
                     },
                     new ProductInfo()
                     {
-                        Id = 9, Lang = Lang.US,
+                        Id = 9, Lang = Langs.US,
                         ProductId = 3,
                     }
                 }

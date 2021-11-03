@@ -2,7 +2,8 @@
 using Moq;
 using SportStore.Controllers;
 using SportStore.Models;
-using SportStore.Models.Interfaces;
+using SportStore.Models.Core;
+using SportStore.Models.DAO.Interfaces;
 using SportStore.Models.ProductModel;
 using Xunit;
 

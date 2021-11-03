@@ -3,6 +3,7 @@ using System.Runtime.Intrinsics.X86;
 using Moq;
 using Org.BouncyCastle.Crypto.Macs;
 using SportStore.Models;
+using SportStore.Models.Core;
 using SportStore.Models.ProductModel;
 using Xunit;
 

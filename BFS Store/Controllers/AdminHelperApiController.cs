@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SportStore.Models;
-using SportStore.Models.Interfaces;
+using SportStore.Models.DAO.Interfaces;
 
 namespace SportStore.Controllers
 {
@@ -24,20 +24,20 @@ namespace SportStore.Controllers
         }
 
         [HttpGet("{id:int}", Name = "IfAbsentProdInfoChecker")]
-        public string IfAbsentProdInfoChecker(int id, Lang lang)
+        public string IfAbsentProdInfoChecker(int id, Langs langs)
         {
-            var result = $"value id = {id}: Lang = {lang}";
+            var result = $"value id = {id}: Lang = {langs}";
             Console.WriteLine(result);
             return result;
         }
 
 
-        [HttpGet]
-        public Dictionary<string, string> Get([FromBody] TestModel arg)
-        {
-            Console.WriteLine(arg + " get");
-            return new Dictionary<string, string>() {{"name", arg.Name}};
-        }
+        // [HttpGet]
+        // public Dictionary<string, string> Get([FromBody] TestModel arg)
+        // {
+        //     Console.WriteLine(arg + " get");
+        //     return new Dictionary<string, string>() {{"name", arg.Name}};
+        // }
 
         // GET: api/Reff2/5
 

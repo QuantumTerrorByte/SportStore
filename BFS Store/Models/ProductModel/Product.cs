@@ -27,9 +27,9 @@ namespace SportStore.Models.ProductModel
 
 
 
-        public ProductInfo GetInfoByLang(Lang lang = Lang.US)
+        public ProductInfo GetInfoByLang(Langs langs = Langs.US)
         {
-            return ProductInfos.FirstOrDefault(i => i.Lang == lang);
+            return ProductInfos.FirstOrDefault(i => i.Lang == langs);
         }
     }
 }

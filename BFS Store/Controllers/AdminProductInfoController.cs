@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using SportStore.Models;
-using SportStore.Models.Interfaces;
+using SportStore.Models.DAO.Interfaces;
 using SportStore.Models.ProductModel;
 using SportStore.Models.ViewModels;
 
@@ -17,7 +17,7 @@ namespace SportStore.Controllers
 
 
         [HttpGet]
-        public Dictionary<string, string> IsExistInfo(int productId, Lang lang)
+        public Dictionary<string, string> IsExistInfo(int productId, Langs lang)
         {
             var productInfo = RepositoryProduct.GetProductInfo(productId, lang);
             var answer = productInfo == null ? "false" : "true";
@@ -31,7 +31,7 @@ namespace SportStore.Controllers
 
 
         [HttpGet]
-        public IActionResult EditInfo(int productId, Lang lang) //todo mapper
+        public IActionResult EditInfo(int productId, Langs langs) //todo mapper
         {
             var product = new Product();
             var info = new ProductInfo();
@@ -57,11 +57,11 @@ namespace SportStore.Controllers
 
 
         [HttpPost]
-        public IActionResult DeleteInfo(int productId, Lang lang)
+        public IActionResult DeleteInfo(int productId, Langs langs)
         {
             try
             {
-                var infoId = RepositoryProduct.GetProductInfo(productId, lang).Id;
+                var infoId = RepositoryProduct.GetProductInfo(productId, langs).Id;
                 var deleted = RepositoryProduct.RemoveProductInfo(infoId);
                 return RedirectToAction("ControlPanel", "AdminMain", productId);
             }

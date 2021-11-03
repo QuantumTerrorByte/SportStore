@@ -10,9 +10,11 @@
       <Folder Include="wwwroot\imgs" />
     </ItemGroup>
     <ItemGroup>
+      <PackageReference Include="jQuery" Version="3.6.0" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.11" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.11" />
       <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.11" />
       <PackageReference Include="Microsoft.CodeAnalysis.Razor" Version="5.0.10" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="5.0.11" />
@@ -35,6 +37,7 @@
       <_ContentIncludedByDefault Remove="wwwroot\css\depricated\BoddyCostumers.css" />
       <_ContentIncludedByDefault Remove="wwwroot\css\depricated\Header.css" />
       <_ContentIncludedByDefault Remove="wwwroot\css\depricated\ProductBlock.css" />
+      <_ContentIncludedByDefault Remove="ClientApp\public\manifest.json" />
     </ItemGroup>
 
 </Project>

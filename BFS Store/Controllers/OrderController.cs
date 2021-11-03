@@ -3,7 +3,8 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SportStore.Models;
-using SportStore.Models.Interfaces;
+using SportStore.Models.Core;
+using SportStore.Models.DAO.Interfaces;
 
 namespace SportStore.Controllers
 {
