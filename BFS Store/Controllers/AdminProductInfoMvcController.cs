@@ -8,11 +8,11 @@ using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers
 {
-    public class AdminProductInfoController : Controller //todo return urls
+    public class AdminProductInfoMvcController : Controller //todo return urls
     {
         private IProductRepository RepositoryProduct { get; }
 
-        public AdminProductInfoController(IProductRepository repositoryProduct)
+        public AdminProductInfoMvcController(IProductRepository repositoryProduct)
             => RepositoryProduct = repositoryProduct;
 
 
@@ -52,7 +52,7 @@ namespace SportStore.Controllers
         public IActionResult EditInfo(Product product)
         {
             RepositoryProduct.AddEditProduct(product);
-            return RedirectToAction("ControlPanel", "AdminMain", product.Id);
+            return RedirectToAction("ControlPanel", "AdminProductMvc", product.Id);
         }
 
 
@@ -63,12 +63,12 @@ namespace SportStore.Controllers
             {
                 var infoId = RepositoryProduct.GetProductInfo(productId, langs).Id;
                 var deleted = RepositoryProduct.RemoveProductInfo(infoId);
-                return RedirectToAction("ControlPanel", "AdminMain", productId);
+                return RedirectToAction("ControlPanel", "AdminProductMvc", productId);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return RedirectToAction("ControlPanel", "AdminMain", productId);
+                return RedirectToAction("ControlPanel", "AdminProductMvc", productId);
             }
         }
     }

@@ -8,11 +8,11 @@ using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers
 {
-    public class AdminMainController : Controller //todo view on admin top panel
+    public class AdminProductMvcController : Controller //todo view on admin top panel
     {
         private IProductRepository ProductRepository { get; }
 
-        public AdminMainController(IProductRepository productRepository)
+        public AdminProductMvcController(IProductRepository productRepository)
             => ProductRepository = productRepository;
 
 
@@ -26,7 +26,7 @@ namespace SportStore.Controllers
         public IActionResult CreateProduct(Product product)
         {
             ProductRepository.AddEditProduct(product);
-            return RedirectToAction("ControlPanel", "AdminMain");
+            return RedirectToAction("ControlPanel", "AdminProductMvc");
         }
 
 
@@ -35,7 +35,7 @@ namespace SportStore.Controllers
         {
             ProductRepository.AddEditProduct(product);
 
-            return RedirectToAction("ControlPanel", "AdminMain", product.Id);
+            return RedirectToAction("ControlPanel", "AdminProductMvc", product.Id);
         }
 
         [HttpPost]

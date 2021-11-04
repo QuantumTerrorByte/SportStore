@@ -19,11 +19,11 @@ namespace SportStore.Controllers
 {
     // [Route("api/[controller]")]
     // [ApiController]
-    public class TestController : Controller
+    public class CostumersProductApiController : Controller
     {
         private readonly IProductRepository _productRepository;
 
-        public TestController(IProductRepository productRepository)
+        public CostumersProductApiController(IProductRepository productRepository)
         {
             _productRepository = productRepository;
         }
@@ -91,12 +91,6 @@ namespace SportStore.Controllers
                 Amount = new Random().Next(1,5),
             };
         }
-
-        [HttpPost]
-        public string Post([FromBody] TestModel value)
-        {
-            Console.WriteLine(value);
-            return "View()";
-        }
+        
     }
 }

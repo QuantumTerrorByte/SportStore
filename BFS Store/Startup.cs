@@ -65,40 +65,6 @@ namespace SportStore
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action}");
-                // endpoints.MapControllerRoute(
-                //     name: null,
-                //     "{category}/Page{productPage:int}",
-                //     new {Controller = "Product", Action = "Index"}
-                // );
-                // endpoints.MapControllerRoute(
-                //     name: null,
-                //     "Page{productPage:int}",
-                //     new {Controller = "Product", Action = "Index", productPage = 1}
-                // );
-                // endpoints.MapControllerRoute(
-                //     name: null,
-                //     "{category}",
-                //     new {Controller = "Product", Action = "Index", productPage = 1}
-                // );
-                // endpoints.MapControllerRoute(
-                //     name: null,
-                //     "",
-                //     new {Controller = "Product", Action = "Index", productPage = 1}
-                // );
-                // endpoints.MapControllerRoute(
-                //     name: null,
-                //     "{controller=Product}/{action=Index}/{id?}"
-                // );
-                
-
-                // endpoints.MapControllerRoute(
-                // name: "pagination",
-                // pattern: "Products/Page{productPage}",
-                // new {Controller = "Product", Action = "Index"}
-                // );
-                // endpoints.MapControllerRoute(
-                // name: "default",
-                // pattern: "{controller=Product}/{action=Index}/{id?}");
             });
             app.UseSpa(spa =>
             {
@@ -112,3 +78,38 @@ namespace SportStore
         }
     }
 }
+
+// endpoints.MapControllerRoute(
+//     name: null,
+//     "{category}/Page{productPage:int}",
+//     new {Controller = "Product", Action = "Index"}
+// );
+// endpoints.MapControllerRoute(
+//     name: null,
+//     "Page{productPage:int}",
+//     new {Controller = "Product", Action = "Index", productPage = 1}
+// );
+// endpoints.MapControllerRoute(
+//     name: null,
+//     "{category}",
+//     new {Controller = "Product", Action = "Index", productPage = 1}
+// );
+// endpoints.MapControllerRoute(
+//     name: null,
+//     "",
+//     new {Controller = "Product", Action = "Index", productPage = 1}
+// );
+// endpoints.MapControllerRoute(
+//     name: null,
+//     "{controller=Product}/{action=Index}/{id?}"
+// );
+                
+
+// endpoints.MapControllerRoute(
+// name: "pagination",
+// pattern: "Products/Page{productPage}",
+// new {Controller = "Product", Action = "Index"}
+// );
+// endpoints.MapControllerRoute(
+// name: "default",
+// pattern: "{controller=Product}/{action=Index}/{id?}");

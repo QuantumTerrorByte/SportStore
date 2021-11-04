@@ -6,6 +6,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="Areas\AdminMemberRolesMvcController\Controllers" />
+      <Folder Include="Areas\AdminMemberRolesMvcController\Data" />
+      <Folder Include="Areas\AdminMemberRolesMvcController\Models" />
+      <Folder Include="Areas\AdminMemberRolesMvcController\Views" />
       <Folder Include="Deprecated" />
       <Folder Include="wwwroot\imgs" />
     </ItemGroup>

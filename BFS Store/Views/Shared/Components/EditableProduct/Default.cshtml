@@ -18,7 +18,7 @@
         <th class="text-center">Actions</th>
     </tr>
     <tr>
-        <form asp-action="CreateProduct" asp-controller="AdminMain">
+        <form asp-action="CreateProduct" asp-controller="AdminProductMvc">
             <td>
                 <input name="Product.Id" type="text" placeholder="id" value="">
             </td>
@@ -58,7 +58,7 @@
 
     @foreach (Product product in Model.Products)
     {
-        <form asp-action="Edit" asp-controller="AdminMain">
+        <form asp-action="Edit" asp-controller="AdminProductMvc">
             <tr>
                 <td>
                     <input type="text" name="" value="@product.Id">
@@ -114,10 +114,10 @@
                 <button type="submit" class="btn btn-sm btn-warning">Save</button>
             </td>
             <td>
-                <a asp-action="Delete" asp-controller="AdminMain" asp-route-id="@product.Id" class="btn btn-danger btn-sm">Delete</a>
+                <a asp-action="Delete" asp-controller="AdminProductMvc" asp-route-id="@product.Id" class="btn btn-danger btn-sm">Delete</a>
             </td>
             <td>
-                <form asp-action="IsExistInfo" asp-controller="AdminProductInfo" method="get" class="info-edit-holder">
+                <form asp-action="IsExistInfo" asp-controller="AdminProductInfoMvc" method="get" class="info-edit-holder">
                     <input type="hidden" name="ProductId" value="@product.Id">
                     <select name="Lang">
                         <option value="RU">ru</option>
@@ -128,7 +128,7 @@
                 </form>
             </td>
             <td>
-                <form asp-action="DeleteInfo" asp-controller="AdminProductInfo" method="post" class="info-edit-holder">
+                <form asp-action="DeleteInfo" asp-controller="AdminProductInfoMvc" method="post" class="info-edit-holder">
                     <input type="hidden" name="ProductId" value="@product.Id">
                     <select name="Lang">
                         <option value="RU">ru</option>
