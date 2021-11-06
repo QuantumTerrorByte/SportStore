@@ -1,5 +1,5 @@
 import React from "react";
-import {initialState} from "./initialState";
+import {initialState} from "./InitialState";
 import {
     ADD_PRODUCTS,
     REFRESH_PRODUCT_PAGE,
@@ -13,6 +13,7 @@ import {
 } from "./ActionsEnum";
 
 export function CatalogPageReducer(state = initialState.catalogPage, action) {
+    // console.log(action)
     switch (action.type) {
         case SET_FILTER_CATEGORY1:
             return {

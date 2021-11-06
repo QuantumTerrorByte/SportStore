@@ -16,6 +16,7 @@ export const initialState = {
         categories1: [],
         brands: [],
     },
+    isAuthenticated: false,
     cart: {},
     productPageViewModel: {
         id: 10,
@@ -163,3 +164,12 @@ export const initialState = {
         amount: 5,
     }
 }
+
+
+// registrationPage: {
+//     nameInput: "a",
+//     emailInput: "",
+//     phoneInput: "a",
+//     passwordInput: "a",
+//     passwordConfirmInput: "a",
+// },

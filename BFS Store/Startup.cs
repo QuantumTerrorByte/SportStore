@@ -2,11 +2,15 @@ using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using SportStore.Controllers;
+using SportStore.Infrastructure;
 using SportStore.Models;
 using SportStore.Models.Core;
 using SportStore.Models.DAO;
@@ -29,6 +33,10 @@ namespace SportStore
             services.AddTransient<IOrderRepository, EFOrderRepository>();
             services.AddDbContext<DataContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("Default")));
+            services.AddDbContext<UserIdentityContext>(options =>
+            {
+                options.UseMySQL("server=localhost;port=3306;username=root;password=admin;database=BFSIdentity");
+            });
             // services.AddMvcCore();
             services.AddMemoryCache();
             services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(1));
@@ -37,7 +45,17 @@ namespace SportStore
             services.AddControllersWithViews();
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/build"; });
             services.AddCors();
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers().AddNewtonsoftJson();// todo controller options
+            services.AddIdentity<AppUser, IdentityRole>(options =>
+                {
+                    options.User.RequireUniqueEmail = true;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequiredLength = 6;
+                })
+                .AddEntityFrameworkStores<UserIdentityContext>()
+                .AddDefaultTokenProviders();
+            services.AddTransient<IPasswordValidator<AppUser>, UserPasswordValidator>();
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "BFS Store", Version = "v1"}); });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,6 +63,8 @@ namespace SportStore
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BFS Store v1"));
             }
             else
             {
@@ -58,7 +78,7 @@ namespace SportStore
             app.UseSpaStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
-            app.UseCors(builder => builder.AllowAnyOrigin());          //between routing and endpoints  
+            app.UseCors(builder => builder.AllowAnyOrigin()); //between routing and endpoints  
 
             app.UseEndpoints(endpoints =>
             {
@@ -103,7 +123,7 @@ namespace SportStore
 //     name: null,
 //     "{controller=Product}/{action=Index}/{id?}"
 // );
-                
+
 
 // endpoints.MapControllerRoute(
 // name: "pagination",

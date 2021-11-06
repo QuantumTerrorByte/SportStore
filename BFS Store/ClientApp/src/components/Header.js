@@ -34,6 +34,10 @@ export default function Header() {
                     <input className="header-login-input" placeholder="login"/>
                     <input className="header-login-input" placeholder="password"/>
                 </div>
+                <div>
+                    <button>SignUp</button>
+                    <NavLink to='/SignIn'>SignIn</NavLink>
+                </div>
                 <div className="header-registration-block"></div>
                 <div className="header-cart-block">
                     <div className="header-cart-icon"></div>

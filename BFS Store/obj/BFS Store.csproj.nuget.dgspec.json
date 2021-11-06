@@ -96,6 +96,10 @@
               "target": "Package",
               "version": "[5.0.11, )"
             },
+            "Microsoft.Extensions.Identity.Core": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[5.0.2, )"
@@ -103,6 +107,10 @@
             "MySql.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.5, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
             },
             "jQuery": {
               "target": "Package",

@@ -4,3 +4,8 @@
 .filter-remover-item{
     margin: 0 20px;
 }
+.main{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}

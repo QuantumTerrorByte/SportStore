@@ -1,18 +1,57 @@
 import React from "react";
 import {
-    ADD_PRODUCTS, DECREMENT, DOMAIN, INCREMENT, REFRESH_PRODUCT_PAGE,
+    ADD_PRODUCTS,
+    DECREMENT,
+    DOMAIN,
+    INCREMENT,
+    PRODUCTS_CONTROLLER_NAME,
+    REFRESH_PRODUCT_PAGE,
     REFRESH_PRODUCTS,
-    SET_CURRENT_PAGE, SET_FILTER_BRAND,
+    SET_CURRENT_PAGE,
+    SET_FILTER_BRAND,
     SET_FILTER_CATEGORY1,
-    SET_FILTER_CATEGORY2, SET_FILTER_MAX_PRICE, SET_FILTER_MIN_PRICE, SET_FILTER_SORT, UPLOAD_CATEGORIES_AND_BRANDS,
+    SET_FILTER_CATEGORY2,
+    SET_FILTER_MAX_PRICE,
+    SET_FILTER_MIN_PRICE,
+    SET_FILTER_SORT,
+    SET_REGISTRATION_EMAIL_INPUT,
+    SET_REGISTRATION_NAME_INPUT,
+    SET_REGISTRATION_PASSWORD_CONFIRMED_INPUT,
+    SET_REGISTRATION_PASSWORD_INPUT,
+    SET_REGISTRATION_PHONE_INPUT,
+    UPLOAD_CATEGORIES_AND_BRANDS,
 } from "./ActionsEnum";
 import $ from "jquery";
 import {store} from "../index";
 
+
+export function auth(form) {
+    return async dispatch => {
+        $.ajax({
+            url: `${DOMAIN}${PRODUCTS_CONTROLLER_NAME}GetProductPage`,
+            type: "GET",
+            data: {form},
+        }).done(response => {
+            console.log(response)
+            dispatch({
+                type: REFRESH_PRODUCT_PAGE,
+                payload: {...response, productAmountOrderInput: 1, maxOrderSizeFlag: false}
+            });
+        });
+    }
+}
+
+
+
+
+
+
+
+
 export function getAndRouteProductPage({productId, brHistory}) {
     return async dispatch => {
         $.ajax({
-            url: `${DOMAIN}Test/GetProductPage`,
+            url: `${DOMAIN}${PRODUCTS_CONTROLLER_NAME}GetProductPage`,
             type: "GET",
             data: {productId},
         }).done(response => {
@@ -28,7 +67,7 @@ export function getAndRouteProductPage({productId, brHistory}) {
 export function uploadProducts(dispatch, add = false) {
     const state = store.getState();
     $.ajax({
-        url: `${DOMAIN}Test/GetProducts`,
+        url: `${DOMAIN}${PRODUCTS_CONTROLLER_NAME}GetProducts`,
         type: "GET",
         data: {...state.catalogPage.filters, page: state.catalogPage.products.currentPage},
     }).done(response => {
@@ -43,7 +82,7 @@ export function uploadProducts(dispatch, add = false) {
 export function uploadCategoriesAndBrands() {
     return async (dispatch) =>
         await $.ajax({
-            url: `${DOMAIN}Test/GetCategoryAndBrands`,
+            url: `${DOMAIN}${PRODUCTS_CONTROLLER_NAME}GetCategoryAndBrands`,
             type: "GET",
         }).done(response => {
             dispatch({
@@ -123,3 +162,39 @@ export function decrement() {
     }
 }
 
+
+export function setRegistrationName(input) {
+    console.log(input)
+    return {
+        type: SET_REGISTRATION_NAME_INPUT,
+        payload: input,
+    }
+}
+export function setRegistrationEmail(input) {
+    console.log(input)
+    return {
+        type: SET_REGISTRATION_EMAIL_INPUT,
+        payload: input,
+    }
+}
+export function setRegistrationPhone(input) {
+    console.log(input)
+    return {
+        type: SET_REGISTRATION_PHONE_INPUT,
+        payload: input,
+    }
+}
+export function setRegistrationPassword(input) {
+    console.log(input)
+    return {
+        type: SET_REGISTRATION_PASSWORD_INPUT,
+        payload: input,
+    }
+}
+export function setRegistrationPasswordConfirm(input) {
+    console.log(input)
+    return {
+        type: SET_REGISTRATION_PASSWORD_CONFIRMED_INPUT,
+        payload: input,
+    }
+}

@@ -1,0 +1,85 @@
+.regBlock{
+    display: flex;
+    flex-direction: column;
+    border: solid black 3px;
+    background: #c9ece2;
+    border-radius: 10px;
+    width: 700px;
+    margin: 20px;
+    justify-self: end;
+}
+.regMain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-size: 30px;
+}
+.regBlankHolder{
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    border: solid 1px black;
+    justify-content: center;
+    align-items: center;
+}
+.regBlock Input{
+    font-size: 30px;
+    margin: 10px;
+}
+.regBlock Label{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 30px;
+    font-size: 30px;
+}
+
+
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    border: solid black 1px;
+    background: #fafcff;
+    border-radius: 10px;
+    width: 700px;
+    position: absolute;
+    left: 70%;
+    margin-left: -350px;
+    align-self: end;
+}
+
+.inputBlock {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.inputBlockErrorText {
+    color: red;
+    font-size: 20px;
+}
+
+.inputBlock label {
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+    margin: 5px
+}
+
+.inputBlock input {
+    font-size: 50px;
+    margin: 5px;
+}
+
+.inputBlockErrorInput {
+    border: solid red 2px;
+}
+
+.formButton{
+    margin: 30px;
+    font-size: 30px;
+    min-width: 300px;
+}

@@ -13,7 +13,7 @@ export function Home({state}) {
     return (
         <div>
             {/*<div className="top-top-panel">Акция</div>*/}
-            <Header/>
+
             <div className="content-block">
                 <div className="body-content">
                     <div className="borderedDev">

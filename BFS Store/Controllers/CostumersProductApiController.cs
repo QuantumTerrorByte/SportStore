@@ -29,7 +29,7 @@ namespace SportStore.Controllers
         }
 
         [HttpGet]
-        public FilteredProductsViewModel GetProducts(ProductsRequestModel requestModel)
+        public IActionResult GetProducts(ProductsRequestModel requestModel)
         {
             (IList<Product>, int) filteredProducts = _productRepository.GetFilteredProducts(
                 new FilteredProductsRepoRequestModel()
@@ -49,11 +49,11 @@ namespace SportStore.Controllers
                 requestModel.PageSize,
                 requestModel.Page);
 
-            return new FilteredProductsViewModel()
+            return Ok(new FilteredProductsViewModel()
             {
                 ProductsList = filteredProducts.Item1,
                 Pagination = pagesModel,
-            };
+            });
         }
 
         [HttpGet]
@@ -67,8 +67,6 @@ namespace SportStore.Controllers
         }
 
         [HttpGet]
-        [SuppressMessage("ReSharper.DPA", "DPA0001: Memory allocation issues")]
-        [SuppressMessage("ReSharper.DPA", "DPA0002: Excessive memory allocations in SOH")]
         public ProductPageViewModel GetProductPage(int productId) //todo lang & admin log
         {
             Console.Clear();
@@ -88,9 +86,15 @@ namespace SportStore.Controllers
                 CategoryFirstLvl = product.NavCategoryFirstLvl,
                 CategorySecondLvl = product.NavCategorySecondLvl,
                 Info = info,
-                Amount = new Random().Next(1,5),
+                Amount = new Random().Next(1, 5),
             };
         }
-        
+        [HttpGet]
+        public IActionResult AuthTest(bool isLogged = false, bool isLogouted = false)
+        {
+            ViewBag.isLogged = isLogged;
+            ViewBag.isLogged = isLogouted;
+            return View();
+        }
     }
 }

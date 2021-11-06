@@ -1,14 +1,30 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SportStore.Controllers
 {
     public class AdminMemberRolesMvcController : Controller
     {
+        private readonly UserManager<AppUser> _userManager;
+        private readonly IUserValidator<AppUser> _userValidator;
+        private readonly IPasswordValidator<AppUser> _passwordValidator;
+        private readonly IPasswordHasher<AppUser> _passwordHasher;
+
+        public AdminMemberRolesMvcController(UserManager<AppUser> userManager, IUserValidator<AppUser> userValidator,
+            IPasswordValidator<AppUser> passwordValidator, IPasswordHasher<AppUser> passwordHasher)
+        {
+            _userManager = userManager;
+            _userValidator = userValidator;
+            _passwordValidator = passwordValidator;
+            _passwordHasher = passwordHasher;
+        }
+
         // GET: AdminMemberRolesMvc
         public ActionResult Index()
         {
@@ -29,7 +45,7 @@ namespace SportStore.Controllers
 
         // POST: AdminMemberRolesMvc/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        // [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
             try
@@ -44,15 +60,8 @@ namespace SportStore.Controllers
             }
         }
 
-        // GET: AdminMemberRolesMvc/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: AdminMemberRolesMvc/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        // [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
             try
@@ -66,28 +75,7 @@ namespace SportStore.Controllers
                 return View();
             }
         }
-
-        // GET: AdminMemberRolesMvc/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AdminMemberRolesMvc/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
+        
     }
 }

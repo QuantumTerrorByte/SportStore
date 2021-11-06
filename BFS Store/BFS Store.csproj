@@ -10,7 +10,6 @@
       <Folder Include="Areas\AdminMemberRolesMvcController\Data" />
       <Folder Include="Areas\AdminMemberRolesMvcController\Models" />
       <Folder Include="Areas\AdminMemberRolesMvcController\Views" />
-      <Folder Include="Deprecated" />
       <Folder Include="wwwroot\imgs" />
     </ItemGroup>
     <ItemGroup>
@@ -33,8 +32,10 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.11" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
         <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.5" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
     <ItemGroup>
       <_ContentIncludedByDefault Remove="wwwroot\css\depricated\AdminIndex.css" />
@@ -42,6 +43,10 @@
       <_ContentIncludedByDefault Remove="wwwroot\css\depricated\Header.css" />
       <_ContentIncludedByDefault Remove="wwwroot\css\depricated\ProductBlock.css" />
       <_ContentIncludedByDefault Remove="ClientApp\public\manifest.json" />
+      <_ContentIncludedByDefault Remove="Views\Shared\Components\NavigationLeftBar\Default.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Product\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Product\ProductPage.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Product\Products.cshtml" />
     </ItemGroup>
 
 </Project>

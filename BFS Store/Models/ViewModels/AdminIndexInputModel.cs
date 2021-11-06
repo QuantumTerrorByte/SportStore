@@ -1,6 +1,6 @@
 ﻿using SportStore.Models.ProductModel;
 
-namespace SportStore.Models
+namespace SportStore.Models.ViewModels
 {
     public class AdminIndexInputModel
     {

@@ -19,8 +19,7 @@ export function ProductInfoPage({productInfoViewModel}) {
     // console.log(productInfoViewModel)
     return (
         <div>
-            <Header/>
-            <div className='pp-naw-block'></div>
+            <div className='pp-naw-block'/>
             <div className="info-holder">
                 <div className="pp-body-content">
                     <div className="pp-img-block">

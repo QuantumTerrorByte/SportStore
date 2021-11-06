@@ -1,5 +1,5 @@
 import React from "react";
-import {initialState} from "./initialState";
+import {initialState} from "./InitialState";
 import {DECREMENT, INCREMENT, REFRESH_PRODUCT_PAGE} from "./ActionsEnum";
 
 export function ProductPageViewModelReducer(state = initialState.productPageViewModel, action) {
