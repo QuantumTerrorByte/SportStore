@@ -1,0 +1,59 @@
+.profileLeftNavBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*margin: 20px;*/
+    border: solid 1px lightgrey;
+    width: 400px;
+}
+
+.profileLeftNavBar a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    margin: 5px 15px;
+    height: 60px;
+    width: 95%;
+    color: black;
+    /*text-align: center;*/
+    /*-webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.17);*/
+    /*box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.17);*/
+}
+
+.profileLeftNavBar a:hover {
+    /*border-radius: 20px;*/
+    background: #a1a1e8;
+    color: white;
+}
+
+
+.userProfileMain {
+    display: flex;
+    width: 1300px;
+    height: 900px;
+    padding-bottom: 100px;
+    /*margin: 30px 0 0 0;*/
+}
+
+.profileLocalHeader {
+    display: flex;
+    /*justify-content: space-around;*/
+    margin: 30px;
+    width: 100%;
+    background: #d1dcf5;
+    font-size: 70px;
+}
+
+.profileContentBlock {
+    /*background: #002bd9;*/
+    border: solid 1px #c9c9c9;
+    width: 100%;
+}
+
+.editProfileContentBlock{
+    display: flex;
+    justify-content: center;
+    border: solid blue 1px;
+    padding-bottom: 200px;
+}

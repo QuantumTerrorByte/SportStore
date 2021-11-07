@@ -1,3 +1,4 @@
+
 export const initialState = {
     catalogPage: {
         products: {
@@ -13,10 +14,28 @@ export const initialState = {
             minPrice: 5,
             maxPrice: 11,
         },
-        categories1: [],
-        brands: [],
+        categories1: ["a"],
+        brands: ["b"],
     },
-    isAuthenticated: false,
+    uiFlags:{
+        loginFormFlag: false,
+        registrationFormFlag: false,
+        leftBurgerFlag: false,
+        thankfulnessPopUpFlag: false,
+        signInUpHolder: false,
+    },
+    userData: {
+        isAuthenticated: false,
+        userId: "",
+        userName: "",
+        userEmail: "",
+        userPhoneNumber: "",
+        OrdersPage: {Orders: ""},
+        LikesPage: {Likes: ""},
+        ViewedProductsPage: {ViewedProducts: ""},
+        CommentsPage: {Comments: ""},
+        ProfilePage: {Profile: ""},
+    },
     cart: {},
     productPageViewModel: {
         id: 10,

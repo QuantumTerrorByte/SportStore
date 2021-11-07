@@ -2,7 +2,7 @@ import React from "react";
 import {Product} from "./Product";
 import Pagination from "./Pagination";
 import {useDispatch} from "react-redux";
-import {addProducts} from "../redux/ActionFactory";
+import {addProducts} from "../redux/ProductsActionsFactory";
 import '../styles/ProductBlockForCostumers.css'
 
 export default function Products({products, filters}) {

@@ -1,0 +1,152 @@
+:root {
+    --fontSize: 35px;
+    --backFormColor: white;
+    --border: solid black 1px;
+    --mainColor: #0f1111;
+    --secondColor: #0e1b25;
+    --thirdColor: #007185;
+    --fourthColor: #232f3e;
+    --fifthColor: #37475a;
+    --oldHeaderColor: #231F20FF;
+}
+
+.filter-remover {
+    padding: 20px;
+}
+
+.filter-remover-item {
+    margin: 0 20px;
+}
+
+.main {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    /*justify-content: space-between;*/
+}
+
+.authFormHolder {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(17, 17, 19, 0.51);
+    z-index: 10;
+}
+
+.futterBlock {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*margin-top: 100px;*/
+}
+
+.footerLoginBlockHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 140px;
+    border-top: solid lightgrey 1px;
+    border-bottom: solid lightgrey 1px;
+    margin: 50px;
+}
+
+.footerButton {
+    width: 300px;
+    height: 50px;
+    background: url(../img/button.jpg) 0 0 / auto 100% no-repeat;
+    border: none;
+    font-size: 25px;
+}
+
+.footerLine {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+    background: var(--fifthColor);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*margin-top: 100px;*/
+    color: white;
+    font-size: 50px;
+}
+
+.footerLine:hover {
+    background: var(--thirdColor)
+}
+
+.footerContent {
+    display: flex;
+    justify-content: center;
+    background: var(--fourthColor);
+    width: 100%;
+}
+
+.footerTable {
+    /*border: lightgrey solid 1px;*/
+    width: 1200px;
+    height: 200px;
+    margin: 50px 0;
+
+    /*font-size: 25px;*/
+}
+
+.footerTable thead {
+    font-size: 18px;
+    font-style: oblique;
+    font-weight: bolder;
+}
+
+.footerTable th {
+    font-size: var(--fontSize);
+    color: #ffffff;
+    font-size: 15px;
+    margin: -20px 15px;
+    height: 10px;
+    /*border: lightgrey solid 1px;*/
+}
+
+.footerTable tr {
+    font-size: 15px;
+    color: darkblue;
+    margin-top: -20px;
+    /*border: #5c6165 solid 1px;*/
+}
+
+.footerPS {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--secondColor);
+    width: 100%;
+    height: 100px;
+    color: white;
+    border-top: 1px solid #151b31;
+}
+
+.footerLogo {
+    background: url("../imgs/BFS shop.png") 0 0 / 100% 100% no-repeat;
+    height: 53px;
+    width: 189px;
+}
+
+.footerPS button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 40px;
+    font-size: 20px;
+    border: solid 1px grey;
+    background: black;
+    color: white;
+    margin: 0 90px;
+}

@@ -5,14 +5,14 @@ export function Categorise({itemList, actionCreator, tittle,}) {
     const dispatch = useDispatch();
     let index = 0;
     return (
-        <div className="categorise-block">
-            <div className="categorise-tittle">{tittle}</div>
+        <ul className="categorise-block">
+            <li className="categorise-tittle">{tittle}</li>
             {
                 itemList.map(item =>
-                    <div key={index++} className="categorise-item" onClick={() => dispatch(actionCreator(item))}>
+                    <li key={index++} className="categorise-item" onClick={() => dispatch(actionCreator(item))}>
                         {item}
-                    </div>)
+                    </li>)
             }
-        </div>
+        </ul>
     );
 }

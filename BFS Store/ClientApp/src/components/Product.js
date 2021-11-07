@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/ProductBlockForCostumers.css'
 import {useDispatch} from "react-redux";
-import {getAndRouteProductPage} from "../redux/ActionFactory";
+import {getAndRouteProductPage} from "../redux/ProductsActionsFactory";
 import {NavLink, useHistory} from "react-router-dom";
 
 export function Product(product) {
@@ -17,17 +17,14 @@ export function Product(product) {
                 <img src={product.imgUrl} alt="Pic" className="product-img"/>
             </NavLink>
             <div className="product-name">
-                {product.name.toString().length < 85 ? product.name : product.name.substring(0, 85)}
-                {/*{product.name}*/}
+                {product.name.toString().length < 75 ? product.name : product.name.substring(0, 75)}
             </div>
             <div className="product-price">
-                {product.priceUsd}
+                {Intl.NumberFormat('en-US').format(product.priceUsd)}
             </div>
-
             <button className="product-add" onClick={(e) =>
                 console.log(product.id + " addToCartClick")}>В корзину
             </button>
-
             <a className="product-comments">
                 0 коментариев
             </a>

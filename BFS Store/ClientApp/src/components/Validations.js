@@ -22,5 +22,11 @@ export const passwordValidation = (value) => { //need refactor
 }
 
 
-export const emailValidation = () => regexValidatorCreator(/.+@\w+\..+/, "wrong email format");
-export const phoneValidator = () => regexValidatorCreator(/^[\d]+$/, "wrong phone format");
+export const emailValidation =  regexValidatorCreator(/.+@\w+\..+/, "wrong email format");
+export const phoneValidator =  regexValidatorCreator(/^[\d]+$/, "wrong phone format");
+
+export const emailValidationTest = (regex) =>
+    (value) =>
+        regex.test(value)
+            ? undefined
+            : "wrong email format";

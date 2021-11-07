@@ -1,34 +1,74 @@
 import React from 'react';
 import {Home} from './components/Home';
-import {Route, Switch} from "react-router-dom";
-import {ProductInfoPage} from "./components/ProductInfoPage";
-import {useSelector} from "react-redux";
-import {SignIn} from "./components/Registration";
+import {NavLink, Route, Switch, useHistory} from "react-router-dom";
+import {ProductInfoPage} from "./components/ProductPageComponents/ProductInfoPage";
+import {useDispatch, useSelector} from "react-redux";
 import Header from "./components/Header";
-import {auth} from "./redux/ActionFactory";
+import {RegistrationReduxForm} from "./components/forms/RegistrationAndEditProfileForm";
+import {UserProfilePage} from "./components/userProfile/UserProfilePage";
 import {LoginReduxForm} from "./components/forms/LoginForm";
-import styles from './styles/Home.css'
-import {RegistrationAndEditProfileReduxForm} from "./components/forms/RegistrationAndEditProfileForm";
+import {signIn, signUp} from "./redux/AuthActionsFactory";
+import {SWITCH_AUTH_FORM_BACKGROUND_FLAG, SWITCH_THANKFULNESS_POPUP_FLAG} from "./redux/ActionsEnum";
+import styles from './styles/Home.module.css'
+import formStyles from './styles/SignUpSignInProfileEdit.module.css'
+import Footer from "./components/Footer";
 
-export default function App() {
+
+export default function App(props) {
     const state = useSelector(state => state)
+    const browserHistory = useHistory();
+    const dispatch = useDispatch();
+    const isAuth = state.userData.isAuthenticated;
+    const className = state.uiFlags.signInUpHolder ? styles.authFormHolder : formStyles.none;
+    const formHolder = () => dispatch({type: SWITCH_AUTH_FORM_BACKGROUND_FLAG});
+
     return (
         <div className={styles.main}>
             <div className="top-top-panel">Акция</div>
-            <Header/>
-            <LoginReduxForm onSubmit={()=>console.log()}/>
+
+            <Header userData={state.userData} catalogPage={state.catalogPage}/>
+
             <Switch>
-                <Route path='/Info/:productId'>
-                    <ProductInfoPage productInfoViewModel={state.productPageViewModel}/>
+                <Route exact path='/SignIn'>
+                    <div onClick={formHolder} className={className}>
+                        <div onClick={(e) => e.stopPropagation()}>
+                            <LoginReduxForm styles={formStyles}
+                                            onSubmit={(e) => dispatch(signIn({browserHistory, ...e}))}/>
+                        </div>
+                    </div>
                 </Route>
-                if(state.showRegistration){                }
-                <Route path='/SignIn'>
-                    <RegistrationAndEditProfileReduxForm onSubmit={(e)=>console.log(e)}/>
+                <Route exact path='/SignUp'>
+                    <div onClick={formHolder} className={className}>
+                        <div onClick={(e) => e.stopPropagation()}>
+                            <RegistrationReduxForm styles={formStyles}
+                                                   onSubmit={(e) => dispatch(signUp(browserHistory, e))}
+                            />
+                        </div>
+                    </div>
                 </Route>
-                <Route path='/' >
-                    <Home state={state}/>
+                <Route exact path='/ThankYou'>
+                    <div onClick={formHolder} className={className}>
+                        <div className={formStyles.thanks}>
+                            <NavLink to='/' onClick={formHolder}>Thanks for your registration, happy buying^^</NavLink>
+                        </div>
+                    </div>
                 </Route>
             </Switch>
+
+
+            <Switch>
+                <Route path='/Info/:productId'>
+                    <ProductInfoPage {...state.productPageViewModel}/>
+                </Route>
+                <Route path='/UserProfilePage/'>
+                    <UserProfilePage {...state.userData}/>
+                </Route>
+                <Route path='/'>
+                    <Home {...state.catalogPage} />
+                </Route>
+            </Switch>
+            <Footer styles={styles}></Footer>
         </div>
     );
 }
+// onClick={() => dispatch({type: SWITCH_THANKFULNESS_POPUP_FLAG})}

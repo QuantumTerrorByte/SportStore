@@ -6,28 +6,31 @@ import {
     lengthValidatorCreator,
     passwordValidation,
 } from "../Validations";
-import styles from '../../styles/SignUpSignInProfileEdit.module.css'
+import s from '../../styles/SignUpSignInProfileEdit.module.css'
+import {NavLink} from "react-router-dom";
 
-const lengthValidation = lengthValidatorCreator(5,20);
-
-
-
-function LoginForm(props) {
+const lengthValidation = lengthValidatorCreator(5, 20);
+//styles for FormInput
+// inputBlock
+// inputBlockErrorText
+// inputBlockErrorInput
+// loginForm
+function LoginForm({styles, ...props}) {
+    // debugger
     return (
         <form onSubmit={props.handleSubmit} className={styles.loginForm}>
 
-            <Field validate={[lengthValidation, emailValidation]} name={'email'}
-                   placeholder={'email'} component={FormInput}/>
-
-            <Field validate={[lengthValidation, passwordValidation]} name={'password'}
-                   placeholder={'password'} component={FormInput}/>
-
-            <button type={'submit'} className={styles.formButton}>Login</button>
-
+            <Field validate={[lengthValidation, emailValidation]} component={FormInput}
+                   name={'email'} placeholder={'email'} styles={styles}/>
+            <Field validate={[lengthValidation, passwordValidation]} component={FormInput}
+                   name={'password'} placeholder={'password'} styles={styles}/>
+            <button type='submit' className={styles.formButton}>Login</button>
+            <NavLink to='/SignUp'>SignUp</NavLink>
         </form>
     )
 }
 
 export const LoginReduxForm = reduxForm({
-    form: 'login',
+    form: 'signIn',
 })(LoginForm)
+

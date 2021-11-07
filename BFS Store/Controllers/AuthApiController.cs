@@ -39,19 +39,30 @@ namespace SportStore.Controllers
         }
 
         [HttpGet]
-        [Route("Index")]
-        public async Task<IActionResult> UserInfo()
+        [Route("Info")]
+        public async Task<IActionResult> UserInfo(string userId)
         {
-            var userParams = new Dictionary<string, string>
-            {
-            };
-            return Ok(_userManager.Users.ToList());
+            return Ok(
+                new Dictionary<string, object>
+                {
+                    ["User"] = HttpContext.User.Identity.Name,
+                    ["Authenticated"] = HttpContext.User.Identity.IsAuthenticated,
+                    ["Auth Туре"] = HttpContext.User.Identity.AuthenticationType,
+                });
+        }
+        
+        [HttpGet]
+        [Route("Index")]
+        public async Task<IActionResult> UsersInfo()
+        {
+            return Ok(await _userManager.Users.ToArrayAsync());
         }
 
         [HttpPost]
-        [Route("LogIn")]
-        public async Task<ActionResult> LogIn([FromBody] UserAuthModel userAuthModel)
+        [Route("SignIn")]
+        public async Task<ActionResult> SignIn([FromBody] UserAuthModel userAuthModel = null)
         {
+            Console.WriteLine($"in SignIn {userAuthModel}");
             var user = await _userManager.FindByEmailAsync(userAuthModel.Email);
             if (user == null) return BadRequest("Wrong email or password");
 
@@ -78,17 +89,16 @@ namespace SportStore.Controllers
         }
 
         [HttpPost]
-        [Route("LogOut")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> LogOut()
+        [Route("SignOut")]
+        public async Task<ActionResult> SignOut()
         {
             await _signInManager.SignOutAsync();
             return Ok();
         }
 
         [HttpPost]
-        [Route("Create")]
-        public async Task<ActionResult> Create([FromBody] UserAuthCrudModel userAuthModel)
+        [Route("SignUp")]
+        public async Task<ActionResult> SignUp([FromBody] UserAuthCrudModel userAuthModel)
         {
             var newUser = new AppUser
             {
@@ -108,7 +118,6 @@ namespace SportStore.Controllers
 
         [HttpPost]
         [Route("Edit")]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(UserAuthCrudModel userAuthModel)
         {
             var user = await _userManager.FindByIdAsync(userAuthModel.Id);
@@ -131,7 +140,6 @@ namespace SportStore.Controllers
 
         [HttpPost]
         [Route("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(string id)
         {
             var user = await _userManager.FindByIdAsync(id);

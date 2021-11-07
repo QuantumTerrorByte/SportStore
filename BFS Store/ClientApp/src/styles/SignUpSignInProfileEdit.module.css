@@ -1,54 +1,65 @@
-.regBlock{
+
+
+
+.regBlock {
     display: flex;
     flex-direction: column;
-    border: solid black 3px;
-    background: #c9ece2;
-    border-radius: 10px;
-    width: 700px;
-    margin: 20px;
-    justify-self: end;
+    /*border: solid #0000ff 1px;*/
+    background: var(--backFormColor);
+    width: 550px;
+    height: 900px;
+    margin: 30px 20px;
+    padding: 20px 0;
+    /*justify-self: end;*/
+    align-items: center;
+    justify-content: space-around;
 }
-.regMain{
+
+.regMain {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: 100%;
-    font-size: 30px;
+    min-height: 900px;
+    font-size: var(--fontSize);
 }
-.regBlankHolder{
+
+.regBlankHolder {
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
-    border: solid 1px black;
+    /*margin-top: 100px;*/
+    margin-bottom: 200px;
+    /*border: solid 1px black;*/
     justify-content: center;
     align-items: center;
+
 }
-.regBlock Input{
-    font-size: 30px;
+
+.regBlockInput {
+    font-size: var(--fontSize);
     margin: 10px;
 }
-.regBlock Label{
+
+.regBlockLabel {
     display: flex;
     flex-direction: column;
     margin: 15px 30px;
-    font-size: 30px;
+    font-size: var(--fontSize);
 }
 
 
-
-.loginForm{
+.loginForm {
     display: flex;
     flex-direction: column;
-    border: solid black 1px;
-    background: #fafcff;
-    border-radius: 10px;
-    width: 700px;
-    position: absolute;
-    left: 70%;
-    margin-left: -350px;
-    align-self: end;
+    /*border: solid black 1px;*/
+    background: #ffffff;
+    width: 500px;
+    /*position: absolute;*/
+    /*left: 70%;*/
+    /*margin-left: -350px;*/
+    /*align-self: end;*/
 }
 
 .inputBlock {
@@ -60,26 +71,91 @@
 .inputBlockErrorText {
     color: red;
     font-size: 20px;
+    margin: 5px 0;
 }
 
-.inputBlock label {
+.inputBlockLabel {
     display: flex;
     flex-direction: column;
-    font-size: 30px;
-    margin: 5px
+    font-size: var(--fontSize);
+    margin: 5px;
+    /*width: 450px;*/
+
+    color: #0019b9;
 }
 
-.inputBlock input {
+.formButton {
+    margin: 10px;
+    font-size: var(--fontSize);
+    min-width: 200px;
+    border-radius: 5px;
+    border: blue 1px solid;
+}
+
+.inputBlockInput {
+    font-size: var(--fontSize);
+    margin: 5px 0;
+    padding: 5px;
+    border: none;
+}
+
+
+.none {
+    display: none;
+}
+
+.thanks {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    width: 400px;
+    background: #002bd9;
+    z-index: 11;
+}
+
+.thanks a {
+    color: white;
     font-size: 50px;
-    margin: 5px;
+}
+
+
+.headerLoginInput {
+    border: none;
+    background: none;
+    min-width: 0;
+    box-shadow: none;
+    -webkit-appearance: none;
+    border-bottom: 1px solid #4051c9;
+    padding: 5px 15px 5px 40px;
+    color: #050507;
+    font-size: var(--fontSize);
+    font-style: italic;
+    font-family: "Calibri Light";
+    border-right: none;
+    -webkit-appearance: none;
 }
 
 .inputBlockErrorInput {
-    border: solid red 2px;
+    border-bottom: solid red 1px;
+    /*border-right: none;*/
+    /*background: none;*/
 }
 
-.formButton{
-    margin: 30px;
-    font-size: 30px;
-    min-width: 300px;
+::placeholder {
+    color: black;
 }
+
+.editProfileContentBlock {
+    padding-bottom: 200px;
+    /*border: var(--border);*/
+}
+
+/*.marginRandomizeLeft {*/
+/*    transition: 110px;*/
+/*}*/
+
+/*.marginRandomizeRight {*/
+/*    margin-left: -110px;*/
+/*}*/

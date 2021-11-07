@@ -1,12 +1,12 @@
 import React from "react";
-import {initialState} from "./InitialState";
-import {DECREMENT, INCREMENT, REFRESH_PRODUCT_PAGE} from "./ActionsEnum";
+import {initialState} from "../InitialState";
+import {DECREMENT_PP, INCREMENT_PP, REFRESH_PRODUCT_PAGE} from "../ActionsEnum";
 
 export function ProductPageViewModelReducer(state = initialState.productPageViewModel, action) {
     switch (action.type) {
         case REFRESH_PRODUCT_PAGE:
             return {...state, ...action.payload};
-        case INCREMENT:
+        case INCREMENT_PP:
             return state.amount > state.productAmountOrderInput ?
                 {
                     ...state,
@@ -14,7 +14,7 @@ export function ProductPageViewModelReducer(state = initialState.productPageView
                     isDecrementButtonDisabled: false
                 } :
                 {...state, isIncrementButtonDisabled: true};
-        case DECREMENT:
+        case DECREMENT_PP:
             return state.productAmountOrderInput > 1 ?
                 {
                     ...state,

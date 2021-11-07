@@ -1,9 +1,9 @@
 import React from "react";
 import {
     ADD_PRODUCTS,
-    DECREMENT,
+    DECREMENT_PP,
     DOMAIN,
-    INCREMENT,
+    INCREMENT_PP,
     PRODUCTS_CONTROLLER_NAME,
     REFRESH_PRODUCT_PAGE,
     REFRESH_PRODUCTS,
@@ -14,11 +14,6 @@ import {
     SET_FILTER_MAX_PRICE,
     SET_FILTER_MIN_PRICE,
     SET_FILTER_SORT,
-    SET_REGISTRATION_EMAIL_INPUT,
-    SET_REGISTRATION_NAME_INPUT,
-    SET_REGISTRATION_PASSWORD_CONFIRMED_INPUT,
-    SET_REGISTRATION_PASSWORD_INPUT,
-    SET_REGISTRATION_PHONE_INPUT,
     UPLOAD_CATEGORIES_AND_BRANDS,
 } from "./ActionsEnum";
 import $ from "jquery";
@@ -152,49 +147,49 @@ export function setMaxPriceFilter(maxPrice) {
 
 export function increment() {
     return {
-        type: INCREMENT
+        type: INCREMENT_PP
     }
 }
 
 export function decrement() {
     return {
-        type: DECREMENT
+        type: DECREMENT_PP
     }
 }
 
-
-export function setRegistrationName(input) {
-    console.log(input)
-    return {
-        type: SET_REGISTRATION_NAME_INPUT,
-        payload: input,
-    }
-}
-export function setRegistrationEmail(input) {
-    console.log(input)
-    return {
-        type: SET_REGISTRATION_EMAIL_INPUT,
-        payload: input,
-    }
-}
-export function setRegistrationPhone(input) {
-    console.log(input)
-    return {
-        type: SET_REGISTRATION_PHONE_INPUT,
-        payload: input,
-    }
-}
-export function setRegistrationPassword(input) {
-    console.log(input)
-    return {
-        type: SET_REGISTRATION_PASSWORD_INPUT,
-        payload: input,
-    }
-}
-export function setRegistrationPasswordConfirm(input) {
-    console.log(input)
-    return {
-        type: SET_REGISTRATION_PASSWORD_CONFIRMED_INPUT,
-        payload: input,
-    }
-}
+//
+// export function setRegistrationName(input) {
+//     console.log(input)
+//     return {
+//         type: SET_REGISTRATION_NAME_INPUT,
+//         payload: input,
+//     }
+// }
+// export function setRegistrationEmail(input) {
+//     console.log(input)
+//     return {
+//         type: SET_REGISTRATION_EMAIL_INPUT,
+//         payload: input,
+//     }
+// }
+// export function setRegistrationPhone(input) {
+//     console.log(input)
+//     return {
+//         type: SET_REGISTRATION_PHONE_INPUT,
+//         payload: input,
+//     }
+// }
+// export function setRegistrationPassword(input) {
+//     console.log(input)
+//     return {
+//         type: SET_REGISTRATION_PASSWORD_INPUT,
+//         payload: input,
+//     }
+// }
+// export function setRegistrationPasswordConfirm(input) {
+//     console.log(input)
+//     return {
+//         type: SET_REGISTRATION_PASSWORD_CONFIRMED_INPUT,
+//         payload: input,
+//     }
+// }

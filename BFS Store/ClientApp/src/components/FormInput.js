@@ -1,21 +1,21 @@
 import React from "react";
-import styles from '../styles/SignUpSignInProfileEdit.module.css'
 
 
-
-export const FormInput = ({input, meta, ...props}) => {
+export const FormInput = ({input, meta, styles, ...props}) => {
     const hasError = meta.touched && meta.error;
-    debugger
+    let style = styles.headerLoginInput;
+    style += hasError ? " " + styles.inputBlockErrorInput : "";
+    // debugger
     return (
-        <div className={styles.inputBlock}>
+        <label
+            className={styles.inputBlockLabel}>
             {hasError ? <span className={styles.inputBlockErrorText}>{meta.error}</span> : ""}
-            <label> {input.name}
-                <input {...input} {...props} className={hasError ? styles.inputBlockErrorInput : ""}/>
-            </label>
-        </div>
+            <input type='text' {...input} {...props} className={style}/>
+        </label>
     )
 }
 
+// <div className={styles.inputBlock}>
 // regMain
 // regBlankHolder
 // regInput

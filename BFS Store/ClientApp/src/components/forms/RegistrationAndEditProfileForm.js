@@ -9,33 +9,36 @@ import {
     requireValidation
 } from "../Validations";
 
-import styles from '../../styles/SignUpSignInProfileEdit.module.css'
 
-export const lengthValidation = lengthValidatorCreator(5, 20);
+const lengthValidation = lengthValidatorCreator(5, 25);
 
 
-function RegistrationAndEditProfileForm(props) {
+function RegistrationAndEditProfileForm({styles, ...props}) { //todo confirm pass verification and combine with editProfile form
     return (
-        <form onSubmit={props.handleSubmit} className={styles.regBlock}>
-            <Field validate={[lengthValidation, requireValidation]}
-                   name={'userName'} placeholder={'Name'} component={FormInput}/>
+        <form className={styles.regBlock}>
+            <Field validate={[lengthValidation, requireValidation]} component={FormInput}
+                   name={'userName'} placeholder={'Name'} styles={styles}/>
 
-            <Field validate={[lengthValidation, phoneValidator]}
-                   name={'phoneNumber'} placeholder={'Phone'} component={FormInput}/>
+            <Field validate={[lengthValidation, phoneValidator]} component={FormInput}
+                   name={'phoneNumber'} placeholder={'Phone'} styles={styles}/>
 
-            <Field validate={[lengthValidation, emailValidation]}
-                   name={'email'} placeholder={'Email'} component={FormInput}/>
+            <Field validate={[lengthValidation, emailValidation]} component={FormInput}
+                   name={'email'} placeholder={'Email'} styles={styles}/>
 
-            <Field validate={[lengthValidation, passwordValidation]}
-                   name={'password'} placeholder={'Password'} component={FormInput}/>
+            <Field validate={[lengthValidation, passwordValidation]} component={FormInput}
+                   name={'password'} placeholder={'Password'} styles={styles}/>
 
-            <Field validate={[lengthValidation, passwordValidation]}
-                   name={'confirmPassword'} placeholder={'Confirm password'} component={FormInput}/>
-            <button type={'submit'} className={styles.formButton}>Login</button>
+            <Field validate={[lengthValidation, passwordValidation]} component={FormInput}
+                   name={'confirmPassword'} placeholder={'Password'} styles={styles}/>
+
+            <button type='submit' className={styles.formButton}>Login</button>
         </form>
     )
 }
 
-export const RegistrationAndEditProfileReduxForm = reduxForm({
-    form: 'registrationAndEditProfile',
+export const RegistrationReduxForm = reduxForm({
+    form: 'registrationForm',
+})(RegistrationAndEditProfileForm)
+export const EditProfileReduxForm = reduxForm({
+    form: 'EditProfileForm',
 })(RegistrationAndEditProfileForm)
