@@ -23,9 +23,10 @@
     margin: 0 10px;
     width: 45px;
     height: 45px;
-    color: #3762ff;
+    color:  var(--lightMain);
     background-color: #ffffff;
-    border: solid 1px #e3e3e3;
+    border: solid 1px  var(--lightMain);
+    cursor: pointer;
     -webkit-box-shadow: 2px 2px 4px -1px rgba(0,0,0,0.01);
     box-shadow: 2px 2px 4px -1px rgba(0,0,0,0.01);
 }
@@ -40,7 +41,9 @@
     width: 50px;
     height: 50px;
     color: #ffffff;
-    background: #3762ff;
+    background: var(--lightMain);
+    cursor: pointer;
     -webkit-box-shadow: 2px 2px 7px 3px rgba(0,0,0,0.09);
     box-shadow: 2px 2px 7px 3px rgba(0,0,0,0.09);
 }
+/*#3762ff*/

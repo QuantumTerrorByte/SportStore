@@ -57,12 +57,14 @@ export function signOut({browserHistory}) {
     }
 }
 
-export function signUp(browserHistory, ...form) {
+export function signUp(browserHistory, form) {
     debugger
     return async dispatch => {
         $.ajax({
             url: `${DOMAIN}${AUTH_CONTROLLER_PATH}SignUp`,
             type: "POST",
+            dataType: "json",
+            contentType: "application/json",
             data: JSON.stringify(form),
             error: (arg1, arg2, arg3) => { //todo alert
                 console.log(arg1)
@@ -78,17 +80,21 @@ export function signUp(browserHistory, ...form) {
 }
 
 export function editUserData(form) {
+    debugger
     return async dispatch => {
         $.ajax({
             url: `${DOMAIN}${AUTH_CONTROLLER_PATH}Edit`,
             type: "POST",
             data: JSON.stringify(form),
+            dataType: "json",
+            contentType: "application/json",
             error: (arg1, arg2, arg3) => {
                 console.log(arg1);
                 console.log(arg2);
                 console.log(arg3);
             },
         }).done(response => {
+            debugger
             dispatch({type: USER_UPDATE, payload: response});
         });
     }
@@ -99,6 +105,7 @@ export function deleteAccount({browserHistory, userId}) {
         $.ajax({
             url: `${DOMAIN}${AUTH_CONTROLLER_PATH}Delete?${userId}`,
             type: "POST",
+            dataType: "json",
             data: null,
             error: (arg1, arg2, arg3) => {
                 console.log(arg1);

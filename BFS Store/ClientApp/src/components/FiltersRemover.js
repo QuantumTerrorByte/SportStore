@@ -7,6 +7,7 @@ import {
     setMaxPriceFilter,
     setMinPriceFilter
 } from "../redux/ProductsActionsFactory";
+import styles from '../styles/ProductsFilters.module.css'
 
 export function FiltersRemover({filters}) {
     const dispatch = useDispatch();
@@ -18,7 +19,7 @@ export function FiltersRemover({filters}) {
                 case 'category1':
                     result.push(<span
                         onClick={e => dispatch(setCategory1Filter(""))}
-                        className="filter-remover-item"
+                        className={styles.filterRemoverItem}
                         key={filter}>
                         Category:{filters[filter]}
                     </span>);
@@ -26,7 +27,7 @@ export function FiltersRemover({filters}) {
                 case 'category2':
                     result.push(<span
                         onClick={e => dispatch(setCategory2Filter(""))}
-                        className="filter-remover-item"
+                        className={styles.filterRemoverItem}
                         key={filter}>
                         Category:{filters[filter]}
                     </span>);
@@ -34,7 +35,7 @@ export function FiltersRemover({filters}) {
                 case 'brand':
                     result.push(<span
                         onClick={e => dispatch(setBrandFilter(""))}
-                        className="filter-remover-item"
+                        className={styles.filterRemoverItem}
                         key={filter}>
                         Brand:{filters[filter]}
                     </span>);
@@ -42,7 +43,7 @@ export function FiltersRemover({filters}) {
                 case 'minPrice':
                     result.push(<span
                         onClick={e => dispatch(setMinPriceFilter(""))}
-                        className="filter-remover-item"
+                        className={styles.filterRemoverItem}
                         key={filter}>
                         Min price:{filters[filter]}
                     </span>);
@@ -50,7 +51,7 @@ export function FiltersRemover({filters}) {
                 case 'maxPrice':
                     result.push(<span
                         onClick={e => dispatch(setMaxPriceFilter(""))}
-                        className="filter-remover-item"
+                        className={styles.filterRemoverItem}
                         key={filter}>
                         Max price:{filters[filter]}
                     </span>);
@@ -60,5 +61,5 @@ export function FiltersRemover({filters}) {
             }
         }
     }
-    return result;
+    return <div className={styles.filterRemoversBlock}>{result}</div>;
 }

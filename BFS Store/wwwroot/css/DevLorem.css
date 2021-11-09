@@ -1,0 +1,19 @@
+﻿.devButton{
+    margin: 10px;
+    font-size: 17px;
+    border: #002bd9 solid 1px;
+    width: 100px;
+    height: 25px;
+    -webkit-box-shadow: 9px 9px 15px 5px rgba(0,0,0,0.11);
+    box-shadow: 9px 9px 15px 5px rgba(0,0,0,0.11);
+}
+.devButton:hover{
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #002bd9;
+}
+.devInput{
+    font-size: 17px;
+    padding: 5px;
+    margin: 10px;
+}

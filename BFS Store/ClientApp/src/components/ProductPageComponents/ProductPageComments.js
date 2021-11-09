@@ -4,7 +4,7 @@ import '../../styles/ProductPage.css'
 import {useDispatch, useSelector} from "react-redux";
 
 
-export function ProductPageComments(props) {
+export function ProductPageComments(productInfoViewModel) {
     const dispatcher = useDispatch();
     const brHistory = useHistory();
     return (

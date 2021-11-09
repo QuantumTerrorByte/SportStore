@@ -12,8 +12,9 @@ export function Product(product) {
             <div className="product-banner-holder">
                 <div className="product-banner">топ продаж</div>
             </div>
-            <NavLink to={`/Info/${product.id}`}
-               className="product-img">
+            <NavLink to={{
+                pathname: `/ProductInfoPage/`, state: {productId: product.id}
+            }} className="product-img">
                 <img src={product.imgUrl} alt="Pic" className="product-img"/>
             </NavLink>
             <div className="product-name">

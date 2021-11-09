@@ -1,13 +1,10 @@
-
-
-
 .regBlock {
     display: flex;
     flex-direction: column;
     /*border: solid #0000ff 1px;*/
     background: var(--backFormColor);
     width: 550px;
-    height: 900px;
+    height: 700px;
     margin: 30px 20px;
     padding: 20px 0;
     /*justify-self: end;*/
@@ -15,16 +12,16 @@
     justify-content: space-around;
 }
 
-.regMain {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    min-height: 900px;
-    font-size: var(--fontSize);
-}
+/*.regMain {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    min-height: 900px;*/
+/*    font-size: var(--fontSize);*/
+/*}*/
 
 .regBlankHolder {
     display: flex;
@@ -109,15 +106,15 @@
     position: relative;
     justify-content: center;
     align-items: center;
-    height: 500px;
-    width: 400px;
-    background: #002bd9;
-    z-index: 11;
+    height: 700px;
+    width: 500px;
+    background: white;
+    z-index: 15;
 }
 
 .thanks a {
-    color: white;
-    font-size: 50px;
+    color: #000000;
+    font-size: 30px;
 }
 
 

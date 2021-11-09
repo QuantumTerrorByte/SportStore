@@ -15,7 +15,7 @@ const lengthValidation = lengthValidatorCreator(5, 25);
 
 function RegistrationAndEditProfileForm({styles, ...props}) { //todo confirm pass verification and combine with editProfile form
     return (
-        <form className={styles.regBlock}>
+        <form className={styles.regBlock} onSubmit={props.handleSubmit} >
             <Field validate={[lengthValidation, requireValidation]} component={FormInput}
                    name={'userName'} placeholder={'Name'} styles={styles}/>
 

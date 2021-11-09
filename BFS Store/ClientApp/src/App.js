@@ -12,6 +12,8 @@ import {SWITCH_AUTH_FORM_BACKGROUND_FLAG, SWITCH_THANKFULNESS_POPUP_FLAG} from "
 import styles from './styles/Home.module.css'
 import formStyles from './styles/SignUpSignInProfileEdit.module.css'
 import Footer from "./components/Footer";
+import {ProductPageProvider} from "./components/ProductPageComponents/ProductPageProvider";
+import {EventBreakerWithFocusBlock} from "./components/forms/EventBreakerWithFocusBlock";
 
 
 export default function App(props) {
@@ -19,7 +21,7 @@ export default function App(props) {
     const browserHistory = useHistory();
     const dispatch = useDispatch();
     const isAuth = state.userData.isAuthenticated;
-    const className = state.uiFlags.signInUpHolder ? styles.authFormHolder : formStyles.none;
+    const className = state.uiFlags.signInUpHolder ? styles.authFormHolder : styles.none;
     const formHolder = () => dispatch({type: SWITCH_AUTH_FORM_BACKGROUND_FLAG});
 
     return (
@@ -41,8 +43,7 @@ export default function App(props) {
                     <div onClick={formHolder} className={className}>
                         <div onClick={(e) => e.stopPropagation()}>
                             <RegistrationReduxForm styles={formStyles}
-                                                   onSubmit={(e) => dispatch(signUp(browserHistory, e))}
-                            />
+                                                   onSubmit={(e) => dispatch(signUp(browserHistory, e))}/>
                         </div>
                     </div>
                 </Route>
@@ -55,10 +56,9 @@ export default function App(props) {
                 </Route>
             </Switch>
 
-
             <Switch>
-                <Route path='/Info/:productId'>
-                    <ProductInfoPage {...state.productPageViewModel}/>
+                <Route path='/ProductInfoPage/'>
+                    <ProductPageProvider {...state.productPageViewModel}/>
                 </Route>
                 <Route path='/UserProfilePage/'>
                     <UserProfilePage {...state.userData}/>

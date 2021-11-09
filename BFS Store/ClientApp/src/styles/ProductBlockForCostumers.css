@@ -102,8 +102,9 @@
     width: 170px;
     height: 45px;
     /*background: #340d8e;*/
-    background: var(--secondColor);
+    background: var(--mainColor);
     color: white;
+
     justify-content: center;
     font-family: "Arial", serif;
     font-weight: bold;
@@ -117,14 +118,16 @@
 }
 
 .product-comments {
-    color: var(--secondColor);
+    color: var(--lastGood);
     align-self: center;
 }
 
 .product-add:hover {
-    background: var(--thirdColor);
+    background: var(--lightMain);
 }
 
 .borderedDev{
     /*border: solid black 1px;*/
 }
+
+

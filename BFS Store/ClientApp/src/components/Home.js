@@ -6,7 +6,7 @@ import '../styles/ProductBlockForCostumers.css'
 import {useDispatch, useSelector} from "react-redux";
 import {setBrandFilter, setCategory1Filter, setSort} from "../redux/ProductsActionsFactory";
 import {FiltersRemover} from "./FiltersRemover";
-
+import styles from '../styles/ProductsFilters.module.css'
 
 export function Home(catalogPage) {
     // debugger
@@ -29,16 +29,13 @@ export function Home(catalogPage) {
                     }}/>
                 </div>
                 <div className="contentBlock">
-                    <div className="borderedDev">
-                        <select name="sort" id="sort"
-                                onChange={(e) => dispatch(setSort(e.target.value))}>
+                    <div className={styles.filtersCancelsAndSortBlock}>
+                        <FiltersRemover filters={catalogPage.filters}/>
+                        <select onChange={(e) => dispatch(setSort(e.target.value))}
+                                className={styles.priseSorter}>
                             <option value="descendingPrice">Descending Price</option>
                             <option value="increasingPrice">Increasing Price</option>
                         </select>
-                        <a href='/Info/'>Info</a>
-                    </div>
-                    <div className="borderedDev">
-                        <FiltersRemover className="filter-remover" filters={catalogPage.filters}/>
                     </div>
                     <div className="borderedDev">
                         <Products products={catalogPage.products} filters={catalogPage.filters}/>

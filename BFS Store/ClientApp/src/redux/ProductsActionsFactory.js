@@ -145,13 +145,13 @@ export function setMaxPriceFilter(maxPrice) {
     }
 }
 
-export function increment() {
+export function incrementPP() {
     return {
         type: INCREMENT_PP
     }
 }
 
-export function decrement() {
+export function decrementPP() {
     return {
         type: DECREMENT_PP
     }

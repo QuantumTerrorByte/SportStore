@@ -5,6 +5,7 @@ import {useDispatch} from "react-redux";
 import {addProducts} from "../redux/ProductsActionsFactory";
 import '../styles/ProductBlockForCostumers.css'
 
+
 export default function Products({products, filters}) {
     const dispatch = useDispatch();
     console.log(products)

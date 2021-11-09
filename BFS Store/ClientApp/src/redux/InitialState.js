@@ -180,7 +180,7 @@ export const initialState = {
         productAmountOrderInput: 1,
         isIncrementButtonDisabled: false,
         isDecrementButtonDisabled: false,
-        amount: 5,
+        amount: Math.random()*5,
     }
 }
 

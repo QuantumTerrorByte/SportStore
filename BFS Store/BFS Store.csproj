@@ -10,6 +10,7 @@
       <Folder Include="Areas\AdminMemberRolesMvcController\Data" />
       <Folder Include="Areas\AdminMemberRolesMvcController\Models" />
       <Folder Include="Areas\AdminMemberRolesMvcController\Views" />
+      <Folder Include="Controllers\Admin" />
       <Folder Include="wwwroot\imgs" />
     </ItemGroup>
     <ItemGroup>
