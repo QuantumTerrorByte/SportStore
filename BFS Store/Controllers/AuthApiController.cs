@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -90,6 +91,7 @@ namespace SportStore.Controllers
 
         [HttpPost]
         [Route("SignOut")]
+        [Authorize]
         public async Task<ActionResult> SignOut()
         {
             await _signInManager.SignOutAsync();
@@ -118,6 +120,7 @@ namespace SportStore.Controllers
 
         [HttpPost]
         [Route("Edit")]
+        [Authorize]
         public async Task<ActionResult> Edit(UserAuthCrudModel userAuthModel)
         {
             var user = await _userManager.FindByIdAsync(userAuthModel.Id);

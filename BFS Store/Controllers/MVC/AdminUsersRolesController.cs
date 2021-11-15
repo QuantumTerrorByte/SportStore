@@ -1,22 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SportStore.Controllers
+namespace SportStore.Controllers.MVC
 {
-    public class AdminMemberRolesMvcController : Controller
+    public class AdminUsersRolesMvcController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IUserValidator<AppUser> _userValidator;
         private readonly IPasswordValidator<AppUser> _passwordValidator;
         private readonly IPasswordHasher<AppUser> _passwordHasher;
 
-        public AdminMemberRolesMvcController(UserManager<AppUser> userManager, IUserValidator<AppUser> userValidator,
+        public AdminUsersRolesMvcController(UserManager<AppUser> userManager, IUserValidator<AppUser> userValidator,
             IPasswordValidator<AppUser> passwordValidator, IPasswordHasher<AppUser> passwordHasher)
         {
             _userManager = userManager;
@@ -26,9 +21,9 @@ namespace SportStore.Controllers
         }
 
         // GET: AdminMemberRolesMvc
-        public ActionResult Index()
+        public ActionResult ControlPanel()
         {
-            return View();
+            return View(_userManager.Users);
         }
 
         // GET: AdminMemberRolesMvc/Details/5
@@ -52,7 +47,7 @@ namespace SportStore.Controllers
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ControlPanel));
             }
             catch
             {
@@ -68,7 +63,7 @@ namespace SportStore.Controllers
             {
                 // TODO: Add update logic here
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ControlPanel));
             }
             catch
             {

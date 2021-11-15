@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
-using SportStore.Migrations.UserIdentity;
 
-namespace SportStore.Controllers
+namespace SportStore.Models.Auth
 {
     public class AppUserViewModel
     {

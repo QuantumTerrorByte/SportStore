@@ -1,12 +1,10 @@
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using SportStore.Models;
 using SportStore.Models.DAO.Interfaces;
 using SportStore.Models.ProductModel;
-using SportStore.Models.ViewModels;
 
-namespace SportStore.Controllers
+namespace SportStore.Controllers.MVC
 {
     public class AdminProductMvcController : Controller //todo view on admin top panel
     {

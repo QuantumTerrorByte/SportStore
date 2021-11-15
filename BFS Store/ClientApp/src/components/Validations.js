@@ -15,9 +15,9 @@ export const regexValidatorCreator = (regex, errorMsg) =>
 
 export const passwordValidation = (value) => { //need refactor
     let errors = "";
-    if (!/.+[a-z]/.test(value)) errors += "must contain at least 1 lowercase character\n";
-    if (!/.+[A-Z]/.test(value)) errors += "must contain at least 1 uppercase character\n";
-    if (!/.+[0-9]/.test(value)) errors += "must contain at least 1 numeric character\n";
+    if (!/.*[a-z]/.test(value)) errors += "must contain at least 1 lowercase character\n";
+    if (!/.*[A-Z]/.test(value)) errors += "must contain at least 1 uppercase character\n";
+    if (!/.*[0-9]/.test(value)) errors += "must contain at least 1 numeric character\n";
     return errors === "" ? undefined : errors;
 }
 

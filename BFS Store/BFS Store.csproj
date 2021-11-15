@@ -48,6 +48,7 @@
       <_ContentIncludedByDefault Remove="Views\Product\Index.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Product\ProductPage.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Product\Products.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CostumersProductApi\AuthTest.cshtml" />
     </ItemGroup>
 
 </Project>

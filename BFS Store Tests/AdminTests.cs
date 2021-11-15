@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Moq;
 using SportStore.Controllers;
+using SportStore.Controllers.MVC;
 using SportStore.Models;
 using SportStore.Models.DAO.Interfaces;
 using SportStore.Models.ProductModel;

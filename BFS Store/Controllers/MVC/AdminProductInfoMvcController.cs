@@ -6,7 +6,7 @@ using SportStore.Models.DAO.Interfaces;
 using SportStore.Models.ProductModel;
 using SportStore.Models.ViewModels;
 
-namespace SportStore.Controllers
+namespace SportStore.Controllers.MVC
 {
     public class AdminProductInfoMvcController : Controller //todo return urls
     {

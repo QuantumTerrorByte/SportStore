@@ -9,7 +9,7 @@ import {
 import s from '../../styles/SignUpSignInProfileEdit.module.css'
 import {NavLink} from "react-router-dom";
 
-const lengthValidation = lengthValidatorCreator(5, 20);
+const lengthValidation = lengthValidatorCreator(5, 25);
 //styles for FormInput
 // inputBlock
 // inputBlockErrorText

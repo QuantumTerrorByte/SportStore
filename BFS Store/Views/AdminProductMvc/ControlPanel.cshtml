@@ -1,9 +1,8 @@
 ﻿@model IEnumerable<SportStore.Models.ProductModel.Product>
 @{
-    Layout = "_AdminLayout";
+    Layout = "_Layout";
 }
-<link rel="stylesheet" href="/css/AdminIndex.css">
-
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
 <div style="padding: 30px">
     @await Component.InvokeAsync("EditableProduct", Model);
 </div>
