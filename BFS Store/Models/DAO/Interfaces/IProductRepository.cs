@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using SportStore.Models.Core;
 using SportStore.Models.DataTransferModel;
 using SportStore.Models.ProductModel;
@@ -11,7 +12,7 @@ namespace SportStore.Models.DAO.Interfaces
     {
         void AddEditProduct(Product products);
         Product RemoveProduct(int id);
-        Product GetProduct(int id, bool includeInners = false);
+        Task<Product> GetProduct(long id, bool includeInners = false);
         IEnumerable<Product> GetProducts(bool includeInners = false);
         IQueryable<CartLine> GetLines();
         ProductInfo GetProductInfo(long prodId, Langs lang = Langs.US);

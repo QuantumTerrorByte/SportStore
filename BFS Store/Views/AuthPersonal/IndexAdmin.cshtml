@@ -1,0 +1,15 @@
+﻿@model System.Collections.Generic.Dictionary<string,object>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+
+
+<div>
+    @foreach (var param in Model)
+    {
+        <h1>@param.Key @param.Value</h1>
+    }
+</div>

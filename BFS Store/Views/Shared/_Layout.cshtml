@@ -2,21 +2,17 @@
 <html lang="ru">
 <head>
     <title>Monstro</title>
-    @* <link rel="stylesheet" href="/css/Header.css"> *@
-    @* <link rel="stylesheet" href="/css/ProductBlockForCostumers.css"> *@
-    @* <link rel="stylesheet" href="/css/LeftPanel.css"> *@
-    @* <link rel="stylesheet" href="/css/PageButtons.css"> *@
-    @* <link rel="stylesheet" href="/css/Styles.css"> *@
-    @* <style>body{margin: 0}</style> *@
     <link rel="stylesheet" href="/css/Dev.css">
     <link rel="stylesheet" href="/css/AdminHeader.css">
     <link rel="stylesheet" href="/css/Nullable.css">
-    
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body>
 @await Component.InvokeAsync("Header")
 <div class="content-block">
-    @RenderBody()
+    <div style="padding: 30px">
+        @RenderBody()
+    </div>
 </div>
 </body>
 </html>

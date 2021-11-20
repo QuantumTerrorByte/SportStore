@@ -2,21 +2,21 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SportStore.Controllers;
+using SportStore.Models.Auth;
 
 namespace SportStore.Models.DAO
 {
-    public class UserIdentityContext : IdentityDbContext<AppUser>
+    public class UserIdentityContext : IdentityDbContext<AspNetUser>
     {
         public UserIdentityContext(DbContextOptions<UserIdentityContext> options) : base(options)
         {
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<AppUser>(entity => entity.Property(m => m.NormalizedEmail).HasMaxLength(200));
-            modelBuilder.Entity<AppUser>(entity => entity.Property(m => m.Id).HasMaxLength(200));
-            modelBuilder.Entity<AppUser>(entity => entity.Property(m => m.NormalizedUserName).HasMaxLength(200));
+            modelBuilder.Entity<AspNetUser>(entity => entity.Property(m => m.NormalizedEmail).HasMaxLength(200));
+            modelBuilder.Entity<AspNetUser>(entity => entity.Property(m => m.Id).HasMaxLength(200));
+            modelBuilder.Entity<AspNetUser>(entity => entity.Property(m => m.NormalizedUserName).HasMaxLength(200));
 
 
             modelBuilder.Entity<IdentityRole>(entity => entity.Property(m => m.NormalizedName).HasMaxLength(200));

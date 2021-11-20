@@ -8,7 +8,7 @@ namespace SportStore.Models.ProductModel
         public long ProductId { get; set; }
         public Langs Lang { get; set; }
         public Description ShortDescription { get; set; }
-        public List<Description> DescriptionsLi { get; set; }
+        public List<Description> DescriptionsLi { get; set; } //todo rename
         public List<Description> DopDescriptions { get; set; }
         public List<ProductIngredientsTableRow> Table { get; set; }
     }

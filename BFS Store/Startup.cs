@@ -1,4 +1,7 @@
 using System;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,10 +11,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SportStore.Controllers;
 using SportStore.Infrastructure;
 using SportStore.Models;
+using SportStore.Models.Auth;
 using SportStore.Models.Core;
 using SportStore.Models.DAO;
 using SportStore.Models.DAO.Interfaces;
@@ -29,33 +34,68 @@ namespace SportStore
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IProductRepository, EfProductRepository>();
-            services.AddTransient<IOrderRepository, EFOrderRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            // services.AddTransient<ICommentsAndLikesRepository, CommentsAndLikesRepository>();
+            
             services.AddDbContext<DataContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("Default")));
             services.AddDbContext<UserIdentityContext>(options =>
             {
-                options.UseMySQL("server=localhost;port=3306;username=root;password=admin;database=BFSIdentity");
+                options.UseMySQL(Configuration.GetConnectionString("Default"));
             });
-            // services.AddMvcCore();
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "BFS Store", Version = "v1"}); });
+            
             services.AddMemoryCache();
             services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(1));
             services.AddScoped<Cart>(provider => SessionCart.GetCart(provider));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddControllersWithViews();
-            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/build"; });
+            services.AddControllers().AddNewtonsoftJson(); // todo controller options
             services.AddCors();
-            services.AddControllers().AddNewtonsoftJson();// todo controller options
-            services.AddIdentity<AppUser, IdentityRole>(options =>
-                {
+            
+            services.AddTransient<IPasswordValidator<AspNetUser>, UserPasswordValidator>();
+            services.AddIdentity<AspNetUser, IdentityRole>(options => {
                     options.User.RequireUniqueEmail = true;
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequiredLength = 6;
                 })
                 .AddEntityFrameworkStores<UserIdentityContext>()
                 .AddDefaultTokenProviders();
-            services.AddTransient<IPasswordValidator<AppUser>, UserPasswordValidator>();
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "BFS Store", Version = "v1"}); });
+            services.AddAuthentication()
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => {
+                    options.Cookie.HttpOnly = true;
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                    options.SlidingExpiration = true;
+                    options.LoginPath = "/AuthMvc/Login/";
+                })
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => {
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = JwtOptions.ISSUER,
+                    ValidateAudience = true,
+                    ValidAudience = JwtOptions.AUDIENCE,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = JwtOptions.GetKey(),
+                };
+            });
+            services.AddAuthorization(options => {
+                options.AddPolicy("admin", builder =>
+                {
+                    builder.RequireClaim(ClaimsIdentity.DefaultRoleClaimType, "admin");
+                });
+                options.AddPolicy("user", builder =>
+                {
+                    builder.RequireAssertion(c =>
+                        c.User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "user"));
+                    // || c.User.HasClaim("email", "User1@shisni.net") ||
+                    // c.User.HasClaim(ClaimsIdentity.DefaultNameClaimType, "User1"));
+                });
+            });
+            
+            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/build"; });
+            services.AddControllersWithViews();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -75,11 +115,11 @@ namespace SportStore
             app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSpaStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseCors(builder => builder.AllowAnyOrigin()); //between routing and endpoints  
+            app.UseSpaStaticFiles();
+            // app.UseCors(builder => builder.AllowAnyOrigin()); //between routing and endpoints  
 
             app.UseEndpoints(endpoints =>
             {
@@ -90,7 +130,7 @@ namespace SportStore
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
-
+            
                 if (env.IsDevelopment())
                 {
                     spa.UseReactDevelopmentServer(npmScript: "start");

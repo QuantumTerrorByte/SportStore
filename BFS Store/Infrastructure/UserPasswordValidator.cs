@@ -3,13 +3,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using SportStore.Controllers;
+using SportStore.Models;
+using SportStore.Models.Auth;
 
 namespace SportStore.Infrastructure
 {
-    public class UserPasswordValidator: PasswordValidator<AppUser>
+    public class UserPasswordValidator: PasswordValidator<AspNetUser>
     {
         public override async Task<IdentityResult> ValidateAsync(
-            UserManager<AppUser> manager, AppUser user, string password)
+            UserManager<AspNetUser> manager, AspNetUser user, string password)
         {
             var baseValidationResult = await base.ValidateAsync(manager, user, password);
             var errors = baseValidationResult.Succeeded

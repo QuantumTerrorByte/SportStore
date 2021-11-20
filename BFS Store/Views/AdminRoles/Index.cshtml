@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model System.Collections.Generic.List<Microsoft.AspNetCore.Identity.IdentityRole>
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+    <div>
+        <h1>Create</h1>
+        <Form asp-action="Create" asp-controller="AdminRoles" method="post">
+            <input type="text" name="roleName" value="">
+            <button type="submit">Create</button>
+        </Form>
+    </div>
+    @foreach (IdentityRole role in Model)
+    {
+        <div>
+            <h1>@role.Name</h1>
+            <Form asp-action="Delete" asp-controller="AdminRoles" method="post">
+                <input type="hidden" name="roleId" value="@role.Id">
+                <button type="submit">Remove</button>
+            </Form>
+        </div>
+    }
+</div>
+</body>
+</html>
