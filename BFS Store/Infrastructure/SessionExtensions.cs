@@ -1,9 +1,6 @@
-﻿using System;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using DAO.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using SportStore.Models;
 
 namespace SportStore.Infrastructure
 {

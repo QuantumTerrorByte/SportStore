@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using DAO;
+using DAO.Models.ProductModel;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using SportStore.Controllers;
 using SportStore.Models;
-using SportStore.Models.DAO;
-using SportStore.Models.ProductModel;
 using Xunit;
 
 namespace SportStoreTests

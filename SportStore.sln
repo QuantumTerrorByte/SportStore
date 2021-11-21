@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BFS Store Tests", "BFS Stor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser", "..\Parser\Parser\Parser.csproj", "{94C633B8-6D1B-499F-81CC-E5FA5914E329}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAO", "DAO\DAO.csproj", "{D0C1B916-8797-4B6F-ADA7-5949316FED09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{94C633B8-6D1B-499F-81CC-E5FA5914E329}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94C633B8-6D1B-499F-81CC-E5FA5914E329}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94C633B8-6D1B-499F-81CC-E5FA5914E329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0C1B916-8797-4B6F-ADA7-5949316FED09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0C1B916-8797-4B6F-ADA7-5949316FED09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0C1B916-8797-4B6F-ADA7-5949316FED09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0C1B916-8797-4B6F-ADA7-5949316FED09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

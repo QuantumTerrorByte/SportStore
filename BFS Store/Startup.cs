@@ -1,5 +1,8 @@
 using System;
 using System.Security.Claims;
+using DAO;
+using DAO.Interfaces;
+using DAO.Models.Core;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -13,13 +16,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using SportStore.Controllers;
 using SportStore.Infrastructure;
 using SportStore.Models;
-using SportStore.Models.Auth;
 using SportStore.Models.Core;
-using SportStore.Models.DAO;
-using SportStore.Models.DAO.Interfaces;
 
 namespace SportStore
 {

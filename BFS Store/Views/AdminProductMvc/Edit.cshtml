@@ -1,5 +1,4 @@
-﻿@using SportStore.Models.ProductModel
-@model SportStore.Models.ProductModel.Product[]
+﻿@model DAO.Models.ProductModel.Product[]
 
 @{
     Layout = "_Layout";
@@ -11,7 +10,7 @@
     @for (int i = 0; i < Model.Length; i++)
     {
         string target = $"Products[{i}].";
-        Product temp = Model[i];
+        var temp = Model[i];
         <div class="product-block">
             <div class="product-block-right">
                 <div>

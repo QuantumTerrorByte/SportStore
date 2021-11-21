@@ -1,4 +1,5 @@
-﻿@model System.Linq.IOrderedQueryable<Order>
+﻿@using DAO.Models
+@model System.Linq.IOrderedQueryable<DAO.Models.Order>
 @foreach (Order order in Model)
 {
     <div style="border: solid 2px rebeccapurple; margin: 30px;padding: 20px">

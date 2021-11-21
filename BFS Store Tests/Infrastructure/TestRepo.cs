@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using SportStore.Models;
-using SportStore.Models.ProductModel;
+using DAO.Models.ProductModel;
 
 namespace SportStoreTests.Infrastructure
 {

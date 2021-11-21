@@ -1,15 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using DAO.Interfaces;
+using DAO.Models.ProductModel;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using Org.BouncyCastle.Crypto.Engines;
-using SportStore.Controllers;
 using SportStore.Infrastructure;
-using SportStore.Models;
-using SportStore.Models.DAO.Interfaces;
-using SportStore.Models.ProductModel;
-using SportStore.Models.ViewModels;
+using SportStore.Models.ViewModels.depricated;
 using Xunit;
 
 namespace SportStoreTests

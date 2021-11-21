@@ -2,9 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using SportStore.Controllers;
 using SportStore.Models;
-using SportStore.Models.Auth;
 
 namespace SportStore.Infrastructure
 {

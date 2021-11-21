@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
+using DAO.Interfaces;
+using DAO.Models.ProductModel;
 using Microsoft.AspNetCore.Mvc;
-using SportStore.Models.DAO.Interfaces;
-using SportStore.Models.ProductModel;
 
 namespace SportStore.Controllers.MVC
 {

@@ -1,4 +1,5 @@
-﻿using SportStore.Models.ProductModel;
+﻿
+using DAO.Models.ProductModel;
 
 namespace SportStore.Models.ViewModels
 {

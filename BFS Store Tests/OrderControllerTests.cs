@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DAO.Interfaces;
+using DAO.Models.Core;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using SportStore.Controllers;
 using SportStore.Models;
 using SportStore.Models.Core;
-using SportStore.Models.DAO.Interfaces;
 using SportStore.Models.ProductModel;
 using Xunit;
 

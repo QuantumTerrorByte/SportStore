@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using SportStore.Models.ProductModel;
+﻿using DAO.Models.ProductModel;
 
 namespace SportStore.Models.ViewModels
 {

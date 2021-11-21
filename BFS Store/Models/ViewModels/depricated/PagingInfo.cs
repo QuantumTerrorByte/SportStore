@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SportStore.Models.ViewModels
+namespace SportStore.Models.ViewModels.depricated
 {
     public class PagingInfo
     {

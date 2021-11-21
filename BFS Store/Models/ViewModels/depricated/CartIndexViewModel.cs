@@ -1,7 +1,6 @@
-﻿using System.Runtime.Serialization;
-using SportStore.Models.Core;
+﻿using DAO.Models.Core;
 
-namespace SportStore.Models.ViewModels
+namespace SportStore.Models.ViewModels.depricated
 {
     public class CartIndexViewModel
     {

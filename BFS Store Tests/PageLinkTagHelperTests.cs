@@ -7,6 +7,7 @@ using Moq;
 using SportStore.TagHelpers;
 using SportStore.Models;
 using SportStore.Models.ViewModels;
+using SportStore.Models.ViewModels.depricated;
 using Xunit;
 
 namespace SportStoreTests

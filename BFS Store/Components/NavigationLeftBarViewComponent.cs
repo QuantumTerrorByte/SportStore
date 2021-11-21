@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using DAO.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using SportStore.Models.DAO.Interfaces;
-using SportStore.Models.ProductModel;
-using SportStore.Models.ViewModels;
+using SportStore.Models.ViewModels.depricated;
 
 namespace SportStore.Components
 {

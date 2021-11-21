@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SportStore.Infrastructure;
 using SportStore.Models;
-using SportStore.Models.Auth;
 using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers.MVC

@@ -12,7 +12,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SportStore.Infrastructure;
 using SportStore.Models;
-using SportStore.Models.Auth;
 using SportStore.Models.RequestModel;
 using SportStore.Models.ViewModels;
 

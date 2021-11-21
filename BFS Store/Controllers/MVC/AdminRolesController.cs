@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SportStore.Models;
-using SportStore.Models.Auth;
 
 namespace SportStore.Controllers.MVC
 {

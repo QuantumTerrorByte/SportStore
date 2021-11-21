@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using SportStore.Models.ProductModel;
+using DAO.Models.ProductModel;
 
-namespace SportStore.Models.ViewModels
+namespace SportStore.Models.ViewModels.depricated
 {
     public class IndexViewModel
     {

@@ -1,10 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Moq;
-using SportStore.Models.DAO;
-using SportStore.Models.DAO.Interfaces;
-using SportStore.Models.ProductModel;
+﻿using System.Linq;
+using DAO.Models.ProductModel;
 using Xunit;
 
 namespace SportStoreTests
@@ -25,8 +20,6 @@ namespace SportStoreTests
                 new Product {Brand = "first"},
                 new Product {Brand = "second"},
             }.AsQueryable();
-            var result = data.Distinct(new ProductComparorImp()).Select(p => p.Brand).ToList();
-            Assert.Equal(3, result.Count);
         }
     }
 }

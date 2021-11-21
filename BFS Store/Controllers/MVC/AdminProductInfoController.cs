@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using DAO.Interfaces;
+using DAO.Models;
+using DAO.Models.ProductModel;
 using Microsoft.AspNetCore.Mvc;
-using SportStore.Models;
-using SportStore.Models.DAO.Interfaces;
-using SportStore.Models.ProductModel;
 using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers.MVC
