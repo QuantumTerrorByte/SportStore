@@ -1,0 +1,73 @@
+﻿@model Auth.Models.RequestModel.SignUpModel
+
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Signin</title>
+    <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/signin.css" rel="stylesheet">
+</head>
+
+<style>
+    .form-floating{
+        margin: 10px;
+    }
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @@media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+<body class="text-center">
+<main class="form-signin justify-content-center">
+    <form asp-action="SignUp" asp-controller="AuthEmployee" method="post">
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <h1 class="h3 mb-3 fw-normal">Please sign un</h1>
+        <div class="form-floating">
+            <input name="email" value="@Model.Email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+        </div>
+
+        <div class="form-floating">
+            <input name="userName" value="@Model.UserName" type="text" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">User name</label>
+        </div>
+
+        <div class="form-floating">
+            <input name="phoneNumber" value="@Model.PhoneNumber" type="text" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Phone number</label>
+        </div>
+
+        <div class="form-floating">
+            <input name="password" value="@Model.Password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+
+        <div class="checkbox mb-3">
+            <label>
+                <input name="signIn" type="checkbox" checked="checked" value="true"> Sign in
+            </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign un</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl">
+    </form>
+    
+</main>
+
+
+</body>
+</html>

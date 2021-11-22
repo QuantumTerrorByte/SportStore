@@ -2,29 +2,30 @@ using System;
 using System.Linq;
 using DAO.Interfaces;
 using DAO.Models.ProductModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SportStore.Controllers.MVC
 {
-    public class AdminProductMvcController : Controller //todo view on admin top panel
+    public class AdminProductController : Controller //todo view on admin top panel
     {
         private IProductRepository ProductRepository { get; }
 
-        public AdminProductMvcController(IProductRepository productRepository)
+        public AdminProductController(IProductRepository productRepository)
             => ProductRepository = productRepository;
 
-
+        [Authorize]
         public IActionResult ControlPanel(int lastEditId)
         {
             ViewBag.LastEditId = lastEditId;
             return View(ProductRepository.GetProducts().OrderBy(p => p.Name).Take(10).ToArray());
         }
-        
+
         [HttpPost]
         public IActionResult CreateProduct(Product product)
         {
             ProductRepository.AddEditProduct(product);
-            return RedirectToAction("ControlPanel", "AdminProductMvc");
+            return RedirectToAction("ControlPanel", "AdminProduct");
         }
 
 
@@ -33,7 +34,7 @@ namespace SportStore.Controllers.MVC
         {
             ProductRepository.AddEditProduct(product);
 
-            return RedirectToAction("ControlPanel", "AdminProductMvc", product.Id);
+            return RedirectToAction("ControlPanel", "AdminProduct", product.Id);
         }
 
         [HttpPost]

@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - Auth</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
+    <link rel="stylesheet" href="/css/AdminHeader.css">
+</head>
+<body>
+<header>
+    <div class="admin-header">
+       <a href="https://localhost:5005/Admin/ControlPanel" class="admin-header__link">Main</a>
+           <a href="https://localhost:5005/AdminProduct/ControlPanel" class="admin-header__link">Products</a>
+           <a href="https://localhost:7000/AdminUsersRoles/Index" class="admin-header__link">UserRoles</a>
+           <a href="https://localhost:7000/AdminRoles/Index" class="admin-header__link">Roles</a>
+           <a href="https://localhost:7000/AuthEmployee/IndexUser" class="admin-header__link">TestUser</a>
+           <a href="https://localhost:7000/AuthEmployee/IndexAdmin" class="admin-header__link">TestAdmin</a>
+           <a href="https://localhost:7000/AuthEmployee/SignIn" class="admin-header__link">SignIn</a>
+           <a href="https://localhost:7000/AuthEmployee/SignOut" class="admin-header__link">SignOut</a>
+           <a href="https://localhost:7000/AuthEmployee/SignUp" class="admin-header__link">SignUp</a>
+    </div>
+</header>
+<div class="container">
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2021 - Auth - <a href="https:///Auth/SignIn">Privacy</a>
+    </div>
+</footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

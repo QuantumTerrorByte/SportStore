@@ -1,0 +1,42 @@
+﻿@model Auth.Models.RequestModel.SignInModel
+
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Signin</title>
+    <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/signin.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+<main class="form-signin justify-content-center">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <form asp-action="SignIn" asp-controller="AuthEmployee" method="post">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <div class="form-floating">
+            <input name="email" value="@Model.Email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+            <input name="password" value="@Model.Password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+
+        <div class="checkbox mb-3">
+            <label>
+                <input name="rememberMe" type="checkbox" checked="checked" value="true"> Remember me
+            </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl">
+    </form>
+</main>
+
+
+</body>
+</html>

@@ -52,7 +52,7 @@ namespace SportStore.Controllers.MVC
         public IActionResult EditInfo(Product product)
         {
             RepositoryProduct.AddEditProduct(product);
-            return RedirectToAction("ControlPanel", "AdminProductMvc", product.Id);
+            return RedirectToAction("ControlPanel", "AdminProduct", product.Id);
         }
 
 
@@ -63,12 +63,12 @@ namespace SportStore.Controllers.MVC
             {
                 var infoId = RepositoryProduct.GetProductInfo(productId, langs).Id;
                 var deleted = RepositoryProduct.RemoveProductInfo(infoId);
-                return RedirectToAction("ControlPanel", "AdminProductMvc", productId);
+                return RedirectToAction("ControlPanel", "AdminProduct", productId);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return RedirectToAction("ControlPanel", "AdminProductMvc", productId);
+                return RedirectToAction("ControlPanel", "AdminProduct", productId);
             }
         }
     }

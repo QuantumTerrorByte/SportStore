@@ -17,7 +17,7 @@
         <th class="text-center">Actions</th>
     </tr>
     <tr>
-        <form asp-action="CreateProduct" asp-controller="AdminProductMvc">
+        <form asp-action="CreateProduct" asp-controller="AdminProduct">
             <td>
                 <input name="Product.Id" type="text" placeholder="id" value="">
             </td>
@@ -37,7 +37,7 @@
                 <select name="Product.NavCategoryFirstLvlId">
                     @foreach (var modelCategory in Model.CategoriesLvl1) //todo by id
                     {
-                        <option value="@modelCategory.Id">@modelCategory.ValueEn</option>
+                        <option value="@modelCategory?.Id">@modelCategory?.ValueEn</option>
                     }
                 </select>
             </td>
@@ -45,7 +45,7 @@
                 <select name="Product.NavCategorySecondLvlId">
                     @foreach (var modelCategory in Model.CategoriesLvl2) //todo by id
                     {
-                        <option value="@modelCategory.Id">@modelCategory.ValueEn</option>
+                        <option value="@modelCategory?.Id">@modelCategory?.ValueEn</option>
                     }
                 </select>
             </td>
@@ -57,7 +57,7 @@
 
     @foreach (Product product in Model.Products)
     {
-        <form asp-action="Edit" asp-controller="AdminProductMvc">
+        <form asp-action="Edit" asp-controller="AdminProduct">
             <tr>
                 <td>
                     <input type="text" name="" value="@product.Id">
@@ -76,15 +76,12 @@
                 </td>
                 <td>
                     <select name="Product.NavCategoryFirstLvlId">
-                        <option value="@product.NavCategoryFirstLvl.Id">
-                            @product.NavCategoryFirstLvl.ValueEn
-                            @{
-                                Console.WriteLine(product.NavCategoryFirstLvl.ValueEn);
-                            }
+                        <option value="@product.NavCategoryFirstLvl?.Id">
+                            @product.NavCategoryFirstLvl?.ValueEn
                         </option>
                         @foreach (var modelCategory in Model.CategoriesLvl1) //todo by id
                         {
-                            if (product.NavCategoryFirstLvl.Id != modelCategory.Id)
+                            if (product.NavCategoryFirstLvl?.Id != modelCategory.Id)
                             {
                                 <option value="@modelCategory.Id">@modelCategory.ValueEn</option>
                             }
@@ -93,10 +90,10 @@
                 </td>
                 <td>
                     <select name="Product.NavCategorySecondLvlId">
-                        <option value="@product.NavCategorySecondLvl.Id">@product.NavCategorySecondLvl.ValueEn</option>
+                        <option value="@product.NavCategorySecondLvl?.Id">@product.NavCategorySecondLvl?.ValueEn</option>
                         @foreach (var modelCategory in Model.CategoriesLvl2) //todo by id
                         {
-                            if (product.NavCategorySecondLvl.Id != modelCategory.Id)
+                            if (product.NavCategorySecondLvl?.Id != modelCategory.Id)
                             {
                                 <option value="@modelCategory.Id">@modelCategory.ValueEn</option>
                             }
@@ -113,7 +110,7 @@
                 <button type="submit" class="btn btn-sm btn-warning">Save</button>
             </td>
             <td>
-                <a asp-action="Delete" asp-controller="AdminProductMvc" asp-route-id="@product.Id" class="btn btn-danger btn-sm">Delete</a>
+                <a asp-action="Delete" asp-controller="AdminProduct" asp-route-id="@product.Id" class="btn btn-danger btn-sm">Delete</a>
             </td>
             <td>
                 <form asp-action="IsExistInfo" asp-controller="AdminProductInfoMvc" method="get" class="info-edit-holder">

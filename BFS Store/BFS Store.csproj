@@ -16,6 +16,7 @@
       <PackageReference Include="jQuery" Version="3.6.0" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.12" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.11" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.11" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.11" />
       <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
       <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.11" />
@@ -49,6 +50,12 @@
       <_ContentIncludedByDefault Remove="Views\Product\ProductPage.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Product\Products.cshtml" />
       <_ContentIncludedByDefault Remove="Views\CostumersProductApi\AuthTest.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\AdminRoles\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\AdminUsersRoles\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\AdminUsersRoles\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\AuthPersonal\IndexAdmin.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\AuthPersonal\IndexUser.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\AuthPersonal\SignIn.cshtml" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\DAO\DAO.csproj" />

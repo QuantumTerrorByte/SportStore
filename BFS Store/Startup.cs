@@ -1,5 +1,6 @@
 using System;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using DAO;
 using DAO.Interfaces;
 using DAO.Models.Core;
@@ -36,54 +37,75 @@ namespace SportStore
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
             // services.AddTransient<ICommentsAndLikesRepository, CommentsAndLikesRepository>();
-            
+
+
             services.AddDbContext<DataContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("Default")));
-            services.AddDbContext<UserIdentityContext>(options =>
+            services.AddSwaggerGen(c =>
             {
-                options.UseMySQL(Configuration.GetConnectionString("Default"));
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "BFS Store", Version = "v1"});
             });
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "BFS Store", Version = "v1"}); });
-            
+
             services.AddMemoryCache();
             services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(1));
             services.AddScoped<Cart>(provider => SessionCart.GetCart(provider));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllers().AddNewtonsoftJson(); // todo controller options
-            services.AddCors();
-            
-            services.AddTransient<IPasswordValidator<AspNetUser>, UserPasswordValidator>();
-            services.AddIdentity<AspNetUser, IdentityRole>(options => {
+            // services.AddCors();
+            services.AddDefaultIdentity<AspNetUser>(options =>
+                {
                     options.User.RequireUniqueEmail = true;
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequiredLength = 6;
                 })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<UserIdentityContext>()
                 .AddDefaultTokenProviders();
-            services.AddAuthentication()
-                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => {
-                    options.Cookie.HttpOnly = true;
-                    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-                    options.SlidingExpiration = true;
-                    options.LoginPath = "/AuthMvc/Login/";
-                })
-            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => {
-                options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters = new TokenValidationParameters
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.Name = "IdentityBFS";
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.SlidingExpiration = true;
+                options.Events = new CookieAuthenticationEvents
                 {
-                    ValidateIssuer = true,
-                    ValidIssuer = JwtOptions.ISSUER,
-                    ValidateAudience = true,
-                    ValidAudience = JwtOptions.AUDIENCE,
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = JwtOptions.GetKey(),
+                    OnRedirectToAccessDenied = context =>
+                    {
+                        PathString requestPath = context.HttpContext.Request.Path;
+                        context.HttpContext.Response.Redirect(
+                            $"https://localhost:7000?returnUrl={requestPath}");
+                        return Task.CompletedTask;
+                    },
+                    OnRedirectToLogin = context =>
+                    {
+                        string host = context.HttpContext.Request.Host.Value;
+                        PathString requestPath = context.HttpContext.Request.PathAndQuery();
+                        context.HttpContext.Response.Redirect(
+                            $"https://localhost:7000?returnUrl={host}{requestPath}");
+                        return Task.CompletedTask;
+                    }
                 };
             });
-            services.AddAuthorization(options => {
-                options.AddPolicy("admin", builder =>
+
+            services.AddAuthentication()
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
                 {
-                    builder.RequireClaim(ClaimsIdentity.DefaultRoleClaimType, "admin");
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidIssuer = JwtOptions.ISSUER,
+                        ValidateAudience = true,
+                        ValidAudience = JwtOptions.AUDIENCE,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = JwtOptions.GetKey(),
+                    };
                 });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("admin", builder => { builder.RequireClaim(ClaimTypes.Role, "admin"); });
                 options.AddPolicy("user", builder =>
                 {
                     builder.RequireAssertion(c =>
@@ -92,7 +114,7 @@ namespace SportStore
                     // c.User.HasClaim(ClaimsIdentity.DefaultNameClaimType, "User1"));
                 });
             });
-            
+
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/build"; });
             services.AddControllersWithViews();
         }
@@ -129,7 +151,7 @@ namespace SportStore
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
-            
+
                 if (env.IsDevelopment())
                 {
                     spa.UseReactDevelopmentServer(npmScript: "start");

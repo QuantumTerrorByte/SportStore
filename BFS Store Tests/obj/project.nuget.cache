@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "gUzTEb6WQHC4ct6Lazm6b+vzVmZfkFBRJIj7wAlE5DQ9p3rGNkpXuqllUrMzZZ4wOgufCMUxAh29OfXTFhJTlg==",
+  "dgSpecHash": "XWQF1jNrXfVowMYLrQrzwgKTkZBck2a7UKQcRx+RCXZ5aB5v8KnItmvnoDdO+mxmCR6J9ksvgrgEOaYAFRrv2w==",
   "success": true,
   "projectFilePath": "D:\\Projects\\BFS Store\\BFS Store Tests\\BFS Store Tests.csproj",
   "expectedPackageFiles": [
@@ -24,6 +24,7 @@
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\5.0.11\\microsoft.aspnetcore.identity.entityframeworkcore.5.0.11.nupkg.sha512",
+    "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\5.0.11\\microsoft.aspnetcore.identity.ui.5.0.11.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.11\\microsoft.aspnetcore.jsonpatch.5.0.11.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\5.0.11\\microsoft.aspnetcore.mvc.newtonsoftjson.5.0.11.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
@@ -62,6 +63,7 @@
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.extensions.dependencymodel\\5.0.0\\microsoft.extensions.dependencymodel.5.0.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\5.0.0\\microsoft.extensions.fileproviders.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.extensions.fileproviders.embedded\\5.0.11\\microsoft.extensions.fileproviders.embedded.5.0.11.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\5.0.0\\microsoft.extensions.fileproviders.physical.5.0.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\5.0.0\\microsoft.extensions.filesystemglobbing.5.0.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\2.2.0\\microsoft.extensions.hosting.abstractions.2.2.0.nupkg.sha512",

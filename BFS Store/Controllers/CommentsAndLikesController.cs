@@ -9,14 +9,12 @@ namespace SportStore.Controllers
     {
         private readonly ICommentsAndLikesRepository _commentsAndLikesRepository;
         private readonly IProductRepository _productRepository;
-        private readonly UserManager<AspNetUser> _userManager;
 
         public CommentsAndLikesController(ICommentsAndLikesRepository commentsAndLikesRepository,
-            IProductRepository productRepository, UserManager<AspNetUser> userManager)
+            IProductRepository productRepository)
         {
             _commentsAndLikesRepository = commentsAndLikesRepository;
             _productRepository = productRepository;
-            _userManager = userManager;
         }
 
         // [Authorize(JwtBearerDefaults.AuthenticationScheme, Policy = "user")]
