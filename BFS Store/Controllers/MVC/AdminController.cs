@@ -6,11 +6,10 @@ namespace SportStore.Controllers.MVC
     public class AdminController : Controller
     {
         // GET: Admin
-        [Authorize (Policy = "admin")]
+        [Authorize(Policy = "admin")]
         public ActionResult ControlPanel()
         {
             return View();
         }
-
     }
 }

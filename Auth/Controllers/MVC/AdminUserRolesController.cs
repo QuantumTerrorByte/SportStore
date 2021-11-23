@@ -28,7 +28,6 @@ namespace Auth.Controllers.MVC
             _roleManager = roleManager;
         }
 
-        [Authorize(Policy = "admin")]
         public async Task<ActionResult> Index()
         {
             ViewBag.Manager = _userManager;

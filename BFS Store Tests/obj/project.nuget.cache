@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "XWQF1jNrXfVowMYLrQrzwgKTkZBck2a7UKQcRx+RCXZ5aB5v8KnItmvnoDdO+mxmCR6J9ksvgrgEOaYAFRrv2w==",
+  "dgSpecHash": "or2PBTyr+XhgCOYjMP7+CbI/n+Pv5v2zj5qDGuNShyxEzSQtY+t4LqM56HuEHQAu8P/x5b08mWFHKtHSFWSN3w==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\BFS Store\\BFS Store Tests\\BFS Store Tests.csproj",
+  "projectFilePath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\BFS Store Tests\\BFS Store Tests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Dragunov\\.nuget\\packages\\bootstrap\\5.1.2\\bootstrap.5.1.2.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
@@ -18,6 +19,7 @@
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.11\\microsoft.aspnetcore.cryptography.keyderivation.5.0.11.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\2.2.0\\microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.dataprotection.abstractions\\2.2.0\\microsoft.aspnetcore.dataprotection.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\5.0.11\\microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.11.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.hosting.server.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.server.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

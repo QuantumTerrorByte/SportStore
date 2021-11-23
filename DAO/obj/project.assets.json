@@ -1629,11 +1629,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\BFS Store\\DAO\\DAO.csproj",
+      "projectUniqueName": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\DAO\\DAO.csproj",
       "projectName": "DAO",
-      "projectPath": "D:\\Projects\\BFS Store\\DAO\\DAO.csproj",
+      "projectPath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\DAO\\DAO.csproj",
       "packagesPath": "C:\\Users\\Dragunov\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\BFS Store\\DAO\\obj\\",
+      "outputPath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\DAO\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Programs\\Microsoft\\Tools\\NuGetPackages"

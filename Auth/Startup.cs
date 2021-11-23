@@ -1,5 +1,6 @@
 using System;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +9,8 @@ using Auth.Infrastructure;
 using Auth.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -44,15 +47,35 @@ namespace Auth
                 .AddDefaultTokenProviders();
             
             
-            // services.AddIdentity<AspNetUser, IdentityRole>(options =>
-            // {
-            // options.User.RequireUniqueEmail = true;
-            // options.Password.RequireNonAlphanumeric = false;
-            // options.Password.RequiredLength = 6;
-            // });
+            services.AddDataProtection().SetApplicationName("BFS Store");
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.Name = ".AspNet.SharedCookie";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.SlidingExpiration = true;
+                options.Events = new CookieAuthenticationEvents
+                {
+                    OnRedirectToAccessDenied = context =>
+                    {
+                        PathString requestPath = context.HttpContext.Request.Path;
+                        context.HttpContext.Response.Redirect(
+                            $"https://localhost:7000?returnUrl={requestPath}");
+                        return Task.CompletedTask;
+                    },
+                    OnRedirectToLogin = context =>
+                    {
+                        string host = context.HttpContext.Request.Host.Value;
+                        string requestPath = context.HttpContext.Request.PathBase;
+                        context.HttpContext.Response.Redirect(
+                            $"https://localhost:7000?returnUrl={host}{requestPath}");
+                        return Task.CompletedTask;
+                    }
+                };
+            });
 
 
-            services.AddAuthentication()
+            services.AddAuthentication("Identity.Application")
                 // .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
                 // {
                 //     options.Cookie.HttpOnly = true;

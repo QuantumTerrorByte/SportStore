@@ -1,12 +1,14 @@
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Auth.Models;
 using DAO;
 using DAO.Interfaces;
 using DAO.Models.Core;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -34,11 +36,10 @@ namespace SportStore
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
             // services.AddTransient<ICommentsAndLikesRepository, CommentsAndLikesRepository>();
-
-
             services.AddDbContext<DataContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("Default")));
             services.AddSwaggerGen(c =>
@@ -46,26 +47,26 @@ namespace SportStore
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "BFS Store", Version = "v1"});
             });
 
-            services.AddMemoryCache();
             services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(1));
             services.AddScoped<Cart>(provider => SessionCart.GetCart(provider));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllers().AddNewtonsoftJson(); // todo controller options
             // services.AddCors();
+
+
             services.AddDefaultIdentity<AspNetUser>(options =>
                 {
-                    options.User.RequireUniqueEmail = true;
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequiredLength = 6;
                 })
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<UserIdentityContext>()
+                .AddEntityFrameworkStores<DataContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddDataProtection().SetApplicationName("BFS Store");
             services.ConfigureApplicationCookie(options =>
             {
-                options.Cookie.Name = "IdentityBFS";
-                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.Cookie.Name = ".AspNet.SharedCookie";
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
                 options.SlidingExpiration = true;
@@ -89,7 +90,7 @@ namespace SportStore
                 };
             });
 
-            services.AddAuthentication()
+            services.AddAuthentication("Identity.Application")
                 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
                 {
                     options.RequireHttpsMetadata = false;
