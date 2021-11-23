@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\BackUps\\BFS Store failed try split auth\\Auth\\Auth.csproj": {}
+    "D:\\Projects\\BFS Store main\\Auth\\Auth.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\BackUps\\BFS Store failed try split auth\\Auth\\Auth.csproj": {
+    "D:\\Projects\\BFS Store main\\Auth\\Auth.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\Auth\\Auth.csproj",
+        "projectUniqueName": "D:\\Projects\\BFS Store main\\Auth\\Auth.csproj",
         "projectName": "Auth",
-        "projectPath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\Auth\\Auth.csproj",
+        "projectPath": "D:\\Projects\\BFS Store main\\Auth\\Auth.csproj",
         "packagesPath": "C:\\Users\\Dragunov\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\Auth\\obj\\",
+        "outputPath": "D:\\Projects\\BFS Store main\\Auth\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Programs\\Microsoft\\Tools\\NuGetPackages"

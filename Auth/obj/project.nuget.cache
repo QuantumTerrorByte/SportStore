@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iYtvXJww9py95hp+RRCsYk+IWkEGnJ0ELdYXwEgsSRFSoCCZtApsN66a3AsVnbyM6FfE+xqxvZ1NliSE1bTYwg==",
+  "dgSpecHash": "ukdtcplKPVAZUuR1obH3AmAllBl6LXkLmz8SLJJuYbaXi7wcxW1nYZW2wRbnau8PO1/q/ycuIcoJPIEfMiYiHQ==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\Auth\\Auth.csproj",
+  "projectFilePath": "D:\\Projects\\BFS Store main\\Auth\\Auth.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dragunov\\.nuget\\packages\\bootstrap\\5.1.2\\bootstrap.5.1.2.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",

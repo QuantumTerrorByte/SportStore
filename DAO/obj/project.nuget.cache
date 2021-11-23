@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lEv4QFx+LHXfbIt7nl33SjPxpzSkObok/xAn+GvhVBO8tHetQX57FOTLlV9L4+gV5Pw4JPy0mWBLkfqp9/kRKw==",
+  "dgSpecHash": "omrk4wbXuXfp3f15Y89NdKfkHje7MLB8Eyu8CmMdInBoVjvFFs7oqb3J4VVd+OFUQpjneCMNom8XNlLYqNj6Nw==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\DAO\\DAO.csproj",
+  "projectFilePath": "D:\\Projects\\BFS Store main\\DAO\\DAO.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dragunov\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",

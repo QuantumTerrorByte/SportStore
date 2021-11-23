@@ -7,11 +7,17 @@ namespace DAO
 {
     public class DataContext : DbContext
     {
+        protected DataContext()
+        {
+        }
+
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
 
         public DbSet<Product> Products { set; get; }
+        public DbSet<Description> Descriptions { set; get; }
+        public DbSet<ProductIngredientsTableRow> ProductIngredientsTableRows { set; get; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { set; get; }
         public DbSet<CartLine> CartLines { get; set; }

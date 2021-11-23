@@ -8991,11 +8991,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\BFS Store\\BFS Store.csproj",
+      "projectUniqueName": "D:\\Projects\\BFS Store main\\BFS Store\\BFS Store.csproj",
       "projectName": "BFS Store",
-      "projectPath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\BFS Store\\BFS Store.csproj",
+      "projectPath": "D:\\Projects\\BFS Store main\\BFS Store\\BFS Store.csproj",
       "packagesPath": "C:\\Users\\Dragunov\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\BFS Store\\obj\\",
+      "outputPath": "D:\\Projects\\BFS Store main\\BFS Store\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Programs\\Microsoft\\Tools\\NuGetPackages"
@@ -9016,11 +9016,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\Projects\\BackUps\\BFS Store failed try split auth\\Auth\\Auth.csproj": {
-              "projectPath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\Auth\\Auth.csproj"
+            "D:\\Projects\\BFS Store main\\Auth\\Auth.csproj": {
+              "projectPath": "D:\\Projects\\BFS Store main\\Auth\\Auth.csproj"
             },
-            "D:\\Projects\\BackUps\\BFS Store failed try split auth\\DAO\\DAO.csproj": {
-              "projectPath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\DAO\\DAO.csproj"
+            "D:\\Projects\\BFS Store main\\DAO\\DAO.csproj": {
+              "projectPath": "D:\\Projects\\BFS Store main\\DAO\\DAO.csproj"
             }
           }
         }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace SportStore.Migrations.Data
+namespace DAO.Migrations
 {
     [DbContext(typeof(DataContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
@@ -17,7 +17,47 @@ namespace SportStore.Migrations.Data
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.11");
 
-            modelBuilder.Entity("SportStore.Models.Core.CartLine", b =>
+            modelBuilder.Entity("DAO.Models.Comment", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("AuthorEmail")
+                        .HasColumnType("text");
+
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("AuthorName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("Edited")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("IsEdited")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("PreviousState")
+                        .HasColumnType("text");
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("DAO.Models.Core.CartLine", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +81,32 @@ namespace SportStore.Migrations.Data
                     b.ToTable("CartLines");
                 });
 
-            modelBuilder.Entity("SportStore.Models.Order", b =>
+            modelBuilder.Entity("DAO.Models.LikeJunction", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("LikeJunctions");
+                });
+
+            modelBuilder.Entity("DAO.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,7 +142,7 @@ namespace SportStore.Migrations.Data
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("SportStore.Models.ProductModel.Category", b =>
+            modelBuilder.Entity("DAO.Models.ProductModel.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -97,7 +162,7 @@ namespace SportStore.Migrations.Data
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("SportStore.Models.ProductModel.Description", b =>
+            modelBuilder.Entity("DAO.Models.ProductModel.Description", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -118,10 +183,10 @@ namespace SportStore.Migrations.Data
 
                     b.HasIndex("ProductInfoId1");
 
-                    b.ToTable("Description");
+                    b.ToTable("Descriptions");
                 });
 
-            modelBuilder.Entity("SportStore.Models.ProductModel.Product", b =>
+            modelBuilder.Entity("DAO.Models.ProductModel.Product", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -163,7 +228,7 @@ namespace SportStore.Migrations.Data
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("SportStore.Models.ProductModel.ProductInfo", b =>
+            modelBuilder.Entity("DAO.Models.ProductModel.ProductInfo", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -187,7 +252,7 @@ namespace SportStore.Migrations.Data
                     b.ToTable("ProductInfos");
                 });
 
-            modelBuilder.Entity("SportStore.Models.ProductModel.ProductIngredientsTableRow", b =>
+            modelBuilder.Entity("DAO.Models.ProductModel.ProductIngredientsTableRow", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -209,40 +274,62 @@ namespace SportStore.Migrations.Data
 
                     b.HasIndex("ProductInfoId");
 
-                    b.ToTable("ProductIngredientsTableRow");
+                    b.ToTable("ProductIngredientsTableRows");
                 });
 
-            modelBuilder.Entity("SportStore.Models.Core.CartLine", b =>
+            modelBuilder.Entity("DAO.Models.Comment", b =>
                 {
-                    b.HasOne("SportStore.Models.Order", null)
+                    b.HasOne("DAO.Models.ProductModel.Product", "Product")
+                        .WithMany("Comments")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("DAO.Models.Core.CartLine", b =>
+                {
+                    b.HasOne("DAO.Models.Order", null)
                         .WithMany("CartLines")
                         .HasForeignKey("OrderId");
 
-                    b.HasOne("SportStore.Models.ProductModel.Product", "Product")
+                    b.HasOne("DAO.Models.ProductModel.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
 
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("SportStore.Models.ProductModel.Description", b =>
+            modelBuilder.Entity("DAO.Models.LikeJunction", b =>
                 {
-                    b.HasOne("SportStore.Models.ProductModel.ProductInfo", null)
+                    b.HasOne("DAO.Models.ProductModel.Product", "Product")
+                        .WithMany("LikeJunction")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("DAO.Models.ProductModel.Description", b =>
+                {
+                    b.HasOne("DAO.Models.ProductModel.ProductInfo", null)
                         .WithMany("DescriptionsLi")
                         .HasForeignKey("ProductInfoId");
 
-                    b.HasOne("SportStore.Models.ProductModel.ProductInfo", null)
-                        .WithMany("DopDescriptions")
+                    b.HasOne("DAO.Models.ProductModel.ProductInfo", null)
+                        .WithMany("DopDescriptionsHolder")
                         .HasForeignKey("ProductInfoId1");
                 });
 
-            modelBuilder.Entity("SportStore.Models.ProductModel.Product", b =>
+            modelBuilder.Entity("DAO.Models.ProductModel.Product", b =>
                 {
-                    b.HasOne("SportStore.Models.ProductModel.Category", "NavCategoryFirstLvl")
+                    b.HasOne("DAO.Models.ProductModel.Category", "NavCategoryFirstLvl")
                         .WithMany()
                         .HasForeignKey("NavCategoryFirstLvlId");
 
-                    b.HasOne("SportStore.Models.ProductModel.Category", "NavCategorySecondLvl")
+                    b.HasOne("DAO.Models.ProductModel.Category", "NavCategorySecondLvl")
                         .WithMany()
                         .HasForeignKey("NavCategorySecondLvlId");
 
@@ -251,45 +338,49 @@ namespace SportStore.Migrations.Data
                     b.Navigation("NavCategorySecondLvl");
                 });
 
-            modelBuilder.Entity("SportStore.Models.ProductModel.ProductInfo", b =>
+            modelBuilder.Entity("DAO.Models.ProductModel.ProductInfo", b =>
                 {
-                    b.HasOne("SportStore.Models.ProductModel.Product", null)
+                    b.HasOne("DAO.Models.ProductModel.Product", null)
                         .WithMany("ProductInfos")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SportStore.Models.ProductModel.Description", "ShortDescription")
+                    b.HasOne("DAO.Models.ProductModel.Description", "ShortDescription")
                         .WithMany()
                         .HasForeignKey("ShortDescriptionId");
 
                     b.Navigation("ShortDescription");
                 });
 
-            modelBuilder.Entity("SportStore.Models.ProductModel.ProductIngredientsTableRow", b =>
+            modelBuilder.Entity("DAO.Models.ProductModel.ProductIngredientsTableRow", b =>
                 {
-                    b.HasOne("SportStore.Models.ProductModel.ProductInfo", null)
-                        .WithMany("Table")
+                    b.HasOne("DAO.Models.ProductModel.ProductInfo", null)
+                        .WithMany("ProductIngredientsTableRows")
                         .HasForeignKey("ProductInfoId");
                 });
 
-            modelBuilder.Entity("SportStore.Models.Order", b =>
+            modelBuilder.Entity("DAO.Models.Order", b =>
                 {
                     b.Navigation("CartLines");
                 });
 
-            modelBuilder.Entity("SportStore.Models.ProductModel.Product", b =>
+            modelBuilder.Entity("DAO.Models.ProductModel.Product", b =>
                 {
+                    b.Navigation("Comments");
+
+                    b.Navigation("LikeJunction");
+
                     b.Navigation("ProductInfos");
                 });
 
-            modelBuilder.Entity("SportStore.Models.ProductModel.ProductInfo", b =>
+            modelBuilder.Entity("DAO.Models.ProductModel.ProductInfo", b =>
                 {
                     b.Navigation("DescriptionsLi");
 
-                    b.Navigation("DopDescriptions");
+                    b.Navigation("DopDescriptionsHolder");
 
-                    b.Navigation("Table");
+                    b.Navigation("ProductIngredientsTableRows");
                 });
 #pragma warning restore 612, 618
         }

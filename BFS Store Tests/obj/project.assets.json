@@ -11915,11 +11915,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\BFS Store Tests\\BFS Store Tests.csproj",
+      "projectUniqueName": "D:\\Projects\\BFS Store main\\BFS Store Tests\\BFS Store Tests.csproj",
       "projectName": "BFS Store Tests",
-      "projectPath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\BFS Store Tests\\BFS Store Tests.csproj",
+      "projectPath": "D:\\Projects\\BFS Store main\\BFS Store Tests\\BFS Store Tests.csproj",
       "packagesPath": "C:\\Users\\Dragunov\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\BFS Store Tests\\obj\\",
+      "outputPath": "D:\\Projects\\BFS Store main\\BFS Store Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Programs\\Microsoft\\Tools\\NuGetPackages"
@@ -11940,8 +11940,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\Projects\\BackUps\\BFS Store failed try split auth\\BFS Store\\BFS Store.csproj": {
-              "projectPath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\BFS Store\\BFS Store.csproj"
+            "D:\\Projects\\BFS Store main\\BFS Store\\BFS Store.csproj": {
+              "projectPath": "D:\\Projects\\BFS Store main\\BFS Store\\BFS Store.csproj"
             }
           }
         }

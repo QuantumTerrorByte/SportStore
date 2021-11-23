@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\BackUps\\BFS Store failed try split auth\\DAO\\DAO.csproj": {}
+    "D:\\Projects\\BFS Store main\\DAO\\DAO.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\BackUps\\BFS Store failed try split auth\\DAO\\DAO.csproj": {
+    "D:\\Projects\\BFS Store main\\DAO\\DAO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\DAO\\DAO.csproj",
+        "projectUniqueName": "D:\\Projects\\BFS Store main\\DAO\\DAO.csproj",
         "projectName": "DAO",
-        "projectPath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\DAO\\DAO.csproj",
+        "projectPath": "D:\\Projects\\BFS Store main\\DAO\\DAO.csproj",
         "packagesPath": "C:\\Users\\Dragunov\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\BackUps\\BFS Store failed try split auth\\DAO\\obj\\",
+        "outputPath": "D:\\Projects\\BFS Store main\\DAO\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Programs\\Microsoft\\Tools\\NuGetPackages"
