@@ -3,7 +3,7 @@ using DAO.Interfaces;
 using DAO.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAO
+namespace DAO.Repositories
 {
     public class OrderRepository : IOrderRepository
     {

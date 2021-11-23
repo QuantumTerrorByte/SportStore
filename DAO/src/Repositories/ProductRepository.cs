@@ -9,7 +9,7 @@ using DAO.Models.Core;
 using DAO.Models.ProductModel;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAO
+namespace DAO.Repositories
 {
     public class ProductRepository : IProductRepository
     {

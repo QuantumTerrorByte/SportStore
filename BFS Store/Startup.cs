@@ -5,6 +5,7 @@ using Auth.Models;
 using DAO;
 using DAO.Interfaces;
 using DAO.Models.Core;
+using DAO.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -161,6 +162,10 @@ namespace SportStore
         }
     }
 }
+
+//todo tech debt
+//async repositories
+
 
 // endpoints.MapControllerRoute(
 //     name: null,
