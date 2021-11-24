@@ -58,7 +58,6 @@
       <_ContentIncludedByDefault Remove="Views\AuthPersonal\SignIn.cshtml" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\Auth\Auth.csproj" />
       <ProjectReference Include="..\DAO\DAO.csproj" />
     </ItemGroup>
 

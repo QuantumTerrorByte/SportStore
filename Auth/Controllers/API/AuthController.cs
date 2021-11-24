@@ -16,7 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Auth.Controllers.API
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -60,7 +60,7 @@ namespace Auth.Controllers.API
         }
 
         [HttpPost]
-        [Route("SignInCostumers")]
+        [Route("[action]")]
         public async Task<ActionResult> SignInCostumers([FromBody] SignInModel signInModel)
         {
             AspNetUser user = await _userManager.FindByEmailAsync(signInModel.Email);

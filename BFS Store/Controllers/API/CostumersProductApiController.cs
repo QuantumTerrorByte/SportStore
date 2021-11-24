@@ -12,9 +12,9 @@ using FilteredProductsRepoRequestModel = DAO.DataTransferModel.FilteredProductsR
 
 namespace SportStore.Controllers.API
 {
-    // [Route("api/[controller]")]
-    // [ApiController]
-    public class CostumersProductApiController : Controller
+    [Route("[controller]")]
+    [ApiController]
+    public class CostumersProductApiController : ControllerBase
     {
         private readonly IProductRepository _productRepository;
 
@@ -24,6 +24,7 @@ namespace SportStore.Controllers.API
         }
 
         [HttpGet]
+        [Route("[action]")]
         public IActionResult GetProducts(ProductsRequestModel requestModel)
         {
             (IList<Product>, int) filteredProducts = _productRepository.GetFilteredProducts(
@@ -52,6 +53,7 @@ namespace SportStore.Controllers.API
         }
 
         [HttpGet]
+        [Route("[action]")]
         public object GetCategoryAndBrands()
         {
             return new
@@ -62,6 +64,7 @@ namespace SportStore.Controllers.API
         }
 
         [HttpGet]
+        [Route("[action]")]
         public async Task<ProductPageViewModel> GetProductPage(int productId) //todo lang & admin log
         {
             Console.Clear();

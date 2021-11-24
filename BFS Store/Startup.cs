@@ -1,7 +1,6 @@
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Auth.Models;
 using DAO;
 using DAO.Interfaces;
 using DAO.Models.Core;
@@ -40,22 +39,22 @@ namespace SportStore
             services.AddMemoryCache();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IAppUsersRepository, AppUsersRepository>();
+            services.AddTransient<ICommentsRepository, CommentsRepository>();
+            services.AddTransient<ILikesRepository, LikesRepository>();
+            
             // services.AddTransient<ICommentsAndLikesRepository, CommentsAndLikesRepository>();
             services.AddDbContext<DataContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("Default")));
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "BFS Store", Version = "v1"});
-            });
+            
 
             services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(1));
             services.AddScoped<Cart>(provider => SessionCart.GetCart(provider));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddControllers().AddNewtonsoftJson(); // todo controller options
             // services.AddCors();
 
 
-            services.AddDefaultIdentity<AspNetUser>(options =>
+            services.AddDefaultIdentity<IdentityUser>(options =>
                 {
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequiredLength = 6;
@@ -89,9 +88,11 @@ namespace SportStore
                         return Task.CompletedTask;
                     }
                 };
+                
             });
 
             services.AddAuthentication("Identity.Application")
+
                 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
                 {
                     options.RequireHttpsMetadata = false;
@@ -105,6 +106,7 @@ namespace SportStore
                         IssuerSigningKey = JwtOptions.GetKey(),
                     };
                 });
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("admin", builder => { builder.RequireClaim(ClaimTypes.Role, "admin"); });
@@ -118,7 +120,11 @@ namespace SportStore
             });
 
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/build"; });
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "BFS Store", Version = "v1"});
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

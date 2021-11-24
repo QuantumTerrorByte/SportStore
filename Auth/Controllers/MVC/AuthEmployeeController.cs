@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Auth.Infrastructure;
 using Auth.Models;
@@ -18,12 +19,14 @@ namespace Auth.Controllers.MVC
         private readonly IPasswordValidator<AspNetUser> _passwordValidator;
         private readonly IPasswordHasher<AspNetUser> _passwordHasher;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IHttpClientFactory _httpClientFactory;
 
         public AuthEmployeeController(SignInManager<AspNetUser> signInManager,
             UserManager<AspNetUser> userManager,
             IUserValidator<AspNetUser> userValidator,
             IPasswordValidator<AspNetUser> passwordValidator,
-            IPasswordHasher<AspNetUser> passwordHasher, RoleManager<IdentityRole> roleManager)
+            IPasswordHasher<AspNetUser> passwordHasher, RoleManager<IdentityRole> roleManager,
+            IHttpClientFactory httpClientFactory)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -31,6 +34,7 @@ namespace Auth.Controllers.MVC
             _passwordValidator = passwordValidator;
             _passwordHasher = passwordHasher;
             _roleManager = roleManager;
+            _httpClientFactory = httpClientFactory;
         }
 
         [HttpGet]
@@ -56,7 +60,7 @@ namespace Auth.Controllers.MVC
 
             // var refference =
             // _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, signInModel.Password);
-            
+
             await _signInManager.SignOutAsync();
             var signInResult =
                 await _signInManager.PasswordSignInAsync(
@@ -64,7 +68,7 @@ namespace Auth.Controllers.MVC
 
             if (!signInResult.Succeeded) return View(signInModel);
 
-            return RedirectToAction("Index", "AdminUsersRoles");
+            return Redirect(signInModel.ReturnUrl);
             // return Redirect(signInModel.ReturnUrl);
         }
 
@@ -126,7 +130,25 @@ namespace Auth.Controllers.MVC
                 return View(signUpModel);
             }
 
-            return Redirect("https://localhost:7000/AuthPersonal/SignIn?returnUrl=google.com");
+            using (var client = _httpClientFactory.CreateClient())
+            {
+                try
+                {
+                    var response = await client.GetAsync(
+                        $"{Constants.APP_URL}/Users/Create?id={user.Id}&name={user.UserName}&email={user.Email}");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return Redirect("https://localhost:7000/AuthEmployee/SignIn?returnUrl=https://localhost:7000/AdminUsersRoles/Index");
+                    }
+                    await _userManager.DeleteAsync(user);
+                    return View(signUpModel);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return View(signUpModel);
+                }
+            }
         }
 
 

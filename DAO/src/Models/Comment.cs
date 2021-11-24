@@ -7,8 +7,7 @@ namespace DAO.Models
     {
         public long Id { get; set; }
         public string AuthorId { get; set; }
-        public string AuthorName { get; set; }
-        public string AuthorEmail { get; set; }
+        public AppUser Author { get; set; }
         public long ProductId { get; set; }
         public Product Product { get; set; }
         

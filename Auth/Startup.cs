@@ -1,4 +1,5 @@
 using System;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -31,7 +32,8 @@ namespace Auth
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IPasswordValidator<AspNetUser>, UserPasswordValidator>();
-
+            services.AddHttpClient(); // connection issue, singleton header problem
+            services.AddSingleton<HttpClient>();
             services.AddDbContext<UserIdentityContext>(options =>
             {
                 options.UseMySQL(Configuration.GetConnectionString("DefaultConnection"));

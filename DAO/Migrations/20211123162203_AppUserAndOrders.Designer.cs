@@ -3,14 +3,16 @@ using System;
 using DAO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAO.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20211123162203_AppUserAndOrders")]
+    partial class AppUserAndOrders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,11 +52,17 @@ namespace DAO.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("varchar(767)");
 
+                    b.Property<long>("CommentsId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("text");
+
+                    b.Property<long>("LikeJunctionId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Phone")
                         .HasColumnType("text");
@@ -76,8 +84,17 @@ namespace DAO.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<string>("AuthorId")
+                    b.Property<string>("AppUserId")
                         .HasColumnType("varchar(767)");
+
+                    b.Property<string>("AuthorEmail")
+                        .HasColumnType("text");
+
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("AuthorName")
+                        .HasColumnType("text");
 
                     b.Property<string>("Content")
                         .HasColumnType("text");
@@ -99,7 +116,7 @@ namespace DAO.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId");
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("ProductId");
 
@@ -136,6 +153,9 @@ namespace DAO.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("varchar(767)");
+
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
@@ -149,6 +169,8 @@ namespace DAO.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("ProductId");
 
@@ -235,9 +257,6 @@ namespace DAO.Migrations
                     b.Property<long>("Amount")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("varchar(767)");
-
                     b.Property<string>("Brand")
                         .HasColumnType("text");
 
@@ -263,8 +282,6 @@ namespace DAO.Migrations
                         .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
 
                     b.HasIndex("NavCategoryFirstLvlId");
 
@@ -331,17 +348,15 @@ namespace DAO.Migrations
 
             modelBuilder.Entity("DAO.Models.Comment", b =>
                 {
-                    b.HasOne("DAO.Models.AppUser", "Author")
+                    b.HasOne("DAO.Models.AppUser", null)
                         .WithMany("Comments")
-                        .HasForeignKey("AuthorId");
+                        .HasForeignKey("AppUserId");
 
                     b.HasOne("DAO.Models.ProductModel.Product", "Product")
                         .WithMany("Comments")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Author");
 
                     b.Navigation("Product");
                 });
@@ -361,6 +376,10 @@ namespace DAO.Migrations
 
             modelBuilder.Entity("DAO.Models.LikeJunction", b =>
                 {
+                    b.HasOne("DAO.Models.AppUser", null)
+                        .WithMany("LikeJunction")
+                        .HasForeignKey("AppUserId");
+
                     b.HasOne("DAO.Models.ProductModel.Product", "Product")
                         .WithMany("LikeJunction")
                         .HasForeignKey("ProductId")
@@ -398,10 +417,6 @@ namespace DAO.Migrations
 
             modelBuilder.Entity("DAO.Models.ProductModel.Product", b =>
                 {
-                    b.HasOne("DAO.Models.AppUser", null)
-                        .WithMany("Likes")
-                        .HasForeignKey("AppUserId");
-
                     b.HasOne("DAO.Models.ProductModel.Category", "NavCategoryFirstLvl")
                         .WithMany()
                         .HasForeignKey("NavCategoryFirstLvlId");
@@ -443,7 +458,7 @@ namespace DAO.Migrations
 
                     b.Navigation("Comments");
 
-                    b.Navigation("Likes");
+                    b.Navigation("LikeJunction");
                 });
 
             modelBuilder.Entity("DAO.Models.Order", b =>

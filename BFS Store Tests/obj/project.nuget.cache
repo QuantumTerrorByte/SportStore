@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "xZS7oqeuvsGxyX2Uq6AQeeeU+BT1FPR8yX3lek6DRq4r05adeqPv4KFrph8wkxFSs4k0t3JaosnN16xyYGbuTw==",
+  "dgSpecHash": "knqVAjH05ggdO0jxwNz2U0vsIjorNO8FgVlF2jobzAEl3w52yGb4f8Xtm7r+17lyJfMSgSm168QlD2uPvVunrQ==",
   "success": true,
   "projectFilePath": "D:\\Projects\\BFS Store main\\BFS Store Tests\\BFS Store Tests.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Dragunov\\.nuget\\packages\\bootstrap\\5.1.2\\bootstrap.5.1.2.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
@@ -19,7 +18,6 @@
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.11\\microsoft.aspnetcore.cryptography.keyderivation.5.0.11.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\2.2.0\\microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.dataprotection.abstractions\\2.2.0\\microsoft.aspnetcore.dataprotection.abstractions.2.2.0.nupkg.sha512",
-    "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\5.0.11\\microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.11.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.hosting.server.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.server.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

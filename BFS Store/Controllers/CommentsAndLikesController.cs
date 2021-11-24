@@ -7,13 +7,13 @@ namespace SportStore.Controllers
 {
     public class CommentsAndLikesController : Controller
     {
-        private readonly ICommentsAndLikesRepository _commentsAndLikesRepository;
+        private readonly ICommentsRepository _commentsRepository;
         private readonly IProductRepository _productRepository;
 
-        public CommentsAndLikesController(ICommentsAndLikesRepository commentsAndLikesRepository,
+        public CommentsAndLikesController(ICommentsRepository commentsRepository,
             IProductRepository productRepository)
         {
-            _commentsAndLikesRepository = commentsAndLikesRepository;
+            _commentsRepository = commentsRepository;
             _productRepository = productRepository;
         }
 

@@ -4,12 +4,9 @@ using DAO.Models;
 
 namespace DAO.Interfaces
 {
-    public interface ICommentsAndLikesRepository
+    public interface ICommentsRepository: IRepositoryBase<Comment>
     {
-        Task<IList<Comment>> GetCommentsAsync(string authorId);
-        Task<IList<Comment>> GetCommentsAsync(long productId);
-        Task<Comment> AddCommentAsync(Comment comment);
-        Task<Comment> EditCommentAsync(Comment editedComment);
-        Task<Comment> DeleteCommentAsync(long commentId);
+        Task<IList<Comment>> GetByAuthorIdAsync(string authorId);
+        Task<IList<Comment>> GetByProductIdAsync(long productId);
     }
 }
