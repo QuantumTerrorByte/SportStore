@@ -1,20 +1,20 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using DAO.Interfaces;
 using DAO.Models;
 using DAO.Models.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers.API
 {
     public class OrderController : Controller
     {
-        private readonly Cart _cart;
         private readonly IOrderRepository _orderRepository;
 
-        public OrderController(Cart cart, IOrderRepository orderRepository)
+        public OrderController(IOrderRepository orderRepository)
         {
-            _cart = cart;
             _orderRepository = orderRepository;
         }
 
@@ -22,40 +22,29 @@ namespace SportStore.Controllers.API
         public ViewResult CheckOut()
             => View(new Order());
 
+
         [HttpPost]
-        public IActionResult CheckOut(Order order)
+        public async Task<IActionResult> SaveOrder([FromBody] OrderViewModel orderViewModel)
         {
-            if (_cart.Lines().Count() == 0) //combine with front button block
-            {
-                ModelState.AddModelError("", "Cart is empty");
-            }
-
-            if (ModelState.IsValid)
-            {
-                order.CartLines = _cart.Lines().ToArray();
-                _orderRepository.SaveOrder(order);
-                return RedirectToAction("Completed");
-            }
-            else
-            {
-                return View(order);
-            }
+            return Ok();
         }
 
-        public IActionResult Completed()
+        
+        
+        
+        
+        [Authorize]
+        public async Task<IActionResult> OrdersList()
         {
-            _cart.Clear();
-            return View(_orderRepository.GetOrders);
+            var orders = await _orderRepository.GetOrders;
+            var sortedOrders = orders.OrderBy(o => o.IsDone).ToList();
+            return View(sortedOrders);
         }
 
         [Authorize]
-        public IActionResult OrdersList()
-            => View(_orderRepository.GetOrders.OrderBy(o => o.IsDone));
-
-        [Authorize]
-        public IActionResult MarkingDone(int orderId)
+        public async Task<IActionResult> MarkingDone(int orderId)
         {
-            Order targetOrder = _orderRepository.GetOrders.FirstOrDefault(o => o.Id == orderId);
+            Order targetOrder = (await _orderRepository.GetOrders).FirstOrDefault(o => o.Id == orderId);
             if (targetOrder != null)
             {
                 targetOrder.IsDone = true;

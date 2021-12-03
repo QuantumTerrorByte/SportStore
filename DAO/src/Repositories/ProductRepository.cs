@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using DAO.DataTransferModel;
 using DAO.Interfaces;
 using DAO.Models;
-using DAO.Models.Core;
 using DAO.Models.ProductModel;
 using Microsoft.EntityFrameworkCore;
 

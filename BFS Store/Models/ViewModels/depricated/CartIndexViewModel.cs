@@ -1,4 +1,4 @@
-﻿using DAO.Models.Core;
+﻿using DAO.Models;
 
 namespace SportStore.Models.ViewModels.depricated
 {

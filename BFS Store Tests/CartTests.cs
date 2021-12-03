@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Runtime.Intrinsics.X86;
+using DAO.Models;
 using DAO.Models.Core;
 using Moq;
 using Org.BouncyCastle.Crypto.Macs;

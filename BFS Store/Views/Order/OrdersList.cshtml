@@ -1,5 +1,5 @@
 ﻿@using DAO.Models
-@model System.Linq.IOrderedQueryable<DAO.Models.Order>
+@model List<DAO.Models.Order>
 @foreach (Order order in Model)
 {
     <div style="border: solid 2px rebeccapurple; margin: 30px;padding: 20px">
@@ -12,9 +12,9 @@
             <div>Phone: @order.Costumer.Phone</div>
             <div>
                 Cart:
-                @foreach (var lines in @order.CartLines)
+                @foreach (var lines in @order.Cart.CartLines)
                 {
-                    <div>@lines.Product.Name:@lines.Count</div>
+                    <div>@lines.Product.Name:@lines.Amount</div>
                 }
             </div>
         </div>

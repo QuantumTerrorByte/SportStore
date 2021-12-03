@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using DAO;
 using DAO.Interfaces;
+using DAO.Models;
 using DAO.Models.Core;
 using DAO.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -49,7 +50,6 @@ namespace SportStore
             
 
             services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(1));
-            services.AddScoped<Cart>(provider => SessionCart.GetCart(provider));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             // services.AddCors();
 

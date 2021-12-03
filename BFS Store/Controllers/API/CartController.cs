@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using DAO.Interfaces;
 using DAO.Models.Core;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,8 @@ namespace SportStore.Controllers.API
         {
             return View(new CartIndexViewModel {Cart = this.Cart, ReturnUrl = returnUrl});
         }
-                                                          
+                       
+     
         [HttpPost]
         public IActionResult AddToCart(int productId, string returnUrl)
         {

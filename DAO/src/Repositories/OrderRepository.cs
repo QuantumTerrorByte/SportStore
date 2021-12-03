@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using DAO.Interfaces;
 using DAO.Models;
 using Microsoft.EntityFrameworkCore;
@@ -14,19 +16,13 @@ namespace DAO.Repositories
             this._dataContext = dataContext;
         }
 
-        public IQueryable<Order> GetOrders => _dataContext.Orders
-            .Include(o => o.CartLines)
-            .ThenInclude(l => l.Product);
+        public Task<List<Order>> GetOrders => _dataContext.Orders
+            .Include(o => o.Cart)
+            .ThenInclude(c => c.CartLines)
+            .ThenInclude(cl=>cl.Product).ToListAsync();
 
         public void SaveOrder(Order order)
         {
-            _dataContext.AttachRange(order.CartLines.Select(l => l.Product));
-            if (order.Id == 0)
-            {
-                _dataContext.Orders.Add(order);
-            }
-
-            _dataContext.SaveChanges();
         }
     }
 }

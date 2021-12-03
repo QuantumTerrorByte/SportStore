@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using DAO.Interfaces;
+using DAO.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers.API
 {
@@ -13,10 +16,12 @@ namespace SportStore.Controllers.API
     public class CommentController : ControllerBase
     {
         private readonly ICommentsRepository _commentsRepository;
+        private readonly IAppUsersRepository _usersRepository;
 
-        public CommentController(ICommentsRepository commentsRepository)
+        public CommentController(ICommentsRepository commentsRepository, IAppUsersRepository usersRepository)
         {
             _commentsRepository = commentsRepository;
+            _usersRepository = usersRepository;
         }
 
         // GET: api/Comment
@@ -26,22 +31,16 @@ namespace SportStore.Controllers.API
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/Comment/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST: api/Comment
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] CommentViewModel commentViewModel)
         {
+            
         }
 
         // PUT: api/Comment/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Edit(int id, [FromBody] string value)
         {
         }
 
