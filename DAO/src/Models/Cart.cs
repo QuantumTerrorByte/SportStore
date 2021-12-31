@@ -5,7 +5,6 @@ namespace DAO.Models
     public class Cart
     {
         public long Id { get; set; }
-        public List<CartLine> CartLines { get; set; }
-        
+        public List<ProductLine> CartLines { get; set; }
     }
 }

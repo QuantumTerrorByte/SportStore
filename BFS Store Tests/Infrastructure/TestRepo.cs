@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using DAO.Models.ProductModel;
 
 namespace SportStoreTests.Infrastructure

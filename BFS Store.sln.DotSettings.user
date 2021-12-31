@@ -1,0 +1,20 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=37b13927_002D4127_002D4e68_002D9f3f_002Dd607ca8a43cf/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::570A72A6-C1E4-4997-B254-EB4612B37FE8::net5.0::SportStoreTests.ProductRepositoryTests.Test&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::570A72A6-C1E4-4997-B254-EB4612B37FE8::net5.0::SportStoreTests.OrderRepositoryTest.Can_Approve_And_Create_Delayed_Orders&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	
+	
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d9395638_002Dcbf8_002D45b6_002D8fe7_002D5708ca653903/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Can_Approve_And_Create_Delayed_Orders" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::570A72A6-C1E4-4997-B254-EB4612B37FE8::net5.0::SportStoreTests.OrderRepositoryTest.Can_Approve_And_Create_Delayed_Orders&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=db905656_002Da1ad_002D424e_002Db1f2_002D5fb93879d4f8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Can_Approve_And_Create_Delayed_Orders #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::570A72A6-C1E4-4997-B254-EB4612B37FE8::net5.0::SportStoreTests.OrderRepositoryTest.Can_Approve_And_Create_Delayed_Orders&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

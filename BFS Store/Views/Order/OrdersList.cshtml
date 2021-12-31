@@ -7,7 +7,7 @@
             <div>Id: @order.Id</div>
             <div>FirstName: @order.Costumer.FirstName</div>
             <div>SecondName: @order.Costumer.SecondName</div>
-            <div>Address: @order.Address</div>
+            <div>Address: @order.Costumer.Address</div>
             <div>Email: @order.Costumer.Email</div>
             <div>Phone: @order.Costumer.Phone</div>
             <div>
@@ -20,14 +20,14 @@
         </div>
 
         <div>
-            @if (order.IsDone)
+            @if (order.OrderStatus == Statusess.Finished)
             {
-                <div>Is done: @order.IsDone</div>
+                <div>Is done: @(order.OrderStatus == Statusess.Finished)</div>
             }
             else
             {
-                <div>Is done: @order.IsDone</div>
-                <a asp-action="MarkingDone" asp-controller="Order" asp-route-orderId="@order.Id">Done</a>
+                <div>Is done: @(order.OrderStatus == Statusess.New)</div>
+                <a asp-action="SetApproved" asp-controller="Order" asp-route-orderId="@order.Id">Done</a>
             }
         </div>
     </div>

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using DAO.Interfaces;
-using DAO.Models.Core;
+using DAO.Models;
 using Microsoft.AspNetCore.Mvc;
 using SportStore.Models.ViewModels.depricated;
 
@@ -10,42 +10,28 @@ namespace SportStore.Controllers.API
     public class CartController : Controller
     {
         private IProductRepository Repository { get; }
-
-        private Cart Cart { get; set; }
-
-        public CartController(IProductRepository repository, Cart cartService)
+        
+        public CartController(IProductRepository repository)
         {
             Repository = repository;
-            Cart = cartService;
         }
 
         public IActionResult CartPage(string returnUrl)
         {
-            return View(new CartIndexViewModel {Cart = this.Cart, ReturnUrl = returnUrl});
+            return View(new CartIndexViewModel {ReturnUrl = returnUrl});
         }
                        
      
         [HttpPost]
-        public IActionResult AddToCart(int productId, string returnUrl)
+        public async Task<IActionResult> AddToCart(int productId, string returnUrl)
         {
-            var product = Repository.GetProducts()
-                .FirstOrDefault(p => p.Id == productId);
-            if (product != null)
-            {
-                Cart.Add(product, 1);
-            }
+            var product = (await Repository.GetAllProductsList()).FirstOrDefault(p => p.Id == productId);
             return RedirectToAction("CartPage", new {returnUrl});
         }
 
         [HttpPost]
         public IActionResult Remove(int productId, string returnUrl)
         {
-            var product = Repository.GetProducts()
-                .FirstOrDefault(p => p.Id == productId);
-            if (product != null)
-            {
-                Cart.RemoveLine(product);
-            }
             return RedirectToAction("CartPage", new {returnUrl});
         }
         

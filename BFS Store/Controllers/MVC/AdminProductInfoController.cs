@@ -51,7 +51,7 @@ namespace SportStore.Controllers.MVC
         [HttpPost]
         public IActionResult EditInfo(Product product)
         {
-            RepositoryProduct.AddEditProduct(product);
+            RepositoryProduct.AddOrEditProduct(product);
             return RedirectToAction("ControlPanel", "AdminProduct", product.Id);
         }
 

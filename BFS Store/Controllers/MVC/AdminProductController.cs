@@ -1,9 +1,11 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using DAO.Interfaces;
 using DAO.Models.ProductModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers.MVC
 {
@@ -18,13 +20,20 @@ namespace SportStore.Controllers.MVC
         public IActionResult ControlPanel(int lastEditId)
         {
             ViewBag.LastEditId = lastEditId;
-            return View(ProductRepository.GetProducts().OrderBy(p => p.Name).Take(10).ToArray());
+            // return View(ProductRepository.GetProducts().OrderBy(p => p.Name).Take(10).ToArray());
+            return null;
         }
 
         [HttpPost]
+        public async Task<IActionResult> AddProducts(ProductLineViewModel[] productLines)
+        {
+            return null;
+        }
+        
+        [HttpPost]
         public IActionResult CreateProduct(Product product)
         {
-            ProductRepository.AddEditProduct(product);
+            ProductRepository.AddOrEditProduct(product);
             return RedirectToAction("ControlPanel", "AdminProduct");
         }
 
@@ -32,7 +41,7 @@ namespace SportStore.Controllers.MVC
         [HttpPost]
         public IActionResult Edit(Product product)
         {
-            ProductRepository.AddEditProduct(product);
+            ProductRepository.AddOrEditProduct(product);
 
             return RedirectToAction("ControlPanel", "AdminProduct", product.Id);
         }

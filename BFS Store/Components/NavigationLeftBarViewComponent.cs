@@ -17,12 +17,12 @@ namespace SportStore.Components
         {
             var categories = Repository.LangGetCategories(1);
             var currentCategory = RouteData?.Values["category"];
-            
-            return View(new LeftBarViewModel
-            {
-                Categories = categories, 
-                CurrentCategory = currentCategory?.ToString(),
-            });
+            return null;
+            // return View(new LeftBarViewModel
+            // {
+            //     Categories = categories, 
+            //     CurrentCategory = currentCategory?.ToString(),
+            // });
         }
     }
 }

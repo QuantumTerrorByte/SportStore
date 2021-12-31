@@ -9,9 +9,10 @@ namespace DAO.Repositories
 {
     public class LikesRepository : ILikesRepository
     {
-        private readonly DataContext _context;
+        public static readonly object LikesSyncObj  = new object();
+        private readonly AppDataContext _context;
 
-        public LikesRepository(DataContext context)
+        public LikesRepository(AppDataContext context)
         {
             _context = context;
         }

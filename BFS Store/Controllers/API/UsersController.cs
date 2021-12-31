@@ -1,14 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DAO.Interfaces;
 using DAO.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MySqlX.XDevAPI;
 
 namespace SportStore.Controllers.API
 {
@@ -37,11 +34,11 @@ namespace SportStore.Controllers.API
                 var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "id");
                 if (userId == null) return BadRequest("Unknown user");
 
-                var user = await _usersRepository.Get(userId.Value);
+                var user = await _usersRepository.GetAsync(userId.Value);
                 if (user == null) return BadRequest("Unknown user");
 
                 user.Likes.Add(product);
-                await _usersRepository.Edit(user);
+                await _usersRepository.EditAsync(user);
                 return Ok();
             }
             catch (Exception e)
@@ -58,7 +55,7 @@ namespace SportStore.Controllers.API
             var user = new AppUser {Id = id, UserName = name, Email = email};
             try
             {
-                _usersRepository.Add(user);
+                _usersRepository.AddAsync(user);
             }
             catch (Exception e)
             {

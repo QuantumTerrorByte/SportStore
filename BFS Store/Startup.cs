@@ -3,8 +3,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using DAO;
 using DAO.Interfaces;
-using DAO.Models;
-using DAO.Models.Core;
 using DAO.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -21,8 +19,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SportStore.Infrastructure;
-using SportStore.Models;
-using SportStore.Models.Core;
 
 namespace SportStore
 {
@@ -43,11 +39,12 @@ namespace SportStore
             services.AddTransient<IAppUsersRepository, AppUsersRepository>();
             services.AddTransient<ICommentsRepository, CommentsRepository>();
             services.AddTransient<ILikesRepository, LikesRepository>();
-            
+
             // services.AddTransient<ICommentsAndLikesRepository, CommentsAndLikesRepository>();
-            services.AddDbContext<DataContext>(options =>
-                options.UseMySQL(Configuration.GetConnectionString("Default")));
-            
+            services.AddDbContext<AppDataContext>(options =>
+                options.UseMySql(Configuration.GetConnectionString("Default"),
+                    ServerVersion.AutoDetect(Configuration.GetConnectionString("Default"))));
+
 
             services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(1));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -60,7 +57,7 @@ namespace SportStore
                     options.Password.RequiredLength = 6;
                 })
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<DataContext>()
+                .AddEntityFrameworkStores<AppDataContext>()
                 .AddDefaultTokenProviders();
 
             services.AddDataProtection().SetApplicationName("BFS Store");
@@ -88,11 +85,9 @@ namespace SportStore
                         return Task.CompletedTask;
                     }
                 };
-                
             });
 
             services.AddAuthentication("Identity.Application")
-
                 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
                 {
                     options.RequireHttpsMetadata = false;

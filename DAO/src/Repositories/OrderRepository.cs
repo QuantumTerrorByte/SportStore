@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DAO.Interfaces;
@@ -7,22 +8,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAO.Repositories
 {
-    public class OrderRepository : IOrderRepository
+    public class OrderRepository : RepositoryBase<Order>, IOrderRepository
     {
-        private readonly DataContext _dataContext;
+        public static readonly object OrdersSyncObj  = new object();
+        private readonly AppDataContext _appDataContext;
 
-        public OrderRepository(DataContext dataContext)
+        public OrderRepository(AppDataContext appDataContext) : base(appDataContext)
         {
-            this._dataContext = dataContext;
+            _appDataContext = appDataContext;
         }
 
-        public Task<List<Order>> GetOrders => _dataContext.Orders
-            .Include(o => o.Cart)
-            .ThenInclude(c => c.CartLines)
-            .ThenInclude(cl=>cl.Product).ToListAsync();
-
-        public void SaveOrder(Order order)
+        public async Task<List<Order>> GetOrdersAsync()
         {
+            return await _appDataContext.Orders
+                .Include(o=>o.Costumer)
+                .ThenInclude(c=>c.Address)
+                .Include(o => o.Cart)
+                .ThenInclude(c => c.CartLines)
+                .ThenInclude(cl => cl.Product).ToListAsync();
         }
     }
 }

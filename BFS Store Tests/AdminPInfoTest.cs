@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DAO;
+using DAO.Models;
 using DAO.Models.ProductModel;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using SportStore.Models;
 using Xunit;
 
 namespace SportStoreTests
@@ -14,7 +13,7 @@ namespace SportStoreTests
         [Fact]
         public void RouterTest()
         {
-            Mock<DataContext> repo = new Mock<DataContext>();
+            Mock<AppDataContext> repo = new Mock<AppDataContext>();
             repo.Setup(r => r.Products).Returns(Reppo.Products as DbSet<Product>);
             var temp = repo.Object.Products.AsQueryable();
             

@@ -8,14 +8,16 @@ namespace DAO.Repositories
 {
     public class AppUsersRepository : RepositoryBase<AppUser>, IAppUsersRepository
     {
-        public AppUsersRepository(DataContext dataContext) : base(dataContext)
+        public static readonly object AppUserSyncObj  = new object();                                                                                                                               
+
+        public AppUsersRepository(AppDataContext appDataContext) : base(appDataContext)
         {
         }
 
         public async Task<List<AppUser>> GetWithInclude()
         {
             return await DbSet.AsNoTracking()
-                .Include(user => user.Addresses)
+                .Include(user => user.Address)
                 .Include(user => user.Likes)
                 .ToListAsync();
         }

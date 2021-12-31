@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "omrk4wbXuXfp3f15Y89NdKfkHje7MLB8Eyu8CmMdInBoVjvFFs7oqb3J4VVd+OFUQpjneCMNom8XNlLYqNj6Nw==",
+  "dgSpecHash": "v7sfravGvVGcxlfO8iMRu9e+yR/KnaNGmw2SCLiTG/wiDJ+ykcyMOY5pX8VNg2Zfk49DyVKnBACqwjN6Myygxg==",
   "success": true,
   "projectFilePath": "D:\\Projects\\BFS Store main\\DAO\\DAO.csproj",
   "expectedPackageFiles": [
@@ -30,6 +30,8 @@
     "C:\\Users\\Dragunov\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\mysql.data\\8.0.27\\mysql.data.8.0.27.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\mysql.entityframeworkcore\\5.0.8\\mysql.entityframeworkcore.5.0.8.nupkg.sha512",
+    "C:\\Users\\Dragunov\\.nuget\\packages\\mysqlconnector\\1.3.13\\mysqlconnector.1.3.13.nupkg.sha512",
+    "C:\\Users\\Dragunov\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\5.0.3\\pomelo.entityframeworkcore.mysql.5.0.3.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",

@@ -23,8 +23,11 @@ import {store} from "../index";
 export function auth(form) {
     return async dispatch => {
         $.ajax({
-            url: `${DOMAIN}${PRODUCTS_CONTROLLER_NAME}GetProductPage`,
+            // url: `${DOMAIN}${PRODUCTS_CONTROLLER_NAME}GetProductPage`,
+            // https://localhost:5005/CostumersProductApi/GetProducts
             type: "GET",
+            datatype: "json",
+            contentType: "application/json",
             data: {form},
         }).done(response => {
             console.log(response)
@@ -61,9 +64,13 @@ export function getAndRouteProductPage({productId, brHistory}) {
 
 export function uploadProducts(dispatch, add = false) {
     const state = store.getState();
+    // let dataJson = JSON.stringify({...state.catalogPage.filters, page: state.catalogPage.products.currentPage});
     $.ajax({
         url: `${DOMAIN}${PRODUCTS_CONTROLLER_NAME}GetProducts`,
         type: "GET",
+        // datatype: "json",
+        contentType: "application/json",     
+        // data: dataJson,
         data: {...state.catalogPage.filters, page: state.catalogPage.products.currentPage},
     }).done(response => {
         console.log(response)

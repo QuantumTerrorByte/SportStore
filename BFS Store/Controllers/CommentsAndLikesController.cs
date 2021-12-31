@@ -1,7 +1,5 @@
 ﻿using DAO.Interfaces;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SportStore.Models;
 
 namespace SportStore.Controllers
 {

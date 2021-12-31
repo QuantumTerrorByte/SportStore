@@ -5,12 +5,22 @@ namespace DAO.Interfaces
 {
     public interface IRepositoryBase<T> where T : class
     {
-         Task<T> Get<TKey>(TKey key);
-         
-         Task Add(T entity);
+        Task<T> GetAsync<TKey>(TKey key);
 
-         Task Edit(T entity);
+        Task<List<T>> GetAllAsync();
 
-         Task Delete(T entity);
+        Task<T> AddAsync(T entity);
+
+        Task<T> EditAsync(T entity);
+
+        Task<T> DeleteAsync(T entity);
+        Task SaveAsync(T entity);
+        
+        T Get<TKey>(TKey key);
+        List<T> GetAll();
+        T Add(T entity);
+        T Edit(T entity);
+        T Delete(T entity);
+        void Save(T entity);
     }
 }

@@ -12,20 +12,64 @@ namespace DAO.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly DataContext _dataContext;
+        public static readonly object ProductsSyncObj = new object();
+        private readonly AppDataContext _appDataContext;
 
-        public ProductRepository(DataContext dataContext)
-            => _dataContext = dataContext;
+        public ProductRepository(AppDataContext appDataContext)
+            => _appDataContext = appDataContext;
 
+        public async Task<Product> GetProduct(long id, bool includeInners = false)
+            => await Products(includeInners).FirstOrDefaultAsync(p => p.Id == id);
 
-        public IEnumerable<Product> GetProducts(bool includeInners = false) //todo check db query
-            => Products(includeInners).ToArray();
+        IQueryable<Product> Products(bool includeInners = false)
+        {
+            return includeInners
+                ? _appDataContext.Products
+                    .Include(p => p.ProductInfos).ThenInclude(i => i.DescriptionsLi)
+                    .Include(p => p.ProductInfos).ThenInclude(i => i.DopDescriptions)
+                    .Include(p => p.ProductInfos).ThenInclude(i => i.Table)
+                    .Include(p => p.NavCategoryFirstLvl)
+                    .Include(p => p.NavCategorySecondLvl)
+                : _appDataContext.Products
+                    .Include(p => p.NavCategoryFirstLvl)
+                    .Include(p => p.NavCategorySecondLvl);
+        }
 
-        public (IList<Product>, int) GetFilteredProducts(FilteredProductsRepoRequestModel requestModel) //todo lang
+        public List<Product> GetProductsById(params long[] ids)
+        {
+            return ids != null && ids.Any()
+                ? _appDataContext.Products.Where(p => ids.Contains(p.Id)).ToList()
+                : throw new ArgumentException("no ids params or null");
+        }
+
+        public async Task<List<Product>> GetProductsByIdAsync(params long[] ids)
+        {
+            return ids != null && ids.Any()
+                ? await _appDataContext.Products.Where(p => ids.Contains(p.Id)).ToListAsync()
+                : throw new ArgumentException("no ids params or null");
+        }
+
+        public async Task<List<Product>> GetAllProductsList(bool includeInners = false) //todo check db query
+            => await Products(includeInners).ToListAsync();
+
+        /// <summary>
+        /// Check contains all ids in DB
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        public async Task<bool> CheckContainsAsync(long[] ids)
+        {
+            return ids != null && ids.Length == await _appDataContext.Products
+                .Select(p => p.Id).Where(id => ids.Contains(id)).CountAsync();
+        }
+
+        public (IList<Product>, int)
+            GetFilteredProducts(FilteredProductsRepoRequestModel requestModel) //todo lang
         {
             var products = Products(requestModel.AttachInfo)
                 .Where(p =>
-                    (requestModel.Category1 == null || p.NavCategoryFirstLvl.ValueEn == requestModel.Category1) &&
+                    (requestModel.Category1 == null ||
+                     p.NavCategoryFirstLvl.ValueEn == requestModel.Category1) &&
                     (p.PriceUsd >= requestModel.MinPrice && p.PriceUsd <= requestModel.MaxPrice) &&
                     (requestModel.Brand == null || p.Brand == requestModel.Brand));
 
@@ -36,15 +80,16 @@ namespace DAO.Repositories
                 _ => products,
             };
             var totalItems = products.Count();
-            products = products.Skip(requestModel.PageSize * (requestModel.Page - 1)).Take(requestModel.PageSize);
+            products = products.Skip(requestModel.PageSize * (requestModel.Page - 1))
+                .Take(requestModel.PageSize);
             return (products.ToList(), totalItems);
         }
 
-        public void AddEditProduct(Product product)
+        public void AddOrEditProduct(Product product)
         {
             if (product.Id != 0)
             {
-                Product currentProduct = _dataContext.Products.FirstOrDefault(p => p.Id == product.Id);
+                Product currentProduct = _appDataContext.Products.FirstOrDefault(p => p.Id == product.Id);
                 if (currentProduct != null)
                 {
                     currentProduct.Id = product.Id;
@@ -54,39 +99,22 @@ namespace DAO.Repositories
                 }
             }
 
-            _dataContext.Products.Add(product);
-            _dataContext.SaveChanges();
+            _appDataContext.Products.Add(product);
+            _appDataContext.SaveChanges();
         }
 
         public Product RemoveProduct(int id)
         {
-            Product product = _dataContext.Products.First(p => p.Id == id);
-            _dataContext.Remove(product);
-            _dataContext.SaveChanges();
+            Product product = _appDataContext.Products.First(p => p.Id == id);
+            _appDataContext.Remove(product);
+            _appDataContext.SaveChanges();
             return product;
-        }
-
-        public async Task<Product> GetProduct(long id, bool includeInners = false)
-            => await Products(includeInners).FirstOrDefaultAsync(p => p.Id == id);
-
-        IQueryable<Product> Products(bool includeInners = false)
-        {
-            return includeInners
-                ? _dataContext.Products
-                    .Include(p => p.ProductInfos).ThenInclude(i => i.DescriptionsLi)
-                    .Include(p => p.ProductInfos).ThenInclude(i => i.DopDescriptions)
-                    .Include(p => p.ProductInfos).ThenInclude(i => i.Table)
-                    .Include(p => p.NavCategoryFirstLvl)
-                    .Include(p => p.NavCategorySecondLvl)
-                : _dataContext.Products
-                    .Include(p => p.NavCategoryFirstLvl)
-                    .Include(p => p.NavCategorySecondLvl);
         }
 
 
         public ProductInfo GetProductInfo(long prodId, Langs lang = Langs.US)
         {
-            return _dataContext.ProductInfos
+            return _appDataContext.ProductInfos
                 .Where(pI => pI.ProductId == prodId)
                 .Include(pI => pI.DescriptionsLi)
                 .Include(pI => pI.ShortDescription)
@@ -97,17 +125,17 @@ namespace DAO.Repositories
 
         public ProductInfo RemoveProductInfo(long id)
         {
-            ProductInfo info = _dataContext.ProductInfos.Find(id);
-            _dataContext.Remove(info);
-            _dataContext.SaveChanges();
+            ProductInfo info = _appDataContext.ProductInfos.Find(id);
+            _appDataContext.Remove(info);
+            _appDataContext.SaveChanges();
             return info;
         }
 
-        public IQueryable<CartLine> GetLines()
-            => _dataContext.CartLines.Include(l => l.Product);
+        public IQueryable<ProductLine> GetLines()
+            => _appDataContext.ProductLines.Include(l => l.Product);
 
         public IList<string> GetBrands()
-            => _dataContext.Products.Select(p => p.Brand).Distinct().ToList();
+            => _appDataContext.Products.Select(p => p.Brand).Distinct().ToList();
 
         public IEnumerable<Category> GetCategories(int lvl = 0)
         {
@@ -115,17 +143,17 @@ namespace DAO.Repositories
             {
                 1 => GetRawCategories(1).ToHashSet(),
                 2 => GetRawCategories(2).ToHashSet(),
-                _ => _dataContext.Categories,
+                _ => _appDataContext.Categories,
             };
         }
 
         IQueryable<Category> GetRawCategories(int lvl = 0)
         {
-            return lvl == 1 ? _dataContext.Products
+            return lvl == 1 ? _appDataContext.Products
                     .Select(p => p.NavCategoryFirstLvl)
-                : lvl == 2 ? _dataContext.Products
+                : lvl == 2 ? _appDataContext.Products
                     .Select(p => p.NavCategorySecondLvl)
-                : _dataContext.Categories;
+                : _appDataContext.Categories;
         }
 
         public IEnumerable<string> LangGetCategories(int categoryLvl, Langs lang = Langs.US)
@@ -138,6 +166,16 @@ namespace DAO.Repositories
                 Langs.UA => result.Select(c => c.ValueUk).ToHashSet(),
                 _ => throw new ArgumentOutOfRangeException(nameof(lang), lang, null)
             };
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _appDataContext.SaveChangesAsync();
+        }
+
+        public void SaveChanges()
+        {
+            _appDataContext.SaveChanges();
         }
     }
 }

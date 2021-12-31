@@ -1,17 +1,19 @@
+using System;
 using DAO.Models;
 using DAO.Models.ProductModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAO
 {
-    public class DataContext : DbContext
+    public class AppDataContext : DbContext
     {
-        protected DataContext()
+        protected AppDataContext()
         {
         }
 
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        public AppDataContext(DbContextOptions<AppDataContext> options) : base(options)
         {
+            
         }
 
         public DbSet<AppUser> AppUsers { set; get; }
@@ -25,8 +27,9 @@ namespace DAO
         public DbSet<ProductIngredientsTableRow> ProductIngredientsTableRows { set; get; }
         public DbSet<Category> Categories { get; set; }
         
+        public DbSet<Cart> Carts { set; get; }
         public DbSet<Order> Orders { set; get; }
-        public DbSet<CartLine> CartLines { get; set; }
+        public DbSet<ProductLine> ProductLines { get; set; }
         
         // public DbSet<SportStore.Models.ViewModels.ProductPageViewModel> ProductPageViewModel { get; set; }
     }

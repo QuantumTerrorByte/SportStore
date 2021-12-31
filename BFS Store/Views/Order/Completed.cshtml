@@ -6,14 +6,13 @@
     <div>Id: @order.Id</div>
     <div>FirstName: @order.Costumer.FirstName</div>
     <div>SecondName: @order.Costumer.SecondName</div>
-    <div>Address: @order.Address</div>
     <div>Email: @order.Costumer.Email</div>
     <div>Phone: @order.Costumer.Phone</div>
     <div>
         Cart:
-        @foreach (var lines in @order.CartLines)
+        @foreach (var lines in @order.Cart.CartLines)
         {
-            <div>@lines.Product.Name:@lines.Count</div>
+            <div>@lines.Product.Name:@lines.Amount</div>
         }
     </div>
 }

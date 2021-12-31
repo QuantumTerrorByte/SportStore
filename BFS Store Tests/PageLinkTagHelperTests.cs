@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Moq;
 using SportStore.TagHelpers;
-using SportStore.Models;
-using SportStore.Models.ViewModels;
 using SportStore.Models.ViewModels.depricated;
 using Xunit;
 

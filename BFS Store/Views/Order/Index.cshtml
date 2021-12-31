@@ -1,0 +1,60 @@
+﻿@using SportStore.Components
+@using DAO.Migrations
+@using DAO.Models
+@model System.Collections.Generic.List<DAO.Models.Order>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+@* <div class="content-block"> *@
+@{ int index = 0; }
+@foreach (var order in Model)
+{
+    <div class="order-block">
+        @{ ++index; }
+        <div class="order-block__products-holder">
+            @foreach (var line in order.Cart.CartLines)
+            {
+                <div class="product-block">
+                    <h4>@line.Product.Name</h4>
+                    <div class="product-block__amounts">
+                        <label>
+                            Order: <input value="@line.Amount"/>
+                        </label>
+                        <span>Stock: @line.Product.Amount</span>
+                    </div>
+                </div>
+            }
+        </div>
+        <p class="buttons-holder">
+            <a class="btn btn-primary btn-margins" data-bs-toggle="collapse" href="#collapseAddress-@index" role="button" aria-expanded="false" aria-controls="collapseAddress-@index">
+                Shipment info
+            </a>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComment-@index" aria-expanded="false" aria-controls="collapseComment-@index">
+                Comment
+            </button>
+        </p>
+        <div class="collapse" id="collapseAddress-@index">
+            <div class="card card-body">
+                <h3>Email: @order.Costumer.Email</h3>
+                <h3>Phone: @order.Costumer.Phone</h3>
+                <h3>FirstName: @order.Costumer.FirstName</h3>
+                <h3>SecondName: @order.Costumer.SecondName</h3>
+                <h3>Patronymic: @order.Costumer.Patronymic</h3>
+                <h3>PostalOffice: @order.Costumer.Address.PostalOffice</h3>
+                <h3>City: @order.Costumer.Address.City</h3>
+                <h3>Street: @order.Costumer.Address.Street</h3>
+                <h3>House: @order.Costumer.Address.House</h3>
+                <h3>Apartment: @order.Costumer.Address.Apartment</h3>
+            </div>
+        </div>
+        <div class="collapse" id="collapseComment-@index">
+            <div class="card card-body">
+                <h3>@order.Comment</h3>
+            </div>
+        </div>
+    </div>
+}
+@* </div> *@

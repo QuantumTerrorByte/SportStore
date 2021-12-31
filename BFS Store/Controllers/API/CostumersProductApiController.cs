@@ -13,8 +13,8 @@ using FilteredProductsRepoRequestModel = DAO.DataTransferModel.FilteredProductsR
 namespace SportStore.Controllers.API
 {
     [Route("[controller]")]
-    [ApiController]
-    public class CostumersProductApiController : ControllerBase
+    // [ApiController]
+    public class CostumersProductApiController : Controller
     {
         private readonly IProductRepository _productRepository;
 

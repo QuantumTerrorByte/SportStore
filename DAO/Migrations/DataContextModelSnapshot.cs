@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAO.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(AppDataContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -24,23 +24,21 @@ namespace DAO.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("Apartment")
-                        .HasColumnType("text");
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("varchar(767)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("City")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("House")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PostalOffice")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Street")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
 
                     b.ToTable("Addresses");
                 });
@@ -48,26 +46,52 @@ namespace DAO.Migrations
             modelBuilder.Entity("DAO.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(767)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<long>("AddressId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Email")
-                        .HasColumnType("text");
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("text");
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)");
+
+                    b.Property<string>("Patronymic")
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("text");
+                        .HasMaxLength(12)
+                        .HasColumnType("varchar(12)");
 
                     b.Property<string>("SecondName")
-                        .HasColumnType("text");
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("text");
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddressId");
+
                     b.ToTable("AppUsers");
+                });
+
+            modelBuilder.Entity("DAO.Models.Cart", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Carts");
                 });
 
             modelBuilder.Entity("DAO.Models.Comment", b =>
@@ -77,22 +101,17 @@ namespace DAO.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("AuthorId")
-                        .HasColumnType("varchar(767)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Content")
-                        .HasColumnType("text");
+                        .HasMaxLength(300)
+                        .HasColumnType("varchar(300)");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime");
-
-                    b.Property<DateTime>("Edited")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<bool>("IsEdited")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("PreviousState")
-                        .HasColumnType("text");
 
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint");
@@ -106,30 +125,6 @@ namespace DAO.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("DAO.Models.Core.CartLine", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("ProductId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CartLines");
-                });
-
             modelBuilder.Entity("DAO.Models.LikeJunction", b =>
                 {
                     b.Property<long>("Id")
@@ -140,13 +135,13 @@ namespace DAO.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("UserEmail")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -157,29 +152,60 @@ namespace DAO.Migrations
 
             modelBuilder.Entity("DAO.Models.Order", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<long?>("AddressId")
                         .HasColumnType("bigint");
 
+                    b.Property<long>("CartId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Comment")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
                     b.Property<string>("CostumerId")
-                        .HasColumnType("varchar(767)");
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<bool>("GiftWrap")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("IsDone")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<int>("OrderStatus")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
+                    b.HasIndex("CartId");
 
                     b.HasIndex("CostumerId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("DAO.Models.ProductLine", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<long>("CartId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductLines");
                 });
 
             modelBuilder.Entity("DAO.Models.ProductModel.Category", b =>
@@ -189,13 +215,13 @@ namespace DAO.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ValueEn")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ValueRu")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ValueUk")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -215,7 +241,7 @@ namespace DAO.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("Value")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -236,16 +262,16 @@ namespace DAO.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("AppUserId")
-                        .HasColumnType("varchar(767)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Brand")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ImgUrl")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("NavCategoryFirstLvlId")
                         .HasColumnType("int");
@@ -257,10 +283,10 @@ namespace DAO.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<decimal>("PriceUsd")
-                        .HasColumnType("decimal(18, 2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<decimal>("Rating")
-                        .HasColumnType("decimal(18, 2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
 
@@ -304,16 +330,16 @@ namespace DAO.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("FirstColumn")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<long?>("ProductInfoId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("SecondColumn")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ThirdColumn")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -322,11 +348,15 @@ namespace DAO.Migrations
                     b.ToTable("ProductIngredientsTableRows");
                 });
 
-            modelBuilder.Entity("DAO.Models.Address", b =>
+            modelBuilder.Entity("DAO.Models.AppUser", b =>
                 {
-                    b.HasOne("DAO.Models.AppUser", null)
-                        .WithMany("Addresses")
-                        .HasForeignKey("AppUserId");
+                    b.HasOne("DAO.Models.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("DAO.Models.Comment", b =>
@@ -346,19 +376,6 @@ namespace DAO.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("DAO.Models.Core.CartLine", b =>
-                {
-                    b.HasOne("DAO.Models.Order", null)
-                        .WithMany("CartLines")
-                        .HasForeignKey("OrderId");
-
-                    b.HasOne("DAO.Models.ProductModel.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("DAO.Models.LikeJunction", b =>
                 {
                     b.HasOne("DAO.Models.ProductModel.Product", "Product")
@@ -372,17 +389,36 @@ namespace DAO.Migrations
 
             modelBuilder.Entity("DAO.Models.Order", b =>
                 {
-                    b.HasOne("DAO.Models.Address", "Address")
+                    b.HasOne("DAO.Models.Cart", "Cart")
                         .WithMany()
-                        .HasForeignKey("AddressId");
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DAO.Models.AppUser", "Costumer")
                         .WithMany()
                         .HasForeignKey("CostumerId");
 
-                    b.Navigation("Address");
+                    b.Navigation("Cart");
 
                     b.Navigation("Costumer");
+                });
+
+            modelBuilder.Entity("DAO.Models.ProductLine", b =>
+                {
+                    b.HasOne("DAO.Models.Cart", null)
+                        .WithMany("CartLines")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DAO.Models.ProductModel.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("DAO.Models.ProductModel.Description", b =>
@@ -439,14 +475,12 @@ namespace DAO.Migrations
 
             modelBuilder.Entity("DAO.Models.AppUser", b =>
                 {
-                    b.Navigation("Addresses");
-
                     b.Navigation("Comments");
 
                     b.Navigation("Likes");
                 });
 
-            modelBuilder.Entity("DAO.Models.Order", b =>
+            modelBuilder.Entity("DAO.Models.Cart", b =>
                 {
                     b.Navigation("CartLines");
                 });

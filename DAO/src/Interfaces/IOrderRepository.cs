@@ -5,9 +5,10 @@ using DAO.Models;
 
 namespace DAO.Interfaces
 {
-    public interface IOrderRepository
+    public interface IOrderRepository: IRepositoryBase<Order>
     {
-        Task<List<Order>> GetOrders { get; }
-        void SaveOrder(Order order);
+        public static readonly object OrdersSyncObj  = new object();
+        Task<List<Order>> GetOrdersAsync();
+        
     }
 }

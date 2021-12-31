@@ -9,9 +9,10 @@ namespace DAO.Repositories
 {
     public class CommentsRepository : RepositoryBase<Comment>, ICommentsRepository
     {
-        private readonly DataContext _context;
+        public static readonly object CommentsSyncObj  = new object();
+        private readonly AppDataContext _context;
 
-        public CommentsRepository(DataContext context) : base(context)
+        public CommentsRepository(AppDataContext context) : base(context)
         {
             _context = context;
         }
