@@ -5,25 +5,27 @@ using DAO.Interfaces;
 using DAO.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SportStore.Controllers.API
 {
+    [DisableCors]
     [Route("[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class CostumersController : ControllerBase
     {
         private readonly IAppUsersRepository _usersRepository;
         private readonly IProductRepository _productRepository;
 
-        public UsersController(IAppUsersRepository usersRepository)
+        public CostumersController(IAppUsersRepository usersRepository)
         {
             _usersRepository = usersRepository;
         }
 
         [HttpPost]
         [Route("[action]")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> AddLike(long productId)
         {
             try

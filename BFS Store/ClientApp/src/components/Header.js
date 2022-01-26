@@ -1,11 +1,11 @@
 import React from "react";
 import '../styles/Header.css'
 import {NavLink, useHistory} from "react-router-dom";
-import {signIn, signOut} from "../redux/AuthActionsFactory";
+import {signIn, signOutAction} from "../redux/AuthActionsFactory";
 import {useDispatch} from "react-redux";
 import formStyles from "../styles/SignUpSignInProfileEdit.module.css";
 import {LoginReduxForm} from "./forms/LoginForm";
-import {SWITCH_AUTH_FORM_BACKGROUND_FLAG} from "../redux/ActionsEnum";
+import {SWITCH_AUTH_FORM_BACKGROUND_FLAG, USER_AUTH_CHANGE_STATE} from "../redux/ActionsEnum";
 
 
 export default function Header({userData, catalogPage}) {
@@ -42,7 +42,10 @@ export default function Header({userData, catalogPage}) {
                         <div>
                             <NavLink className="devLinksDecor" to="/UserProfilePage">Profile</NavLink>
                             <span className="devLinksDecor"
-                                  onClick={() => dispatch(signOut({browserHistory: browserHistory}))}>SignOut</span>
+                                  onClick={() => {
+                                      dispatch({type: USER_AUTH_CHANGE_STATE});
+                                      browserHistory.goBack();
+                                  }}>SignOut</span>
                         </div> :
                         <NavLink className="devLinksDecor" to='/SignIn'
                                  onClick={() => dispatch({type: SWITCH_AUTH_FORM_BACKGROUND_FLAG})}>SignIn</NavLink>}

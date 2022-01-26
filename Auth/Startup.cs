@@ -10,6 +10,7 @@ using Auth.Infrastructure;
 using Auth.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +20,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Auth
 {
+    [DisableCors]
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -47,8 +49,8 @@ namespace Auth
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<UserIdentityContext>()
                 .AddDefaultTokenProviders();
-            
-            
+
+
             services.AddDataProtection().SetApplicationName("BFS Store");
             services.ConfigureApplicationCookie(options =>
             {
@@ -88,15 +90,15 @@ namespace Auth
                 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
                 {
                     options.RequireHttpsMetadata = false;
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidIssuer = JwtOptions.ISSUER,
-                        ValidateAudience = true,
-                        ValidAudience = JwtOptions.AUDIENCE,
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = JwtOptions.GetKey(),
-                    };
+                    // options.TokenValidationParameters = new TokenValidationParameters
+                    // {
+                    //     ValidateIssuer = true,
+                    //     ValidIssuer = JwtOptions.ISSUER,
+                    //     ValidateAudience = true,
+                    //     ValidAudience = JwtOptions.AUDIENCE,
+                    //     ValidateIssuerSigningKey = true,
+                    //     IssuerSigningKey = JwtOptions.GetKey(),
+                    // };
                 });
             services.AddAuthorization(options =>
             {
@@ -112,6 +114,7 @@ namespace Auth
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -132,7 +135,9 @@ namespace Auth
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseCors(builder => builder
+                .AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().DisallowCredentials()
+            ); //between routing and endpoints  
             app.UseAuthentication();
             app.UseAuthorization();
 

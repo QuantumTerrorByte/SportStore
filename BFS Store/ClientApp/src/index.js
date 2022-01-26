@@ -12,8 +12,8 @@ import './styles/Home.module.css'
 import history from 'history'
 
 export const store = createStore(rootReducer, compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    applyMiddleware(thunk)
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ));
 
 store.dispatch({type: ""});
@@ -22,7 +22,6 @@ store.dispatch(uploadCategoriesAndBrands());
 
 
 const app = (
-
     <Provider store={store}>
         <BrowserRouter>
             <App/>

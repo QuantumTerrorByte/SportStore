@@ -9,6 +9,7 @@ using Auth.Models.RequestModel;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Auth.Controllers.API
 {
+    // [EnableCors]
     [Route("[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -38,7 +40,8 @@ namespace Auth.Controllers.API
         }
 
         [HttpGet]
-        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Policy = "user")]
+        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme,
+            Policy = "user")]
         [Route("Info")]
         public IActionResult Info()
         {
@@ -51,14 +54,14 @@ namespace Auth.Controllers.API
                 });
         }
 
-        [HttpPost]
+        [HttpGet]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("Index")]
         public async Task<IActionResult> Index()
         {
             return Ok(await _userManager.Users.ToArrayAsync());
         }
-
+        
         [HttpPost]
         [Route("[action]")]
         public async Task<ActionResult> SignInCostumers([FromBody] SignInModel signInModel)
@@ -119,7 +122,8 @@ namespace Auth.Controllers.API
                 PhoneNumber = signUpModel.PhoneNumber,
                 UserName = signUpModel.UserName
             };
-            var isCreatingValid = await _userManager.CreateAsync(newUser, signUpModel.Password); //todo pass hash
+            var isCreatingValid =
+                await _userManager.CreateAsync(newUser, signUpModel.Password); //todo pass hash
             if (!isCreatingValid.Succeeded) return BadRequest(isCreatingValid.Errors);
 
             var isInRole = await _userManager.AddToRoleAsync(newUser, "user");

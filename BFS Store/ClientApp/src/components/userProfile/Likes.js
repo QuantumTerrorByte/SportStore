@@ -6,7 +6,7 @@ export const Likes = () => {
     const dispatch = useDispatch();
     return (
         <div>
-like
+            like
         </div>
     );
 }

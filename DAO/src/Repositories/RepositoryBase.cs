@@ -94,5 +94,15 @@ namespace DAO.Repositories
         {
             AppDataContext.SaveChangesAsync();
         }
+
+        public void SaveChanges()
+        {
+            AppDataContext.SaveChanges();
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await AppDataContext.SaveChangesAsync();
+        }
     }
 }

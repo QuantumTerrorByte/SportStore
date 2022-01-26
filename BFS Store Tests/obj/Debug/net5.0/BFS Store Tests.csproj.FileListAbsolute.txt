@@ -528,4 +528,3 @@ D:\Projects\BFS Store main\BFS Store Tests\obj\Debug\net5.0\BFS Store Tests.dll
 D:\Projects\BFS Store main\BFS Store Tests\obj\Debug\net5.0\ref\BFS Store Tests.dll
 D:\Projects\BFS Store main\BFS Store Tests\obj\Debug\net5.0\BFS Store Tests.pdb
 D:\Projects\BFS Store main\BFS Store Tests\obj\Debug\net5.0\BFS Store Tests.genruntimeconfig.cache
-D:\Projects\BFS Store main\BFS Store Tests\bin\Debug\net5.0\BFS Store.StaticWebAssets.xml

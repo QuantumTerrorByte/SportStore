@@ -22,5 +22,7 @@ namespace DAO.Interfaces
         T Edit(T entity);
         T Delete(T entity);
         void Save(T entity);
+        void SaveChanges();
+        Task SaveChangesAsync();
     }
 }

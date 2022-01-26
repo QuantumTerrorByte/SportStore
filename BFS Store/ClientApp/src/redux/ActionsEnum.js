@@ -46,7 +46,7 @@ export const USER_DELETE = "USER_DELETE";
 
 
 
-
+export const AUTH_DOMAIN = "https://localhost:7000";
 
 
 

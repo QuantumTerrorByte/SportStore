@@ -25,7 +25,7 @@ namespace SportStore.Controllers.API
         [HttpPost]
         public async Task<IActionResult> AddToCart(int productId, string returnUrl)
         {
-            var product = (await Repository.GetAllProductsList()).FirstOrDefault(p => p.Id == productId);
+            var product = (await Repository.GetAllProductsListAsync()).FirstOrDefault(p => p.Id == productId);
             return RedirectToAction("CartPage", new {returnUrl});
         }
 

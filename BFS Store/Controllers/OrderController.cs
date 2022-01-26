@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DAO;
 using DAO.Interfaces;
 using DAO.Models;
 using DAO.Models.ProductModel;
@@ -12,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SportStore.Models.ViewModels;
 
-namespace SportStore.Controllers.API
+namespace SportStore.Controllers
 {
     // hybrid controller
     public class OrderController : Controller
@@ -26,13 +25,14 @@ namespace SportStore.Controllers.API
         public OrderController(
             IOrderRepository orderRepository,
             IProductRepository productRepository,
-            IAppUsersRepository usersRepository,
-            ILogger logger)
+            IAppUsersRepository usersRepository
+            // ILogger logger
+        )
         {
             _orderRepository = orderRepository;
             _productRepository = productRepository;
             _usersRepository = usersRepository;
-            _logger = logger;
+            // _logger = logger;
         }
 
         [HttpGet]
@@ -216,10 +216,17 @@ namespace SportStore.Controllers.API
             {
                 return RedirectToAction("Index", "Order", "Problems with data base");
             }
- 
+
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Change order status
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <param name="status"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         public async Task<IActionResult> SetStatus(long orderId, Statusess status, string returnUrl)
         {
             Order order = (await _orderRepository.GetOrdersAsync())
@@ -232,6 +239,56 @@ namespace SportStore.Controllers.API
 
             order.OrderStatus = status;
             return Redirect(returnUrl);
+        }
+
+        public async Task<IActionResult> Cancel(long orderId)
+        {
+            var order = await _orderRepository.GetAsync(orderId);
+            if (order != null)
+            {
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        /// <summary>
+        /// Return reserved products from order to repository, change order status to NotPickedUp and
+        /// set risc mark to target user 
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> NotPickedUp(long orderId) //todo mark costumer as risc
+        {
+            try
+            {
+                var order = await _orderRepository.GetAsync(orderId);
+                if (order == null)
+                {
+                    return RedirectToAction("Index", "Order", "Order was not founded");
+                }
+
+                lock (ProductRepository.ProductsSyncObj)
+                {
+                    var orderCartDictionary = order.Cart.CartLines.ToDictionary(l => l.ProductId);
+                    var cartProductsFromRepository =
+                        _productRepository.GetProductsById(orderCartDictionary.Keys.ToArray());
+                    foreach (var product in cartProductsFromRepository)
+                    {
+                        var productById = orderCartDictionary[product.Id];
+                        product.Amount += productById.Amount;
+                    }
+
+                    order.OrderStatus = Statusess.NotPickedUp;
+                    _orderRepository.SaveChanges();
+                    _productRepository.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Order", "Db problems");
+            }
+
+            return RedirectToAction(nameof(Index), "Order", "Done");
         }
     }
 }

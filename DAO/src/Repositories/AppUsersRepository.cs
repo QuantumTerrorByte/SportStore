@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using DAO.Core;
 using DAO.Interfaces;
 using DAO.Models;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ namespace DAO.Repositories
 {
     public class AppUsersRepository : RepositoryBase<AppUser>, IAppUsersRepository
     {
-        public static readonly object AppUserSyncObj  = new object();                                                                                                                               
+        public static readonly SyncObj AppUserSyncObj  = new ();                                                                                                                               
 
         public AppUsersRepository(AppDataContext appDataContext) : base(appDataContext)
         {

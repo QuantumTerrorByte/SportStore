@@ -9,6 +9,7 @@ using DAO.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
+using SportStore.Controllers;
 using SportStore.Controllers.API;
 using Xunit;
 using Assert = Xunit.Assert;
@@ -79,7 +80,7 @@ namespace SportStoreTests
             };
             var orderController = new OrderController(new OrderRepository(_dataContext),
                 new ProductRepository(_dataContext),
-                new AppUsersRepository(_dataContext), null);
+                new AppUsersRepository(_dataContext));
             Assert.Equal(10, _dataContext.Products.FirstOrDefault(p => p.Id == 1)?.Amount);
             var result = await orderController.SetApproved(1, productLines, "");
 
@@ -91,6 +92,25 @@ namespace SportStoreTests
                 .Cart.CartLines.Count());
             Assert.NotNull(_dataContext.Orders.FirstOrDefault(o => o.OrderStatus == Statusess.Delayed)
                 .Cart.CartLines.FirstOrDefault(l => l.Amount == 5 && l.ProductId == 1));
+        }
+
+
+        [Fact]
+        public async Task Can_Return_Products_From_NotPickedUp()
+        {
+            var orderController = new OrderController(new OrderRepository(_dataContext),
+                new ProductRepository(_dataContext),
+                new AppUsersRepository(_dataContext));
+            
+            Assert.Equal(10, _dataContext.Products.Find(1).Amount);
+            Assert.Equal(20, _dataContext.Products.Find(2).Amount);
+            Assert.Equal(Statusess.New, _dataContext.Orders.Find(1).OrderStatus);
+            
+            var result = await orderController.NotPickedUp(1);
+
+            Assert.Equal(5, _dataContext.Products.Find(1).Amount);
+            Assert.Equal(15, _dataContext.Products.Find(2).Amount);
+            Assert.Equal(Statusess.NotPickedUp, _dataContext.Orders.Find(1).OrderStatus);
         }
     }
 }

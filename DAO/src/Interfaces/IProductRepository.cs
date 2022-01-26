@@ -15,7 +15,7 @@ namespace DAO.Interfaces
         Task<Product> GetProduct(long id, bool includeInners = false);
         List<Product> GetProductsById(params long[] ids);
         Task<List<Product>> GetProductsByIdAsync(params long[] ids);
-        Task<List<Product>> GetAllProductsList(bool includeInners = false);
+        Task<List<Product>> GetAllProductsListAsync(bool includeInners = false);
         IQueryable<ProductLine> GetLines();
         ProductInfo GetProductInfo(long prodId, Langs lang = Langs.US);
         ProductInfo RemoveProductInfo(long id);

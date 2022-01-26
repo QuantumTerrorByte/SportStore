@@ -7,13 +7,19 @@ import Header from "./components/Header";
 import {RegistrationReduxForm} from "./components/forms/RegistrationAndEditProfileForm";
 import {UserProfilePage} from "./components/userProfile/UserProfilePage";
 import {LoginReduxForm} from "./components/forms/LoginForm";
-import {signIn, signUp} from "./redux/AuthActionsFactory";
-import {SWITCH_AUTH_FORM_BACKGROUND_FLAG, SWITCH_THANKFULNESS_POPUP_FLAG} from "./redux/ActionsEnum";
+import {AUTH_CONTROLLER_PATH, signIn, signUp, TestAction} from "./redux/AuthActionsFactory";
+import {
+    AUTH_DOMAIN,
+    SWITCH_AUTH_FORM_BACKGROUND_FLAG,
+    SWITCH_THANKFULNESS_POPUP_FLAG,
+    USER_LOGIN
+} from "./redux/ActionsEnum";
 import styles from './styles/Home.module.css'
 import formStyles from './styles/SignUpSignInProfileEdit.module.css'
 import Footer from "./components/Footer";
 import {ProductPageProvider} from "./components/ProductPageComponents/ProductPageProvider";
 import {EventBreakerWithFocusBlock} from "./components/forms/EventBreakerWithFocusBlock";
+import $ from "jquery";
 
 
 export default function App(props) {
@@ -24,18 +30,19 @@ export default function App(props) {
     const className = state.uiFlags.signInUpHolder ? styles.authFormHolder : styles.none;
     const formHolder = () => dispatch({type: SWITCH_AUTH_FORM_BACKGROUND_FLAG});
 
-    return (
-        <div className={styles.main}>
+    return (<div className={styles.main}>
+            <div><button onClick={(e)=>{dispatch(TestAction())}}>test</button></div>
+            <div><button onClick={(e)=>{dispatch(TestAction())}}>test</button></div>
+            <div><button onClick={(e)=>{dispatch(TestAction())}}>test</button></div>
             <div className="top-top-panel">Акция</div>
-
             <Header userData={state.userData} catalogPage={state.catalogPage}/>
-
             <Switch>
                 <Route exact path='/SignIn'>
                     <div onClick={formHolder} className={className}>
                         <div onClick={(e) => e.stopPropagation()}>
                             <LoginReduxForm styles={formStyles}
-                                            onSubmit={(e) => dispatch(signIn({browserHistory, ...e}))}/>
+                                            onSubmit={(e) => dispatch(
+                                                signIn({browserHistory, ...e}))}/>
                         </div>
                     </div>
                 </Route>
@@ -43,7 +50,8 @@ export default function App(props) {
                     <div onClick={formHolder} className={className}>
                         <div onClick={(e) => e.stopPropagation()}>
                             <RegistrationReduxForm styles={formStyles}
-                                                   onSubmit={(e) => dispatch(signUp(browserHistory, e))}/>
+                                                   onSubmit={(e) => dispatch(
+                                                       signUp(browserHistory, e))}/>
                         </div>
                     </div>
                 </Route>
@@ -55,7 +63,6 @@ export default function App(props) {
                     </div>
                 </Route>
             </Switch>
-
             <Switch>
                 <Route path='/ProductInfoPage/'>
                     <ProductPageProvider {...state.productPageViewModel}/>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DAO.Core;
 using DAO.DataTransferModel;
 using DAO.Interfaces;
 using DAO.Models;
@@ -12,7 +13,7 @@ namespace DAO.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        public static readonly object ProductsSyncObj = new object();
+        public static readonly SyncObj ProductsSyncObj = new();
         private readonly AppDataContext _appDataContext;
 
         public ProductRepository(AppDataContext appDataContext)
@@ -49,7 +50,7 @@ namespace DAO.Repositories
                 : throw new ArgumentException("no ids params or null");
         }
 
-        public async Task<List<Product>> GetAllProductsList(bool includeInners = false) //todo check db query
+        public async Task<List<Product>> GetAllProductsListAsync(bool includeInners = false) //todo check db query
             => await Products(includeInners).ToListAsync();
 
         /// <summary>

@@ -48,7 +48,6 @@ namespace SportStore
 
             services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(1));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            // services.AddCors();
 
 
             services.AddDefaultIdentity<IdentityUser>(options =>
@@ -120,6 +119,8 @@ namespace SportStore
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "BFS Store", Version = "v1"});
             });
+
+            services.AddCors();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -140,10 +141,12 @@ namespace SportStore
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseCors(builder => builder
+                .AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().DisallowCredentials()
+            ); //between routing and endpoints  
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseSpaStaticFiles();
-            // app.UseCors(builder => builder.AllowAnyOrigin()); //between routing and endpoints  
 
             app.UseEndpoints(endpoints =>
             {

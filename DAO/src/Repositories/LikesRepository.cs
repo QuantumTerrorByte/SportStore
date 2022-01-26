@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DAO.Core;
 using DAO.Interfaces;
 using DAO.Models;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ namespace DAO.Repositories
 {
     public class LikesRepository : ILikesRepository
     {
-        public static readonly object LikesSyncObj  = new object();
+        public static readonly SyncObj LikesSyncObj  = new SyncObj();
         private readonly AppDataContext _context;
 
         public LikesRepository(AppDataContext context)

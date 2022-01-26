@@ -10,6 +10,6 @@
         Restored,
         Finished,
         Cancelled,
-        UnTook,
+        NotPickedUp,
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DAO.Core;
 using DAO.Interfaces;
 using DAO.Models;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ namespace DAO.Repositories
 {
     public class OrderRepository : RepositoryBase<Order>, IOrderRepository
     {
-        public static readonly object OrdersSyncObj  = new object();
+        public static readonly SyncObj OrdersSyncObj  = new ();
         private readonly AppDataContext _appDataContext;
 
         public OrderRepository(AppDataContext appDataContext) : base(appDataContext)

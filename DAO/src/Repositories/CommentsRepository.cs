@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DAO.Core;
 using DAO.Interfaces;
 using DAO.Models;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ namespace DAO.Repositories
 {
     public class CommentsRepository : RepositoryBase<Comment>, ICommentsRepository
     {
-        public static readonly object CommentsSyncObj  = new object();
+        public static readonly SyncObj CommentsSyncObj  = new();
         private readonly AppDataContext _context;
 
         public CommentsRepository(AppDataContext context) : base(context)

@@ -9,8 +9,8 @@ import {
     USER_UPDATE
 } from "../ActionsEnum";
 
-const userMapper = (responce) => {
-    return {userId: responce.id, userEmail: responce.email, userPhoneNumber: responce.phoneNumber, ...responce}
+const userMapper = (userInfoResponse) => {
+    return {userId: userInfoResponse.id, userEmail: userInfoResponse.email, userPhoneNumber: userInfoResponse.phoneNumber}
 };
 
 export function UserDataReducer(state = initialState.userData, action) {

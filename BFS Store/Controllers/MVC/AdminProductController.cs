@@ -16,12 +16,13 @@ namespace SportStore.Controllers.MVC
         public AdminProductController(IProductRepository productRepository)
             => ProductRepository = productRepository;
 
-        [Authorize]
-        public IActionResult ControlPanel(int lastEditId)
+        // [Authorize]
+        public async Task<IActionResult> ControlPanel(int lastEditId)
         {
             ViewBag.LastEditId = lastEditId;
-            // return View(ProductRepository.GetProducts().OrderBy(p => p.Name).Take(10).ToArray());
-            return null;
+            var temp = await ProductRepository.GetAllProductsListAsync();
+            return View(temp.Take(20).ToArray());
+            // return null;
         }
 
         [HttpPost]
