@@ -232,11 +232,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /*background: var(--lightMain);*/
-    background: #FFD719;
-    background: -moz-radial-gradient(center, #FFD719 0%, #FFEB02 47%, #FFC900 100%);
-    background: -webkit-radial-gradient(center, #FFD719 0%, #FFEB02 47%, #FFC900 100%);
-    background: radial-gradient(ellipse at center, #FFD719 0%, #FFEB02 47%, #FFC900 100%);
+    background: var(--lightMain);
     color: white;
     border-radius: 50%;
     height: 20px;

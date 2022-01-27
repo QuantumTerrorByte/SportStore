@@ -4,14 +4,16 @@ import {NavLink, useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {SWITCH_AUTH_FORM_BACKGROUND_FLAG, USER_AUTH_CHANGE_STATE} from "../../redux/Consts";
 import {CartMini} from "./CartMini";
+import {switchMiniCartFlagAction} from "../../redux/actions/UIActionFactory";
 
 
-export default function Header() {
+export default function Header({state}) {
     const browserHistory = useHistory();
     const dispatch = useDispatch();
-    const state = useSelector(s => s);
+    // const state = useSelector(s => s);
     return (
         <div className="header-block-holder">
+            {(state.cart.length > 0 && state.uiFlags.miniCartFlag) ? <CartMini cart={state.cart}/> : null}
             <div className="header-block">
                 <div className="header-burger"/>
                 <NavLink to='/' className="header-logo"/>
@@ -37,7 +39,7 @@ export default function Header() {
 
                 <div className="header-login-block">
                     <div className="header-login-icon"/>
-                    {state.userData.isAuthenticated ?
+                    {state.userData.authFlag ?
                         <div>
                             <NavLink className="devLinksDecor" to="/UserProfilePage">Profile</NavLink>
                             <span className="devLinksDecor"
@@ -53,9 +55,9 @@ export default function Header() {
                 </div>
                 <div className="header-registration-block"/>
                 <div className="header-cart-block">
-                    {(state.cart.length > 0 && state.uiFlags.cartMiniFlagUI) ? <CartMini cart={state.cart}/> : null}
-                    <div className="header-cart-icon"/>
-                    <div className="header-cart-items">11</div>
+                    <div className="header-cart-icon"
+                         onClick={(e) => dispatch(switchMiniCartFlagAction())}/>
+                    <div className="header-cart-items">{state.cart.length}</div>
                 </div>
             </div>
         </div>

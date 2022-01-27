@@ -6,7 +6,7 @@ import {
     setCategory2Filter,
     setMaxPriceFilter,
     setMinPriceFilter
-} from "../redux/ProductsActionsFactory";
+} from "../redux/actions/ProductsActionsFactory";
 import styles from '../styles/ProductsFilters.module.css'
 
 export function FiltersRemover({filters}) {

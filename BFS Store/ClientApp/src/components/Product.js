@@ -28,7 +28,7 @@ export function Product(product) {
                 e.stopPropagation();
                 e.preventDefault();
                 dispatch(addToCardAction(
-                    JSON.parse(localStorage.getItem(AUTH_FLAG)),
+                    JSON.parse(localStorage.getItem(AUTH_FLAG))?.toLowerCase() === 'true',
                     {
                         productId: product.id,
                         productName: product.name,
@@ -37,7 +37,7 @@ export function Product(product) {
                     }));
             }}>В корзину
             </button>
-            <a className="product-comments">
+            <a className="product-comments">//todo
                 0 коментариев
             </a>
         </div>

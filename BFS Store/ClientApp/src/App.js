@@ -14,6 +14,7 @@ import styles from './styles/Home.module.css'
 import formStyles from './styles/SignUpSignInProfileEdit.module.css'
 import Footer from "./components/Footer";
 import {ProductPageProvider} from "./components/ProductPageComponents/ProductPageProvider";
+import {CartMini} from "./components/header/CartMini";
 
 
 export default function App(props) {
@@ -26,7 +27,8 @@ export default function App(props) {
 
     return (<div className={styles.main}>
             <div className="top-top-panel">Акция</div>
-            <Header userData={state.userData} catalogPage={state.catalogPage}/>
+            <Header state={state}/>
+
             <Switch>
                 <Route exact path='/SignIn'>
                     <div onClick={formHolder} className={className}>

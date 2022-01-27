@@ -9,6 +9,7 @@ import {
 } from "../Consts";
 
 const userMapper = (userInfoResponse) => {
+    debugger
     return {userId: userInfoResponse.id, userEmail: userInfoResponse.email, userPhoneNumber: userInfoResponse.phoneNumber}
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/PageButtons.css'
 import {useDispatch} from "react-redux";
-import {setCurrentPage} from "../redux/ProductsActionsFactory";
+import {setCurrentPage} from "../redux/actions/ProductsActionsFactory";
 
 export default function Pagination({paging, currentPage}) {
     const dispatcher = useDispatch();

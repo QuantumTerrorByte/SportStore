@@ -29,9 +29,13 @@ export const SWITCH_REGISTRATION_FORM_FLAG = "SWITCH_REGISTRATION_FORM_FLAG";
 export const SWITCH_BURGER_FORM_FLAG = "SWITCH_BURGER_FORM_FLAG";
 export const SWITCH_THANKFULNESS_POPUP_FLAG = "SWITCH_THANKFULNESS_POPUP_FLAG";
 export const SWITCH_AUTH_FORM_BACKGROUND_FLAG = "SWITCH_AUTH_FORM_BACKGROUND_FLAG";
+export const SWITCH_MINI_CART_FLAG = "SWITCH_MINI_CART_FLAG";
+export const TRUE = "true";
+export const FALSE = "false";
 
 
 //Auth
+export const AUTH_DOMAIN = "https://localhost:7000";
 export const USER_REGISTRATION = "USER_REGISTRATION";
 export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
@@ -39,15 +43,21 @@ export const USER_UPDATE = "USER_UPDATE";
 export const USER_DELETE = "USER_DELETE";
 
 
-
-export const AUTH_DOMAIN = "https://localhost:7000";
+//Cart
 export const CART_ADD_PRODUCT = "CART_ADD_PRODUCT";
 export const CART_REMOVE_PRODUCT = "CART_REMOVE_PRODUCT";
 export const CART_SET_PRODUCT_COUNT = "CART_SET_PRODUCT_COUNT";
 export const CLEAR_CART = "CLEAR_CART";
+export const SET_CART = "SET_CART";
+
+
+export const CART = "CART";
+
 
 
 export const AUTH_FLAG = "authFlag";
+
+export const LOGS_STORE = "logsStore";
 
 
 

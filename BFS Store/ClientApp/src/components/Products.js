@@ -2,7 +2,7 @@ import React from "react";
 import {Product} from "./Product";
 import Pagination from "./Pagination";
 import {useDispatch} from "react-redux";
-import {addProducts} from "../redux/ProductsActionsFactory";
+import {addProducts} from "../redux/actions/ProductsActionsFactory";
 import '../styles/ProductBlockForCostumers.css'
 
 

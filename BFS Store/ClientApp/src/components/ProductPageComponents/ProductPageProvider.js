@@ -2,7 +2,7 @@ import React from "react";
 import {NavLink, Route, Switch, useHistory} from "react-router-dom";
 import '../../styles/ProductPage.css'
 import {useDispatch,} from "react-redux";
-import {getAndRouteProductPage,} from "../../redux/ProductsActionsFactory";
+import {getAndRouteProductPage,} from "../../redux/actions/ProductsActionsFactory";
 import {ProductPageComments} from "./ProductPageComments";
 import {ProductInfoPage} from "./ProductInfoPage";
 import {ProductDopInfoPage} from "./ProductDopInfoPage";

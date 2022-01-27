@@ -2,7 +2,7 @@ import React from "react";
 import {useHistory} from "react-router-dom";
 import '../../styles/ProductPage.css'
 import {useDispatch} from "react-redux";
-import {decrementPP, incrementPP} from "../../redux/ProductsActionsFactory";
+import {decrementPP, incrementPP} from "../../redux/actions/ProductsActionsFactory";
 
 
 export function ProductInfoPage(productInfoViewModel) {

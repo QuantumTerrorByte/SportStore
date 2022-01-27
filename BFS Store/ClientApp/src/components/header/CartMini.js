@@ -1,6 +1,7 @@
 import React from "react";
 import {useSelector} from "react-redux";
 import s from "../../styles/CartMini.module.css";
+import {getCartPrice} from "../../core/getCartPrice";
 
 const style = {
     fontSize: "19px"
@@ -21,30 +22,32 @@ export function CartMini({cart}) {
                 X
             </span>
         </div>
-        {cart.map(lastCartLine => <div className={s.productHolder}>
-            <img className={s.productHolder__img} src={lastCartLine.product.productImg}
-                 alt="XXX"/>
-            <div className={s.productHolder__infoBlock}>
-                <div className={s.productHolder__info}>
-                    {lastCartLine.product.productShortDescription}
-                </div>
-                <div className={s.productHolder__info}>
+        <div className={s.productsHolder}>
+            {cart.map(lastCartLine => <div className={s.productHolder}>
+                <img className={s.productHolder__img} src={lastCartLine.product.productImg}
+                     alt="XXX"/>
+                <div className={s.productHolder__infoBlock}>
+                    <div className={s.productHolder__info}>
+                        {lastCartLine.product.productShortDescription}
+                    </div>
+                    <div className={s.productHolder__info}>
                     <span style={style}>
                         Количество {lastCartLine.count}
                     </span>
-                    <h5 style={style}>
-                        $ {lastCartLine.product.productPrice}
-                    </h5>
+                        <h5 style={style}>
+                            $ {lastCartLine.product.productPrice}
+                        </h5>
+                    </div>
                 </div>
-            </div>
-        </div>)}
+            </div>)}
+        </div>
         <div className={s.approveHolder}>
             <div className={s.approveHolder__summaryTextPriceHolder}>
                 <span style={style}>
                     Всего в корзине:
                 </span>
                 <h5 className={s.approveHolder__money}>
-                    $ {cart.getSummaryPrice()}
+                    $ {getCartPrice(cart)}
                 </h5>
             </div>
             <button className={s.mainButton}>Оформить заказ</button>

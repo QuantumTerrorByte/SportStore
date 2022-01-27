@@ -7,12 +7,12 @@ import {rootReducer} from "./redux/reducers/rootReducer";
 import {Provider} from 'react-redux';
 import {render} from 'react-dom';
 import thunk from 'redux-thunk';
-import {setCurrentPage, uploadCategoriesAndBrands} from "./redux/ProductsActionsFactory";
+import {setCurrentPage, uploadCategoriesAndBrands} from "./redux/actions/ProductsActionsFactory";
 import './styles/Home.module.css'
 
 export const store = createStore(rootReducer, compose(
-    applyMiddleware(thunk)
-    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ));
 
 store.dispatch({type: ""});

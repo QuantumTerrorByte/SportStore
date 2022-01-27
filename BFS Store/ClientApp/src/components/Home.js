@@ -3,7 +3,7 @@ import Products from "./Products";
 import LeftFiltersBar from "./LeftFiltersBar";
 import '../styles/ProductBlockForCostumers.css'
 import {useDispatch} from "react-redux";
-import {setBrandFilter, setCategory1Filter, setSort} from "../redux/ProductsActionsFactory";
+import {setBrandFilter, setCategory1Filter, setSort} from "../redux/actions/ProductsActionsFactory";
 import {FiltersRemover} from "./FiltersRemover";
 import styles from '../styles/ProductsFilters.module.css'
 

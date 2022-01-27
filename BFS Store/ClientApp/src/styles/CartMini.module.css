@@ -3,62 +3,55 @@
 }
 
 .cartMini {
-    background: #ffffff;
+    background: #fcfcfc;
     display: flex;
     flex-direction: column;
-    /*width: 500px;*/
-    width: 430px;
-    max-height: 700px;
-    min-height: 350px;
     position: absolute;
-    z-index: 5;
-    margin-left: -380px;
-    margin-top: 54px;
-    -webkit-box-shadow: 0px 0px 6px 5px rgba(0, 0, 0, 0.05);
-    box-shadow: 0px 0px 6px 5px rgba(0, 0, 0, 0.05);
-    /*border-radius: 5px;*/
-    border: solid #e3e3e3 1px;
-    font-size: 21px;
-    font-family: Roboto;
-    /* width: 500px; */
-    width: 414px;
-    max-height: 700px;
-    min-height: 350px;
-    position: absolute;
-    z-index: 55;
-    margin-left: -249px;
-    margin-top: -7px;
+    -webkit-box-shadow: 0px 0px 6px 5px rgba(0, 0, 0, 0.07);
+    box-shadow: 0px 0px 6px 5px rgba(0, 0, 0, 0.07);
+    z-index: 40;
+    width: 397px;
+    margin-left: 1367px;
+    margin-top: 396px;
+}
+
+.productsHolder {
+    max-height: 160px;
+    overflow: auto;
 }
 
 .mainButton {
-    /*background: var(--yellow);*/
+    background: var(--fourthColor);
+    border: solid 1px blue;
+    color: white;
+    height: 48px;
+    width: 257px;
+    font-size: 21px;
+    border-radius: 7px;
+    align-self: center;
+    margin-bottom: 16px;
+}
+
+.mainButton:hover {
     background: #FFD719;
     background: -moz-linear-gradient(45deg, #FFD719 0%, #FFEB02 47%, #FFC900 100%);
     background: -webkit-linear-gradient(45deg, #FFD719 0%, #FFEB02 47%, #FFC900 100%);
     background: linear-gradient(45deg, #FFD719 0%, #FFEB02 47%, #FFC900 100%);
-    border: none;
-    height: 50px;
-    width: 350px;
-    font-size: 21px;
-    border-radius: 3px;
-    align-self: center;
-    margin-bottom: 11px;
+    color: black;
 }
-
 
 .countHolder {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 55px;
-    /*background: var(--yellow);*/
-    background: #FFD719;
-    background: -moz-linear-gradient(45deg, #FFD719 0%, #FFEB02 47%, #FFC900 100%);
-    background: -webkit-linear-gradient(45deg, #FFD719 0%, #FFEB02 47%, #FFC900 100%);
-    background: linear-gradient(45deg, #FFD719 0%, #FFEB02 47%, #FFC900 100%);
+    background: #232f3e;
+    color: #ffff00;
     font-size: 19px;
     position: relative;
     z-index: 10;
+    background: var(--fourthColor);
+    color: white;
 }
 
 
@@ -130,7 +123,6 @@
     flex-direction: column;
     align-items: end;
     justify-content: space-around;
-    padding: 15px;
     /*width: 100%;*/
 }
 

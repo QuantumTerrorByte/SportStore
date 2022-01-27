@@ -15,9 +15,9 @@ import {
     SET_FILTER_MIN_PRICE,
     SET_FILTER_SORT,
     UPLOAD_CATEGORIES_AND_BRANDS,
-} from "./Consts";
+} from "../Consts";
 import $ from "jquery";
-import {store} from "../index";
+import {store} from "../../index";
 
 
 export function auth(form) {
@@ -38,13 +38,6 @@ export function auth(form) {
         });
     }
 }
-
-
-
-
-
-
-
 
 export function getAndRouteProductPage({productId, brHistory}) {
     return async dispatch => {
