@@ -35,7 +35,7 @@ namespace Auth.Controllers.MVC
         }
 
         [HttpGet]
-        [Authorize(Policy = "user")]
+        // [Authorize(Policy = "user")]
         public async Task<ActionResult> Edit(string userEmail)
         {
             var user = await _userManager.FindByEmailAsync(userEmail);

@@ -6,7 +6,7 @@ import {
     SWITCH_LOGIN_FORM_FLAG,
     SWITCH_REGISTRATION_FORM_FLAG,
     SWITCH_THANKFULNESS_POPUP_FLAG
-} from "../ActionsEnum";
+} from "../Consts";
 
 
 export function UIReducer(state = initialState.uiFlags, action) {

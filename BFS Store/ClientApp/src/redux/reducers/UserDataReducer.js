@@ -1,13 +1,12 @@
 import React from "react";
 import {initialState} from "../InitialState";
 import {
-    USER_AUTH_CHANGE_STATE,
     USER_DELETE,
     USER_LOGIN,
     USER_LOGOUT,
     USER_REGISTRATION,
     USER_UPDATE
-} from "../ActionsEnum";
+} from "../Consts";
 
 const userMapper = (userInfoResponse) => {
     return {userId: userInfoResponse.id, userEmail: userInfoResponse.email, userPhoneNumber: userInfoResponse.phoneNumber}
@@ -15,6 +14,8 @@ const userMapper = (userInfoResponse) => {
 
 export function UserDataReducer(state = initialState.userData, action) {
     // console.log(action)
+    let oleg = 1;
+    oleg = 2;
     switch (action.type) {
         case USER_REGISTRATION:
             return {...state, ...userMapper(action.payload), thankfulnessPopUpFlag: true};

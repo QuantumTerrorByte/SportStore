@@ -6,7 +6,6 @@ import {
     lengthValidatorCreator,
     passwordValidation,
 } from "../Validations";
-import s from '../../styles/SignUpSignInProfileEdit.module.css'
 import {NavLink} from "react-router-dom";
 
 const lengthValidation = lengthValidatorCreator(5, 25);

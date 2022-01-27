@@ -1,8 +1,9 @@
 import React from "react";
 import '../styles/ProductBlockForCostumers.css'
 import {useDispatch} from "react-redux";
-import {getAndRouteProductPage} from "../redux/ProductsActionsFactory";
 import {NavLink, useHistory} from "react-router-dom";
+import {addToCardAction} from "../redux/actions/CartActionFactory";
+import {AUTH_FLAG} from "../redux/Consts";
 
 export function Product(product) {
     const dispatch = useDispatch();
@@ -23,8 +24,18 @@ export function Product(product) {
             <div className="product-price">
                 {Intl.NumberFormat('en-US').format(product.priceUsd)}
             </div>
-            <button className="product-add" onClick={(e) =>
-                console.log(product.id + " addToCartClick")}>В корзину
+            <button className="product-add" onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                dispatch(addToCardAction(
+                    JSON.parse(localStorage.getItem(AUTH_FLAG)),
+                    {
+                        productId: product.id,
+                        productName: product.name,
+                        productPrice: product.priceUsd,
+                        productImg: product.imgUrl,
+                    }));
+            }}>В корзину
             </button>
             <a className="product-comments">
                 0 коментариев

@@ -1,7 +1,5 @@
 import React from "react";
-import {DOMAIN, USER_LOGIN, USER_REGISTRATION} from "./ActionsEnum";
-import $ from "jquery";
-import {initialState} from "./InitialState";
+import {initialState} from "../InitialState";
 
 // uiFlags:
 // { loginFormFlag

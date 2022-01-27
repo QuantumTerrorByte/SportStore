@@ -1,9 +1,8 @@
 import React from 'react';
 import Products from "./Products";
-import Header from "./Header";
 import LeftFiltersBar from "./LeftFiltersBar";
 import '../styles/ProductBlockForCostumers.css'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {setBrandFilter, setCategory1Filter, setSort} from "../redux/ProductsActionsFactory";
 import {FiltersRemover} from "./FiltersRemover";
 import styles from '../styles/ProductsFilters.module.css'

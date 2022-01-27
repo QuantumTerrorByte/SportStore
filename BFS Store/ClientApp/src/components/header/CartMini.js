@@ -1,0 +1,67 @@
+import React from "react";
+import {useSelector} from "react-redux";
+import s from "../../styles/CartMini.module.css";
+
+const style = {
+    fontSize: "19px"
+};
+
+export function CartMini({cart}) {
+    const lastCartLine = cart[cart.length - 1];
+    debugger
+    return <div className={s.cartMini}>
+        <div className={s.countHolder}>
+            <h3 className={s.countHolder__header}>
+                Добавлен в корзину:
+            </h3>
+            <span style={{marginLeft: "10px"}}>
+                1 of {cart.length} items
+            </span>
+            <span className={s.countHolder__exit}>
+                X
+            </span>
+        </div>
+        {cart.map(lastCartLine => <div className={s.productHolder}>
+            <img className={s.productHolder__img} src={lastCartLine.product.productImg}
+                 alt="XXX"/>
+            <div className={s.productHolder__infoBlock}>
+                <div className={s.productHolder__info}>
+                    {lastCartLine.product.productShortDescription}
+                </div>
+                <div className={s.productHolder__info}>
+                    <span style={style}>
+                        Количество {lastCartLine.count}
+                    </span>
+                    <h5 style={style}>
+                        $ {lastCartLine.product.productPrice}
+                    </h5>
+                </div>
+            </div>
+        </div>)}
+        <div className={s.approveHolder}>
+            <div className={s.approveHolder__summaryTextPriceHolder}>
+                <span style={style}>
+                    Всего в корзине:
+                </span>
+                <h5 className={s.approveHolder__money}>
+                    $ {cart.getSummaryPrice()}
+                </h5>
+            </div>
+            <button className={s.mainButton}>Оформить заказ</button>
+        </div>
+    </div>
+}
+
+// <div className={s.productHolder}>
+//     <img className={s.productHolder__img} src={lastCartLine.product.productImg}
+//          alt="XXX"/>
+//     <div className={s.productHolder__infoBlock}>
+//         <div className={s.productHolder__info}>
+//             {lastCartLine.product.productShortDescription}
+//         </div>
+//         <div className={s.productHolder__info}>
+//             <span>Количество {lastCartLine.count}</span>
+//             <h4>$ {lastCartLine.product.productPrice}</h4>
+//         </div>
+//     </div>
+// </div>

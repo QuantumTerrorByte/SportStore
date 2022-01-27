@@ -1,8 +1,7 @@
-import React, {useState} from "react";
-import {render} from "react-dom";
+import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {EditProfileReduxForm} from "../forms/RegistrationAndEditProfileForm";
-import {editUserData} from "../../redux/AuthActionsFactory";
+import {editUserData} from "../../redux/actions/AuthActionsFactory";
 import styles from '../../styles/SignUpSignInProfileEdit.module.css'
 
 

@@ -15,7 +15,7 @@ import {
     SET_FILTER_MIN_PRICE,
     SET_FILTER_SORT,
     UPLOAD_CATEGORIES_AND_BRANDS,
-} from "./ActionsEnum";
+} from "./Consts";
 import $ from "jquery";
 import {store} from "../index";
 

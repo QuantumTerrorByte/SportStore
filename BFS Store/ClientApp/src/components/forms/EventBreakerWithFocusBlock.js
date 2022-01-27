@@ -1,6 +1,5 @@
 import React from "react";
-import formStyles from "../../styles/SignUpSignInProfileEdit.module.css";
-import {SWITCH_AUTH_FORM_BACKGROUND_FLAG} from "../../redux/ActionsEnum";
+import {SWITCH_AUTH_FORM_BACKGROUND_FLAG} from "../../redux/Consts";
 import {useDispatch} from "react-redux";
 import styles from '../../styles/Home.module.css'
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink, Route, Switch, useHistory, useParams} from "react-router-dom";
+import {NavLink, Route, Switch, useHistory} from "react-router-dom";
 import '../../styles/ProductPage.css'
 import {useDispatch,} from "react-redux";
 import {getAndRouteProductPage,} from "../../redux/ProductsActionsFactory";

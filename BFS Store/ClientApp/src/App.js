@@ -1,25 +1,19 @@
 import React from 'react';
 import {Home} from './components/Home';
 import {NavLink, Route, Switch, useHistory} from "react-router-dom";
-import {ProductInfoPage} from "./components/ProductPageComponents/ProductInfoPage";
 import {useDispatch, useSelector} from "react-redux";
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import {RegistrationReduxForm} from "./components/forms/RegistrationAndEditProfileForm";
 import {UserProfilePage} from "./components/userProfile/UserProfilePage";
 import {LoginReduxForm} from "./components/forms/LoginForm";
-import {AUTH_CONTROLLER_PATH, signIn, signUp, TestAction} from "./redux/AuthActionsFactory";
+import {signIn, signUp} from "./redux/actions/AuthActionsFactory";
 import {
-    AUTH_DOMAIN,
-    SWITCH_AUTH_FORM_BACKGROUND_FLAG,
-    SWITCH_THANKFULNESS_POPUP_FLAG,
-    USER_LOGIN
-} from "./redux/ActionsEnum";
+    SWITCH_AUTH_FORM_BACKGROUND_FLAG
+} from "./redux/Consts";
 import styles from './styles/Home.module.css'
 import formStyles from './styles/SignUpSignInProfileEdit.module.css'
 import Footer from "./components/Footer";
 import {ProductPageProvider} from "./components/ProductPageComponents/ProductPageProvider";
-import {EventBreakerWithFocusBlock} from "./components/forms/EventBreakerWithFocusBlock";
-import $ from "jquery";
 
 
 export default function App(props) {
@@ -31,9 +25,6 @@ export default function App(props) {
     const formHolder = () => dispatch({type: SWITCH_AUTH_FORM_BACKGROUND_FLAG});
 
     return (<div className={styles.main}>
-            <div><button onClick={(e)=>{dispatch(TestAction())}}>test</button></div>
-            <div><button onClick={(e)=>{dispatch(TestAction())}}>test</button></div>
-            <div><button onClick={(e)=>{dispatch(TestAction())}}>test</button></div>
             <div className="top-top-panel">Акция</div>
             <Header userData={state.userData} catalogPage={state.catalogPage}/>
             <Switch>

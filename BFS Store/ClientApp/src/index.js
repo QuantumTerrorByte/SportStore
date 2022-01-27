@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, useHistory} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {applyMiddleware, compose, createStore} from 'redux';
@@ -9,7 +9,6 @@ import {render} from 'react-dom';
 import thunk from 'redux-thunk';
 import {setCurrentPage, uploadCategoriesAndBrands} from "./redux/ProductsActionsFactory";
 import './styles/Home.module.css'
-import history from 'history'
 
 export const store = createStore(rootReducer, compose(
     applyMiddleware(thunk)

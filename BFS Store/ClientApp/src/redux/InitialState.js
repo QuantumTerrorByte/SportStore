@@ -23,6 +23,7 @@ export const initialState = {
         leftBurgerFlag: false,
         thankfulnessPopUpFlag: false,
         signInUpHolder: false,
+        cartMiniFlagUI: true,
     },
     userData: {
         isAuthenticated: false,
@@ -36,7 +37,7 @@ export const initialState = {
         CommentsPage: {Comments: ""},
         ProfilePage: {Profile: ""},
     },
-    cart: {},
+    cart: [], //todo
     productPageViewModel: {
         id: 10,
         name: "Now Foods, Glutathione, 500 mg, 60 Veg Capsules",

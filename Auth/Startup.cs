@@ -90,25 +90,27 @@ namespace Auth
                 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
                 {
                     options.RequireHttpsMetadata = false;
-                    // options.TokenValidationParameters = new TokenValidationParameters
-                    // {
-                    //     ValidateIssuer = true,
-                    //     ValidIssuer = JwtOptions.ISSUER,
-                    //     ValidateAudience = true,
-                    //     ValidAudience = JwtOptions.AUDIENCE,
-                    //     ValidateIssuerSigningKey = true,
-                    //     IssuerSigningKey = JwtOptions.GetKey(),
-                    // };
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        // ValidateIssuer = true,
+                        ValidIssuer = JwtOptions.ISSUER,
+                        // ValidateAudience = true,
+                        ValidAudience = JwtOptions.AUDIENCE,
+                        // ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = JwtOptions.GetKey(),
+                    };
                 });
-            services.AddAuthorization(options =>
+            services.AddAuthorization(options => //todo
             {
                 options.AddPolicy("admin",
                     builder => { builder.RequireClaim(ClaimsIdentity.DefaultRoleClaimType, "admin"); });
+                options.AddPolicy("god",
+                    builder => { builder.RequireClaim(ClaimsIdentity.DefaultRoleClaimType, "God"); });
                 options.AddPolicy("user", builder =>
                 {
                     builder.RequireAssertion(c =>
                         c.User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "user"));
-                    // || c.User.HasClaim("email", "User1@shisni.net") ||
                 });
             });
 

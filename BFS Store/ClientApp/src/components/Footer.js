@@ -1,8 +1,7 @@
 import React from "react";
 import '../styles/Header.css'
-import {NavLink, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import styles from "../styles/Home.module.css";
 
 
 export default function Footer({styles}) {

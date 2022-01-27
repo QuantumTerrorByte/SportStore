@@ -9,7 +9,7 @@ import {
     SET_FILTER_CATEGORY2,
     SET_FILTER_MAX_PRICE, SET_FILTER_MIN_PRICE,
     SET_FILTER_SORT, UPLOAD_CATEGORIES_AND_BRANDS
-} from "../ActionsEnum";
+} from "../Consts";
 
 export function CatalogPageReducer(state = initialState.catalogPage, action) {
     // console.log(action)

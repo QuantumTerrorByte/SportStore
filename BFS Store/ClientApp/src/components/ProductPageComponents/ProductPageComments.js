@@ -1,7 +1,7 @@
 import React from "react";
-import {NavLink, Route, Switch, useHistory, useLocation, useParams} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import '../../styles/ProductPage.css'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 
 
 export function ProductPageComments(productInfoViewModel) {

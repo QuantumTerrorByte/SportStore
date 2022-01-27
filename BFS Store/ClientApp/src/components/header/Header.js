@@ -1,16 +1,15 @@
 import React from "react";
-import '../styles/Header.css'
+import '../../styles/Header.css'
 import {NavLink, useHistory} from "react-router-dom";
-import {signIn, signOutAction} from "../redux/AuthActionsFactory";
-import {useDispatch} from "react-redux";
-import formStyles from "../styles/SignUpSignInProfileEdit.module.css";
-import {LoginReduxForm} from "./forms/LoginForm";
-import {SWITCH_AUTH_FORM_BACKGROUND_FLAG, USER_AUTH_CHANGE_STATE} from "../redux/ActionsEnum";
+import {useDispatch, useSelector} from "react-redux";
+import {SWITCH_AUTH_FORM_BACKGROUND_FLAG, USER_AUTH_CHANGE_STATE} from "../../redux/Consts";
+import {CartMini} from "./CartMini";
 
 
-export default function Header({userData, catalogPage}) {
+export default function Header() {
     const browserHistory = useHistory();
     const dispatch = useDispatch();
+    const state = useSelector(s => s);
     return (
         <div className="header-block-holder">
             <div className="header-block">
@@ -38,7 +37,7 @@ export default function Header({userData, catalogPage}) {
 
                 <div className="header-login-block">
                     <div className="header-login-icon"/>
-                    {userData.isAuthenticated ?
+                    {state.userData.isAuthenticated ?
                         <div>
                             <NavLink className="devLinksDecor" to="/UserProfilePage">Profile</NavLink>
                             <span className="devLinksDecor"
@@ -54,6 +53,7 @@ export default function Header({userData, catalogPage}) {
                 </div>
                 <div className="header-registration-block"/>
                 <div className="header-cart-block">
+                    {(state.cart.length > 0 && state.uiFlags.cartMiniFlagUI) ? <CartMini cart={state.cart}/> : null}
                     <div className="header-cart-icon"/>
                     <div className="header-cart-items">11</div>
                 </div>

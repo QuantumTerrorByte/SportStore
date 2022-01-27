@@ -55,13 +55,29 @@ namespace Auth.Controllers.API
         }
 
         [HttpGet]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "user")]
         [Route("Index")]
         public async Task<IActionResult> Index()
         {
             return Ok(await _userManager.Users.ToArrayAsync());
         }
-        
+
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "admin")]
+        [Route("Index2")]
+        public async Task<IActionResult> Index2()
+        {
+            return Ok(await _userManager.Users.ToArrayAsync());
+        }
+
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "god")]
+        [Route("Index3")]
+        public async Task<IActionResult> Index3()
+        {
+            return Ok(await _userManager.Users.ToArrayAsync());
+        }
+
         [HttpPost]
         [Route("[action]")]
         public async Task<ActionResult> SignInCostumers([FromBody] SignInModel signInModel)
@@ -72,17 +88,20 @@ namespace Auth.Controllers.API
                 return BadRequest("Wrong email or password");
             }
 
+            var roles = _userManager.GetRolesAsync(user);
             var claims = new List<Claim>
             {
                 new Claim("id", user.Id),
                 new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(ClaimsIdentity.DefaultRoleClaimType, "user"),
             };
 
+            foreach (var role in await roles)
+            {
+                claims.Add(new Claim(ClaimsIdentity.DefaultRoleClaimType, role));
+            }
 
             var now = DateTime.Now;
-
             var jwt = new JwtSecurityToken(
                 issuer: JwtOptions.ISSUER,
                 audience: JwtOptions.AUDIENCE,
@@ -92,7 +111,6 @@ namespace Auth.Controllers.API
                 signingCredentials: new SigningCredentials(JwtOptions.GetKey(), SecurityAlgorithms.HmacSha256)
             );
             var result = new JwtSecurityTokenHandler().WriteToken(jwt);
-
 
             return Ok(new
             {

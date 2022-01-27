@@ -2,16 +2,13 @@ import React from "react";
 import {
     AUTH_DOMAIN,
     DOMAIN,
-    SWITCH_AUTH_FORM_BACKGROUND_FLAG,
-    USER_AUTH_CHANGE_STATE,
     USER_DELETE,
     USER_LOGIN,
     USER_REGISTRATION,
     USER_UPDATE
-} from "./ActionsEnum";
+} from "../Consts";
 import $ from "jquery";
-import {useHistory} from "react-router-dom";
-import {AuthorisedRequest} from "../requests/Requests";
+import {AuthorisedRequest} from "../../requests/Requests";
 
 
 export const AUTH_CONTROLLER_PATH = "/Auth";

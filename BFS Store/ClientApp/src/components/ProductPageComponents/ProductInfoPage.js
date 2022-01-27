@@ -1,9 +1,8 @@
 import React from "react";
-import {NavLink, Route, Switch, useHistory, useLocation, useParams} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import '../../styles/ProductPage.css'
-import {useDispatch, useSelector} from "react-redux";
-import Header from "../Header";
-import {decrementPP, getAndRouteProductPage, incrementPP} from "../../redux/ProductsActionsFactory";
+import {useDispatch} from "react-redux";
+import {decrementPP, incrementPP} from "../../redux/ProductsActionsFactory";
 
 
 export function ProductInfoPage(productInfoViewModel) {
