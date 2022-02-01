@@ -8,6 +8,7 @@ import {UserProfilePage} from "./components/userProfile/UserProfilePage";
 import {LoginReduxForm} from "./components/forms/LoginForm";
 import {signIn, signUp} from "./redux/actions/AuthActionsFactory";
 import {
+    CART,
     SWITCH_AUTH_FORM_BACKGROUND_FLAG
 } from "./redux/Consts";
 import styles from './styles/Home.module.css'
@@ -24,7 +25,8 @@ export default function App(props) {
     const isAuth = state.userData.isAuthenticated;
     const className = state.uiFlags.signInUpHolder ? styles.authFormHolder : styles.none;
     const formHolder = () => dispatch({type: SWITCH_AUTH_FORM_BACKGROUND_FLAG});
-
+    console.log( JSON.parse(localStorage.getItem(CART)));
+    debugger
     return (<div className={styles.main}>
             <div className="top-top-panel">Акция</div>
             <Header state={state}/>
@@ -51,7 +53,8 @@ export default function App(props) {
                 <Route exact path='/ThankYou'>
                     <div onClick={formHolder} className={className}>
                         <div className={formStyles.thanks}>
-                            <NavLink to='/' onClick={formHolder}>Thanks for your registration, happy buying^^</NavLink>
+                            <NavLink to='/' onClick={formHolder}>Thanks for your
+                                registration, happy buying^^</NavLink>
                         </div>
                     </div>
                 </Route>

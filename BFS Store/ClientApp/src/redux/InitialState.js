@@ -2,16 +2,12 @@ import {LOGS_STORE} from "./Consts";
 import {methodsExtensions} from "../core/methodsExtensions";
 
 const init = () => {
-    // const logsStore = JSON.stringify(localStorage.getItem(LOGS_STORE));
-    // localStorage.setItem(LOGS_STORE, JSON.stringify([]));
     methodsExtensions();
     debugger
     const logsStore = localStorage.get(LOGS_STORE);
     if (!Array.isArray(logsStore)) {
         localStorage.set(LOGS_STORE, []);
     }
-    debugger
-
     const result = {
         catalogPage: {
             products: {

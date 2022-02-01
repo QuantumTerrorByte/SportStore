@@ -11,6 +11,7 @@ export default function Header({state}) {
     const browserHistory = useHistory();
     const dispatch = useDispatch();
     // const state = useSelector(s => s);
+    debugger
     return (
         <div className="header-block-holder">
             {(state.cart.length > 0 && state.uiFlags.miniCartFlag) ? <CartMini cart={state.cart}/> : null}

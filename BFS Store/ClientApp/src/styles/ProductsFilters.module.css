@@ -106,6 +106,7 @@
     justify-content: space-between;
     background: white;
     margin: auto auto 15px auto;
+    border-bottom: 1px solid #f1f1f1;
 }
 .filterRemoversBlock{
     display: flex;

@@ -7,18 +7,36 @@ import {rootReducer} from "./redux/reducers/rootReducer";
 import {Provider} from 'react-redux';
 import {render} from 'react-dom';
 import thunk from 'redux-thunk';
-import {setCurrentPage, uploadCategoriesAndBrands} from "./redux/actions/ProductsActionsFactory";
-import './styles/Home.module.css'
+import {
+    setCurrentPage,
+    uploadCategoriesAndBrands
+} from "./redux/actions/ProductsActionsFactory";
+import './styles/Home.module.css';
+import {methodsExtensions} from "./core/methodsExtensions";
+import {initialStateCart} from "./redux/reducers/CartReducer";
+import {initialStateCartAction} from "./redux/actions/CartActionFactory";
 
-export const store = createStore(rootReducer, compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-));
+console.time("store");
+console.timeLog("store");
 
-store.dispatch({type: ""});
-store.dispatch(setCurrentPage(1));
+export const store = function () {
+    console.timeLog("store");
+    const result = createStore(rootReducer, compose(
+        applyMiddleware(thunk),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    ));
+    //!!!!!!
+    return result;
+}();
+
+console.timeLog("store");
+
+store.dispatch(initialStateCartAction());
 store.dispatch(uploadCategoriesAndBrands());
+store.dispatch(setCurrentPage(1));
+store.dispatch({type: ""});
 
+console.timeLog("store");
 
 const app = (
     <Provider store={store}>
@@ -29,7 +47,7 @@ const app = (
 );
 
 render(app, document.getElementById('root'));
+console.timeEnd("store");
 registerServiceWorker();
-
 
 // const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');

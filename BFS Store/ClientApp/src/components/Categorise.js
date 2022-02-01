@@ -10,7 +10,7 @@ export function Categorise({itemList, actionCreator, tittle,}) {
             <li className={styles.leftBarCurrentButton}>{tittle}</li>
             {
                 itemList.map(item =>
-                    <li key={index++} className={styles.leftBarButton} onClick={() => dispatch(actionCreator(item))}>
+                    <li key={item} className={styles.leftBarButton} onClick={() => dispatch(actionCreator(item))}>
                         {item}
                     </li>)
             }

@@ -8,7 +8,7 @@ export function methodsExtensions() {
         try {
             result = JSON.parse(result);
         } catch (error) {
-            console.log(`Exception when trying parce value ${result} from local storage with requested key ${key}`,error);
+            log(`Exception when trying parce value ${result} from local storage with requested key ${key}`, error);
         }
         return result;
     };
@@ -56,9 +56,20 @@ export function methodsExtensions() {
         this.forEach(e => result += e.product.productPrice * e.count);
         return result;
     };
+
     Storage.prototype.getCart = function () {
         return localStorage.get(CART);
     }
+
+    Storage.prototype.setCart = function (cart) {
+        if (Array.isArray(cart)) {
+            localStorage.set(CART, cart);
+        } else {
+            throw new Error(`trying set wrong value in to cart, value:${cart}`);
+        }
+        return cart;
+    }
+
     Storage.prototype.addProducts = function (cartLines) {
 
     }

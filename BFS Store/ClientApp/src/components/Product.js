@@ -5,7 +5,7 @@ import {NavLink, useHistory} from "react-router-dom";
 import {addToCardAction} from "../redux/actions/CartActionFactory";
 import {AUTH_FLAG} from "../redux/Consts";
 
-export function Product(product) {
+export function Product(product) { //todo local state flag
     const dispatch = useDispatch();
     const brHistory = useHistory();
     return (
@@ -19,16 +19,19 @@ export function Product(product) {
                 <img src={product.imgUrl} alt="Pic" className="product-img"/>
             </NavLink>
             <div className="product-name">
-                {product.name.toString().length < 75 ? product.name : product.name.substring(0, 75)}
+                {product.name.toString().length < 50 ? product.name : product.name.substring(0, 50)}
             </div>
-            <div className="product-price">
-                {Intl.NumberFormat('en-US').format(product.priceUsd)}
-            </div>
+            <h3>
+                {new Intl.NumberFormat('de-DE', {
+                    style: 'currency',
+                    currency: 'USD'
+                }).format(product.priceUsd)}
+            </h3>
             <button className="product-add" onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
                 dispatch(addToCardAction(
-                    JSON.parse(localStorage.getItem(AUTH_FLAG))?.toLowerCase() === 'true',
+                    localStorage.getAuthStatus(),
                     {
                         productId: product.id,
                         productName: product.name,
@@ -37,7 +40,11 @@ export function Product(product) {
                     }));
             }}>В корзину
             </button>
-            <a className="product-comments">//todo
+            <a className="product-comments"
+               onClick={e => {
+                   e.stopPropagation();
+                   e.preventDefault();
+               }}>
                 0 коментариев
             </a>
         </div>

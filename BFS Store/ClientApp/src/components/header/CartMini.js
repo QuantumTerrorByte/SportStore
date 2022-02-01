@@ -1,7 +1,8 @@
 import React from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import s from "../../styles/CartMini.module.css";
 import {getCartPrice} from "../../core/getCartPrice";
+import {switchMiniCartFlagAction} from "../../redux/actions/UIActionFactory";
 
 const style = {
     fontSize: "19px"
@@ -9,6 +10,7 @@ const style = {
 
 export function CartMini({cart}) {
     const lastCartLine = cart[cart.length - 1];
+    const dispatch  = useDispatch();
     debugger
     return <div className={s.cartMini}>
         <div className={s.countHolder}>
@@ -18,13 +20,15 @@ export function CartMini({cart}) {
             <span style={{marginLeft: "10px"}}>
                 1 of {cart.length} items
             </span>
-            <span className={s.countHolder__exit}>
-                X
-            </span>
+            <div className={s.countHolder__exit}
+                  onClick={(e) => dispatch(switchMiniCartFlagAction())}>
+                x
+            </div>
         </div>
         <div className={s.productsHolder}>
             {cart.map(lastCartLine => <div className={s.productHolder}>
-                <img className={s.productHolder__img} src={lastCartLine.product.productImg}
+                <img className={s.productHolder__img}
+                     src={lastCartLine.product.productImg}
                      alt="XXX"/>
                 <div className={s.productHolder__infoBlock}>
                     <div className={s.productHolder__info}>

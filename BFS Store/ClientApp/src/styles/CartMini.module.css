@@ -60,8 +60,10 @@
     display: flex;
     align-self: end;
     justify-self: end;
-    top: 15px;
+    top: 10px;
     right: 25px;
+    font-size: 25px;
+    cursor: pointer;
 }
 
 .countHolder__header {

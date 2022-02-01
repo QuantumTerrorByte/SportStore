@@ -3,7 +3,7 @@ import React from "react";
 import {Categorise} from "./Categorise";
 
 //view model must be object which props contain {actionCreator, list<items>}
-export default function LeftFiltersBar({leftBarViewModel}) {
+export default function LeftFiltersBar({leftBarViewModel}) {//todo refactor
     let index = 0;
     return <div className="leftBar">
         {Object.keys(leftBarViewModel)
@@ -12,6 +12,6 @@ export default function LeftFiltersBar({leftBarViewModel}) {
                 itemList={prop.itemList}
                 actionCreator={prop.actionCreator}
                 tittle={prop.tittle}
-                key={index++}
+                key={prop.tittle}
             />)}</div>
 }

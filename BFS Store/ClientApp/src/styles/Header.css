@@ -148,7 +148,8 @@
     z-index: 1;
     cursor: pointer;
 }
-.header-language.mid{
+
+.header-language.mid {
     border-right: solid darkgray 1px;
     border-left: solid darkgray 1px;
 }
@@ -224,6 +225,7 @@
     background: url("../imgs/cartPng.png") 0 0 /100% 100% no-repeat;
     width: 30px;
     margin: 0 0px 0 15px;
+    cursor: pointer;
     /*height: 100px;*/
 }
 
@@ -247,7 +249,7 @@
 }
 
 
-.devLinksDecor{
+.devLinksDecor {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -261,6 +263,7 @@
     font-family: "Calibri Light";
     height: 25px;
 }
+
 /*body{*/
 /*    margin: 0;*/
 /*}*/
