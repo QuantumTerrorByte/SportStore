@@ -58,7 +58,7 @@ export default function Header({state}) {
                 <div className="header-cart-block">
                     <div className="header-cart-icon"
                          onClick={(e) => dispatch(switchMiniCartFlagAction())}/>
-                    <div className="header-cart-items">{state.cart.length}</div>
+                    <div className="header-cart-items">{state.cart.sum(e=>e.count)}</div>
                 </div>
             </div>
         </div>

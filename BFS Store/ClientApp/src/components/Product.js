@@ -7,6 +7,7 @@ import {AUTH_FLAG} from "../redux/Consts";
 
 export function Product(product) { //todo local state flag
     const dispatch = useDispatch();
+    const prodFormatName = product.name.toString().length < 50 ? product.name : product.name.substring(0, 50);
     const brHistory = useHistory();
     return (
         <div className="product-block">
@@ -19,7 +20,7 @@ export function Product(product) { //todo local state flag
                 <img src={product.imgUrl} alt="Pic" className="product-img"/>
             </NavLink>
             <div className="product-name">
-                {product.name.toString().length < 50 ? product.name : product.name.substring(0, 50)}
+                {prodFormatName}
             </div>
             <h3>
                 {new Intl.NumberFormat('de-DE', {
@@ -30,14 +31,13 @@ export function Product(product) { //todo local state flag
             <button className="product-add" onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                dispatch(addToCardAction(
-                    localStorage.getAuthStatus(),
-                    {
-                        productId: product.id,
-                        productName: product.name,
-                        productPrice: product.priceUsd,
-                        productImg: product.imgUrl,
-                    }));
+                dispatch(addToCardAction({
+                    productId: product.id,
+                    productName: prodFormatName,
+                    productPrice: product.priceUsd,
+                    productImg: product.imgUrl,
+                    count: 1,
+                }));
             }}>В корзину
             </button>
             <a className="product-comments"

@@ -4,7 +4,7 @@ export function getCartPrice(cart) {
     let result = 0;
     debugger
     if (Array.isArray(cart)) {
-        cart.forEach(e => result += e.product.productPrice * e.count);
+        cart.forEach(prod => result += prod.productPrice * prod.count);
     } else {
         log(`error in getCartPrice with arg: ${cart}`);
     }

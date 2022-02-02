@@ -20,6 +20,7 @@ import {CartMini} from "./components/header/CartMini";
 
 export default function App(props) {
     const state = useSelector(state => state)
+    console.log(state);
     const browserHistory = useHistory();
     const dispatch = useDispatch();
     const isAuth = state.userData.isAuthenticated;
