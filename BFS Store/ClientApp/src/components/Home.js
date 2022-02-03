@@ -41,6 +41,7 @@ export function Home(catalogPage) {
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }

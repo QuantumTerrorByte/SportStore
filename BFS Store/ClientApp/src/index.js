@@ -12,8 +12,6 @@ import {
     uploadCategoriesAndBrands
 } from "./redux/actions/ProductsActionsFactory";
 import './styles/Home.module.css';
-import {methodsExtensions} from "./core/methodsExtensions";
-import {initialStateCart} from "./redux/reducers/CartReducer";
 import {initialStateCartAction} from "./redux/actions/CartActionFactory";
 
 console.time("store");

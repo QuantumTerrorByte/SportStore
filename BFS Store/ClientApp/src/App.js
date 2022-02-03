@@ -11,11 +11,12 @@ import {
     CART,
     SWITCH_AUTH_FORM_BACKGROUND_FLAG
 } from "./redux/Consts";
-import styles from './styles/Home.module.css'
-import formStyles from './styles/SignUpSignInProfileEdit.module.css'
+import styles from './styles/Home.module.css';
+import formStyles from './styles/SignUpSignInProfileEdit.module.css';
 import Footer from "./components/Footer";
 import {ProductPageProvider} from "./components/ProductPageComponents/ProductPageProvider";
-import {CartMini} from "./components/header/CartMini";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {CheckoutReduxForm} from "./components/CheckoutTemp";
 
 
 export default function App(props) {
@@ -26,7 +27,7 @@ export default function App(props) {
     const isAuth = state.userData.isAuthenticated;
     const className = state.uiFlags.signInUpHolder ? styles.authFormHolder : styles.none;
     const formHolder = () => dispatch({type: SWITCH_AUTH_FORM_BACKGROUND_FLAG});
-    console.log( JSON.parse(localStorage.getItem(CART)));
+    console.log(JSON.parse(localStorage.getItem(CART)));
     debugger
     return (<div className={styles.main}>
             <div className="top-top-panel">Акция</div>
@@ -37,8 +38,8 @@ export default function App(props) {
                     <div onClick={formHolder} className={className}>
                         <div onClick={(e) => e.stopPropagation()}>
                             <LoginReduxForm styles={formStyles}
-                                            onSubmit={(e) => dispatch(
-                                                signIn({browserHistory, ...e}))}/>
+                                            onSubmit={(formData) => dispatch(
+                                                signIn({browserHistory, ...formData}))}/>
                         </div>
                     </div>
                 </Route>
@@ -46,8 +47,8 @@ export default function App(props) {
                     <div onClick={formHolder} className={className}>
                         <div onClick={(e) => e.stopPropagation()}>
                             <RegistrationReduxForm styles={formStyles}
-                                                   onSubmit={(e) => dispatch(
-                                                       signUp(browserHistory, e))}/>
+                                                   onSubmit={(formData) => dispatch(
+                                                       signUp(browserHistory, formData))}/>
                         </div>
                     </div>
                 </Route>
@@ -66,6 +67,10 @@ export default function App(props) {
                 </Route>
                 <Route path='/UserProfilePage/'>
                     <UserProfilePage {...state.userData}/>
+                </Route>
+                <Route path="/checkout/">
+                    <CheckoutReduxForm onSubmit={(data)=>{
+                        console.log(data)}}/>
                 </Route>
                 <Route path='/'>
                     <Home {...state.catalogPage} />

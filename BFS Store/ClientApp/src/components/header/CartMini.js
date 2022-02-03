@@ -7,6 +7,7 @@ import {
     addToCardAction,
     decrementProductsInCartAction, removeFromCardAction
 } from "../../redux/actions/CartActionFactory";
+import {NavLink} from "react-router-dom";
 
 const style = {
     fontSize: "19px"
@@ -17,13 +18,13 @@ export function CartMini({cart}) {
     const dispatch = useDispatch();
     debugger
     return <div className={s.cartMini}>
-        <div className={s.countHolder}>
-            <h3 className={s.countHolder__header}>
-                Добавлен в корзину:
-            </h3>
-            <span style={{marginLeft: "10px"}}>
-                1 of {cart.length} items
-            </span>
+        <div className={s.countHolder} style={{marginTop: "-15px"}}>
+            <h1 className={s.countHolder__header}>
+                Добавлен в корзину
+                <br/>
+                <span
+                    style={{fontSize: "20px"}}>1 of {cart.length} items type</span>
+            </h1>
             <div className={s.countHolder_exit}
                  onClick={(e) => dispatch(switchMiniCartFlagAction())}>
                 x
@@ -62,9 +63,9 @@ export function CartMini({cart}) {
                     </span>
                         <h6 style={style}>
                             {new Intl.NumberFormat('de-DE', {
-                            style: 'currency',
-                            currency: 'USD'
-                        }).format(cartLine.productPrice)}
+                                style: 'currency',
+                                currency: 'USD'
+                            }).format(cartLine.productPrice)}
                         </h6>
                     </div>
                 </div>
@@ -72,17 +73,20 @@ export function CartMini({cart}) {
         </div>
         <div className={s.approveHolder}>
             <div className={s.approveHolder_summaryTextPriceHolder}>
-                <span style={style}>
+                <span className={s.cartPrice}>
                     Всего в корзине:
                 </span>
                 <h6 className={s.approveHolder_money}>
                     {new Intl.NumberFormat('de-DE', {
-                    style: 'currency',
-                    currency: 'USD'
-                }).format(getCartPrice(cart))}
+                        style: 'currency',
+                        currency: 'USD'
+                    }).format(getCartPrice(cart))}
                 </h6>
             </div>
-            <button className={s.mainButton}>Оформить заказ</button>
+            {/*<button className={s.mainButton}>Оформить заказ</button>*/}
+            <NavLink className={s.mainButton} to={{pathname: `/checkout/`}}>
+                Оформить заказ
+            </NavLink>
         </div>
     </div>
 }

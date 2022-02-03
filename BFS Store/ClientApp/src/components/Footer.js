@@ -2,6 +2,7 @@ import React from "react";
 import '../styles/Header.css'
 import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
+import styles from "../styles/ProductsFilters.module.css";
 
 
 export default function Footer({styles}) {

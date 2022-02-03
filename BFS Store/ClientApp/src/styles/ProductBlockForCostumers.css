@@ -103,11 +103,12 @@
     flex-shrink: 0;
     width: 170px;
     height: 45px;
-    /*background: #340d8e;*/
     /*background: var(--mainColor);*/
-    background: var(--lightMain);
-
     color: white;
+    /*color: #232f3e;*/
+    background: #232f3e;
+    /*background: var(--lightMain);*/
+    /*background: url(../img/button.jpg) 0 0 / auto 100% no-repeat;*/
 
     justify-content: center;
     font-family: "Arial", serif;
