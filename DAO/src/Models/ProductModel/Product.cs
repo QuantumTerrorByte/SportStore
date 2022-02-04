@@ -7,7 +7,7 @@ namespace DAO.Models.ProductModel
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public long Amount { get; set; }
+        public long Amount { get; set; } //todo rename to Quantity
         public string Brand { get; set; }
         public decimal PriceUsd { get; set; }
         public string ImgUrl { get; set; }

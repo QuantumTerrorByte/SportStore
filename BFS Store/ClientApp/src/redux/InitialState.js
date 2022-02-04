@@ -36,7 +36,7 @@ const init = () => {
         },
         userData: {
             // authFlag: localStorage.getAuthStatus(),
-            authFlag: true,//todo
+            authFlag: false,//todo
             userId: "",
             userName: "",
             userEmail: "",

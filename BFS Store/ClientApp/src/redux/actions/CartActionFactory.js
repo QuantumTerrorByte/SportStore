@@ -17,9 +17,10 @@ import {AUTH_CONTROLLER_PATH} from "./AuthActionsFactory";
 
 
 export function orderSendAction(data, cart) {
+    debugger
     const request = {
         email: data.email,
-        phoneNumber: data.phoneNumber,
+        phone: data.phoneNumber,
         firstName: data.firstName,
         secondName: data.secondName,
         patronymic: data.patronymic,
@@ -31,16 +32,16 @@ export function orderSendAction(data, cart) {
             street: data.street,
             apartment: data.apartment,
         },
-        cart: cart.map(cartLine => {
+        cartLines: cart.map(cartLine => {
             return {
                 productId: cartLine.productId,
-                count: cartLine.count
+                quantity: cartLine.count
             }
         }),
     };
     console.log(request);
     return dispatch => {
-        let path = `${DOMAIN}/Order/CreateOrder`;
+        let path = `${DOMAIN}Order/CreateOrder`;
         requestDecorator(
             path,
             "POST",

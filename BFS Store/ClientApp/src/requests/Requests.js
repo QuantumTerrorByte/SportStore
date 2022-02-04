@@ -14,14 +14,12 @@ export const requestDecorator = (path, type, data, withAuth = false, done = null
     }).done(response => {
         if (done == null) {
             log("response took", response)
-        }
-        else {
+        } else {
             done(response)
         }
     }).fail(error => {
         if (fail == null) {
             log("", error)
-        }
-        else fail(error);
+        } else fail(error);
     });
 }

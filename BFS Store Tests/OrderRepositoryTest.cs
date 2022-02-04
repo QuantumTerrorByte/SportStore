@@ -82,7 +82,7 @@ namespace SportStoreTests
                 new ProductRepository(_dataContext),
                 new AppUsersRepository(_dataContext));
             Assert.Equal(10, _dataContext.Products.FirstOrDefault(p => p.Id == 1)?.Amount);
-            var result = await orderController.SetApproved(1, productLines, "");
+            var result = await orderController.SetApproved(1, productLines);
 
             Assert.Equal(0, _dataContext.Products.FirstOrDefault(p => p.Id == 1)?.Amount);
             Assert.Equal(5, _dataContext.Products.FirstOrDefault(p => p.Id == 2)?.Amount);

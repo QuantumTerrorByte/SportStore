@@ -1,12 +1,10 @@
 ﻿.body-block{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /*justify-content: center;*/
     align-items: center;
 }
-.body-block__admin{
-    
-}
+
 .dev-button{
     margin: 10px;
     font-size: 17px;

@@ -71,13 +71,13 @@ namespace SportStore.Controllers
                 user = userId == null
                     ? new AppUser {Email = orderViewModel.Email}
                     : await _usersRepository.GetAsync(userId);
-                if (user == null) throw new Exception();
+                if (user == null) throw new Exception(); //probably impossible with good auth control
             }
             catch (Exception e)
             {
                 user = new AppUser {Email = orderViewModel.Email};
             }
-
+            //todo add to list of address
             user.Phone = orderViewModel.Phone;
             user.FirstName = orderViewModel.FirstName;
             user.SecondName = orderViewModel.SecondName;
@@ -145,10 +145,9 @@ namespace SportStore.Controllers
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="pLines"></param>
-        /// <param name="returnUrl"></param>
         /// <returns></returns>
         [Authorize]
-        public async Task<IActionResult> SetApproved(long orderId, ProductLine[] pLines, string returnUrl)
+        public async Task<IActionResult> SetApproved(long orderId, ProductLine[] pLines)
         {
             if (pLines.Length < 1)
             {
