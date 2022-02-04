@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Home} from './components/Home';
 import {NavLink, Route, Switch, useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -15,8 +15,10 @@ import styles from './styles/Home.module.css';
 import formStyles from './styles/SignUpSignInProfileEdit.module.css';
 import Footer from "./components/Footer";
 import {ProductPageProvider} from "./components/ProductPageComponents/ProductPageProvider";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {CheckoutReduxForm} from "./components/CheckoutTemp";
+import {CheckoutReduxForm} from "./components/forms/CheckoutForm";
+import {orderSendAction} from "./redux/actions/CartActionFactory";
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import "./styles/nullable.css"
 
 
 export default function App(props) {
@@ -32,7 +34,6 @@ export default function App(props) {
     return (<div className={styles.main}>
             <div className="top-top-panel">Акция</div>
             <Header state={state}/>
-
             <Switch>
                 <Route exact path='/SignIn'>
                     <div onClick={formHolder} className={className}>
@@ -69,8 +70,10 @@ export default function App(props) {
                     <UserProfilePage {...state.userData}/>
                 </Route>
                 <Route path="/checkout/">
-                    <CheckoutReduxForm onSubmit={(data)=>{
-                        console.log(data)}}/>
+                    <CheckoutReduxForm
+                        cart={state.cart} onSubmit={(data) => {
+                        dispatch(orderSendAction(data, state.cart));
+                    }}/>
                 </Route>
                 <Route path='/'>
                     <Home {...state.catalogPage} />

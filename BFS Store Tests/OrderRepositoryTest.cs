@@ -91,9 +91,8 @@ namespace SportStoreTests
             Assert.Equal(1, _dataContext.Orders.FirstOrDefault(o => o.OrderStatus == Statusess.Delayed)
                 .Cart.CartLines.Count());
             Assert.NotNull(_dataContext.Orders.FirstOrDefault(o => o.OrderStatus == Statusess.Delayed)
-                .Cart.CartLines.FirstOrDefault(l => l.Amount == 5 && l.ProductId == 1));
+                ?.Cart.CartLines.FirstOrDefault(l => l.Amount == 5 && l.ProductId == 1));
         }
-
 
         [Fact]
         public async Task Can_Return_Products_From_NotPickedUp()

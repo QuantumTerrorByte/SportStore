@@ -1,16 +1,54 @@
-import {AuthorisedRequest} from "../../requests/Requests";
+import {requestDecorator} from "../../requests/Requests";
 import {
+    AUTH_DOMAIN,
     CART,
     CART_ADD_PRODUCT, CART_DECREMENT_PRODUCT_COUNT,
     CART_REMOVE_PRODUCT,
     CART_SET_PRODUCT_COUNT,
     DOMAIN,
     SET_CART,
-    SWITCH_MINI_CART_FLAG
+    SWITCH_MINI_CART_FLAG, USER_LOGIN
 } from "../Consts";
 import {log} from "../../core/log";
 import {store} from "../../index";
 import {getAuthFlag} from "../../core/getAuthFlag";
+import $ from "jquery";
+import {AUTH_CONTROLLER_PATH} from "./AuthActionsFactory";
+
+
+export function orderSendAction(data, cart) {
+    const request = {
+        email: data.email,
+        phoneNumber: data.phoneNumber,
+        firstName: data.firstName,
+        secondName: data.secondName,
+        patronymic: data.patronymic,
+        comment: data.comment,
+        address: {
+            postalOffice: data.postalOffice,
+            city: data.city,
+            house: data.house,
+            street: data.street,
+            apartment: data.apartment,
+        },
+        cart: cart.map(cartLine => {
+            return {
+                productId: cartLine.productId,
+                count: cartLine.count
+            }
+        }),
+    };
+    console.log(request);
+    return dispatch => {
+        let path = `${DOMAIN}/Order/CreateOrder`;
+        requestDecorator(
+            path,
+            "POST",
+            request,
+            true
+        );
+    }
+}
 
 //if user authenticated telling server refresh cart state for backUp and device sync
 // <param name="authFlag", type=bool>
@@ -33,7 +71,7 @@ export function addToCardAction(cartLine) {
         //     {type: SWITCH_MINI_CART_FLAG}
         // );
         if (getAuthFlag()) {
-            AuthorisedRequest(
+            requestDecorator(
                 `${DOMAIN}/Cart/Add`,
                 "post",
                 {
@@ -58,7 +96,7 @@ export function decrementProductsInCartAction(productId) {
         //     {type: SWITCH_MINI_CART_FLAG}
         // );
         if (getAuthFlag()) {
-            AuthorisedRequest(
+            requestDecorator(
                 `${DOMAIN}/Cart/Add`,
                 "post",
                 {
@@ -78,7 +116,7 @@ export function removeFromCardAction(productId) {
             payload: {productId: productId}
         });
         if (getAuthFlag()) {
-            AuthorisedRequest(
+            requestDecorator(
                 `${DOMAIN}/Cart/Remove`,
                 "post",
                 {
@@ -107,7 +145,7 @@ export function setToCardAction(cartLine) {
             payload: {product: cartLine}
         });
         if (getAuthFlag()) {
-            await AuthorisedRequest(
+            await requestDecorator(
                 `${DOMAIN}/Cart/Set`,
                 "post",
                 {
@@ -120,7 +158,6 @@ export function setToCardAction(cartLine) {
         }
     }
 }
-
 
 //Function used for initial state by storage with no params(false) will not try get data from server
 export function initialStateCartAction() { //
@@ -138,7 +175,7 @@ export function initialStateCartAction() { //
             cart value = ${cart}`, error);
         }
         if (localStorage.getAuthStatus()) { //todo init order
-            AuthorisedRequest(
+            requestDecorator(
                 `${DOMAIN}/Cart/Get`, //todo
                 "GET",
                 {
@@ -159,7 +196,7 @@ export function initialStateCartAction() { //
 //get cart from back if ls and state is empty
 export function getCartBackUpAction(userId, cartId = null) {
     return async dispatch => {
-        AuthorisedRequest(
+        requestDecorator(
             `${DOMAIN}/Cart/Get`, //todo
             "GET",
             {

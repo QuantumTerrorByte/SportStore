@@ -8,7 +8,7 @@ import {
     USER_UPDATE
 } from "../Consts";
 import $ from "jquery";
-import {AuthorisedRequest} from "../../requests/Requests";
+import {requestDecorator} from "../../requests/Requests";
 
 
 export const AUTH_CONTROLLER_PATH = "/Auth";
@@ -104,7 +104,7 @@ export function deleteAccount({browserHistory, userId}) {
 export function TestAction() {
     debugger
     return async dispatch => {
-        AuthorisedRequest(
+        requestDecorator(
             `${DOMAIN}/Costumers/AddLike`,
             "post",
             1,

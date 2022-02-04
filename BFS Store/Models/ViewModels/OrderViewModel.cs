@@ -25,7 +25,7 @@ namespace SportStore.Models.ViewModels
         public string Comment { get; set; }
 
         public List<ProductLineViewModel> CartLines { get; set; }
-        public bool GiftWrap { get; set; }
+        public bool GiftWrap { get; set; } //todo remove
     }
 
 }

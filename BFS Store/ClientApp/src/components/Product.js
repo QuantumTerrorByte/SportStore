@@ -22,12 +22,12 @@ export function Product(product) { //todo local state flag
             <div className="product-name">
                 {prodFormatName}
             </div>
-            <h3>
+            <h6>
                 {new Intl.NumberFormat('de-DE', {
                     style: 'currency',
                     currency: 'USD'
                 }).format(product.priceUsd)}
-            </h3>
+            </h6>
             <button className="product-add" onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();

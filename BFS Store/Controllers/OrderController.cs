@@ -60,7 +60,7 @@ namespace SportStore.Controllers
                 lines.Add(new()
                 {
                     ProductId = cartLineViewModel.ProductId,
-                    Amount = cartLineViewModel.Amount,
+                    Amount = cartLineViewModel.Quantity,
                 });
             }
 

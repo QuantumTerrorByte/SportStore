@@ -3,7 +3,9 @@
     justify-content: center;
     width: 100%;
 }
-
+.content-block, ::after, ::before {
+    box-sizing: unset;
+}
 
 .body-content {
     display: flex;
