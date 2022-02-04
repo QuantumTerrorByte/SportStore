@@ -30,39 +30,42 @@
                         <h3>Id: @cartLine.ProductId</h3>
                     </div>
                     <div class="product-line-block__product-name">
-                        <h6>@cartLine.Product.Name</h6>
+                        <h4>@cartLine.Product.Name</h4>
                     </div>
                     <div class="product-line-block__in-stock">
-                        <span>In stock: @cartLine.Product.Amount</span>
+                        <h6>In stock: @cartLine.Product.Amount</h6>
                         <input type="hidden" name="pLines[@i].orderId" value="@cartLine.ProductId"/>
                     </div>
                     <div class="product-line-block__costumer-need">
-                        <label style="display: flex">
-                            Order need: <input class="product-block__amounts.input" 
-                                               type="number" 
-                                               name="pLines[@i].Amount" 
-                                               value="@cartLine.Amount"/>
+                        <label style="display: flex; align-items: center">
+                            <h6>rder need: </h6>
+                            <input class="product-line-block__orderQuantityInput"
+                                   type="number"
+                                   name="pLines[@i].Amount"
+                                   value="@cartLine.Amount"/>
                         </label>
                     </div>
                     <div class="product-line-block__button-block">
-                        <button type="button" class="btn btn-dark">Add product</button>
-                        <button type="button" class="btn btn-success">Success</button>
-                        <button type="button" class="btn btn-danger">Danger</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
             }
 
         </div>
-        <div class="buttons-holder">
-            <a class="btn btn-primary btn-margins" data-bs-toggle="collapse" href="#collapseAddress-@index" role="button" aria-expanded="false" aria-controls="collapseAddress-@index">
+        <div class="buttons-holder" onclick="(function (e)  { e.preventDefault(); e.stopPropagation(); })(event)">
+            <button class=" btn btn-primary btn-margins" data-bs-toggle="collapse"
+                    href="#collapseAddress-@index" role="button"
+                    aria-expanded="false" aria-controls="collapseAddress-@index">
                 Shipment info
-            </a>
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComment-@index" aria-expanded="false" aria-controls="collapseComment-@index">
-                Comment
             </button>
             <button type="button" class="btn btn-dark">Add product</button>
             <button type="button" class="btn btn-success">Success</button>
             <button type="button" class="btn btn-danger">Danger</button>
+            <button class="@(order.Comment.Length > 0 ? " btn btn-primary btn-margins" : " btn btn-light btn-margins")"
+                    type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseComment-@index" aria-expanded="false" aria-controls="collapseComment-@index">
+                Comment
+            </button>
         </div>
         <div class="collapse" id="collapseAddress-@index">
             <div class="card card-body">

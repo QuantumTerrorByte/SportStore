@@ -1,11 +1,6 @@
 ﻿
 
-.order-block__products-holder {
-    display: flex;
-    flex-wrap: wrap;
-    /*min-width: 450px;*/
-    /*max-width: 1450px;*/
-}
+
 
 .product-block {
     display: flex;
@@ -47,8 +42,9 @@
 
 .buttons-holder {
     display: flex;
-    /*justify-content: space-around;*/
+    justify-content: space-around;
     align-items: center;
+    max-width: 700px;
     margin: 0;
 }
 
