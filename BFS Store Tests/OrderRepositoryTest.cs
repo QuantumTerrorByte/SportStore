@@ -7,10 +7,7 @@ using DAO.Models;
 using DAO.Models.ProductModel;
 using DAO.Repositories;
 using Microsoft.EntityFrameworkCore;
-using NUnit.Framework;
-using NUnit.Framework.Internal;
 using SportStore.Controllers;
-using SportStore.Controllers.API;
 using Xunit;
 using Assert = Xunit.Assert;
 

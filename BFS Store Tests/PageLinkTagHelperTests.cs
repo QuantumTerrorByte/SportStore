@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using DAO.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Moq;
 using SportStore.Infrastructure;
-using SportStore.TagHelpers;
-using SportStore.Models.ViewModels.depricated;
 using Xunit;
 
 namespace SportStoreTests
@@ -28,12 +27,7 @@ namespace SportStoreTests
                 .Returns(urlHelper.Object);
             PageLinksTagHelper helper = new PageLinksTagHelper(urlHelperFactory.Object)
             {
-                PageModel = new PagingInfo()
-                {
-                    CurrentPage = 2,
-                    TotalItems = 28,
-                    ItemsPerPage = 10,
-                },
+                PageModel = new PagingInfo(28, 10, 2),
                 PageAction = "Test"
             };
             var ctx = new TagHelperContext(

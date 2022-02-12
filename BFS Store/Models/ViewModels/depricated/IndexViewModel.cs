@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DAO.Models;
 using DAO.Models.ProductModel;
 
 namespace SportStore.Models.ViewModels.depricated

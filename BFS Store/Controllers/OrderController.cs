@@ -24,12 +24,7 @@ namespace SportStore.Controllers
         private readonly IProductRepository _productRepository;
         private readonly IAppUsersRepository _usersRepository;
         private readonly ILogger _logger;
-        private int PageSize
-        {
-            get => PageSize;
-            set => PageSize = value > 0 ? value : throw new Exception("page size cant be less then 1");
-        }
-
+        private int _pageSize;
 
         public OrderController(
             IOrderRepository orderRepository,
@@ -41,8 +36,14 @@ namespace SportStore.Controllers
             _orderRepository = orderRepository;
             _productRepository = productRepository;
             _usersRepository = usersRepository;
+            this._pageSize = 24;
             // _logger = logger;
-            PageSize = 24;
+        }
+
+        private int PageSize
+        {
+            get => _pageSize;
+            set => _pageSize = value > 0 ? value : throw new Exception("page size cant be less then 1");
         }
 
         [HttpGet]
@@ -52,12 +53,12 @@ namespace SportStore.Controllers
         }
 
         [HttpGet]
-        [Route("Order/Index/{page}/{msg}")]
-        public async Task<ViewResult> Index(int page = 1, string msg = "")
+        [Route("Order/Index/{category?}")]
+        public async Task<ViewResult> Index(string category, int page = 1, string msg = "")
         {
             ViewBag.Error = msg;
-
-            return View(await _orderRepository.GetOrdersPageAsync(PageSize, page));
+            var orderDTO = await _orderRepository.GetOrdersPageAsync(PageSize, page);
+            return View(orderDTO);
         }
 
         [HttpPost]

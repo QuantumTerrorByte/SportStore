@@ -37,16 +37,19 @@ namespace DAO.Repositories
 
         public async Task<OrderIndexViewModel> GetOrdersPageAsync(int pageSize, int currentPage)
         {
-            if (pageSize > 0 && currentPage > 0)
+            if (pageSize < 1 && currentPage < 1)
                 throw new Exception($"pageSize:{pageSize}, currentPage:{currentPage}");
 
-            var orders = GetOrders().Take(pageSize).Skip(pageSize * currentPage).ToListAsync();
-            var summaryOrders = GetOrders().CountAsync();
+            var orders = await GetOrders()
+                .Skip(pageSize * (currentPage - 1))
+                .Take(pageSize).ToListAsync();
             
+            var summaryOrders = await GetOrders().CountAsync();
+
             return new OrderIndexViewModel
             {
-                Orders = await orders,
-                PagingInfo = new PagingInfo(await summaryOrders,
+                Orders = orders,
+                PagingInfo = new PagingInfo(summaryOrders,
                     pageSize, currentPage)
             };
         }

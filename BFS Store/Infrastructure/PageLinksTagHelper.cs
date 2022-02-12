@@ -16,7 +16,8 @@ namespace SportStore.Infrastructure
         public PageLinksTagHelper(IUrlHelperFactory helperFactory)
             => urlHelperFactory = helperFactory;
 
-        [ViewContext] [HtmlAttributeNotBound] public ViewContext ViewContext { get; set; }
+        [ViewContext] [HtmlAttributeNotBound] 
+        public ViewContext ViewContext { get; set; }
 
         public PagingInfo PageModel { get; set; }
         public string PageAction { get; set; }

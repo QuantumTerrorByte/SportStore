@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DAO.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -8,7 +9,7 @@ using SportStore.Models.ViewModels.depricated;
 
 namespace SportStore.TagHelpers
 {
-    [HtmlTargetElement("div", Attributes = "page-model")]
+    [HtmlTargetElement("div", Attributes = "page-model2")]
     public class PageLinkTagHelper : TagHelper
     {
         private IUrlHelperFactory _urlHelperFactory;
@@ -25,7 +26,7 @@ namespace SportStore.TagHelpers
 
         public string PageAction { get; set; }
         public PagingInfo PageModel { get; set; }
-        public string CssClass { get; set; }
+        public string CommonCssClass { get; set; }
         public string CurrentPageCssClass { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
@@ -67,9 +68,9 @@ namespace SportStore.TagHelpers
         private TagBuilder CreateTag(string tag, int index, IUrlHelper urlHelper)
         {
             var result = new TagBuilder(tag);
-            // PageUrlValues["productPage"] = index;
-            // result.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
-            result.Attributes["class"] = PageModel.CurrentPage == index ? CurrentPageCssClass : CssClass;
+            PageUrlValues["productPage"] = index;
+            result.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
+            result.Attributes["class"] = PageModel.CurrentPage == index ? CurrentPageCssClass : CommonCssClass;
             result.InnerHtml.Append(index.ToString());
             return result;
         }

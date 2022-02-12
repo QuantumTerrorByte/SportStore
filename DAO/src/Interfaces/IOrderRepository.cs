@@ -6,10 +6,10 @@ using DAO.Models.DataTransferModel;
 
 namespace DAO.Interfaces
 {
-    public interface IOrderRepository: IRepositoryBase<Order>
+    public interface IOrderRepository : IRepositoryBase<Order>
     {
-        public static readonly object OrdersSyncObj  = new object();
+        public static readonly object OrdersSyncObj = new object();
         Task<List<Order>> GetOrdersAsync();
-        Task<OrderIndexViewModel> GetOrdersPageAsync(int pageSize,int currentPage);
+        Task<OrderIndexViewModel> GetOrdersPageAsync(int pageSize, int currentPage);
     }
 }

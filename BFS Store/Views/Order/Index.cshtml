@@ -55,7 +55,7 @@
             }
         </div>
     </form>
-    <div class="buttons-holder" onclick="(function (e)  { e.preventDefault(); e.stopPropagation(); })(event)">
+    <div class="buttons-holder">
         <button class=" btn btn-primary btn-margins" data-bs-toggle="collapse"
                 href="#collapseAddress-@index" role="button"
                 aria-expanded="false" aria-controls="collapseAddress-@index">
@@ -74,10 +74,10 @@
             Options
         </button>
         <a asp-action="AddProduct" asp-controller="Order" type="button" class="btn btn-dark">Add product</a>
-        <form asp-action="DeleteOrder" asp-controller="Order" method="POST">
+        <form asp-action="DeleteOrder" asp-controller="Order" method="post">
             <input type="hidden" name="orderId" value="@order.Id">
             <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()">
-            <button type="submit" form="deleteOrder" class="btn btn-danger">Delete order</button>
+            <button class="btn btn-danger">Delete order</button>
         </form>
 
     </div>
@@ -108,7 +108,7 @@
         </div>
     </div>
 }
-<div page-model="@Model.PagingInfo"></div>
+<div page-model="@Model.PagingInfo" page-action="Index"></div>
 @* onclick="(function (e)  { e.preventDefault(); e.stopPropagation(); })(event)" *@
 @* <div class="collapse" id="collapseAddress-@index"> *@
 @*     <div class="card card-body"> *@
