@@ -10,6 +10,10 @@
     <a href="https://localhost:7000/AuthEmployee/SignOut" class="admin-header__link">SignOut</a>
     <a href="https://localhost:7000/AuthEmployee/SignUp" class="admin-header__link">SignUp</a>
 </div>
+@{
+     var error = ViewBag.Error;
+}
+<div>@error</div>
 @* *@
 @* <div class="admin-header"> *@
 @*     <a asp-action="ControlPanel" asp-controller="Admin" class="admin-header__link">Main</a> *@

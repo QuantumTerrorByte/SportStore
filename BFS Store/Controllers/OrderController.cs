@@ -77,6 +77,7 @@ namespace SportStore.Controllers
             {
                 user = new AppUser {Email = orderViewModel.Email};
             }
+
             //todo add to list of address
             user.Phone = orderViewModel.Phone;
             user.FirstName = orderViewModel.FirstName;
@@ -288,6 +289,30 @@ namespace SportStore.Controllers
             }
 
             return RedirectToAction(nameof(Index), "Order", "Done");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteOrder(long orderId)
+        {
+            try
+            {
+                var order = await _orderRepository.GetAsync(orderId);
+                if (order == null)
+                {
+                    return RedirectToAction(nameof(Index), nameof(OrderController),
+                        "wrong order id");
+                }
+
+                var result = await _orderRepository.DeleteAsync(order);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction(nameof(Index), nameof(OrderController),
+                    "db problems");
+            }
+
+            return RedirectToAction(nameof(Index), nameof(OrderController),
+                $"Order id:{orderId} has been deleted");
         }
     }
 }

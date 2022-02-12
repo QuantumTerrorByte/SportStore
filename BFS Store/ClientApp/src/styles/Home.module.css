@@ -6,6 +6,8 @@
     --mainColor: #27648d;
 
     --yellow: #d9c10a;
+    --yellow: #0000ff;
+    --yellow: #ff0000;
     /*--mainColor: #37475a;*/
 
     --footerLine: #37475a;
@@ -40,7 +42,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    background: rgba(17, 17, 19, 0.51);
+    background: rgba(255, 0, 0, 0.51);
     z-index: 14;
 }
 
