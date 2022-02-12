@@ -48,7 +48,7 @@ namespace SportStore.Controllers
         [Route("Order/Index/{category?}")]
         public async Task<ViewResult> Index(string category, int page = 1, int pageSize = 10, string msg = "")
         {
-            ViewBag.Error = msg;
+            ViewBag.Msg = msg;
             var orderDTO = await _orderRepository.GetOrdersPageAsync(pageSize, page);
             return View(orderDTO);
         }
@@ -272,7 +272,7 @@ namespace SportStore.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProduct(long productId, int amount, long orderId,
+        public IActionResult AddProduct(long productId, int amount, long orderId,
             string returnUrl)
         {
             Order order;
@@ -280,7 +280,7 @@ namespace SportStore.Controllers
             {
                 try
                 {
-                    order = _orderRepository.Get(orderId);
+                    order = _orderRepository.Get(orderId, true);
                     order.Cart.CartLines.Add(new ProductLine()
                     {
                         ProductId = productId,

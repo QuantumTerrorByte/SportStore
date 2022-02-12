@@ -57,10 +57,10 @@
         </div>
     </form>
     <div class="buttons-holder">
-        <button class=" btn btn-primary btn-margins" data-bs-toggle="collapse"
+        <button class=" btn btn-primary btn-margins" data-bs-toggle="collapse" type="button"
                 href="#collapseAddress-@mainIndex" role="button"
                 aria-expanded="false" aria-controls="collapseAddress-@mainIndex">
-            Shipment info
+            Shipment
         </button>
         <button class="@(string.IsNullOrEmpty(order.Comment) ? " btn btn-light btn-margins" : " btn btn-primary btn-margins")"
                 type="button" data-bs-toggle="collapse"
@@ -69,19 +69,19 @@
             Comment
         </button>
         <button type="button" class="btn btn-success">Success</button>
-        <button class=" btn btn-primary btn-margins" data-bs-toggle="collapse"
-                href="#collapseOptions-@mainIndex" role="button"
-                aria-expanded="false" aria-controls="collapseOptions-@mainIndex">
-            Options
-        </button>
-        <a asp-action="AddProduct" asp-controller="Order" asp-route-orderId="@order.Id"
+        @* <button class=" btn btn-primary btn-margins" data-bs-toggle="collapse" *@
+        @*         href="#collapseOptions-@mainIndex" role="button" *@
+        @*         aria-expanded="false" aria-controls="collapseOptions-@mainIndex"> *@
+        @*     Options *@
+        @* </button> *@
+        <a asp-action="AddProduct" asp-controller="Order" asp-route-orderId="@order.Id" type="button"
            asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()" class="btn btn-dark">
-            Add product
+            Add prod
         </a>
         <form asp-action="DeleteOrder" asp-controller="Order" method="post">
             <input type="hidden" name="orderId" value="@order.Id">
             <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()">
-            <button class="btn btn-danger">Delete order</button>
+            <button type="button" class="btn btn-danger">Delete</button>
         </form>
     </div>
     <div class="collapse" id="collapseAddress-@mainIndex">
