@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DAO.Interfaces;
 using DAO.Models;
+using DAO.Models.DataTransferModel;
 using DAO.Models.ProductModel;
 using Microsoft.AspNetCore.Mvc;
 using SportStore.Infrastructure;
 using SportStore.Models.RequestModel;
 using SportStore.Models.ViewModels;
-using FilteredProductsRepoRequestModel = DAO.DataTransferModel.FilteredProductsRepoRequestModel;
 
 namespace SportStore.Controllers.API
 {

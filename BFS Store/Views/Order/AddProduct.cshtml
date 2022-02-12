@@ -4,7 +4,7 @@
 @{
     Layout = "_Layout";
 }
-
+<a href="@ViewBag.ReturnUrl" class="btn btn-danger" style="justify-self: end">Return</a>
 <table class="table table-striped table-bordered table-sm table">
     <tr>
         <th class="text-center">ID</th>
@@ -16,23 +16,27 @@
     @foreach (Product modelProduct in Model.Products)
     {
         <tr>
-            <form action="">
-                <td class="text-center">
-                    @modelProduct.Id
-                </td>
-                <td class="text-center">
-                    @modelProduct.Name
-                </td>
-                <td class="text-center">
-                    @modelProduct.Amount
-                </td>
-                <td class="text-center">
-                    @modelProduct.PriceUsd
-                </td>
-                <td class="text-center">
-                    <button>Add</button>
-                </td>
-            </form>
+            <td class="text-center">
+                @modelProduct.Id
+            </td>
+            <td class="text-center">
+                @modelProduct.Name
+            </td>
+            <td class="text-center">
+                @modelProduct.Amount
+            </td>
+            <td class="text-center">
+                @modelProduct.PriceUsd
+            </td>
+            <td class="text-center">
+                <form asp-action="AddProduct" asp-controller="Order" method="post">
+                    <input type="hidden" name="productId" value="@modelProduct.Id">
+                    <input type="hidden" name="orderId" value="@ViewBag.OrderId">
+                    <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl">
+                    <input type="number" name="amount" value="1">
+                    <button type="submit">Add</button>
+                </form>
+            </td>
         </tr>
     }
 </table>

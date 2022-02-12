@@ -275,31 +275,36 @@ namespace SportStore.Controllers
         public async Task<IActionResult> AddProduct(long productId, int amount, long orderId,
             string returnUrl)
         {
-            var order = await _orderRepository.GetAsync(orderId);
-            if (order == null)
+            Order order;
+            lock (OrderRepository.OrdersSyncObj)
             {
-                ModelState.AddModelError("", "wrong order id");
-                return RedirectToAction("Index");
+                try
+                {
+                    order = _orderRepository.Get(orderId);
+                    order.Cart.CartLines.Add(new ProductLine()
+                    {
+                        ProductId = productId,
+                        Amount = amount
+                    });
+                    _orderRepository.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return RedirectToAction("Index", "Order",
+                        new
+                        {
+                            orderId, returnUrl,
+                            msg = $"error occured when trying get order({orderId}) from bd."
+                        });
+                }
             }
 
-            order.Cart.CartLines.Add(new ProductLine()
-            {
-                ProductId = productId,
-                Amount = amount
-            });
-
-            ViewBag.orderId = orderId;
-            try
-            {
-                await _orderRepository.EditAsync(order);
-                ViewBag.message = "Done";
-            }
-            catch (Exception e)
-            {
-                ModelState.AddModelError("", "add to DB error");
-            }
-
-            return RedirectToAction(nameof(AddProduct), nameof(Order), returnUrl);
+            return RedirectToAction(nameof(AddProduct), nameof(Order),
+                new
+                {
+                    returnUrl, orderId,
+                    msg = $"{amount} products(id:{productId}) has been added to order(id:{orderId})."
+                });
         }
 
         [HttpPost]
@@ -319,7 +324,10 @@ namespace SportStore.Controllers
             catch (Exception e)
             {
                 return RedirectToAction(nameof(Index), "Order",
-                    new {msg = "db problems"});
+                    new
+                    {
+                        msg = "db problems"
+                    });
             }
 
             return Redirect(returnUrl.Contains("&&msg=") //todo with format
