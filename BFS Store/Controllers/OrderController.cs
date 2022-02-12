@@ -261,11 +261,14 @@ namespace SportStore.Controllers
 
         [HttpGet]
         public async Task<IActionResult> AddProduct(long orderId, string returnUrl, int page = 1,
-            int pageSize = 30, string smg = "")
+            int pageSize = 30, string msg = "")
         {
+            ViewBag.Msg = msg;
+            ViewBag.OrderId = orderId;
             ViewBag.ReturnUrl = returnUrl;
-            var products = await _productRepository.GetProductPageAsync(page, pageSize);
-            return View(orderId);
+
+            var viewModel = await _productRepository.GetProductPageAsync(page, pageSize);
+            return View(viewModel);
         }
 
         [HttpPost]
