@@ -74,13 +74,15 @@
                 aria-expanded="false" aria-controls="collapseOptions-@mainIndex">
             Options
         </button>
-        <a asp-action="AddProduct" asp-controller="Order" type="button" class="btn btn-dark">Add product</a>
+        <a asp-action="AddProduct" asp-controller="Order" asp-route-orderId="@order.Id"
+           asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()" class="btn btn-dark">
+            Add product
+        </a>
         <form asp-action="DeleteOrder" asp-controller="Order" method="post">
             <input type="hidden" name="orderId" value="@order.Id">
             <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()">
             <button class="btn btn-danger">Delete order</button>
         </form>
-
     </div>
     <div class="collapse" id="collapseAddress-@mainIndex">
         <div class="card card-body">
@@ -116,26 +118,8 @@
             <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()">
         </form>
     }
-    {prodFormIndex += order.Cart.CartLines.Count;}
+    {
+        prodFormIndex += order.Cart.CartLines.Count;
+    }
 }
 <div page-model="@Model.PagingInfo" page-action="Index"></div>
-@* onclick="(function (e)  { e.preventDefault(); e.stopPropagation(); })(event)" *@
-@* <div class="collapse" id="collapseAddress-@index"> *@
-@*     <div class="card card-body"> *@
-@*         <h3>Email: @order.Costumer.Email</h3> *@
-@*         <h3>Phone: @order.Costumer.Phone</h3> *@
-@*         <h3>FirstName: @order.Costumer.FirstName</h3> *@
-@*         <h3>SecondName: @order.Costumer.SecondName</h3> *@
-@*         <h3>Patronymic: @order.Costumer.Patronymic</h3> *@
-@*         <h3>PostalOffice: @order.Costumer.Address.PostalOffice</h3> *@
-@*         <h3>City: @order.Costumer.Address.City</h3> *@
-@*         <h3>Street: @order.Costumer.Address.Street</h3> *@
-@*         <h3>House: @order.Costumer.Address.House</h3> *@
-@*         <h3>Apartment: @order.Costumer.Address.Apartment</h3> *@
-@*     </div> *@
-@* </div> *@
-@* <div class="collapse" id="collapseComment-@index"> *@
-@*     <div class="card card-body"> *@
-@*         <h3>@order.Comment</h3> *@
-@*     </div> *@
-@* </div> *@
