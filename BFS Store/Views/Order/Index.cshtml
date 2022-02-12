@@ -18,7 +18,7 @@
 {
     <form class="order-block-form" method="post" asp-controller="Order" asp-action="SetApproved">
         @{ ++index; }
-
+        <h2>Order id:@order.Id</h2>
         <div class="order-block__products-holder">
             @for (int i = 0; i < order.Cart.CartLines.Count; i++) //single product line in order block
             {
@@ -61,7 +61,7 @@
                 aria-expanded="false" aria-controls="collapseAddress-@index">
             Shipment info
         </button>
-        <button class="@(order.Comment.Length > 0 ? " btn btn-primary btn-margins" : " btn btn-light btn-margins")"
+        <button class="@(string.IsNullOrEmpty(order.Comment) ? " btn btn-primary btn-margins" : " btn btn-light btn-margins")"
                 type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseComment-@index" aria-expanded="false"
                 aria-controls="collapseComment-@index">

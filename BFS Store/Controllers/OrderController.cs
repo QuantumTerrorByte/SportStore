@@ -323,7 +323,9 @@ namespace SportStore.Controllers
                     new {msg = "db problems"});
             }
 
-            return Redirect($"{returnUrl}/order id:{orderId} has been deleted");
+            return Redirect(returnUrl.Contains("&&msg=") //todo with format
+                ? $"{returnUrl}  order id:{orderId} has been deleted"
+                : $"{returnUrl}&&msg=order id:{orderId} has been deleted");
         }
 
         [HttpPost]
