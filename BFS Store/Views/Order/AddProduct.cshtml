@@ -1,4 +1,5 @@
-﻿@model DAO.Models.DataTransferModel.PageOfProductsDto
+﻿@using DAO.Models.ProductModel
+@model DAO.Models.DataTransferModel.PageOfProductsDto
 
 @{
     Layout = "_Layout";
@@ -10,12 +11,28 @@
         <th class="text-center">Name</th>
         <th class="text-center">Amount</th>
         <th class="text-center">Price</th>
+        <th class="text-center">Action</th>
     </tr>
-    @for
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+    @foreach (Product modelProduct in Model.Products)
+    {
+        <tr>
+            <form action="">
+                <td class="text-center">
+                    @modelProduct.Id
+                </td>
+                <td class="text-center">
+                    @modelProduct.Name
+                </td>
+                <td class="text-center">
+                    @modelProduct.Amount
+                </td>
+                <td class="text-center">
+                    @modelProduct.PriceUsd
+                </td>
+                <td class="text-center">
+                    <button>Add</button>
+                </td>
+            </form>
+        </tr>
+    }
 </table>
