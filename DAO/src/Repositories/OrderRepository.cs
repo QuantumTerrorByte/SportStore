@@ -20,6 +20,19 @@ namespace DAO.Repositories
             _appDataContext = appDataContext;
         }
 
+        public Order Get(long key, bool withInclude = false)
+        {
+            return withInclude
+                ? _appDataContext.Orders
+                    .Include(o => o.Costumer)
+                    .ThenInclude(c => c.Address)
+                    .Include(o => o.Cart)
+                    .ThenInclude(c => c.CartLines)
+                    .ThenInclude(cl => cl.Product)
+                    .First(e => e.Id == key)
+                : _appDataContext.Orders.Find(key);
+        }
+
         private IQueryable<Order> GetOrders(bool withInclude = true)
         {
             return _appDataContext.Orders
@@ -43,7 +56,7 @@ namespace DAO.Repositories
             var orders = await GetOrders()
                 .Skip(pageSize * (currentPage - 1))
                 .Take(pageSize).ToListAsync();
-            
+
             var summaryOrders = await GetOrders().CountAsync();
 
             return new OrderIndexViewModel

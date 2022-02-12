@@ -12,12 +12,13 @@
 }
 
 @{
-    int index = 0;
+    int mainIndex = 0;
+    int prodFormIndex = 0;
 }
 @foreach (var order in Model.Orders) //single order block
 {
     <form class="order-block-form" method="post" asp-controller="Order" asp-action="SetApproved">
-        @{ ++index; }
+        @{ ++mainIndex; }
         <h2>Order id:@order.Id</h2>
         <div class="order-block__products-holder">
             @for (int i = 0; i < order.Cart.CartLines.Count; i++) //single product line in order block
@@ -49,7 +50,7 @@
                         </label>
                     </div>
                     <div class="product-line-block__button-block">
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <button type="submit" form="@i+form+@prodFormIndex" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
             }
@@ -57,20 +58,20 @@
     </form>
     <div class="buttons-holder">
         <button class=" btn btn-primary btn-margins" data-bs-toggle="collapse"
-                href="#collapseAddress-@index" role="button"
-                aria-expanded="false" aria-controls="collapseAddress-@index">
+                href="#collapseAddress-@mainIndex" role="button"
+                aria-expanded="false" aria-controls="collapseAddress-@mainIndex">
             Shipment info
         </button>
-        <button class="@(string.IsNullOrEmpty(order.Comment) ? " btn btn-primary btn-margins" : " btn btn-light btn-margins")"
+        <button class="@(string.IsNullOrEmpty(order.Comment) ? " btn btn-light btn-margins" : " btn btn-primary btn-margins")"
                 type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseComment-@index" aria-expanded="false"
-                aria-controls="collapseComment-@index">
+                data-bs-target="#collapseComment-@mainIndex" aria-expanded="false"
+                aria-controls="collapseComment-@mainIndex">
             Comment
         </button>
         <button type="button" class="btn btn-success">Success</button>
         <button class=" btn btn-primary btn-margins" data-bs-toggle="collapse"
-                href="#collapseOptions-@index" role="button"
-                aria-expanded="false" aria-controls="collapseOptions-@index">
+                href="#collapseOptions-@mainIndex" role="button"
+                aria-expanded="false" aria-controls="collapseOptions-@mainIndex">
             Options
         </button>
         <a asp-action="AddProduct" asp-controller="Order" type="button" class="btn btn-dark">Add product</a>
@@ -81,7 +82,7 @@
         </form>
 
     </div>
-    <div class="collapse" id="collapseAddress-@index">
+    <div class="collapse" id="collapseAddress-@mainIndex">
         <div class="card card-body">
             <h3>Email: @order.Costumer.Email</h3>
             <h3>Phone: @order.Costumer.Phone</h3>
@@ -95,18 +96,27 @@
             <h3>Apartment: @order.Costumer.Address.Apartment</h3>
         </div>
     </div>
-    <div class="collapse" id="collapseComment-@index">
+    <div class="collapse" id="collapseComment-@mainIndex">
         <div class="card card-body">
             <h3>@order.Comment</h3>
         </div>
     </div>
-    <div class="collapse" id="collapseOptions-@index">
+    <div class="collapse" id="collapseOptions-@mainIndex">
         <div class="card card-body">
             <button type="button" class="btn btn-dark">Add product</button>
             <button type="button" class="btn btn-success">Save order</button>
             <button type="button" form="deleteOrder" class="btn btn-danger">Delete order</button>
         </div>
     </div>
+    @for (int j = 0; j < order.Cart.CartLines.Count; j++)
+    {
+        <form id="@j+form+@prodFormIndex" asp-action="DeleteProduct" asp-controller="Order" method="post">
+            <input type="hidden" name="productId" value="@order.Cart.CartLines[j].Product.Id">
+            <input type="hidden" name="orderId" value="@order.Id">
+            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()">
+        </form>
+    }
+    {prodFormIndex += order.Cart.CartLines.Count;}
 }
 <div page-model="@Model.PagingInfo" page-action="Index"></div>
 @* onclick="(function (e)  { e.preventDefault(); e.stopPropagation(); })(event)" *@

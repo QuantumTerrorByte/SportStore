@@ -14,14 +14,12 @@ namespace DAO.Interfaces
         Task<T> EditAsync(T entity);
 
         Task<T> DeleteAsync(T entity);
-        Task SaveAsync(T entity);
-        
-        T Get<TKey>(TKey key);
+
+        T Get<TKey>(TKey key, bool withInclude = false);
         List<T> GetAll();
         T Add(T entity);
         T Edit(T entity);
         T Delete(T entity);
-        void Save(T entity);
         void SaveChanges();
         Task SaveChangesAsync();
     }

@@ -54,12 +54,7 @@ namespace DAO.Repositories
             return entity;
         }
 
-        public async Task SaveAsync(T entity)
-        {
-            await AppDataContext.SaveChangesAsync();
-        }
-
-        public virtual T Get<TKey>(TKey key)
+        public virtual T Get<TKey>(TKey key, bool withInclude = false)
         {
             return DbSet.Find(key);
         }
@@ -79,7 +74,7 @@ namespace DAO.Repositories
         public virtual T Edit(T entity)
         {
             DbSet.Update(entity);
-             AppDataContext.SaveChanges();
+            AppDataContext.SaveChanges();
             return entity;
         }
 
@@ -88,11 +83,6 @@ namespace DAO.Repositories
             DbSet.Remove(entity);
             AppDataContext.SaveChanges();
             return entity;
-        }
-
-        public virtual void Save(T entity)
-        {
-            AppDataContext.SaveChangesAsync();
         }
 
         public void SaveChanges()

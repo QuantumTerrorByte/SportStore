@@ -331,7 +331,37 @@ namespace SportStore.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteProduct(long orderId, long productId, string returnUrl)
         {
-            return null;
+            try
+            {
+                lock (OrderRepository.OrdersSyncObj)
+                {
+                    var order = _orderRepository.Get(orderId, true);
+                    if (order == null)
+                    {
+                        return RedirectToAction(nameof(Index), "Order",
+                            new {msg = "wrong order id"});
+                    }
+
+                    var result = order.Cart.CartLines.RemoveAll(line => line.Product.Id == productId);
+                    if (result > 1)
+                    {
+                        throw new Exception(
+                            $"Something going wrong when trying delete product with id:{productId}, " +
+                            $"from order id:{orderId}");
+                    }
+
+                    _orderRepository.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction(nameof(Index), "Order",
+                    new {msg = "db problems"});
+            }
+
+            return Redirect(returnUrl.Contains("&&msg=") //todo with format
+                ? $"{returnUrl}  product(id:{productId}) has been deleted from order(id:{orderId})"
+                : $"{returnUrl}&&msg=product(id:{productId}) has been deleted from order(id:{orderId})");
         }
     }
 }
