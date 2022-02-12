@@ -1,4 +1,3 @@
-using System;
 using DAO.Models;
 using DAO.Models.ProductModel;
 using Microsoft.EntityFrameworkCore;

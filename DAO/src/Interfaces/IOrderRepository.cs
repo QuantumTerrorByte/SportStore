@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using DAO.Models;
 using DAO.Models.DataTransferModel;
@@ -11,6 +10,6 @@ namespace DAO.Interfaces
         public static readonly object OrdersSyncObj = new object();
         Order Get(long key, bool withInclude = false);
         Task<List<Order>> GetOrdersAsync();
-        Task<OrderIndexViewModel> GetOrdersPageAsync(int pageSize, int currentPage);
+        Task<OrderIndexDto> GetOrdersPageAsync(int pageSize, int currentPage);
     }
 }

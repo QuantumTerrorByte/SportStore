@@ -24,7 +24,6 @@ namespace SportStore.Controllers
         private readonly IProductRepository _productRepository;
         private readonly IAppUsersRepository _usersRepository;
         private readonly ILogger _logger;
-        private int _pageSize;
 
         public OrderController(
             IOrderRepository orderRepository,
@@ -36,14 +35,7 @@ namespace SportStore.Controllers
             _orderRepository = orderRepository;
             _productRepository = productRepository;
             _usersRepository = usersRepository;
-            this._pageSize = 24;
             // _logger = logger;
-        }
-
-        private int PageSize
-        {
-            get => _pageSize;
-            set => _pageSize = value > 0 ? value : throw new Exception("page size cant be less then 1");
         }
 
         [HttpGet]
@@ -54,10 +46,10 @@ namespace SportStore.Controllers
 
         [HttpGet]
         [Route("Order/Index/{category?}")]
-        public async Task<ViewResult> Index(string category, int page = 1, string msg = "")
+        public async Task<ViewResult> Index(string category, int page = 1, int pageSize = 10, string msg = "")
         {
             ViewBag.Error = msg;
-            var orderDTO = await _orderRepository.GetOrdersPageAsync(PageSize, page);
+            var orderDTO = await _orderRepository.GetOrdersPageAsync(pageSize, page);
             return View(orderDTO);
         }
 
@@ -113,43 +105,6 @@ namespace SportStore.Controllers
             return Ok();
         }
 
-        [HttpGet]
-        public async Task<IActionResult> AddProduct(long orderId, string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-            return View(orderId);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AddProduct(long productId, int amount, long orderId,
-            string returnUrl)
-        {
-            var order = await _orderRepository.GetAsync(orderId);
-            if (order == null)
-            {
-                ModelState.AddModelError("", "wrong order id");
-                return RedirectToAction("Index");
-            }
-
-            order.Cart.CartLines.Add(new ProductLine()
-            {
-                ProductId = productId,
-                Amount = amount
-            });
-
-            ViewBag.orderId = orderId;
-            try
-            {
-                await _orderRepository.EditAsync(order);
-                ViewBag.message = "Done";
-            }
-            catch (Exception e)
-            {
-                ModelState.AddModelError("", "add to DB error");
-            }
-
-            return RedirectToAction(nameof(AddProduct), nameof(Order), returnUrl);
-        }
 
         /// <summary>
         /// Set order status in to approved and remove(reservation) products from store(db)
@@ -303,6 +258,47 @@ namespace SportStore.Controllers
             return RedirectToAction(nameof(Index), "Order", "Done");
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> AddProduct(long orderId, string returnUrl, int page = 1,
+            int pageSize = 30, string smg = "")
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            var products = await _productRepository.GetProductPageAsync(page, pageSize);
+            return View(orderId);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddProduct(long productId, int amount, long orderId,
+            string returnUrl)
+        {
+            var order = await _orderRepository.GetAsync(orderId);
+            if (order == null)
+            {
+                ModelState.AddModelError("", "wrong order id");
+                return RedirectToAction("Index");
+            }
+
+            order.Cart.CartLines.Add(new ProductLine()
+            {
+                ProductId = productId,
+                Amount = amount
+            });
+
+            ViewBag.orderId = orderId;
+            try
+            {
+                await _orderRepository.EditAsync(order);
+                ViewBag.message = "Done";
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", "add to DB error");
+            }
+
+            return RedirectToAction(nameof(AddProduct), nameof(Order), returnUrl);
+        }
+
         [HttpPost]
         public async Task<IActionResult> DeleteOrder(long orderId, string returnUrl)
         {
@@ -329,7 +325,7 @@ namespace SportStore.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteProduct(long orderId, long productId, string returnUrl)
+        public IActionResult DeleteProduct(long orderId, long productId, string returnUrl)
         {
             try
             {

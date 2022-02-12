@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace DAO
+﻿namespace DAO
 {
     public class Regexes
     {

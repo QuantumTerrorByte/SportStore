@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DAO.Core;
-using DAO.DataTransferModel;
 using DAO.Interfaces;
 using DAO.Models;
+using DAO.Models.DataTransferModel;
 using DAO.Models.ProductModel;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +14,35 @@ namespace DAO.Repositories
     public class ProductRepository : IProductRepository
     {
         public static readonly SyncObj ProductsSyncObj = new();
+
         private readonly AppDataContext _appDataContext;
+
+        public async Task<PageOfProductsDto> GetProductPageAsync(int currentPage, int pageSize,
+            bool includeInfo = false, bool tracing = false)
+        {
+            if (currentPage < 1 || pageSize < 1)
+            {
+                throw new Exception($"pageSize:{pageSize}, currentPage:{currentPage}");
+            }
+
+            var products = includeInfo
+                ? Products().Skip(pageSize * (currentPage - 1)).Take(pageSize)
+                : Products(true).Skip(pageSize * (currentPage - 1)).Take(pageSize);
+
+            if (tracing)
+            {
+                products.AsNoTracking();
+            }
+
+            return new PageOfProductsDto
+            {
+                Products = tracing
+                    ? await products.ToListAsync()
+                    : await products.AsNoTracking().ToListAsync(),
+                PagingInfo = new PagingInfo(await _appDataContext.Products.CountAsync(), pageSize,
+                    currentPage)
+            };
+        }
 
         public ProductRepository(AppDataContext appDataContext)
             => _appDataContext = appDataContext;
@@ -50,7 +78,8 @@ namespace DAO.Repositories
                 : throw new ArgumentException("no ids params or null");
         }
 
-        public async Task<List<Product>> GetAllProductsListAsync(bool includeInners = false) //todo check db query
+        public async Task<List<Product>>
+            GetAllProductsListAsync(bool includeInners = false) //todo check db query
             => await Products(includeInners).ToListAsync();
 
         /// <summary>
@@ -64,8 +93,7 @@ namespace DAO.Repositories
                 .Select(p => p.Id).Where(id => ids.Contains(id)).CountAsync();
         }
 
-        public (IList<Product>, int)
-            GetFilteredProducts(FilteredProductsRepoRequestModel requestModel) //todo lang
+        public (IList<Product>, int) GetFilteredProducts(FilteredProductsRepoRequestModel requestModel)
         {
             var products = Products(requestModel.AttachInfo)
                 .Where(p =>
@@ -111,7 +139,6 @@ namespace DAO.Repositories
             _appDataContext.SaveChanges();
             return product;
         }
-
 
         public ProductInfo GetProductInfo(long prodId, Langs lang = Langs.US)
         {

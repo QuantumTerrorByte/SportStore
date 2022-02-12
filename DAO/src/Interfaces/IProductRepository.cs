@@ -1,15 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DAO.DataTransferModel;
 using DAO.Models;
+using DAO.Models.DataTransferModel;
 using DAO.Models.ProductModel;
 
 namespace DAO.Interfaces
 {
     public interface IProductRepository
     {
-        public static readonly object ProductsSyncObj  = new object();
+        public static readonly object ProductsSyncObj = new object();
+
+        Task<PageOfProductsDto> GetProductPageAsync(int currentPage, int pageSize, bool includeInfo = false,
+            bool tracing = false);
+
         void AddOrEditProduct(Product products);
         Product RemoveProduct(int id);
         Task<Product> GetProduct(long id, bool includeInners = false);
@@ -20,7 +24,7 @@ namespace DAO.Interfaces
         ProductInfo GetProductInfo(long prodId, Langs lang = Langs.US);
         ProductInfo RemoveProductInfo(long id);
         Task<bool> CheckContainsAsync(long[] ids);
-        
+
         (IList<Product>, int) GetFilteredProducts(FilteredProductsRepoRequestModel requestModel);
         IList<string> GetBrands();
         public IEnumerable<Category> GetCategories(int lvl = 0);

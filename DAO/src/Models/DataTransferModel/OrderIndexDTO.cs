@@ -2,7 +2,7 @@
 
 namespace DAO.Models.DataTransferModel
 {
-    public class OrderIndexViewModel
+    public class OrderIndexDto
     {
         public PagingInfo PagingInfo { get; set; }
         public List<Order> Orders { get; set; }
