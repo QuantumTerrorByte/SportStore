@@ -4,11 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using DAO.Interfaces;
 using DAO.Models;
+using DAO.Models.DataTransferModel;
 using DAO.Models.ProductModel;
 using DAO.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SportStore.Infrastructure;
+using SportStore.Models.RequestModel;
 using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers
@@ -21,6 +24,12 @@ namespace SportStore.Controllers
         private readonly IProductRepository _productRepository;
         private readonly IAppUsersRepository _usersRepository;
         private readonly ILogger _logger;
+        private int PageSize
+        {
+            get => PageSize;
+            set => PageSize = value > 0 ? value : throw new Exception("page size cant be less then 1");
+        }
+
 
         public OrderController(
             IOrderRepository orderRepository,
@@ -33,6 +42,7 @@ namespace SportStore.Controllers
             _productRepository = productRepository;
             _usersRepository = usersRepository;
             // _logger = logger;
+            PageSize = 24;
         }
 
         [HttpGet]
@@ -42,20 +52,21 @@ namespace SportStore.Controllers
         }
 
         [HttpGet]
-        public async Task<ViewResult> Index(string error)
+        [Route("Order/Index/{page}/{msg}")]
+        public async Task<ViewResult> Index(int page = 1, string msg = "")
         {
-            ViewBag.Error = error;
-            var orders = await _orderRepository.GetOrdersAsync();
-            return View(orders);
+            ViewBag.Error = msg;
+
+            return View(await _orderRepository.GetOrdersPageAsync(PageSize, page));
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrder([FromBody] OrderViewModel orderViewModel)
+        public async Task<IActionResult> CreateOrder([FromBody] OrderRequestModel orderRequestModel)
         {
-            if (orderViewModel.CartLines.Count < 1) return BadRequest("No lines");
+            if (orderRequestModel.CartLines.Count < 1) return BadRequest("No lines");
             var lines = new List<ProductLine>();
             var order = new Order {Cart = new Cart {CartLines = lines}};
-            foreach (var cartLineViewModel in orderViewModel.CartLines)
+            foreach (var cartLineViewModel in orderRequestModel.CartLines)
             {
                 lines.Add(new()
                 {
@@ -69,23 +80,23 @@ namespace SportStore.Controllers
             try
             {
                 user = userId == null
-                    ? new AppUser {Email = orderViewModel.Email}
+                    ? new AppUser {Email = orderRequestModel.Email}
                     : await _usersRepository.GetAsync(userId);
                 if (user == null) throw new Exception(); //probably impossible with good auth control
             }
             catch (Exception e)
             {
-                user = new AppUser {Email = orderViewModel.Email};
+                user = new AppUser {Email = orderRequestModel.Email};
             }
 
             //todo add to list of address
-            user.Phone = orderViewModel.Phone;
-            user.FirstName = orderViewModel.FirstName;
-            user.SecondName = orderViewModel.SecondName;
-            user.Patronymic = orderViewModel.Patronymic;
-            user.Address = orderViewModel.Address;
-            order.GiftWrap = orderViewModel.GiftWrap;
-            order.Comment = orderViewModel.Comment;
+            user.Phone = orderRequestModel.Phone;
+            user.FirstName = orderRequestModel.FirstName;
+            user.SecondName = orderRequestModel.SecondName;
+            user.Patronymic = orderRequestModel.Patronymic;
+            user.Address = orderRequestModel.Address;
+            order.GiftWrap = orderRequestModel.GiftWrap;
+            order.Comment = orderRequestModel.Comment;
             order.DateTime = DateTime.Now;
             order.Costumer = user;
 
@@ -292,27 +303,32 @@ namespace SportStore.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteOrder(long orderId)
+        public async Task<IActionResult> DeleteOrder(long orderId, string returnUrl)
         {
             try
             {
                 var order = await _orderRepository.GetAsync(orderId);
                 if (order == null)
                 {
-                    return RedirectToAction(nameof(Index), nameof(OrderController),
-                        "wrong order id");
+                    return RedirectToAction(nameof(Index), "Order",
+                        new {msg = "wrong order id"});
                 }
 
                 var result = await _orderRepository.DeleteAsync(order);
             }
             catch (Exception e)
             {
-                return RedirectToAction(nameof(Index), nameof(OrderController),
-                    "db problems");
+                return RedirectToAction(nameof(Index), "Order",
+                    new {msg = "db problems"});
             }
 
-            return RedirectToAction(nameof(Index), nameof(OrderController),
-                $"Order id:{orderId} has been deleted");
+            return Redirect($"{returnUrl}/order id:{orderId} has been deleted");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteProduct(long orderId, long productId, string returnUrl)
+        {
+            return null;
         }
     }
 }

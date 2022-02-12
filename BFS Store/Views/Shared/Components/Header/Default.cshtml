@@ -1,5 +1,4 @@
-﻿
-<div class="admin-header">
+﻿<div class="admin-header">
     <a href="https://localhost:5005/Admin/ControlPanel" class="admin-header__link">Main</a>
     <a href="https://localhost:5005/AdminProduct/ControlPanel" class="admin-header__link">Products</a>
     <a href="https://localhost:7000/AdminUsersRoles/Index" class="admin-header__link">UserRoles</a>
@@ -11,9 +10,11 @@
     <a href="https://localhost:7000/AuthEmployee/SignUp" class="admin-header__link">SignUp</a>
 </div>
 @{
-     var error = ViewBag.Error;
+    var error = ViewBag.Error;
 }
-<div>@error</div>
+<div style="display: flex;justify-content: center">
+    <h1>@error</h1>
+</div>
 @* *@
 @* <div class="admin-header"> *@
 @*     <a asp-action="ControlPanel" asp-controller="Admin" class="admin-header__link">Main</a> *@

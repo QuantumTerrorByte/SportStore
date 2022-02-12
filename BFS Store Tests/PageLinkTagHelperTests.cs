@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Moq;
+using SportStore.Infrastructure;
 using SportStore.TagHelpers;
 using SportStore.Models.ViewModels.depricated;
 using Xunit;
@@ -25,7 +26,7 @@ namespace SportStoreTests
             urlHelperFactory.Setup(f =>
                     f.GetUrlHelper(It.IsAny<ActionContext>()))
                 .Returns(urlHelper.Object);
-            PageLinkTagHelper helper = new PageLinkTagHelper(urlHelperFactory.Object)
+            PageLinksTagHelper helper = new PageLinksTagHelper(urlHelperFactory.Object)
             {
                 PageModel = new PagingInfo()
                 {

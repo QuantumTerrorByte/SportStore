@@ -1,8 +1,9 @@
 ﻿@using SportStore.Components
 @using DAO.Migrations
 @using DAO.Models
+@using SportStore.Infrastructure
 <link rel="stylesheet" href="/css/OrderAdmin.css">
-@model System.Collections.Generic.List<DAO.Models.Order>
+@model DAO.Models.DataTransferModel.OrderIndexViewModel
 
 
 @{
@@ -13,7 +14,7 @@
 @{
     int index = 0;
 }
-@foreach (var order in Model) //single order block
+@foreach (var order in Model.Orders) //single order block
 {
     <form class="order-block-form" method="post" asp-controller="Order" asp-action="SetApproved">
         @{ ++index; }
@@ -52,33 +53,34 @@
                     </div>
                 </div>
             }
-            <form id="deleteOrder" method="POST" asp-controller="Order" asp-action="DeleteOrder">
-                <input type="hidden" name="orderId" value="@order.Id"/>
-            </form>
         </div>
-        <div class="buttons-holder" onclick="(function (e)  { e.preventDefault(); e.stopPropagation(); })(event)">
-            <button class=" btn btn-primary btn-margins" data-bs-toggle="collapse"
-                    href="#collapseAddress-@index" role="button"
-                    aria-expanded="false" aria-controls="collapseAddress-@index">
-                Shipment info
-            </button>
-
-
-            <button class="@(order.Comment.Length > 0 ? " btn btn-primary btn-margins" : " btn btn-light btn-margins")"
-                    type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseComment-@index" aria-expanded="false"
-                    aria-controls="collapseComment-@index">
-                Comment
-            </button>
-            <button type="button" class="btn btn-success">Success</button>
-            <button class=" btn btn-primary btn-margins" data-bs-toggle="collapse"
-                    href="#collapseOptions-@index" role="button"
-                    aria-expanded="false" aria-controls="collapseOptions-@index">
-                Options
-            </button>
-        </div>
-
     </form>
+    <div class="buttons-holder" onclick="(function (e)  { e.preventDefault(); e.stopPropagation(); })(event)">
+        <button class=" btn btn-primary btn-margins" data-bs-toggle="collapse"
+                href="#collapseAddress-@index" role="button"
+                aria-expanded="false" aria-controls="collapseAddress-@index">
+            Shipment info
+        </button>
+        <button class="@(order.Comment.Length > 0 ? " btn btn-primary btn-margins" : " btn btn-light btn-margins")"
+                type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseComment-@index" aria-expanded="false"
+                aria-controls="collapseComment-@index">
+            Comment
+        </button>
+        <button type="button" class="btn btn-success">Success</button>
+        <button class=" btn btn-primary btn-margins" data-bs-toggle="collapse"
+                href="#collapseOptions-@index" role="button"
+                aria-expanded="false" aria-controls="collapseOptions-@index">
+            Options
+        </button>
+        <a asp-action="AddProduct" asp-controller="Order" type="button" class="btn btn-dark">Add product</a>
+        <form asp-action="DeleteOrder" asp-controller="Order" method="POST">
+            <input type="hidden" name="orderId" value="@order.Id">
+            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()">
+            <button type="submit" form="deleteOrder" class="btn btn-danger">Delete order</button>
+        </form>
+
+    </div>
     <div class="collapse" id="collapseAddress-@index">
         <div class="card card-body">
             <h3>Email: @order.Costumer.Email</h3>
@@ -98,8 +100,7 @@
             <h3>@order.Comment</h3>
         </div>
     </div>
-    <div class="collapse" id="collapseOptions-@index"
-         >
+    <div class="collapse" id="collapseOptions-@index">
         <div class="card card-body">
             <button type="button" class="btn btn-dark">Add product</button>
             <button type="button" class="btn btn-success">Save order</button>
@@ -107,6 +108,7 @@
         </div>
     </div>
 }
+<div page-model="@Model.PagingInfo"></div>
 @* onclick="(function (e)  { e.preventDefault(); e.stopPropagation(); })(event)" *@
 @* <div class="collapse" id="collapseAddress-@index"> *@
 @*     <div class="card card-body"> *@

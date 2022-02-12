@@ -3,10 +3,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using DAO;
 using DAO.Models;
+using SportStore.Models.ViewModels;
 
-namespace SportStore.Models.ViewModels
+namespace SportStore.Models.RequestModel
 {
-    public class OrderViewModel
+    public class OrderRequestModel
     {
         public long Id { get; set; }
 
