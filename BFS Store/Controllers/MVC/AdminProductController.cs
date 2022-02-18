@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using DAO.Interfaces;
 using DAO.Models.ProductModel;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SportStore.Models.ViewModels;
 

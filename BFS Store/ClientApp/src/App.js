@@ -17,8 +17,6 @@ import Footer from "./components/Footer";
 import {ProductPageProvider} from "./components/ProductPageComponents/ProductPageProvider";
 import {CheckoutReduxForm} from "./components/forms/CheckoutForm";
 import {orderSendAction} from "./redux/actions/CartActionFactory";
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import "./styles/nullable.css"
 
 
 export default function App(props) {

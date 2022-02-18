@@ -1,6 +1,5 @@
 ﻿using DAO.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using SportStore.Models.ViewModels.depricated;
 
 namespace SportStore.Components
 {

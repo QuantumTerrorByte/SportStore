@@ -4,15 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using DAO.Interfaces;
 using DAO.Models;
-using DAO.Models.DataTransferModel;
 using DAO.Models.ProductModel;
 using DAO.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SportStore.Infrastructure;
 using SportStore.Models.RequestModel;
-using SportStore.Models.ViewModels;
 
 namespace SportStore.Controllers
 {

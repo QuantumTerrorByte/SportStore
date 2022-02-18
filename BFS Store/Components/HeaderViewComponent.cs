@@ -1,5 +1,4 @@
-﻿using DAO.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace SportStore.Components
 {

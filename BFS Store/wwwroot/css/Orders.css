@@ -1,7 +1,4 @@
 ﻿
-
-
-
 .product-block {
     display: flex;
     padding: 10px;
@@ -44,9 +41,18 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    max-width: 700px;
+    max-width: 1000px;
+    width: 1000px;
     margin: 0;
 }
+
+.buttons-formatter {
+    display: flex;
+    width: 95px;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .btn-margins {
     margin: 0 20px;

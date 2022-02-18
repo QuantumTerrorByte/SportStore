@@ -1,7 +1,4 @@
-﻿@using SportStore.Components
-@using DAO.Migrations
-@using DAO.Models
-@using SportStore.Infrastructure
+﻿@using SportStore.Infrastructure
 <link rel="stylesheet" href="/css/OrderAdmin.css">
 @model DAO.Models.DataTransferModel.OrderIndexDto
 
@@ -57,31 +54,27 @@
         </div>
     </form>
     <div class="buttons-holder">
-        <button class=" btn btn-primary btn-margins" data-bs-toggle="collapse" type="button"
+        <button class=" btn btn-primary btn-margins buttons-formatter" data-bs-toggle="collapse" type="button"
                 href="#collapseAddress-@mainIndex" role="button"
                 aria-expanded="false" aria-controls="collapseAddress-@mainIndex">
             Shipment
         </button>
-        <button class="@(string.IsNullOrEmpty(order.Comment) ? " btn btn-light btn-margins" : " btn btn-primary btn-margins")"
+        <button class="buttons-formatter @(string.IsNullOrEmpty(order.Comment) ? " btn btn-light btn-margins" : " btn btn-primary btn-margins")"
                 type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseComment-@mainIndex" aria-expanded="false"
                 aria-controls="collapseComment-@mainIndex">
             Comment
         </button>
-        <button type="button" class="btn btn-success">Success</button>
-        @* <button class=" btn btn-primary btn-margins" data-bs-toggle="collapse" *@
-        @*         href="#collapseOptions-@mainIndex" role="button" *@
-        @*         aria-expanded="false" aria-controls="collapseOptions-@mainIndex"> *@
-        @*     Options *@
-        @* </button> *@
+        <button type="button" class="btn btn-success buttons-formatter">Success</button>
+
         <a asp-action="AddProduct" asp-controller="Order" asp-route-orderId="@order.Id" type="button"
-           asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()" class="btn btn-dark">
+           asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()" class="btn btn-dark btn-margins buttons-formatter">
             Add prod
         </a>
         <form asp-action="DeleteOrder" asp-controller="Order" method="post">
             <input type="hidden" name="orderId" value="@order.Id">
             <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()">
-            <button type="button" class="btn btn-danger">Delete</button>
+            <button type="button" class="btn btn-danger btn-margins buttons-formatter">Delete</button>
         </form>
     </div>
     <div class="collapse" id="collapseAddress-@mainIndex">
@@ -103,13 +96,7 @@
             <h3>@order.Comment</h3>
         </div>
     </div>
-    <div class="collapse" id="collapseOptions-@mainIndex">
-        <div class="card card-body">
-            <button type="button" class="btn btn-dark">Add product</button>
-            <button type="button" class="btn btn-success">Save order</button>
-            <button type="button" form="deleteOrder" class="btn btn-danger">Delete order</button>
-        </div>
-    </div>
+
     @for (int j = 0; j < order.Cart.CartLines.Count; j++)
     {
         <form id="@j+form+@prodFormIndex" asp-action="DeleteProduct" asp-controller="Order" method="post">
@@ -123,3 +110,17 @@
     }
 }
 <div page-model="@Model.PagingInfo" page-action="Index"></div>
+
+
+@*<button class=" btn btn-primary btn-margins buttons-formatter" data-bs-toggle="collapse"
+        href="#collapseOptions-@mainIndex" role="button"
+        aria-expanded="false" aria-controls="collapseOptions-@mainIndex">
+    Options
+</button>
+<div class="collapse" id="collapseOptions-@mainIndex">
+    <div class="card card-body">
+        <button type="button" class="btn btn-dark">Add product</button>
+        <button type="button" class="btn btn-success">Save order</button>
+        <button type="button" form="deleteOrder" class="btn btn-danger">Delete order</button>
+    </div>
+</div>*@

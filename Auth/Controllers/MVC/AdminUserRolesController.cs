@@ -2,7 +2,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Auth.Infrastructure;
 using Auth.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

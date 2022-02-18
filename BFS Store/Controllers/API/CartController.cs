@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using DAO.Interfaces;
-using DAO.Models;
 using Microsoft.AspNetCore.Mvc;
 using SportStore.Models.ViewModels.depricated;
 
