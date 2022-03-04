@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zOUjiIlJdc34WfriMTrzqlHOFgECadV40r7GZUym9C/Zm6lPSVj2CovCEv75XbKn70SptxktqWptIGJ8okEHZA==",
+  "dgSpecHash": "lb7IdLQ6QL2a1eUUNq18hDjSSq4/4xpaTVCf6OvimnUht1gLENFWDY54+dnPjcUHhNI53IWChBb01VxgwQgdfQ==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\BFS Store main\\BFS Store\\BFS Store.csproj",
+  "projectFilePath": "D:\\Projects\\SportStore\\BFS Store\\BFS Store.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dragunov\\.nuget\\packages\\bootstrap\\5.1.2\\bootstrap.5.1.2.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",

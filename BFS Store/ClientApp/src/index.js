@@ -14,27 +14,26 @@ import {
 import './styles/Home.module.css';
 import {initialStateCartAction} from "./redux/actions/CartActionFactory";
 
-console.time("store");
-console.timeLog("store");
 
-export const store = function () {
-    console.timeLog("store");
-    const result = createStore(rootReducer, compose(
-        applyMiddleware(thunk),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    ));
-    //!!!!!!
-    return result;
-}();
+// export const store = function () {
+//     const result = createStore(rootReducer, compose(
+//         applyMiddleware(thunk),
+//         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+//     ));
+//     //!!!!!!
+//     return result;
+// }();
+export const store = createStore(rootReducer, compose(
+    applyMiddleware(thunk),
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+));
 
-console.timeLog("store");
 
 store.dispatch(initialStateCartAction());
 store.dispatch(uploadCategoriesAndBrands());
 store.dispatch(setCurrentPage(1));
 store.dispatch({type: ""});
 
-console.timeLog("store");
 
 const app = (
     <Provider store={store}>

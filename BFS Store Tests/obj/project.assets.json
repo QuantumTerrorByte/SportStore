@@ -10563,39 +10563,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dragunov\\.nuget\\packages\\": {},
-    "D:\\Programs\\Microsoft\\Tools\\NuGetPackages": {}
+    "C:\\Users\\Dragunov\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\BFS Store main\\BFS Store Tests\\BFS Store Tests.csproj",
+      "projectUniqueName": "D:\\Projects\\SportStore\\BFS Store Tests\\BFS Store Tests.csproj",
       "projectName": "BFS Store Tests",
-      "projectPath": "D:\\Projects\\BFS Store main\\BFS Store Tests\\BFS Store Tests.csproj",
+      "projectPath": "D:\\Projects\\SportStore\\BFS Store Tests\\BFS Store Tests.csproj",
       "packagesPath": "C:\\Users\\Dragunov\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\BFS Store main\\BFS Store Tests\\obj\\",
+      "outputPath": "D:\\Projects\\SportStore\\BFS Store Tests\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\Programs\\Microsoft\\Tools\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Dragunov\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Dragunov\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\Projects\\BFS Store main\\BFS Store\\BFS Store.csproj": {
-              "projectPath": "D:\\Projects\\BFS Store main\\BFS Store\\BFS Store.csproj"
+            "D:\\Projects\\SportStore\\BFS Store\\BFS Store.csproj": {
+              "projectPath": "D:\\Projects\\SportStore\\BFS Store\\BFS Store.csproj"
             }
           }
         }

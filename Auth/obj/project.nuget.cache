@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Nxep/xmJyG8ACWjAwXYEDjvT9An3brv2g+maflHLxhe2m01U8CF9a+eN++0Vx+/d6MYuJOKi6SsR5pioqYqVYA==",
+  "dgSpecHash": "b9slg1L1b9mSHdCuTktl0RnJGR+ly+roH9KUEWypiWW3Xw1Luvz7et9Pth2H0TGP0kZ2MbUi3UEKpnWvg4chUA==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\BFS Store main\\Auth\\Auth.csproj",
+  "projectFilePath": "D:\\Projects\\SportStore\\Auth\\Auth.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dragunov\\.nuget\\packages\\bootstrap\\5.1.2\\bootstrap.5.1.2.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",

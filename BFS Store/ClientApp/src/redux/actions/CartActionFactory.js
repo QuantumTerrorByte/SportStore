@@ -10,10 +10,7 @@ import {
     SWITCH_MINI_CART_FLAG, USER_LOGIN
 } from "../Consts";
 import {log} from "../../core/log";
-import {store} from "../../index";
 import {getAuthFlag} from "../../core/getAuthFlag";
-import $ from "jquery";
-import {AUTH_CONTROLLER_PATH} from "./AuthActionsFactory";
 
 
 export function orderSendAction(data, cart) {

@@ -41,10 +41,8 @@ namespace SportStore
             services.AddTransient<ILikesRepository, LikesRepository>();
 
             // services.AddTransient<ICommentsAndLikesRepository, CommentsAndLikesRepository>();
-            services.AddDbContext<AppDataContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("Default"),
-                    ServerVersion.AutoDetect(Configuration.GetConnectionString("Default"))));
-
+            services.AddDbContext<AppDataContext>(o =>
+                o.UseSqlServer(Configuration.GetConnectionString("default"), b => b.MigrationsAssembly("BFS Store")));
 
             services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(1));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

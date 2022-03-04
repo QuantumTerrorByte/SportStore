@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HfXM0T4cJXqL5xG9LRkYXYSFQ8FbnDzQdNJsG5NgQcJYKojxMR9sLHDz8FHsFF9KwVs/ywouNpH6wqtC5zmv2g==",
+  "dgSpecHash": "CI4IgmnHpaXfHNuFlWnJJLhbuUCP9GVQCZZPfdpVmkQhPpSar1AvGJRyO9X6r1MkTsSSU2dshEZpBUzT/BBH3g==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\BFS Store main\\DAO\\DAO.csproj",
+  "projectFilePath": "D:\\Projects\\SportStore\\DAO\\DAO.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dragunov\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Dragunov\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",

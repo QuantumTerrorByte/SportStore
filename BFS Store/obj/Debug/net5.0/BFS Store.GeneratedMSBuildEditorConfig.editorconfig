@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = SportStore
-build_property.ProjectDir = D:\Projects\BFS Store main\BFS Store\
+build_property.ProjectDir = D:\Projects\SportStore\BFS Store\

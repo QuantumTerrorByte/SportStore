@@ -269,10 +269,9 @@ namespace SportStore.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddProduct(long productId, int amount, long orderId,
-            string returnUrl)
+        public IActionResult AddProduct(long productId, int amount, long orderId, string returnUrl)
         {
-            Order order;
+            Order order;    
             lock (OrderRepository.OrdersSyncObj)
             {
                 try

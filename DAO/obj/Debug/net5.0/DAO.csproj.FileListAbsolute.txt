@@ -1,0 +1,15 @@
+D:\Projects\SportStore\DAO\bin\Debug\net5.0\DAO.deps.json
+D:\Projects\SportStore\DAO\bin\Debug\net5.0\DAO.runtimeconfig.json
+D:\Projects\SportStore\DAO\bin\Debug\net5.0\DAO.runtimeconfig.dev.json
+D:\Projects\SportStore\DAO\bin\Debug\net5.0\DAO.dll
+D:\Projects\SportStore\DAO\bin\Debug\net5.0\ref\DAO.dll
+D:\Projects\SportStore\DAO\bin\Debug\net5.0\DAO.pdb
+D:\Projects\SportStore\DAO\obj\Debug\net5.0\DAO.csproj.AssemblyReference.cache
+D:\Projects\SportStore\DAO\obj\Debug\net5.0\DAO.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\SportStore\DAO\obj\Debug\net5.0\DAO.AssemblyInfoInputs.cache
+D:\Projects\SportStore\DAO\obj\Debug\net5.0\DAO.AssemblyInfo.cs
+D:\Projects\SportStore\DAO\obj\Debug\net5.0\DAO.csproj.CoreCompileInputs.cache
+D:\Projects\SportStore\DAO\obj\Debug\net5.0\DAO.dll
+D:\Projects\SportStore\DAO\obj\Debug\net5.0\ref\DAO.dll
+D:\Projects\SportStore\DAO\obj\Debug\net5.0\DAO.pdb
+D:\Projects\SportStore\DAO\obj\Debug\net5.0\DAO.genruntimeconfig.cache

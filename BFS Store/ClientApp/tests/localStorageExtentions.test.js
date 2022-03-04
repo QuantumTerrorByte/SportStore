@@ -1,5 +1,5 @@
-const {CART} = require("../src/redux/Consts");
-const {myFunc} = require("../src/TProdId");
+
+
 const {methodsExtensions} = require("../src/core/methodsExtensions");
 
 describe("localStorage extensions methods", () => {
